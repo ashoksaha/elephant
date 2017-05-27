@@ -1,0 +1,68 @@
+<div ng-cloak>
+    <div class="site-wrap">
+        <section class="bg bg-navigation" id="logged-out-header">
+            <div class="container">
+                <main-navbar></main-navbar>
+            </div>
+        </section>
+        <section class="home__courses">
+            <div class="container">
+                <h3>
+                <span ng-bind="vm.selectedDiscussionName"></span>
+            </h3>
+                <hr />
+                <ul ng-if="vm.discussionThreads.length > 0" class="media-list">
+                    <li class="media" ng-repeat="thread in vm.discussionThreads">
+                        <div class="media-left">
+                            <a href="javascript:void(0);">
+                                <img class="media-object" src="{{thread.studentImage}}" style="height:60px;" alt="...">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading" ng-bind="thread.threadText"></h4>
+                            <div ng-if="thread.comments.length > 0">
+                                <div class="media" ng-repeat="comment in thread.comments">
+                                    <div class="media-left">
+                                        <a href="javascript:void(0);">
+                                            <img class="media-object" src="{{comment.studentImage}}" style="height:60px;" alt="...">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading" ng-bind="comment.threadText"></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>
+                                <md-button md-no-ink class="md-primary" ng-click="thread.showNewComment = true;">Add Comment</md-button>
+                            </p>
+                            <form ng-if="thread.showNewComment">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Enter Comment</label>
+                                    <textarea row="5" ng-model="thread.commentText"></textarea>
+                                </md-input-container>
+                                <md-button class="md-raised md-primary" ng-click="vm.addComment(thread)">Submit</md-button>
+                                <md-button class="md-raised md-primary" ng-click="thread.showNewComment = false;">Cancle</md-button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+                <hr />
+                <div class="media">
+                    <div class="media-left">
+                        <a href="javascript:void(0);">
+                            <img class="media-object" src="{{vm.studentInfo.profile_picture}}" style="height:60px;" alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Enter </label>
+                            <textarea row="5" ng-model="vm.thread.threadText"></textarea>
+                        </md-input-container>
+                        <md-button class="md-raised md-primary pull-right" ng-click="vm.submitThread()">Submit</md-button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <main-footer-bar></main-footer-bar>
+</div>

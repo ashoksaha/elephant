@@ -1,0 +1,128 @@
+<div class="groups__courses">
+    <h4 class="gr-subtitle">Courses
+        <a style="margin:0px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" ui-sref="instructor.lms.createCourses" ng-click="vm.course = {};">
+        <i class="fa fa-plus-square"></i> Add New
+    </a>
+    </h4>
+    <ul class="tabs nav-tabs with-background clearfix">
+        <li ng-click="vm.categoryListTab = 1;" ng-class="{'active' : vm.categoryListTab == 1 }">
+            <a href="javascript:void(0);">Active Courses (<span ng-bind="vm.activeCourses.length"></span>)</a>
+        </li>
+        <li ng-click="vm.categoryListTab = 2;" ng-class="{'active' : vm.categoryListTab == 2 }">
+            <a href="javascript:void(0);">Inactive Courses (<span ng-bind="vm.inactiveCourses.length"></span>)</a>
+        </li>
+    </ul>
+    <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 1">
+        <div class="groups__courses-filters clearfix">
+            <div class="select select--small">
+                <select ng-options="category.id as category.name for category in vm.activeCourseCategories" ng-model="vm.activeSelectedCategory" ng-change="vm.searchCourses(1, '', vm.activeSelectedCategory)">
+                    <option value="">All Categories</option>
+                </select>
+            </div>
+            <div class="search">
+                <i class="fa fa-search search-icon" aria-hidden="true"></i>
+                <input type="text" name="search" placeholder="Search" ng-model="vm.activeCourseSearchText" ng-keydown="($event.keyCode === 13 || vm.activeCourseSearchText == '') && vm.searchCourses(1, vm.activeCourseSearchText, '')">
+            </div>
+        </div>
+        <p id="emptyCoursesMessage" class="text-center" ng-if="(vm.activeCourses.length == 0 && (vm.activeSelectedCategory || vm.activeCourseSearchText))">
+            <i>Seems like we don't have any courses for this. <a id="resetCoursesFilter" href="javascript:void(0);">Reset</a> your search.</i>
+        </p>
+        <section class="groups__courses-course js-course" data-skill="" data-title="{{course.title}}" ng-repeat="course in vm.activeCourses">
+            <div class="row course-block">
+                <div class="col-md-2">
+                    <img src="{{course.image}}" alt="{{course.name}}" />
+                </div>
+                <div class="col-md-10">
+                    <h4>
+                        <span ng-bind="course.title" ng-click="vm.editCourse(course)"></span> <span class="label label-accent pull-right" ng-click="vm.editCourse(course)">Edit</span>
+                    </h4>
+                    <div>
+                        <i class="fa fa-credit-card" aria-hidden="true"></i> <i class="fa fa-inr" aria-hidden="true" ng-if="course.courseFee"></i> <span ng-bind="course.courseFee || 'Free'"></span> | 
+                        <i class="fa fa-clock-o" aria-hidden="true"></i> <span ng-bind="course.duration"></span> <span ng-bind="course.durationParameterText"></span> | 
+                        <i class="fa fa-calendar" aria-hidden="true"></i> <span ng-bind="course.courseStartDate"></span>
+                    </div>
+                    <p ng-bind="course.description"></p>
+                    <hr>
+                    <a href="javascript:void(0);" ng-click="vm.getCourseStudents(course)">Show Students</a> | <a ng-click="vm.getCourseCallrequests(course);" href="javascript:void(0);">Show Callback Request</a>
+                    <a class="btn btn-primary btn-small m0 pull-right js-open-assignment-dialog" href="javascript:void(0)">Add unit</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 1">
+        <p class="text-center" ng-if="vm.activeCourses.length == 0"><b>Currently no active courses.</b></p>
+        <table ng-if="vm.activeCourses.length > 0">
+            <tbody>
+                <tr ng-repeat="course in vm.activeCourses">
+                    <td><span ng-bind="$index + 1"></span></td>
+                    <td><img width="35" height="35" src="{{course.images}}" alt="{{course.name}}" /></td>
+                    <td style="width:45%">
+                        <a ng-bind="course.title" href="javascript:void(0);" ng-click="vm.editCourse(course)"></a>
+                    </td>
+                    <td>
+                        <sapn ng-bind="course.description">
+                            </span>
+                    </td>
+                    <td>
+                        <sapn ng-bind="course.courseStartDate">
+                            </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+    <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 2">
+        <div class="groups__courses-filters clearfix">
+            <div class="select select--small">
+                <select ng-options="category.id as category.name for category in vm.activeCourseCategories" ng-model="vm.inactiveSelectedCategory" ng-change="vm.searchCourses(0, '', vm.inactiveSelectedCategory)">
+                    <option value="">All Categories</option>
+                </select>
+            </div>
+            <div class="search">
+                <i class="fa fa-search search-icon" aria-hidden="true"></i>
+                <input type="text" name="search" placeholder="Search" ng-model="vm.inactiveCourseSearchText" ng-keyup="($event.keyCode === 13 || vm.inactiveCourseSearchText == '') && vm.searchCourses(0, vm.inactiveCourseSearchText, '')">
+            </div>
+        </div>
+        <p id="emptyCoursesMessage" class="text-center" ng-if="(vm.inactiveCourses.length == 0 && (vm.inactiveSelectedCategory || vm.inactiveCourseSearchText))">
+            <i>Seems like we don't have any courses for this. <a id="resetCoursesFilter" href="javascript:void(0);">Reset</a> your search.</i>
+        </p>
+        <section class="groups__courses-course js-course" data-skill="" data-title="{{course.title}}" ng-repeat="course in vm.inactiveCourses">
+            <div class="row course-block">
+                <div class="col-md-2">
+                    <img src="{{course.image}}" alt="{{course.name}}">
+                </div>
+                <div class="col-md-10">
+                    <h4><span ng-bind="course.title"></span> <span class="label label-accent pull-right" ng-click="vm.editCourse(course)">Edit</span></h4>
+                    <div>
+                        <i class="fa fa-credit-card" aria-hidden="true"></i> <i class="fa fa-inr" aria-hidden="true" ng-if="course.courseFee"></i> <span ng-bind="course.courseFee || 'Free'"></span> | 
+                        <i class="fa fa-clock-o" aria-hidden="true"></i> <span ng-bind="course.duration"></span> <span ng-bind="course.durationParameterText"></span> | 
+                        <i class="fa fa-calendar" aria-hidden="true"></i> <span ng-bind="course.courseStartDate"></span>
+                    </div>
+                    <p ng-bind="course.description"></p>
+                    <hr>
+                    <a href="javascript:void(0);">Show Students</a> | <a href="javascript:void(0);">Show Units</a>
+                    <a class="btn btn-primary btn-small m0 pull-right js-open-assignment-dialog" href="javascript:void(0)">Add unit</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 2">
+        <p class="text-center" ng-if="vm.inactiveCourses.length == 0"><b>Currently no inactive courses.</b></p>
+        <table ng-if="vm.inactiveCourses.length > 0">
+            <tbody>
+                <tr ng-repeat="course in vm.inactiveCourses">
+                    <td><span ng-bind="$index + 1"></span></td>
+                    <td><img width="35" height="35" src="{{course.images}}" /></td>
+                    <td style="width:45%">
+                        <a ng-bind="course.title" href="javascript:void(0);" ng-click="vm.editCourse(course)"></a>
+                    </td>
+                    <td><span ng-bind="course.description"></span></td>
+                    <td>
+                        <sapn ng-bind="course.courseStartDate">
+                            </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+</div>

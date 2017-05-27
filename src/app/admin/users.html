@@ -1,0 +1,127 @@
+<div ng-cloak>
+    <div class="container groups__container">
+        <h2> Users </h2>
+        <hr>
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-sm-3 col-sm-push-9">
+                <div class="side-nav groups__sidebar">
+                    <ul>
+                        <li ng-class="{'active' : vm.userTab == $index}" ng-click="vm.selectUserType($index, userType);" ng-repeat="userType in vm.userTypeList">
+                            <a href="javascript:void(0);" ng-bind="userType.Name"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-9 col-sm-pull-3 vertical-nav-border">
+                <!--                          -->
+                <div class="groups__courses">
+                    <h4 class="gr-subtitle"><span ng-bind="vm.userType">Courses</span> 
+                        <a style="margin:0px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" ui-sref="admin.addUser">
+                            <i class="fa fa-plus-square"></i> Add New 
+                        </a>
+                    </h4>
+                    <ul class="tabs nav-tabs with-background clearfix">
+                        <li ng-click="vm.userListTab = 1;" ng-class="{'active' : vm.userListTab == 1 }">
+                            <a href="javascript:void(0);">Active (<span ng-bind="vm.userCount.active"></span>)</a>
+                        </li>
+                        <li ng-click="vm.userListTab = 2;" ng-class="{'active' : vm.userListTab == 2 }">
+                            <a href="javascript:void(0);">Inactive (<span ng-bind="vm.userCount.inactive"></span>)</a>
+                        </li>
+                    </ul>
+                    <div class="groups__courses-overview groups__border" ng-if="vm.userListTab == 1">
+                        <!-- <div class="groups__courses-filters clearfix">
+                            <div class="select select--small">
+                                <select ng-options="category.id as category.name for category in vm.activeCourseCategories" ng-model="vm.activeSelectedCategory" ng-change="vm.searchActiveCourses()">
+                                    <option value="">All Categories</option>
+                                </select>
+                            </div>
+                            <div class="select select--small">
+                                <select ng-options="instructor.id as instructor.fullName for instructor in vm.allInstructors" ng-model="vm.activeSelectedInstructor" ng-change="vm.searchActiveCourses()">
+                                    <option value="">All Instructor</option>
+                                </select>
+                            </div>
+                            <div class="search">
+                                <i class="fa fa-search search-icon" aria-hidden="true"></i>
+                                <input type="text" name="search" placeholder="Search" ng-model="vm.activeCourseSearchText" ng-keydown="($event.keyCode === 13 || vm.activeCourseSearchText == '') && vm.searchActiveCourses()">
+                            </div>
+                        </div> -->
+                        <p id="emptyCoursesMessage" class="text-center" ng-if="(vm.activeCourses.length == 0 && (vm.activeSelectedCategory || vm.activeCourseSearchText))">
+                            <i>Seems like we don't have any courses for this. <a id="resetCoursesFilter" href="javascript:void(0);">Reset</a> your search.</i>
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>SN</th>
+                                        <th></th>
+                                        <th>Full Name</th>
+                                        <th>User Name</th>
+                                        <th>Email</th>
+                                        <th>Mobile</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="user in vm.userList | filter: { 'status': 1 }">
+                                        <td ng-bind="$index + 1"></td>
+                                        <td><img src="{{user.image}}" style="height:50px;" /></td>
+                                        <td ng-bind="user.fullName"></td>
+                                        <td ng-bind="user.userName"></td>
+                                        <td ng-bind="user.emailId"></td>
+                                        <td ng-bind="user.mobile"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="groups__courses-overview groups__border" ng-if="vm.userListTab == 2">
+                        <!-- <div class="groups__courses-filters clearfix">
+                            <div class="select select--small">
+                                <select ng-options="category.id as category.name for category in vm.activeCourseCategories" ng-model="vm.inactiveSelectedCategory" ng-change="vm.searchInactiveCourses()">
+                                    <option value="">All Categories</option>
+                                </select>
+                            </div>
+                            <div class="select select--small">
+                                <select ng-options="instructor.id as instructor.fullName for instructor in vm.allInstructors" ng-model="vm.inactiveSelectedInstructor" ng-change="vm.searchInactiveCourses()">
+                                    <option value="">All Instructor</option>
+                                </select>
+                            </div>
+                            <div class="search">
+                                <i class="fa fa-search search-icon" aria-hidden="true"></i>
+                                <input type="text" name="search" placeholder="Search" ng-model="vm.inactiveCourseSearchText" ng-keyup="($event.keyCode === 13 || vm.inactiveCourseSearchText == '') && vm.searchInactiveCourses()">
+                            </div>
+                        </div> -->
+                        <p id="emptyCoursesMessage" class="text-center" ng-if="(vm.inactiveCourses.length == 0 && (vm.inactiveSelectedCategory || vm.inactiveCourseSearchText))">
+                            <i>Seems like we don't have any courses for this. <a id="resetCoursesFilter" href="javascript:void(0);">Reset</a> your search.</i>
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>SN</th>
+                                        <th></th>
+                                        <th>Full Name</th>
+                                        <th>User Name</th>
+                                        <th>Email</th>
+                                        <th>Mobile</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="user in vm.userList | filter: { 'status': 0 }">
+                                        <td ng-bind="$index + 1"></td>
+                                        <td><img src="{{user.image}}" style="height:50px;" /></td>
+                                        <td ng-bind="user.fullName"></td>
+                                        <td ng-bind="user.userName"></td>
+                                        <td ng-bind="user.emailId"></td>
+                                        <td ng-bind="user.mobile"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--                          -->
+            </div>
+        </div>
+    </div>
+</div>

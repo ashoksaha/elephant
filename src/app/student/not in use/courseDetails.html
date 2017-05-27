@@ -1,0 +1,76 @@
+<div class="site-wrap">
+    <section class="bg bg-navigation bg-pattern-student" id="logged-out-header">
+        <div class="container">
+            <div class="show-course__header">
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-9">
+                        <h5 class="subhead">free course</h5>
+                        <h1 ng-bind="vm.course.title"></h1>
+                        <!-- <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-click="vm.subscribeCourse($event);">Start Course For Free</a> -->
+                        <ul>
+                            <li class="icon-video">0&nbsp;Videos</li>
+                            <li class="icon-code">62&nbsp;Exercises</li>
+                            <li class="icon-time">4 hours&nbsp;</li>
+                            <li class="icon-participants">383,230&nbsp;Participants</li>
+                            <li class="icon-xp" ng-if="vm.course.courseRating"><span ng-bind="vm.course.courseRating"></span>&nbsp;Rating</li>
+                            <li class="icon-xp" ng-if="vm.course.reviewCourse"><span ng-bind="vm.course.reviewCourse"></span>&nbsp;Reviews</li>
+                        </ul>
+                    </div>
+                    <div class="hidden-xs hidden-sm col-md-4 col-lg-3">
+                        <div class="header-image" ng-if="vm.course.image">
+                            <div class="progress" data-value="0" data-size="1000" data-thickness="20" data-fill="{&quot;color&quot;: &quot;#ebf4f7&quot;}" data-line-cap="round" data-empty-fill="rgba(213,234,239,0.1)"></div>
+                            <img alt="Introduction to R" src="{{vm.course.image}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="show-social__header" ng-if="vm.socialShare">
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-9">
+                        <ul>
+                            <li>Share On: </li>
+                            <li ng-repeat="social in vm.socialShare">
+                                <i class="fa" ng-class="social.imageIcon"></i>
+                                <span><a href="javascript:void(0);" ng-click="social.sharerLink" ng-bind="social.name"></a></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="show-course__body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 col-sm-push-9 text-center">
+                    <p><b>Instructor:</b></p>
+                    <div class="show-course__instructor">
+                        <img width="100" height="100" class="center-block image-rounded" src="{{vm.course.instructorImage || '/assets/images/avatar.png'}}">
+                        <h5 ng-bind="vm.course.instructorFullName" ng-click="vm.showInstructorCourses();"></h5>
+                        <p ng-bind="vm.course.instructorBiography"></p>
+                    </div>
+                </div>
+                <div class="col-sm-9 col-sm-pull-3 vertical-nav-border">
+                    <h3>Course Description
+                        <a class="btn btn-primary pull-right" href="javascript:void(0);" ng-click="vm.showRelatedDiscussion();">Related Discussion</a>
+                    </h3>
+                    <p ng-bind="vm.course.description"></p>
+                    <div class="show-course__chapter">
+                        <div class="show-course__chapter-header" ng-repeat="unit in vm.course.units">
+                            <a href="javascript:void(0);" ng-click="vm.showUnit(unit);">
+                                <h4 class="show-course__chapter-title">
+                                    <span class="chapter-number" ng-bind="$index + 1"></span>
+                                    <span class="exercise-icon ">
+                                        <i class="fa" ng-class="unit.icon"></i>
+                                    </span>
+                                    <span ng-bind="unit.name"></span>
+                                </h4>
+                            </a>
+                            <p ng-bind="unit.unitDescription"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

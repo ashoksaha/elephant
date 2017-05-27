@@ -1,0 +1,144 @@
+.exercise-area {
+    min-width: 992px;
+    overflow: hidden;
+    border: 5px solid #ebf4f7;
+}
+
+.plain-mc-ex #rendered-view {
+    background-color: #eaf3f7;
+    overflow: scroll;
+}
+
+.plain-mc-ex #rendered-view>div {
+    height: 100%;
+    display: flex;
+}
+
+.plain-mc-ex .exercise--sidebar {
+    width: auto;
+    max-width: 900px;
+    margin: auto;
+    min-width: 650px;
+    position: relative;
+}
+
+.exercise--sidebar-content {
+    height: 100%;
+    overflow: auto;
+    padding: 20px;
+}
+
+.exercise--assignment {
+    position: relative;
+}
+
+.exercise--title,
+.vex--title h1 {
+    font-size: 2rem;
+}
+
+.exercise--title {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ebf4f7;
+    margin-bottom: 15px;
+    padding-right: 80px;
+    color: #3a3a3a;
+}
+
+.exercise--capstone .skills-tooltip,
+.exercise--sidebar-content .skills-tooltip {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 3px;
+}
+
+.skills-tooltip {
+    background-color: #3ac;
+    border-radius: 3px;
+    color: #fff;
+    font-size: .9rem;
+    font-weight: 200;
+    padding: 2px 12px;
+}
+
+.vex--buttons {
+    float: right;
+}
+
+.__react_component_tooltip {
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 13px;
+    left: -999em;
+    opacity: 0;
+    padding: 8px 21px;
+    position: fixed;
+    pointer-events: none;
+    transition: opacity 0.3s ease-out;
+    top: -999em;
+    visibility: hidden;
+    z-index: 999;
+}
+
+.__react_component_tooltip.place-top {
+    margin-top: -10px;
+}
+
+.__react_component_tooltip.type-dark {
+    color: #fff;
+    background-color: #222;
+}
+
+ul.exercise--multiple-choice {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-weight: 200;
+}
+
+ul.exercise--multiple-choice .mc-label {
+    vertical-align: text-bottom;
+    font-weight: 400;
+    line-height: 1.7;
+    margin-left: 20px;
+}
+
+ul.exercise--multiple-choice .mc-label {
+    vertical-align: text-bottom;
+    font-weight: 400;
+    line-height: 1.7;
+    margin-left: 20px;
+}
+
+input[type=checkbox]+label,
+input[type=radio]+label {
+    transition: color .15s ease-out;
+    display: inline-block;
+    color: #7ecce2;
+    cursor: pointer;
+    padding: 0 0 0 1.5em;
+    position: relative;
+}
+
+.sct-feedback {
+    color: #3ac;
+    margin-top: 15px;
+}
+
+.react-resize-detector {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    overflow: scroll;
+    z-index: -1;
+    visibility: hidden;
+}
+
+.content--tab {
+    overflow: hidden;
+    padding: 0;
+    list-style: none;
+}

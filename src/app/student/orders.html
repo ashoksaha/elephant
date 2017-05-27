@@ -1,0 +1,43 @@
+<div ng-cloak>
+    <div class="site-wrap">
+        <section class="bg bg-navigation" id="logged-out-header">
+            <div class="container">
+                <main-navbar></main-navbar>
+            </div>
+        </section>
+        <section class="home__courses">
+            <div class="container">
+                <div class="table-responsive" ng-if="vm.orders.length">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>SN</th>
+                                <th>Txn Id</th>
+                                <th>Course</th>
+                                <th>Instructor</th>
+                                <th>Order Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="order in vm.orders">
+                                <td ng-bind="$index + 1"></td>
+                                <td ng-bind="order.txnID"></td>
+                                <td ng-bind="order.courseName" ng-click="vm.showCourseDetails(order.courseName, order.courseId)"></td>
+                                <td ng-bind="order.fullname"></td>
+                                <td ng-bind="order.orderDate"></td>
+                                <td ng-bind="order.amount || 'Free'"></td>
+                                <td ng-bind="order.status ? 'Complete' : 'Pending'"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p ng-if="vm.orders.length == 0" class="text-center">
+                    You have no orders to show
+                </p>
+            </div>
+        </section>
+    </div>
+    <main-footer-bar></main-footer-bar>
+</div>

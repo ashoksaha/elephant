@@ -1,0 +1,76 @@
+<div ng-cloak>
+    <div class="site-wrap" ng-class="{'active' : !vm.isCollapsed}">
+        <section class="bg bg-navigation bg-pattern-instructor" id="logged-out-header">
+            <div class="container">
+                <div class="show-course__header">
+                    <div class="row">
+                        <div class="hidden-xs hidden-sm col-md-4 col-lg-3">
+                            <div class="header-image" ng-if="vm.allCourses[0].instructorImage">
+                                <div class="progress" data-value="0" data-size="1000" data-thickness="20" data-fill="{&quot;color&quot;: &quot;#ebf4f7&quot;}" data-line-cap="round" data-empty-fill="rgba(213,234,239,0.1)"></div>
+                                <img alt="Introduction to R" src="{{vm.allCourses[0].instructorImage}}">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-8 col-lg-9">
+                            <!-- <h5 class="subhead">free course</h5> -->
+                            <h1 ng-bind="vm.selectedInstructorName"></h1>
+                            <p ng-bind="vm.allCourses[0].instructorBiography"></p>
+                            <!-- <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-click="vm.subscribeCourse($event);">Start Course For Free</a> -->
+                            <ul>
+                                <li class="icon-video">
+                                    <button type="button" class="btn btn-warning">Follow</button>
+                                </li>
+                                <!-- <li class="icon-code">62&nbsp;Exercises</li>
+                                <li class="icon-time">4 hours&nbsp;</li>
+                                <li class="icon-participants">383,230&nbsp;Participants</li>
+                                <li class="icon-xp">6200&nbsp;XP</li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="show-course__body">
+            <div class="container">
+                <h3>Courses</h3>
+                <p ng-bind="vm.course.description"></p>
+                <section>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6" ng-repeat="course in vm.allCourses">
+                                <a class="no-link-style no-link-color" href="javascript:void(0);">
+                                    <div class="course-block" ng-class="{'course-block--r' : $even, 'course-block--g' : $odd}">
+                                        <div>
+                                            <!-- Don't remove these. Needed for flexbox -->
+                                            <h4 class="course-block__title" ng-bind="course.title"></h4>
+                                            <p class="course-block__description" ng-bind="course.description"></p>
+                                            <p class="course-block__description">
+                                                <span class="rating">
+                                        <span class="star" ng-repeat="star in vm.stars" ng-class="{'starfull' : course.courseRating - $index > 1, 'starhalf' : course.courseRating - $index > 0 && course.courseRating - $index < 1,  'starempty' : course.courseRating - $index <= 0 }"></span>
+                                                </span> (<span ng-bind="course.reviewCourse || 0"></span> Reviews)
+                                            </p>
+                                        </div>
+                                        <div class="course-block__author">
+                                            <div class="course-block__author-image">
+                                                <img class="image-rounded" width="70" height="70" src="{{course.instructorImage || '/assets/images/avatar.png'}}">
+                                            </div>
+                                            <div class="course-block__author-description">
+                                                <h5 ng-bind="course.instructorFullName"></h5>
+                                                <p ng-bind="course.instructorDesignation"></p>
+                                            </div>
+                                        </div>
+                                        <div class="course-block__footer">
+                                            <span>
+                                    <i class="fa fa-clock-o" aria-hidden="true" ng-attr-title="{{course.duration}} {{course.durationParameter}}"></i> 
+                                    <span ng-bind="course.duration"></span><span ng-bind="course.durationParameter"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="">
+    <div class="row account-settings">
+        <div class="tab-content">
+            <h3>Category</h3>
+            <hr>
+            <form class="edit_user" id="edit_user_727839" method="post">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <fieldset>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Name</label>
+                                <input ng-model="vm.category.name">
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Description</label>
+                                <textarea id="description" name="Description" id="Description" rows="5" ng-model="vm.category.description">
+                                </textarea>
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Background Color (Eg: #81BCDD)</label>
+                                <input ng-model="vm.category.bgColor">
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Parent Category</label>
+                                <md-select ng-model="vm.course.courseCategoryId">
+                                    <md-optgroup label="Category">
+                                        <md-option ng-value="category.id" ng-repeat="category in vm.activeCourseCategories">{{category.name}}</md-option>
+                                    </md-optgroup>
+                                </md-select>
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <label for="status">Status</label>
+                            <md-switch class="md-primary" name="status" id="status" ng-model="vm.category.status" aria-label="Category Status" ng-true-value="1" ng-false-value="0">
+                            </md-switch>
+                        </fieldset>
+                    </div>
+                    <div class="col-sm-6">
+                        <fieldset>
+                            <label for="user_avatar">Cover</label>
+                            <div class="avatar-selector">
+                                <img ngf-src="vm.category.image || '/assets/images/avatar.png'" ngf-resize="{width: 150, height: 150, quality: 0.9}" style="border:1px solid lightseagreen; height:150px;" class="img-thumbnail" />
+                                <br />
+                                <button class="btn btn-default center-block" ngf-select type="file" ng-model="vm.category.image" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+                                    Change Cover
+                                </button>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.createCourseCategory(vm.category.image)" data-disable-with="Save Changes">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

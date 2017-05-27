@@ -1,0 +1,105 @@
+<ul class="offscreen-nav" ng-class="{'active' : !vm.isCollapsed}" ng-click="vm.menuToggle();">
+    <li class="top offscreen-nav-li" ui-sref="main"></li>
+    <li class="offscreen-nav-li" ui-sref="main" ng-if="!vm.isStudentLogedIn">
+        <a href="javascript:void(0)">Home</a>
+    </li>
+    <li class="offscreen-nav-li" ui-sref="dashboard" ng-if="vm.isStudentLogedIn">
+        <a href="javascript:void(0);">Dashboard</a>
+    </li>
+    <li class="offscreen-nav-li" ui-sref="courses.list">
+        <a href="javascript:void(0);">Courses</a>
+    </li>
+    <li class="offscreen-nav-li" ui-sref="testSeries">
+        <a href="javascript:void(0);">Test Series</a>
+    </li>
+    <li class="offscreen-nav-li" ui-sref="instructors">
+        <a href="javascript:void(0);">Instructor</a>
+    </li>
+    <li class="offscreen-nav-li" ui-sref="orders">
+        <a href="javascript:void(0);">Orders</a>
+    </li>
+    <li class="offscreen-nav-li" ui-sref="profile" ng-if="vm.isStudentLogedIn">
+        <a href="javascript:void(0);">
+            My Account&nbsp;<small>(<i ng-bind="vm.studentInfo.name"></i>)</small>
+        </a>
+    </li>
+    <li class="offscreen-nav-li" ng-click="vm.logout();" ng-if="vm.isStudentLogedIn">
+        <a rel="nofollow" data-method="delete" href="javascript:void(0);">Logout</a>
+    </li>
+    <li class="offscreen-nav-li" ng-click="login" ng-if="!vm.isStudentLogedIn">
+        <a rel="nofollow" data-method="delete" href="javascript:void(0);">Sign in</a>
+    </li>
+    <li class="offscreen-nav-li accent" ui-sref="register" ng-if="!vm.isStudentLogedIn">
+        <a href="javascript:void(0);">Create free account</a>
+    </li>
+</ul>
+<nav class="clearfix">
+    <div class="navbar--title">
+        <a class="clearfix no-link-style" data-dc-track="" data-dc-referrer="main" href="javascript:void(0)" ui-sref="main">
+            <div class="logo"></div>
+        </a>
+    </div>
+    <ul class="nav hidden-xs hidden-sm">
+        <!--     Menu before Login -->
+        <li ui-sref="register" ng-if="!vm.isStudentLogedIn">
+            <a style="margin: 3px;" class="btn btn-secondary-light" data-dc-track="" data-dc-referrer="main" href="javascript:void(0);">Create Free Account</a>
+        </li>
+        <li ui-sref="login" ng-if="!vm.isStudentLogedIn">
+            <a href="javascript:void(0);">Sign in</a>
+        </li>
+        <li class="spacer" ng-if="!vm.isStudentLogedIn"></li>
+        <!--     Menu before Login -->
+        <li class="dropdown" ng-class="{ 'open' : vm.profileMenu }" ng-if="vm.isStudentLogedIn">
+            <a class="dropdown--trigger with-arrow" ng-click="vm.profileMenu = !vm.profileMenu" data-toggle="dropdown" href="javascript:void(0);" ng-bind="vm.studentInfo.name"></a>
+            <div class="dropdown--body white" ng-mouseleave="vm.profileMenu = false">
+                <div class="navbar--user">
+                    <img alt="" width="50" height="50" src="{{vm.studentInfo.profile_picture || '/assets/images/avatar.png'}}" />
+                    <h5 ng-bind="vm.studentInfo.name">Username</h5>
+                    <p ng-bind="vm.studentInfo.email">Email</p>
+                </div>
+                <div class="navbar--user-links" ng-click="vm.profileMenu = false;">
+                    <a href="javascript:void(0);" ui-sref="orders">Orders</a>
+                    <span class="spacer"></span>
+                    <a href="javascript:void(0);">Notifications</a>
+                    <span class="spacer"></span>
+                    <a href="javascript:void(0);" ui-sref="profile">Profile</a>
+                    <span class="spacer"></span>
+                    <a rel="nofollow" ng-click="vm.logout();" href="javascript:void(0);">Logout</a>
+                </div>
+            </div>
+        </li>
+        <li ui-sref="instructors">
+            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0);">Instructors</a>
+        </li>
+        <li ui-sref="testSeries">
+            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0);">Test Series</a>
+        </li>
+        <li ui-sref="courses.list">
+            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0);">Courses</a>
+        </li>
+        <li ui-sref="dashboard" ng-if="vm.isStudentLogedIn">
+            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0)">Dashboard</a>
+        </li>
+        <li ui-sref="main" ng-if="!vm.isStudentLogedIn">
+            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0)">Home</a>
+        </li>
+    </ul>
+    <div ng-click="vm.menuToggle();" class="nav--resp-menu-toggle hidden-lg hidden-md" ng-class="{'active' : !vm.isCollapsed}">
+        <a class="no-link-style" href="javascript:void(0)"><i class="fa fa-bars fa-2x"></i></a>
+    </div>
+</nav>
+<section id="sticky-nav" class="bg bg-navigation" style="display: none;">
+    <div class="container">
+        <nav class="clearfix">
+            <div class="navbar--title">
+                <a class="clearfix no-link-style" href="javascript:void(0)">
+                    <div class="logo"></div>
+                </a>
+            </div>
+            <ul class="nav">
+                <li><a class="btn btn-secondary-light" href="javascript:void(0);">Create Free Account</a></li>
+                <li class="hidden-xs"><a href="javascript:void(0);">Sign in</a></li>
+            </ul>
+        </nav>
+    </div>
+</section>

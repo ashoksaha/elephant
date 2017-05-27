@@ -1,0 +1,45 @@
+<div ng-cloak>
+    <div class="site-wrap">
+        <section class="bg bg-navigation" id="logged-out-header">
+            <div class="container">
+                <main-navbar></main-navbar>
+            </div>
+        </section>
+        <section class="home__courses">
+            <div class="container">
+                <h3>
+                    <span ng-bind="vm.selectedCourseName"></span>
+                    <md-button class="md-raised md-primary pull-right" ng-click="vm.addNewDiscussion = true;">Add New Discussion</md-button>
+                </h3>
+                <hr />
+                <div class="row" ng-if="vm.courseDiscussions.length == 0 || vm.addNewDiscussion">
+                    <from class="col-sm-offset-3 col-sm-6">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Discussion Title</label>
+                            <input ng-model="vm.newDiscussion.postTitle" required="required" />
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Description</label>
+                            <input ng-model="vm.newDiscussion.postDesc" required="required" />
+                        </md-input-container>
+                        <md-button class="md-raised md-primary" ng-click="vm.startDiscussion()">Submit</md-button>
+                        <md-button class="md-raised md-primary" ng-if="vm.addNewDiscussion" ng-click="vm.addNewDiscussion = false;">Cancel</md-button>
+                    </from>
+                </div>
+                <div ng-if="vm.courseDiscussions.length > 0">
+                    <div class="media" ng-repeat="discussion in vm.courseDiscussions">
+                        <div class="media-left" ng-click="vm.showThread(discussion);">
+                            <a href="javascript:void(0);">
+                                <img class="media-object" src="..." alt="...">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading" ng-bind="discussion.postTitle"></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <main-footer-bar></main-footer-bar>
+</div>

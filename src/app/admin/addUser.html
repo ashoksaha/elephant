@@ -1,0 +1,128 @@
+<div class="container">
+    <div class="row account-settings">
+        <div class="col-sm-9 vertical-nav-border">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="general">
+                    <h3>User Information</h3>
+                    <hr>
+                    <form class="edit_user" id="edit_user_727839" method="post">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <!-- <fieldset>
+                                    <label for="user_avatar">Avatar</label>
+                                    <div class="avatar-selector">
+                                        <img ngf-src="vm.user.profileImg || '/assets/images/avatar.png'" ngf-resize="{width: 150, height: 150, quality: 0.9}" style="border:1px solid lightseagreen; height:150px;" class="img-thumbnail" />
+                                        <br />
+                                        <button class="btn btn-default center-block" ngf-select type="file" ng-model="vm.user.profileImg" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+                                            Change Photo
+                                        </button>
+                                    </div>
+                                </fieldset> -->
+                            </div>
+                            <div class="col-sm-6">
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>User name</label>
+                                        <input ng-model="vm.user.userName">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Full name</label>
+                                        <input ng-model="vm.user.fullName">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Designation</label>
+                                        <input ng-model="vm.user.designation">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Email</label>
+                                        <input ng-model="vm.user.emailId" type="email">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Mobile</label>
+                                        <input ng-model="vm.user.mobile" type="number">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Password</label>
+                                        <input ng-model="vm.user.password" type="password">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>About Me</label>
+                                        <input ng-model="vm.user.biography">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>User Type</label>
+                                        <md-select ng-model="vm.user.type">
+                                            <md-optgroup label="User Type">
+                                                <md-option ng-value="userType.id" ng-repeat="userType in vm.userTypes">{{userType.Name}}</md-option>
+                                            </md-optgroup>
+                                        </md-select>
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Institute</label>
+                                        <input ng-model="vm.user.institute">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Website</label>
+                                        <input ng-model="vm.user.website">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Facebook Url</label>
+                                        <input ng-model="vm.user.fbProfile">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Twitter Url</label>
+                                        <input ng-model="vm.user.twProfile">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Linkdin Url</label>
+                                        <input ng-model="vm.user.linkdProfile">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Youtube Url</label>
+                                        <input ng-model="vm.user.youtubeProfile">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <md-switch class="md-primary" name="status" id="status" ng-model="vm.user.status" aria-label="User Status" ng-true-value="1" ng-false-value="0">
+                                        Status
+                                    </md-switch>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.createUser(vm.user.profileImg)" data-disable-with="Save Changes">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

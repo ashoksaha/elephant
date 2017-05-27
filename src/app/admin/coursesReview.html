@@ -1,0 +1,38 @@
+<div class="groups__courses">
+    <div class="groups__courses-overview groups__border">
+        <p id="emptyCoursesMessage" class="text-center" ng-if="vm.coursesReview.length == 0">
+            <i>Seems like we don't have any student call request for this course.</i>
+        </p>
+        <div class="table-responsive" ng-if="vm.coursesReview.length > 0">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>Student</th>
+                        <th>Email</th>
+                        <th>Course</th>
+                        <th>Rate</th>
+                        <th>Title</th>
+                        <th>Review</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="review in vm.coursesReview">
+                        <td ng-bind="$index + 1"></td>
+                        <td ng-bind="review.studentName"></td>
+                        <td ng-bind="review.studentEmail"></td>
+                        <td ng-bind="review.courseName"></td>
+                        <td ng-bind="review.reviewRating"></td>
+                        <td ng-bind="review.reviewTitle"></td>
+                        <td ng-bind="review.reviewDetails"></td>
+                        <td>
+                            <md-switch class="md-primary" name="status" id="status" ng-model="review.status" aria-label="Review Status" ng-true-value="1" ng-false-value="0" ng-click="vm.updateCourseReview(review)">
+                            </md-switch>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

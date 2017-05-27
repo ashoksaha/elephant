@@ -1,0 +1,47 @@
+<div class="">
+    <div class="row account-settings">
+        <div class="tab-content">
+            <h3>Test Series</h3>
+            <hr>
+            <form class="edit_user" id="edit_user_727839" method="post">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <fieldset>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Name</label>
+                                <input ng-model="vm.testSeries.name">
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Price</label>
+                                <input ng-model="vm.testSeries.price" type="number">
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Plan</label>
+                                <input ng-model="vm.testSeries.plan">
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Description</label>
+                                <textarea name="description" id="description" rows="5" ng-model="vm.testSeries.description">
+                            </textarea>
+                            </md-input-container>
+                        </fieldset>
+                    </div>
+                    <div class="col-sm-4">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.addtestSeries()" data-disable-with="Save Changes">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

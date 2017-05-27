@@ -1,0 +1,93 @@
+<div ng-cloak>
+    <div class="site-wrap">
+        <section class="bg bg-navigation" id="logged-out-header">
+            <div class="container">
+                <main-navbar></main-navbar>
+            </div>
+        </section>
+        <section class="courses__search">
+            <div class="container">
+                <form class="js-search-with-colons" method="get">
+                    <div class="search search--big">
+                        <button name="button" type="submit" class="search-icon" id="btn-search" ng-click="vm.getAllCourses();">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                        <input type="text" ng-model="vm.instructorSearchCriteria.name" autofocus="autofocus" class="js-end-of-line-cursor" placeholder="Search instructor" ng-keyup="($event.keyCode === 13 || vm.instructorSearchCriteria.name == '') && vm.getAllInstructors()">
+                        <ul class="search__filter">
+                            <md-menu md-position-mode="target-right target" class="dropdown js-custom-select">
+                                <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdMenu.open($event)" style="width:225px;">
+                                    <span class="js-custom-select-value">
+                                        <a href="javascript:void(0);" class="active" ng-bind="vm.selectedCategory"></a>
+                                    </span><i class="fa fa-caret-down"></i>
+                                </md-button>
+                                <md-menu-content width="4">
+                                    <md-menu-item>
+                                        <md-button aria-label="chosse option" ng-click="vm.searchInstructorsByCategory()">
+                                            <div layout="row" flex>
+                                                <p flex>All Course Categories</p>
+                                            </div>
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item ng-repeat="category in vm.categories">
+                                        <md-button aria-label="chosse option" ng-click="vm.searchInstructorsByCategory(category)">
+                                            <div layout="row" flex>
+                                                <p flex ng-bind="category.name"></p>
+                                            </div>
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section class="courses__upcoming" ng-if="vm.allInstructors.length > 0">
+            <div class="container">
+                <!-- <h2 class="courses__title">Upcoming Courses</h2> -->
+                <div class="courses__upcoming-list">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-6 text-left" ng-repeat="instructor in vm.allInstructors">
+                            <md-card md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" md-theme-watch ng-click="vm.showInstructorCourses(instructor)">
+                                <md-card-title>
+                                    <md-card-title-text>
+                                        <span class="md-headline" ng-bind="instructor.fullName">Card with image</span>
+                                        <span class="md-subhead" ng-bind="instructor.designation">Medium</span>
+                                    </md-card-title-text>
+                                    <md-card-title-media>
+                                        <div class="md-media-md card-media">
+                                            <img ng-src="{{instructor.image || '/assets/images/avatar.png'}}" class="md-card-image" alt="Washed Out" />
+                                        </div>
+                                    </md-card-title-media>
+                                </md-card-title>
+                                <md-card-actions layout="row" layout-align="end center">
+                                    <small style="color:#000;">
+                                        <span class="rating">
+                                            <span class="star" ng-repeat="star in vm.stars" ng-class="{'starfull' : course.courseRating - $index > 1, 'starhalf' : course.courseRating - $index > 0 && course.courseRating - $index < 1,  'starempty' : course.courseRating - $index <= 0 }"></span>
+                                        </span> (<span ng-bind="course.reviewCourse || 0"></span> Reviews)
+                                    </small>
+                                </md-card-actions>
+                            </md-card>
+                            <!-- <md-card style="height:395px;">
+                                <img ng-src="{{instructor.image || '/assets/images/avatar.png'}}" class="md-card-image" alt="Washed Out" style="height:195px;">
+                                <md-card-title>
+                                    <md-card-title-text>
+                                        <span class="md-title" ng-bind="instructor.fullName"></span>
+                                        <span class="md-subhead" ng-bind="instructor.designation"></span>
+                                        <small style="color:#000;">
+                                            <span class="rating">
+                                                <span class="star" ng-repeat="star in vm.stars" ng-class="{'starfull' : course.courseRating - $index > 1, 'starhalf' : course.courseRating - $index > 0 && course.courseRating - $index < 1,  'starempty' : course.courseRating - $index <= 0 }"></span>
+                                            </span> (<span ng-bind="course.reviewCourse || 0"></span> Reviews)
+                                        </small>
+                                        <span class="md-headline" ng-bind="instructor.title"></span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                            </md-card> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <main-footer-bar></main-footer-bar>
+</div>

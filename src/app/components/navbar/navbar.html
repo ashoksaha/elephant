@@ -1,0 +1,86 @@
+<ul class="offscreen-nav" ng-class="{'active' : !vm.isCollapsed}" ng-click="vm.isCollapsed = true;">
+    <li class="top offscreen-nav-li"></li>
+    <li class="offscreen-nav-li" ui-sref="instructor.dashboard">
+        <a href="javascript:void(0);">Dashboard</a>
+    </li>
+    <li class="offscreen-nav-li" ui-sref="instructor.lms.courses">
+        <a href="javascript:void(0);">LMS</a>
+    </li>
+    <li class="offscreen-nav-li">
+        <a href="javascript:void(0);">Students</a>
+    </li>
+    <li class="offscreen-nav-li">
+        <a href="javascript:void(0);">Billing</a>
+    </li>
+    <li class="offscreen-nav-li" ui-sref="instructor.profile">
+        <a href="javascript:void(0);">
+            My Account&nbsp;<small>(<i ng-bind="vm.userName"></i>)</small>
+        </a>
+    </li>
+    <li class="offscreen-nav-li" ng-click="vm.logout();">
+        <a rel="nofollow" data-method="delete" href="javascript:void(0);">Logout</a>
+    </li>
+</ul>
+<nav class="clearfix">
+    <div class="navbar--title">
+        <a class="clearfix no-link-style" data-dc-track="" data-dc-referrer="main" href="javascript:void(0)" ui-sref="instructor.dashboard">
+            <div class="logo"></div>
+        </a>
+    </div>
+    <ul class="nav hidden-xs hidden-sm">
+        <li class="dropdown" ng-class="{ 'open' : vm.profileMenu }">
+            <a class="dropdown--trigger with-arrow" ng-click="vm.profileMenu = !vm.profileMenu" data-toggle="dropdown" href="javascript:void(0);" ng-bind="vm.userName"></a>
+            <div class="dropdown--body white" ng-mouseleave="vm.profileMenu = false">
+                <div class="navbar--user">
+                    <img alt="" width="50" height="50" src="{{vm.userImage || '/assets/images/avatar.png'}}" />
+                    <h5 ng-bind="vm.userName">Username</h5>
+                    <p ng-bind="vm.userEmail">Email</p>
+                </div>
+                <div class="navbar--user-links" ng-click="vm.profileMenu = false;">
+                    <a href="javascript:void(0);" ui-sref="instructor.profile">My Profile</a>
+                    <span class="spacer"></span>
+                    <a rel="nofollow" ng-click="vm.logout();" href="javascript:void(0);">Logout</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <li class="dropdown notification-dropdown">
+                <a class="dropdown-trigger" data-toggle="dropdown" href="javascript:void(0);">
+                    <i class="fa fa-bell-o js-notifications-open"></i>
+                </a>
+                <div id='notificationsDropdownList' class="dropdown--body white notifications-dropdown__body">
+                </div>
+            </li>
+        </li>
+        <li>
+            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0);">Billing</a>
+        </li>
+        <li>
+            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0);">Students</a>
+        </li>
+        <li ui-sref="instructor.lms.courses">
+            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0);">LMS</a>
+        </li>
+        <li ui-sref="instructor.dashboard">
+            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0)">Dashboard</a>
+        </li>
+    </ul>
+    <div ng-click="vm.isCollapsed = ! vm.isCollapsed" class="nav--resp-menu-toggle hidden-lg hidden-md" ng-class="{'active' : !vm.isCollapsed}">
+        <a class="no-link-style" href="javascript:void(0)"><i class="fa fa-bars fa-2x"></i></a>
+    </div>
+</nav>
+<section id="sticky-nav" class="bg bg-navigation" style="display: none;">
+    <div class="container">
+        <nav class="clearfix">
+            <div class="navbar--title">
+                <a class="clearfix no-link-style" href="javascript:void(0)">
+                    <div class="logo"></div>
+                </a>
+            </div>
+            <ul class="nav">
+                <li><a class="btn btn-secondary-light" href="javascript:void(0);">Create Free Account</a></li>
+                <li class="hidden-xs"><a href="javascript:void(0);">Sign in</a></li>
+            </ul>
+        </nav>
+    </div>
+</section>

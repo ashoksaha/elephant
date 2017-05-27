@@ -1,0 +1,36 @@
+<div class="groups__courses">
+    <h4 class="gr-subtitle">
+        <span ng-bind="vm.selectedSeries.name"></span>
+        <small class="label label-accent pull-right">
+            <i class="fa fa-inr" aria-hidden="true" ng-if="vm.selectedCourse.courseFee"></i> 
+            <span ng-bind="vm.selectedCourse.courseFee || 'Free'"></span>
+        </small>
+    </h4>
+    <div class="groups__courses-overview groups__border">
+        <p id="emptyCoursesMessage" class="text-center" ng-if="vm.seriesTests.length == 0">
+            <i>Seems like we don't have any test for this Series.</i>
+        </p>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Result Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="test in vm.selectedSeries.tests">
+                        <td ng-bind="$index + 1"></td>
+                        <td ng-bind="test.title"></td>
+                        <td ng-bind="test.startDate"></td>
+                        <td ng-bind="test.endDate"></td>
+                        <td ng-bind="test.resultDate"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

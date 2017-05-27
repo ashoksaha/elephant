@@ -1,0 +1,39 @@
+<div ng-cloak>
+    <div class="site-wrap">
+        <section class="bg bg-navigation" id="logged-out-header">
+            <div class="container">
+                <main-navbar></main-navbar>
+            </div>
+        </section>
+        <section class="courses__upcoming" ng-if="vm.testSeriesList.length > 0">
+            <div class="container">
+                <h2 class="courses__title">Test Series</h2>
+                <div class="courses__upcoming-list">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-6 text-left" ng-repeat="series in vm.testSeriesList">
+                            <md-card md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" md-theme-watch>
+                                <md-card-title>
+                                    <md-card-title-text>
+                                        <span class="md-headline" ng-bind="series.name">Card with image</span>
+                                        <span class="md-subhead"><span  ng-bind="series.testList.split(',').length"></span> Tests </span>
+                                        <span class="md-subhead" ng-bind="series.description">Medium</span>
+                                    </md-card-title-text>
+                                    <!-- <md-card-title-media>
+                                        <div class="md-media-md card-media">
+                                            <img ng-src="{{instructor.image || '/assets/images/avatar.png'}}" class="md-card-image" alt="Washed Out" />
+                                        </div>
+                                    </md-card-title-media> -->
+                                </md-card-title>
+                                <md-card-actions layout="row" layout-align="end center">
+                                    <md-button ng-click="vm.showTests(series)">Show Test</md-button>
+                                </md-card-actions>
+                            </md-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </div>
+    <main-footer-bar></main-footer-bar>
+</div>

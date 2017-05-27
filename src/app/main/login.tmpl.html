@@ -1,0 +1,36 @@
+<md-dialog aria-label="Sign in">
+    <form ng-cloak>
+        <md-dialog-content>
+            <div class="modal--sign-up card">
+                <h4>Sign In To Your Account</h4>
+                <form class="new_user" id="new_user" method="post" ng-if="vm.loginStage == 1">
+                    <fieldset>
+                        <i class="fa fa-envelope-o fa-lg inline-icon"></i>
+                        <input required="required" placeholder="Email/Phone" class="has-inline-icon" type="text" value="" name="Emailorphone" id="Emailorphone" ng-model="vm.student.emailorphone" />
+                    </fieldset>
+                    <fieldset>
+                        <i class="fa fa-lock fa-lg inline-icon"></i>
+                        <input required="required" placeholder="Password" class="has-inline-icon" type="password" name="user[password]" id="user_password" ng-model="vm.student.password" />
+                    </fieldset>
+                    <input type="submit" name="commit" value="Get Started" class="btn btn-primary home-get-started ml0 mr0 mb0" data-disable-with="Get Started" ng-click="vm.login()" />
+                </form>
+                <div ng-if="vm.loginStage == 2">
+                    <form class="new_user" id="new_user" method="post">
+                        <fieldset>
+                            <i class="fa fa-phone fa-lg inline-icon"></i>
+                            <input required="required" placeholder="Mobile" class="has-inline-icon" type="number" value="" name="Mobile" id="Mobile" ng-model="vm.verification.phone" />
+                        </fieldset>
+                        <input type="submit" name="commit" value="Send OTP" class="btn btn-primary home-get-started ml0 mr0 mb0" data-disable-with="Get Started" ng-click="vm.sendOTP()" />
+                    </form>
+                    <form class="new_user" id="new_user" method="post" ng-if="vm.showOtpField">
+                        <fieldset>
+                            <i class="fa fa-key fa-lg inline-icon"></i>
+                            <input required="required" placeholder="OTP" class="has-inline-icon" type="number" value="" name="otp" id="otp" ng-model="vm.verification.OTP" />
+                        </fieldset>
+                        <input type="submit" name="commit" value="Verify" class="btn btn-primary home-get-started ml0 mr0 mb0" data-disable-with="Get Started" ng-click="vm.otpVerification()" />
+                    </form>
+                </div>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

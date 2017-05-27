@@ -1,0 +1,63 @@
+<div class="">
+    <div class="row account-settings">
+        <div class="tab-content">
+            <h3>Test</h3>
+            <hr>
+            <form class="edit_user" id="edit_user_727839" method="post">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <fieldset>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Title</label>
+                                <input ng-model="vm.test.title">
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Question Paper</label>
+                                <md-select ng-model="vm.test.questionPaperId">
+                                    <md-optgroup label="Question Paper">
+                                        <md-option ng-value="questionPaper.id" ng-repeat="questionPaper in vm.questionPapers">{{questionPaper.name}}</md-option>
+                                    </md-optgroup>
+                                </md-select>
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Duration</label>
+                                <input ng-model="vm.test.duration" type="number">
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Marks Per Question</label>
+                                <input ng-model="vm.test.marksPerQues" type="number">
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Negative Marks</label>
+                                <input ng-model="vm.test.negativeMarks" type="number">
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Instruction</label>
+                                <textarea id="instruction" name="instruction" id="instruction" rows="5" ng-model="vm.test.instruction">
+                            </textarea>
+                            </md-input-container>
+                        </fieldset>
+                    </div>
+                    <div class="col-sm-4">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.addTest()" data-disable-with="Save Changes">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

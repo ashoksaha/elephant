@@ -1,0 +1,105 @@
+<div class="groups__courses">
+    <h4 class="gr-subtitle">Units
+        <a style="margin:0px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" ui-sref="admin.lms.editUnit" ng-click="vm.unit = {};">
+            <i class="fa fa-plus-square"></i> Add New
+        </a>
+    </h4>
+    <ul class="tabs nav-tabs with-background">
+        <li ng-click="vm.categoryListTab = 1;" ng-class="{'active' : vm.categoryListTab == 1 }">
+            <a href="javascript:void(0);">Active Units (<span ng-bind="vm.activeUnits.length"></span>)</a>
+        </li>
+        <li ng-click="vm.categoryListTab = 2;" ng-class="{'active' : vm.categoryListTab == 2 }">
+            <a href="javascript:void(0);">Inactive Units (<span ng-bind="vm.inactiveUnits.length"></span>)</a>
+        </li>
+    </ul>
+    <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 1">
+        <div class="groups__courses-filters clearfix">
+            <div class="select select--small">
+                <select ng-options="course.id as course.title for course in vm.coursesList" ng-model="vm.activeSelectedCourse" ng-change="vm.getUnitsByCourseId(1, vm.activeSelectedCourse)">
+                    <option value="">All Courses</option>
+                </select>
+            </div>
+            <div class="search">
+                <i class="fa fa-search search-icon" aria-hidden="true"></i>
+                <input type="text" name="search" placeholder="Search" ng-model="vm.activeUnitSearchText" ng-keydown="$event.keyCode === 13 && vm.searchUnits(1, vm.activeUnitSearchText)">
+            </div>
+        </div>
+        <p id="emptyCoursesMessage" class="text-center" ng-if="(vm.activeUnits.length == 0 && (vm.activeSelectedCourse || vm.activeUnitSearchText))">
+            <i>Seems like we don't have any courses for this. <a id="resetCoursesFilter" href="javascript:void(0);">Reset</a> your search.</i>
+        </p>
+        <section class="groups__courses-course js-course" data-skill="" data-title="{{unit.name}}" ng-repeat="unit in vm.activeUnits">
+            <div class="row course-block">
+                <!-- <div class="col-md-2">
+                    <img src="{{unit.image}}" alt="{{unit.name}}" />
+                </div> -->
+                <div class="col-md-10">
+                    <h4>
+                        <span ng-bind="unit.name"></span> <span class="label label-accent pull-right" ng-click="vm.editUnit(unit)">Edit</span>
+                    </h4>
+                    <p ng-bind="unit.unitDescription"></p>
+                    <hr>
+                    <span ng-bind="unit.unitTypeName"></span>
+                    <!-- <a href="javascript:void(0);">Show Students</a> | <a href="javascript:void(0);">Show Units</a>
+                    <a class="btn btn-primary btn-small m0 pull-right js-open-assignment-dialog" href="javascript:void(0)">Add unit</a> -->
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 1">
+        <p class="text-center" ng-if="vm.activeUnits.length == 0"><b>Currently no active units.</b></p>
+        <table ng-if="vm.activeUnits.length > 0">
+            <tbody>
+                <tr ng-repeat="unit in vm.activeUnits">
+                    <td><span ng-bind="$index + 1"></span></td>
+                    <td style="width:45%"><a ng-bind="unit.name" href="javascript:void(0);" ng-click="vm.editUnit(unit)"></a></td>
+                    <td><sapn ng-bind="unit.unitDescription"></span></td>
+                    <td><sapn ng-bind="unit.unitTypeName"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+    <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 2">
+        <div class="groups__courses-filters clearfix">
+            <div class="select select--small">
+                <select ng-options="course.id as course.title for course in vm.coursesList" ng-model="vm.inactiveSelectedCourse" ng-change="vm.getUnitsByCourseId(0, vm.inactiveSelectedCourse)">
+                    <option value="">All Courses</option>
+                </select>
+            </div>
+            <div class="search">
+                <i class="fa fa-search search-icon" aria-hidden="true"></i>
+                <input type="text" name="search" placeholder="Search" ng-model="vm.inactiveUnitSearchText" ng-keydown="$event.keyCode === 13 && vm.searchUnits(0, vm.inactiveUnitSearchText)">
+            </div>
+        </div>
+        <p id="emptyCoursesMessage" class="text-center" ng-if="(vm.inactiveUnits.length == 0 && (vm.inactiveSelectedCourse || vm.inactiveUnitSearchText))">
+            <i>Seems like we don't have any courses for this. <a id="resetCoursesFilter" href="javascript:void(0);">Reset</a> your search.</i>
+        </p>
+        <section class="groups__courses-course js-course" data-skill="" data-title="{{unit.name}}" ng-repeat="unit in vm.inactiveUnits">
+            <div class="row course-block">
+                <!-- <div class="col-md-2">
+                    <img src="{{unit.image}}" alt="{{unit.name}}">
+                </div> -->
+                <div class="col-md-10">
+                    <h4><span ng-bind="unit.name"></span> <span class="label label-accent pull-right" ng-click="vm.editUnit(unit)">Edit</span></h4>
+                    <p ng-bind="unit.unitDescription"></p>
+                    <hr>
+                    <span ng-bind="unit.unitTypeName"></span>
+                    <!-- <a href="javascript:void(0);">Show Students</a> | <a href="javascript:void(0);">Show Units</a>
+                    <a class="btn btn-primary btn-small m0 pull-right js-open-assignment-dialog" href="javascript:void(0)">Add unit</a> -->
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 2">
+        <p class="text-center" ng-if="vm.inactiveUnits.length == 0"><b>Currently no inactive units.</b></p>
+        <table ng-if="vm.inactiveUnits.length > 0">
+            <tbody>
+                <tr ng-repeat="unit in vm.inactiveUnits">
+                    <td><span ng-bind="$index + 1"></span></td>
+                    <td style="width:45%"><a ng-bind="unit.name" href="javascript:void(0);" ng-click="vm.editUnit(unit)"></a></td>
+                    <td><span ng-bind="unit.unitDescription"></span></td>
+                    <td><sapn ng-bind="unit.unitTypeName"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+</div>

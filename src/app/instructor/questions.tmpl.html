@@ -1,0 +1,94 @@
+<md-dialog aria-label="import question">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Import Question</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.importCancel()">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <table class="table table-hover table-bordered" style="border:1px solid lightgrey;margin-bottom:0px;">
+                    <thead>
+                        <tr class="success">
+                            <th>#</th>
+                            <th>Question</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat-start="question in vm.importQuestions.questions">
+                            <td ng-bind="$index + 1"></td>
+                            <td>
+                                <div ng-bind-html="question.question" ng-if="!question.isQuestionEditable" ng-click="question.isQuestionEditable = true"></div>
+                                <text-angular class="import-questions" ta-toolbar="vm.toolBar" id="question.question" placeholder="Question" ng-model="question.question" ng-if="question.isQuestionEditable"></text-angular>
+                            </td>
+                            <td>
+                                <!-- Subject
+                                <select ng-options="subject.name as subject.name for subject in subjects" ng-model="question.subject"></select> -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div ng-repeat="answer in question.answers | orderBy: 'ansKey'">
+                                    <span ng-bind="($index + 97) | charCodeToChar"></span>)
+                                    <span ng-bind-html="answer.answerText" style="display:inline-block;white-space:pre-wrap" ng-click="answer.isAnswerEditable = true" ng-if="!answer.isAnswerEditable"></span>
+                                    <text-angular class="import-questions" ta-toolbar="vm.toolBar" placeholder="option" ng-model="answer.answerText" ng-if="answer.isAnswerEditable"></text-angular>
+                                </div>
+                            </td>
+                            <td>
+                                Correct Answer
+                                <input ng-model="question.correctAnswer" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div><b>Explanation:</b></div>
+                                <div ng-bind-html="question.explanation" ng-if="!question.isExplanationEditable" ng-click="question.isExplanationEditable = true"></div>
+                                <text-angular class="import-questions" ta-toolbar="vm.toolBar" placeholder="Explanation" ng-model="question.explanation" ng-if="question.isExplanationEditable"></text-angular>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr ng-if="question.questionText">
+                            <td></td>
+                            <td ng-bind-html="question.questionText"></td>
+                            <td></td>
+                        </tr>
+                        <tr ng-if="question.questionText">
+                            <td></td>
+                            <td>
+                                <div ng-repeat="answer in question.answers | orderBy: 'ansKey'">
+                                    <span ng-bind="($index + 97) | charCodeToChar"></span>)
+                                    <span ng-bind-html="answer.ansText" style="display:inline-block;white-space:pre-wrap"></span>
+                                </div>
+                            </td>
+                            <td ng-bind="question.correctAnswer"></td>
+                        </tr>
+                        <tr ng-if="question.questionText" ng-repeat-end>
+                            <td></td>
+                            <td>
+                                <div><b>Explanation:</b></div>
+                                <div ng-bind-html="question.explanationText"></div>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="vm.importCancel()">
+                Cancel
+            </md-button>
+            <md-button ng-click="vm.addQuestion()">
+                OK
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

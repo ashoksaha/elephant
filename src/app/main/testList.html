@@ -1,0 +1,53 @@
+<div ng-cloak>
+    <div class="site-wrap">
+        <section class="bg bg-navigation" id="logged-out-header">
+            <div class="container">
+                <main-navbar></main-navbar>
+            </div>
+        </section>
+        <section class="show-course__body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3 col-sm-push-9 text-center">
+                        <p><b>Instructor</b></p>
+                        <div class="show-course__instructor">
+                            <img width="100" height="100" class="center-block image-rounded" src="{{vm.course.instructorImage || '/assets/images/avatar.png'}}">
+                            <h5 ng-bind="vm.course.instructorFullName"></h5>
+                            <p ng-bind="vm.course.instructorBiography" class="text-justify"></p>
+                        </div>
+                        <a class="btn btn-secondary" href="javascript:void(0);" ng-click="vm.showInstructorCourses();">View all courses</a>
+                        <hr />
+                        <p><b>Request A Callback</b></p>
+                        <form class="new_user ng-pristine ng-valid" name="callbackRequest" method="post">
+                            <div class="form-group">
+                                <input required="required" class="form-control" placeholder="Name*" type="text" value="" name="name" id="name" ng-model="vm.callbackRequest.name">
+                            </div>
+                            <div class="form-group">
+                                <input ng-required="required" class="form-control" placeholder="Email*" type="email" value="" name="Email" id="Email" ng-model="vm.callbackRequest.email">
+                            </div>
+                            <div class="form-group">
+                                <input required="required" class="form-control" placeholder="Mobile*" type="number" name="Mobile" id="Mobile" ng-model="vm.callbackRequest.mobile">
+                            </div>
+                        </form>
+                        <a class="btn btn-primary" href="javascript:void(0);" ng-click="vm.sendCallbackRequest();">Send Request</a>
+                    </div>
+                    <div class="col-sm-9 col-sm-pull-3 vertical-nav-border">
+                        <h3 ng-bind="vm.series.name">Tests</h3>
+                        <p ng-bind="vm.series.description"></p>
+                        <div class="show-course__chapter">
+                            <div class="show-course__chapter-header" ng-repeat="test in vm.series.testList">
+                                <h4 class="show-course__chapter-title">
+                                    <span class="chapter-number" ng-bind="$index + 1"></span>
+                                    <span class="show-course__exercise__title" ng-bind="test.title"></span>
+                                    <a class="btn btn-primary" href="javascript:void(0);" ng-click="vm.startTest(test);">Start Test</a>
+                                </h4>
+                                <p ng-bind="test.description"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <main-footer-bar></main-footer-bar>
+</div>

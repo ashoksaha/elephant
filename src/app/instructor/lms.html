@@ -1,0 +1,45 @@
+<div ng-cloak>
+    <div class="container groups__container">
+        <h2> LMS </h2>
+        <hr>
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-sm-3 col-sm-push-9">
+                <div class="side-nav groups__sidebar">
+                    <ul>
+                        <li ng-class="{'active' : vm.lmsTab == 1}" ng-click="vm.lmsTab = 1;" ui-sref="instructor.lms.courses">
+                            <a href="javascript:void(0);">Courses</a>
+                        </li>
+                        <li ng-class="{'active' : vm.lmsTab == 2}" ng-click="vm.lmsTab = 2;" ui-sref="instructor.lms.courseCategories">
+                            <a href="javascript:void(0);">Categories</a>
+                        </li>
+                        <li ng-class="{'active' : vm.lmsTab == 3}" ng-click="vm.lmsTab = 3;" ui-sref="instructor.lms.units">
+                            <a href="javascript:void(0);">All Units</a>
+                        </li>
+                        <li ng-class="{'active' : vm.lmsTab == 4}" ng-click="vm.lmsTab = 4;" ui-sref="instructor.lms.tests">
+                            <a href="javascript:void(0);">Tests</a>
+                        </li>
+                        <li ng-class="{'active' : vm.lmsTab == 5}" ng-click="vm.lmsTab = 5;">
+                            <a href="javascript:void(0);">Settings</a>
+                        </li>
+                        <!-- <li class="">
+                            <a href="javascript:void(0);">Students</a>
+                        </li>
+                        <li class="">
+                            <a href="javascript:void(0);">Orders</a>
+                        </li> -->
+                        <!-- <li class="">
+                            <a href="javascript:void(0);">Export Group Data</a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+            <!-- Main content -->
+            <div class="col-sm-9 col-sm-pull-3 vertical-nav-border">
+                <!-- Your template will be included here -->
+                <div ui-view >
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

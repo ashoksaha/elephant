@@ -1,0 +1,66 @@
+<div ng-cloak>
+    <div class="site-wrap">
+        <section class="bg bg-navigation" id="logged-out-header">
+            <div class="container">
+                <main-navbar></main-navbar>
+            </div>
+        </section>
+        <div class="exercise-area plain-mc-ex">
+            <div>
+                <div>
+                    <aside class="exercise--sidebar">
+                    	<!-- <div class="exercise--sidebar-content" ng-if="vm.currentStage == 1" >
+                    		<div style="margin: 2px auto;">
+                    			<span ng-bind="vm.test.title"></span>
+                    			<p ng-bind="vm.test.instruction"></p>
+                    			<a class="btn btn-small btn-primary" href="/courses/machine-learning-with-the-experts-school-budgets/exploring-the-raw-data?ex=8">start</a>
+                    		</div>
+                    	</div> -->
+                        <div class="exercise--sidebar-content" ng-if="vm.currentStage == 2">
+                            <div class="exercise--assignment exercise--typography">
+                                <h1 class="exercise--title">
+                                	Q.<span ng-bind="vm.currentIndex + 1"></span>
+                                	<md-button class="md-raised md-primary pull-right" ng-click="vm.currentIndex = vm.currentIndex + 1" ng-click="vm.currentIndex = vm.currentIndex - 1">
+                                		Next
+                            		</md-button>
+                                	<md-button class="md-raised md-primary pull-right" ng-disabled="vm.currentIndex == 0">
+                                		Previous
+                            		</md-button>
+                                </h1>
+                                <div>
+                                    <div>
+                                        <p ng-bind-html="vm.test.questions[vm.currentIndex].question">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="exercise--instructions-title">
+                                    <h4>Options</h4>
+                                </div>
+                                <div>
+                                    <div class="exercise--instructions exercise--typography">
+                                        <ul class="exercise--multiple-choice">
+                                            <li ng-repeat="answer in vm.test.questions[vm.currentIndex].answers">
+                                                <input type="radio" id="inp_0" value="1">
+                                                <label class="mc-label">
+                                                    <div>
+                                                        <div ng-bind-html="answer.answerText">Regression, because the model will output probabilities.</div>
+                                                    </div>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="vex--buttons">
+                                    <a class="btn btn-small btn-primary" href="javascript:void(0);">Got it!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main-footer-bar></main-footer-bar>
+</div>

@@ -1,0 +1,126 @@
+<div ng-cloak class="bg-alt">
+    <ul class="offscreen-nav" ng-class="{'active' : !vm.isCollapsed}" ng-click="vm.isCollapsed = true;">
+        <li class="top offscreen-nav-li"></li>
+        <li class="offscreen-nav-li" ui-sref="admin.dashboard">
+            <a href="javascript:void(0);">Dashboard</a>
+        </li>
+        <li class="offscreen-nav-li" ui-sref="admin.lms.courses">
+            <a href="javascript:void(0);">LMS</a>
+        </li>
+        <li class="offscreen-nav-li" ui-sref="admin.studentList">
+            <a href="javascript:void(0);">Students</a>
+        </li>
+        <li class="offscreen-nav-li" ui-sref="admin.userList">
+            <a href="javascript:void(0);">Users</a>
+        </li>
+        <li class="offscreen-nav-li" ui-sref="admin.orderList">
+            <a href="javascript:void(0);">Order</a>
+        </li>
+        <!-- <li class="offscreen-nav-li">
+            <a href="javascript:void(0);">Billing</a>
+        </li>
+        <li class="offscreen-nav-li">
+            <a href="javascript:void(0);">Community</a>
+        </li> -->
+        <li class="offscreen-nav-li" ui-sref="admin.profile" ng-click="vm.isCollapsed = true;">
+            <a href="javascript:void(0);">
+                My Account&nbsp;<small>(<i ng-bind="vm.userInfo.username"></i>)</small>
+            </a>
+        </li>
+        <li class="offscreen-nav-li" ng-click="vm.logout();">
+            <a rel="nofollow" data-method="delete" href="javascript:void(0);">Logout</a>
+        </li>
+    </ul>
+    <div class="site-wrap" ng-class="{'active' : !vm.isCollapsed}">
+        <div id="flash_messages">
+        </div>
+        <div id="js-promo-coupon"></div>
+        <section class="bg bg-navigation">
+            <div class="container">
+                <nav class="clearfix">
+                    <div class="navbar--title">
+                        <a class="clearfix no-link-style" data-dc-track="" data-dc-referrer="main" href="javascript:void(0)" ui-sref="admin.dashboard">
+                            <div class="logo"></div>
+                        </a>
+                    </div>
+                    <ul class="nav hidden-xs hidden-sm">
+                        <li class="dropdown" ng-class="{ 'open' : vm.profileMenu }">
+                            <a class="dropdown--trigger with-arrow" ng-click="vm.profileMenu = !vm.profileMenu" data-toggle="dropdown" href="javascript:void(0);" ng-bind="vm.userInfo.userName"></a>
+                            <div class="dropdown--body white" ng-mouseleave="vm.profileMenu = false">
+                                <div class="navbar--user">
+                                    <img alt="" width="50" height="50" src="{{vm.userInfo.profile_photo || '/assets/images/avatar.png'}}" />
+                                    <h5 ng-bind="vm.userInfo.userName">Username</h5>
+                                    <p ng-bind="vm.userInfo.emailId">Email</p>
+                                </div>
+                                <div class="navbar--user-links" ng-click="vm.profileMenu = false;">
+                                    <a href="javascript:void(0);" ui-sref="admin.profile">My Profile</a>
+                                    <span class="spacer"></span>
+                                    <a rel="nofollow" ng-click="vm.logout();" href="javascript:void(0);">Logout</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <li class="dropdown notification-dropdown">
+                                <a class="dropdown-trigger" data-toggle="dropdown" href="javascript:void(0);">
+                                    <i class="fa fa-bell-o js-notifications-open"></i>
+                                </a>
+                                <div id='notificationsDropdownList' class="dropdown--body white notifications-dropdown__body">
+                                </div>
+                            </li>
+                        </li>
+                        <!-- <li>
+                            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0);">Community</a>
+                        </li>
+                        <li>
+                            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0);">Business</a>
+                        </li> -->
+                        <li ui-sref="admin.orderList">
+                            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0);">Orders</a>
+                        </li>
+                        <li>
+                            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0);">Billing</a>
+                        </li>
+                        <li ui-sref="admin.userList">
+                            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0);">Users</a>
+                        </li>
+                        <li ui-sref="admin.studentList">
+                            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0);">Students</a>
+                        </li>
+                        <li ui-sref="admin.lms.courses">
+                            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0);">LMS</a>
+                        </li>
+                        <li ui-sref="admin.dashboard">
+                            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0)">Dashboard</a>
+                        </li>
+                    </ul>
+                    <div ng-click="vm.isCollapsed = ! vm.isCollapsed" class="nav--resp-menu-toggle hidden-lg hidden-md" ng-class="{'active' : !vm.isCollapsed}">
+                        <a class="no-link-style" href="javascript:void(0)"><i class="fa fa-bars fa-2x"></i></a>
+                    </div>
+                </nav>
+            </div>
+        </section>
+        <div ui-view></div>
+        <div class="bottom-navigation-short">
+            <div class="container clearfix">
+                <div class="navbar--title">
+                    <a class="clearfix no-link-style" href="javascript:void(0)">
+                        <div class="logo"></div>
+                    </a>
+                </div>
+                <ul class="inline clearfix hidden-xs">
+                    <li><a href="javascript:void(0);">Support</a></li>
+                    <li><a href="javascript:void(0);">Contact Us</a></li>
+                    <li><a href="javascript:void(0);">Terms of Use</a></li>
+                    <li><a href="javascript:void(0);">Privacy Policy</a></li>
+                    <li><a href="javascript:void(0);">About</a></li>
+                </ul>
+                <div class="social-icons clearfix">
+                    <a target="_blank" href="javascript:void(0);"><i class="fa fa-twitter fa-2x"></i></a>
+                    <a target="_blank" href="javascript:void(0);"><i class="fa fa-facebook fa-2x"></i></a>
+                    <a target="_blank" href="javascript:void(0);"><i class="fa fa-linkedin fa-2x"></i></a>
+                    <a target="_blank" href="javascript:void(0);"><i class="fa fa-youtube fa-2x"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

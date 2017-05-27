@@ -1,0 +1,45 @@
+<div class="groups__courses">
+    <h4 class="gr-subtitle">Courses Category
+        <a style="margin:0px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" ui-sref="admin.lms.editCategory" ng-click="vm.category = {};">
+            <i class="fa fa-plus-square"></i> Add New
+        </a>
+    </h4>
+    <ul class="tabs nav-tabs with-background">
+        <li ng-click="vm.categoryListTab = 1;" ng-class="{'active' : vm.categoryListTab == 1 }">
+            <a href="javascript:void(0);">Active Categories (<span ng-bind="vm.activeCourseCategories.length"></span>)</a>
+        </li>
+        <li ng-click="vm.categoryListTab = 2;" ng-class="{'active' : vm.categoryListTab == 2 }">
+            <a href="javascript:void(0);">Inactive Categories (<span ng-bind="vm.inactiveCourseCategories.length"></span>)</a>
+        </li>
+    </ul>
+    <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 1">
+        <p class="text-center" ng-if="vm.activeCourseCategories.length == 0"><b>Currently no active courses categories.</b></p>
+        <table ng-if="vm.activeCourseCategories.length > 0">
+            <tbody>
+                <tr ng-repeat="category in vm.activeCourseCategories">
+                    <td><span ng-bind="$index + 1"></span></td>
+                    <td><img width="35" height="35" src="{{category.image}}" alt="{{category.name}}" /></td>
+                    <td style="width:45%"><a ng-bind="category.name" href="javascript:void(0);" ng-click="vm.editCategory(category)"></a></td>
+                    <td><sapn ng-bind="category.description"></span></td>
+                    <td><sapn ng-bind="category.parentName"></span></td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- <p class="text-center"><i>Want to assign a course? <a href="javascript:void(0);">Go to the Curriculum</a></i></p> -->
+    </div>
+    <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 2">
+        <p class="text-center" ng-if="vm.inactiveCourseCategories.length == 0"><b>Currently no inactive courses categories.</b></p>
+        <table ng-if="vm.inactiveCourseCategories.length > 0">
+            <tbody>
+                <tr ng-repeat="category in vm.inactiveCourseCategories">
+                    <td><span ng-bind="$index + 1"></span></td>
+                    <td><img width="35" height="35" src="{{category.image}}" alt="{{category.name}}" /></td>
+                    <td style="width:45%"><a ng-bind="category.name" href="javascript:void(0);" ng-click="vm.editCategory(category)"></a></td>
+                    <td><span ng-bind="category.description"></span></td>
+                    <td><sapn ng-bind="category.parentName"></span></td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- <p class="text-center"><i>Want to assign a course? <a href="javascript:void(0);">Go to the Curriculum</a></i></p> -->
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="groups__courses">
+    <h4 class="gr-subtitle">
+        <span ng-bind="vm.callrequestsByCourse.courseName"></span>
+    </h4>
+    <div class="groups__courses-overview groups__border">
+        <p id="emptyCoursesMessage" class="text-center" ng-if="vm.callrequestsByCourse.length == 0">
+            <i>Seems like we don't have any student call request for this course.</i>
+        </p>
+        <div class="table-responsive" ng-if="vm.callrequestsByCourse.length > 0">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Request Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="request in vm.callrequestsByCourse">
+                        <td ng-bind="$index + 1"></td>
+                        <td ng-bind="request.name"></td>
+                        <td ng-bind="request.email"></td>
+                        <td ng-bind="request.phone"></td>
+                        <td ng-bind="request.requestDate"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

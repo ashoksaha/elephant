@@ -1,0 +1,144 @@
+<div ng-cloak>
+    <drop-down-navbar></drop-down-navbar>
+    <div class="site-wrap">
+        <section class="bg bg-navigation bg-pattern" id="logged-out-header">
+            <div class="container">
+                <main-navbar></main-navbar>
+                <div class="show-course__header">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-8 col-lg-9">
+                            <h5 class="subhead" ng-if="vm.course.freeCourse">free course</h5>
+                            <h1 ng-bind="vm.course.title"></h1>
+                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.freeCourse" ng-click="vm.subscribeCourse($event);">
+                                Start Course For Free
+                            </a>
+                           <!--  <form action="https://secure.payu.in/_payment" method="post">
+                                <input type="text" ng-model="vm.payuData.txnid" name="txnid">
+                                <input type="text" ng-model="vm.payuData.key" name="vm.payuData.key">
+                                <input type="text" ng-model="vm.payuData.amount" name="vm.payuData.amount">
+                                <input type="text" ng-model="vm.payuData.productinfo" name="vm.payuData.productinfo">
+                                <input type="text" ng-model="vm.payuData.firstname" name="vm.payuData.firstname">
+                                <input type="text" ng-model="vm.payuData.email" name="vm.payuData.email">
+                                <input type="text" ng-model="vm.payuData.phone" name="vm.payuData.phone">
+                                <input type="text" ng-model="vm.payuData.hash" name="vm.payuData.hash">
+                                <input type="text" ng-model="vm.payuData.surl" name="vm.payuData.surl">
+                                <input type="text" ng-model="vm.payuData.furl" name="vm.payuData.furl">
+                                <button class="button style-10" type="submit" value="submit">Checkout</button>
+                            </form> -->
+                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.courseFee" ng-click="vm.subscribeCourse($event);">
+                                Start Course For <span ng-bind="vm.course.courseFee"></span>
+                            </a>
+                            <ul>
+                                <li class="icon-video"><i class="fa fa-play-circle" aria-hidden="true"></i> 62&nbsp;Videos</li>
+                                <li class="icon-code"><i class="fa fa-server" aria-hidden="true"></i> 62&nbsp;Exercises</li>
+                                <li class="icon-time"><i class="fa fa-clock-o" aria-hidden="true"></i> 4&nbsp;hours</li>
+                                <li class="icon-participants"><i class="fa fa-users" aria-hidden="true"></i> 383,230&nbsp;Students</li>
+                                <li class="icon-xp" ng-if="vm.course.courseRating">
+                                    <i class="fa fa-star" aria-hidden="true"></i> 
+                                    <span ng-bind="vm.course.courseRating"></span>&nbsp;Rating
+                                </li>
+                                <li class="icon-xp"><i class="fa fa-comments" aria-hidden="true"></i> <span ng-bind="vm.course.reviewCourse || '0'"></span>&nbsp;Reviews</li>
+                            </ul>
+                        </div>
+                        <div class="hidden-xs hidden-sm col-md-4 col-lg-3">
+                            <div class="header-image" ng-if="vm.course.image">
+                                <div class="progress" data-value="0" data-size="1000" data-thickness="20" data-fill="{&quot;color&quot;: &quot;#ebf4f7&quot;}" data-line-cap="round" data-empty-fill="rgba(213,234,239,0.1)"></div>
+                                <img src="{{vm.course.image}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-social__header" ng-if="vm.socialShare">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-8 col-lg-9">
+                            <ul>
+                                <li>Share On: </li>
+                                <li ng-repeat="social in vm.socialShare">
+                                    <i class="fa" ng-class="social.imageIcon"></i>
+                                    <span><a href="javascript:void(0);" ng-click="social.sharerLink" ng-bind="social.name"></a></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="show-course__body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3 col-sm-push-9 text-center">
+                        <p><b>Instructor</b></p>
+                        <div class="show-course__instructor">
+                            <img width="100" height="100" class="center-block image-rounded" src="{{vm.course.instructorImage || '/assets/images/avatar.png'}}">
+                            <h5 ng-bind="vm.course.instructorFullName"></h5>
+                            <p ng-bind="vm.course.instructorBiography" class="text-justify"></p>
+                        </div>
+                        <a class="btn btn-secondary" href="javascript:void(0);" ng-click="vm.showInstructorCourses();">View all courses</a>
+                        <hr />
+                        <p><b>Request A Callback</b></p>
+                        <form class="new_user ng-pristine ng-valid" name="callbackRequest" method="post">
+                            <div class="form-group">
+                                <input required="required" class="form-control" placeholder="Name*" type="text" value="" name="name" id="name" ng-model="vm.callbackRequest.name">
+                            </div>
+                            <div class="form-group">
+                                <input ng-required="required" class="form-control" placeholder="Email*" type="email" value="" name="Email" id="Email" ng-model="vm.callbackRequest.email">
+                            </div>
+                            <div class="form-group">
+                                <input required="required" class="form-control" placeholder="Mobile*" type="number" name="Mobile" id="Mobile" ng-model="vm.callbackRequest.mobile">
+                            </div>
+                        </form>
+                        <a class="btn btn-primary" href="javascript:void(0);" ng-click="vm.sendCallbackRequest();">Send Request</a>
+                    </div>
+                    <div class="col-sm-9 col-sm-pull-3 vertical-nav-border">
+                        <h3>Course Description</h3>
+                        <p ng-bind="vm.course.description"></p>
+                        <div class="show-course__chapter">
+                            <div class="show-course__chapter-header" ng-repeat="unit in vm.course.units">
+                                <h4 class="show-course__chapter-title">
+                                    <span class="chapter-number" ng-bind="$index + 1"></span>
+                                    <span class="exercise-icon ">
+                                        <i class="fa" ng-class="unit.icon"></i>
+                                    </span>
+                                    <span class="show-course__exercise__title" ng-bind="unit.name"></span>
+                                </h4>
+                                <p ng-bind="unit.description"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="show-course__body" ng-if="vm.coursesReview.length > 0">
+            <div class="container text-center">
+                <h2>Students Reviews</h2>
+                <div class="row">
+                    <!-- Quote 1 -->
+                    <a class="stories--quote" href="javascript:void(0);" ng-repeat="review in vm.coursesReview">
+                        <section class="col-sm-12 col-md-4">
+                            <div class="quote card-circle-top ">
+                                <img class="card-circle-top-image" width="120" height="120" src="{{review.studentImage || '/assets/images/avatar.png'}}" alt="Image05" />
+                                <div class="quote__text">
+                                    <h4 ng-bind="review.reviewTitle"></h4>
+                                </div>
+                                <div class="quote__text">
+                                    <p ng-bind="review.reviewDetails"></p>
+                                </div>
+                                <div class="quote__person">
+                                    <small style="color:#000;">
+                                        <span class="rating">
+                                            <span class="star" ng-repeat="star in vm.stars" ng-class="{'starfull' : review.reviewRating - $index > 1, 'starhalf' : review.reviewRating - $index > 0 && review.reviewRating - $index < 1,  'starempty' : review.reviewRating - $index <= 0 }"></span>
+                                        </span>
+                                    </small>
+                                </div>
+                                <div class="quote__person">
+                                    <p><strong ng-bind="review.studentName"></strong> on <i ng-bind="review.addedDate">Harvard PhD Candidate in Health Policy</i></p>
+                                </div>
+                            </div>
+                        </section>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <main-footer-bar></main-footer-bar>
+</div>

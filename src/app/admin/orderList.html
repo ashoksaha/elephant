@@ -1,0 +1,90 @@
+<div ng-cloak>
+    <div class="container groups__container">
+        <h2> Orders </h2>
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-sm-12">
+                <!--                          -->
+                <div class="groups__courses">
+                    <div class="groups__courses-overview groups__border">
+                        <div class="groups__courses-filters clearfix">
+                            <div class="select select--small">
+                                <select ng-options="category.id as category.name for category in vm.categories" ng-model="vm.selectedCategory" ng-change="vm.getAllOrders(0)">
+                                    <option value="">All Categories</option>
+                                </select>
+                            </div>
+                            <div class="select select--small">
+                                <select ng-options="instructor.id as instructor.fullName for instructor in vm.instructors" ng-model="vm.selectedInstructor" ng-change="vm.getAllOrders(0)">
+                                    <option value="">All Instructor</option>
+                                </select>
+                            </div>
+                            <div class="search">
+                                <i class="fa fa-search search-icon" aria-hidden="true"></i>
+                                <!-- <i class="fa fa-times remove-icon" aria-hidden="true" ng-if="vm.studentSearchText" ng-click="vm.studentSearchText = '';"></i> -->
+                                <input type="text" name="search" placeholder="Search" ng-model="vm.studentSearchText" ng-keydown="($event.keyCode === 13 || vm.studentSearchText == '') && vm.getAllOrders(0)">
+                            </div>
+                        </div>
+                        <nav aria-label="Page navigation clearfix">
+                            <div class="pull-left" style="margin:9px 12px;">Total: <span ng-bind="vm.totalOrders"></span></div>
+                            <ul class="pagination pull-right" style="margin:4px 2px;">
+                                <li>
+                                    <a href="javascript:void(0);" aria-label="First" ng-click="vm.getAllOrders(0)">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li ng-class="{'disabled': vm.currentPage == 0}">
+                                    <a href="javascript:void(0);" ng-click="vm.currentPage != 1 && vm.getAllOrders(vm.currentPage - 1)">Previous</a>
+                                </li>
+                                <li class="active">
+                                    <a href="javascript:void(0);" ng-bind="vm.currentPage + 1"></a>
+                                </li>
+                                <li ng-class="{'disabled': vm.currentPage == vm.lastPage}">
+                                    <a href="javascript:void(0);" ng-click="vm.currentPage != vm.lastPage && vm.getAllOrders(vm.currentPage + 1)">Next</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" aria-label="Last" ng-click="vm.getAllOrders(vm.lastPage)">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="clearfix"></div>
+                        <p id="emptyCoursesMessage" class="text-center" ng-if="(vm.activeCourses.length == 0 && (vm.activeSelectedCategory || vm.studentSearchText))">
+                            <i>Seems like we don't have any courses for this. <a id="resetCoursesFilter" href="javascript:void(0);">Reset</a> your search.</i>
+                        </p>
+                        <div class="table-responsive" style="margin:2px;">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Course</th>
+                                        <th>Instructor</th>
+                                        <th>Sudent</th>
+                                        <th>Email</th>
+                                        <th>Mobile</th>
+                                        <th>Ordered On</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="order in vm.orderList">
+                                        <td ng-bind="order.id"></td>
+                                        <td ng-bind="order.courseName"></td>
+                                        <td ng-bind="order.fullname"></td>
+                                        <td ng-bind="order.userName"></td>
+                                        <td ng-bind="order.userEmail"></td>
+                                        <td ng-bind="order.mobile"></td>
+                                        <td ng-bind="order.orderDate"></td>
+                                        <td ng-bind="order.amount"></td>
+                                        <td ng-bind="order.status? 'Complete' : 'Pending'"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

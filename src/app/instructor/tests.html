@@ -1,0 +1,127 @@
+<div class="groups__courses">
+    <h4 class="gr-subtitle">Tests
+        <md-menu>
+            <md-button aria-label="Open phone interactions menu" class="btn btn-default btn-sm pull-right" ng-click="$mdMenu.open($event)">
+                Add New
+            </md-button>
+            <md-menu-content width="4">
+                <md-menu-item>
+                    <md-button ng-click="vm.test = {};" ui-sref="instructor.lms.createTest">
+                        Tests
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="vm.addNewQP($event)">
+                        Question Paper
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="vm.testSeries = {};" ui-sref="instructor.lms.createTestSeries">
+                        Test Series
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+    </h4>
+    <ul class="tabs nav-tabs with-background">
+        <li ng-click="vm.categoryListTab = 1;" ng-class="{'active' : vm.categoryListTab == 1 }">
+            <a href="javascript:void(0);">Tests (<span ng-bind="vm.tests.length || 0"></span>)</a>
+        </li>
+        <li ng-click="vm.categoryListTab = 2;" ng-class="{'active' : vm.categoryListTab == 2 }">
+            <a href="javascript:void(0);">Question Paper (<span ng-bind="vm.questionPapers.length || 0"></span>)</a>
+        </li>
+        <li ng-click="vm.categoryListTab = 3;" ng-class="{'active' : vm.categoryListTab == 3 }">
+            <a href="javascript:void(0);">Test Series (<span ng-bind="vm.testSeriesList.length || 0"></span>)</a>
+        </li>
+    </ul>
+    <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 1">
+        <div class="groups__courses-filters clearfix">
+            <!-- <div class="select select--small">
+                <select ng-options="course.id as course.title for course in vm.coursesList" ng-model="vm.activeSelectedCourse" ng-change="vm.getUnitsByCourseId(1, vm.activeSelectedCourse)">
+                    <option value="">All Courses</option>
+                </select>
+            </div> -->
+            <div class="search">
+                <i class="fa fa-search search-icon" aria-hidden="true"></i>
+                <input type="text" name="search" placeholder="Search" ng-model="vm.activeTestSearchText" ng-keydown="$event.keyCode === 13 && vm.searchTests(1, vm.activeTestSearchText)">
+            </div>
+        </div>
+        <div class="groups__courses-filters clearfix">
+            <md-menu>
+                <md-button aria-label="Open phone interactions menu" class="btn btn-default btn-sm pull-right" ng-click="$mdMenu.open($event)">
+                    Add to test series
+                </md-button>
+                <md-menu-content width="4">
+                    <md-menu-item ng-repeat="series in vm.testSeriesList">
+                        <md-button ng-click="vm.addToTestSeries(series.id)" aria-label="Open phone interactions menu">
+                            <span ng-bind="series.name"></span>
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+        <p id="emptyCoursesMessage" class="text-center" ng-if="vm.tests.length == 0 && vm.activeTestSearchText">
+            <i>Seems like we don't have any test for this. <a id="resetCoursesFilter" href="javascript:void(0);">Reset</a> your search.</i>
+        </p>
+        <section class="groups__courses-course js-course" data-skill="" data-title="{{test.title}}" ng-repeat="test in vm.tests">
+            <div class="row course-block">
+                <div class="col-md-12">
+                    <h4>
+                        <md-checkbox class="md-primary" aria-label="test" ng-click="test.isSelected = !test.isSelected"></md-checkbox>
+                        <span ng-bind="test.title"></span> 
+                        <span class="label label-accent pull-right" ng-click="vm.editTest(test)">Edit</span>
+                    </h4>
+                    <i class="fa fa-clock-o" aria-hidden="true"></i> <span ng-bind="test.durationInHrs"></span> Hours
+                    <hr>
+                    <span ng-bind="test.questionPaperName"></span>
+                    <span class="pull-right">
+                        <i class="fa fa-user-o" aria-hidden="true"></i> <span ng-bind="test.userCount || 0"></span> Students
+                    </span>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 2">
+        <!-- <div class="groups__courses-filters clearfix">
+            <div class="select select--small">
+                <select ng-options="course.id as course.title for course in vm.coursesList" ng-model="vm.inactiveSelectedCourse" ng-change="vm.getUnitsByCourseId(0, vm.inactiveSelectedCourse)">
+                    <option value="">All Courses</option>
+                </select>
+            </div>
+            <div class="search">
+                <i class="fa fa-search search-icon" aria-hidden="true"></i>
+                <input type="text" name="search" placeholder="Search" ng-model="vm.inactiveUnitSearchText" ng-keydown="$event.keyCode === 13 && vm.searchUnits(0, vm.inactiveUnitSearchText)">
+            </div>
+        </div> -->
+        <p id="emptyCoursesMessage" class="text-center" ng-if="(vm.inactiveUnits.length == 0 && (vm.inactiveSelectedCourse || vm.inactiveUnitSearchText))">
+            <i>Seems like we don't have any question paper for this. <a id="resetCoursesFilter" href="javascript:void(0);">Reset</a> your search.</i>
+        </p>
+        <section class="groups__courses-course js-course" data-skill="" data-title="{{questionPaper.name}}" ng-repeat="questionPaper in vm.questionPapers">
+            <div class="row course-block">
+                <div class="col-md-12">
+                    <h4><span ng-bind="questionPaper.name"></span> <span class="label label-accent pull-right" ng-click="vm.editQuestionPaper($event, questionPaper)">Edit</span></h4>
+                    <hr>
+                    <span href="javascript:void(0);"><span ng-bind="questionPaper.questionCount || 0"></span> Questions</span>
+                    <a class="btn btn-primary btn-small m0 pull-right js-open-assignment-dialog" href="javascript:void(0)" ngf-select="vm.importQuestionDoc($file, questionPaper.id)" ng-model="vm.question.file" name="file" ngf-pattern="'.zip'" ngf-accept="'.zip'" ngf-max-size="20MB">Add Questions</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 3">
+        <p id="emptyCoursesMessage" class="text-center" ng-if="vm.testSeriesList.length == 0">
+            <i>Seems like we don't have any test series for this. <a id="resetCoursesFilter" href="javascript:void(0);">Reset</a> your search.</i>
+        </p>
+        <section class="groups__courses-course js-course" data-skill="" data-title="{{series.name}}" ng-repeat="series in vm.testSeriesList">
+            <div class="row course-block">
+                <div class="col-md-12">
+                    <h4><span ng-bind="series.name"></span> <span class="label label-accent pull-right" ng-click="vm.editTestSeries(series)">Edit</span></h4>
+                    <i class="fa fa-inr" aria-hidden="true" ng-if="series.price"></i> <span ng-bind="series.price || 'Free'"></span>
+                    <hr>
+                    <a href="javascript:void(0)" ng-click="vm.getSeriesTest(series);" ng-title="{{series.testList}}">
+                        <span ng-bind="series.testList.split(',').length || 0"></span> Tests
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

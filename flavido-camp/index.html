@@ -1,0 +1,792 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+<title>Flavido - IAS ONLINE Coaching</title>
+<link rel="stylesheet" media="all" href="./css/main.css" />
+    <!--<link rel="shortcut icon" type="image/x-icon" href="https://cdn.datacamp.com/main-app/assets/favicon-335cd0394b32102a39221d79e5fd7e51078e6d32a0c8aea59676a6869f84e9d8.ico" />
+    <base href="/">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="fragment" content="!">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  </head>
+  <body class="">
+    <ul class="offscreen-nav">
+  <li class="top offscreen-nav-li"></li>
+  <li class="offscreen-nav-li"><a href="/">Home</a></li>
+  <li class="offscreen-nav-li"><a href="/courses">Courses</a></li>
+  <li class="offscreen-nav-li"><a href="/pricing">Pricing</a></li>
+  <li class="offscreen-nav-li"><a href="/groups/business">Groups</a></li>
+  <li class="offscreen-nav-li bb0"><a href="/community/">Community</a></li>
+  <li class="offscreen-nav-li accent"><a href="/users/sign_up">Create free account</a></li>
+  <li class="offscreen-nav-li"><a href="/users/sign_in">Sign in</a></li>
+</ul>
+
+    <div class="site-wrap">
+      <div id="flash_messages">
+</div>
+
+      <div id="js-promo-coupon"></div>
+      
+<section class="bg bg-navigation bg-pattern" id="logged-out-header">
+  <div class="container">
+
+    <nav class="clearfix">
+  <div class="navbar--title">
+    <a class="clearfix no-link-style" data-dc-track="" data-dc-referrer="main" href="/">
+      <div class="logo"></div>
+      <div class="logo-title">DataCamp</div>
+</a>    <a class="small-link" href="/careers">We&#39;re hiring!</a>
+  </div>
+
+
+  <ul class="nav hidden-xs hidden-sm">
+      <li><a class="btn btn-secondary-light" data-dc-track="" data-dc-referrer="main" href="/users/sign_up">Create Free Account</a></li>
+      <li><a data-dc-track="" data-dc-referrer="main" href="/users/sign_in">Sign in</a></li>
+      <li class="spacer"></li>
+    <li><a data-dc-track="" data-dc-referrer="main" href="/community/">Community</a></li>
+      <li><a data-dc-track="" data-dc-referrer="main" href="/groups/business">Business</a></li>
+      <li><a data-dc-track="" data-dc-referrer="main" href="/pricing">Pricing</a></li>
+      <li>
+        <a data-dc-track="" data-dc-referrer="main" href="/tracks">Tracks</a>
+      </li>
+    <li><a data-dc-track="" data-dc-referrer="main" href="/courses">Courses</a></li>
+    <li><a class="hidden-md" data-dc-track="" data-dc-referrer="main" href="/">Home</a></li>
+  </ul>
+  <div class="nav--resp-menu-toggle hidden-lg hidden-md">
+    <a class="no-link-style" href=""><i class="fa fa-bars fa-2x"></i></a>
+  </div>
+</nav>
+
+
+    <div class="row">
+      <div class="col-sm-7">
+        <div class="home--header">
+          <hr>
+          <h4 class="subhead">THE EASIEST WAY TO</h4>
+          <h1>Learn Data Science Online</h1>
+          <p>Master data analysis from the comfort of your browser, at your own pace, tailored to your needs and expertise. Whether you want to learn R, Python or Data Visualization, we want to help!</p>
+          <div class="row">
+            <div class="col-lg-5">
+              <a class="btn btn-primary ml0 mr0 mt0 fw" data-dc-track="" data-dc-name="home-learn-r" data-dc-referrer="main" href="/getting-started?step=2&amp;track=r">Start Learning R</a>
+            </div>
+            <div class="col-lg-7">
+              <a class="btn btn-secondary-light ml0 mr0 mt0 fw" data-dc-track="" data-dc-name="home-learn-python" data-dc-referrer="main" href="/getting-started?step=2&amp;track=python">Start Learning Python</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <div class="home--sign-up card">
+          <h4>Create Your Free Account</h4>
+          <div class="home--social-sign-up">
+            <a class="btn btn-secondary btn-linkedin js-registration-btn" href="/users/auth/linkedin">
+              <i class="fa fa-linkedin fa-lg"></i>
+</a>            <a class="btn btn-secondary btn-facebook js-registration-btn" href="/users/auth/facebook">
+              <i class="fa fa-facebook fa-lg"></i>
+</a>            <a class="btn btn-secondary btn-google-plus js-registration-btn" href="/users/auth/google_oauth2">
+              <i class="fa fa-google-plus fa-lg"></i>
+</a>          </div>
+          <form class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="oY94psOeX9ZNQzk9O8RmzTmljVxvSVr/bubg9n1keLeE8ZCypOGkHQvyJFtHLnFq6rKs1Th3r4H2uSh3aK8Wng==" />
+            <input type="hidden" name="how" id="how" value="inline_form_home_page" />
+            <fieldset>
+              <i class="fa fa-envelope-o fa-lg inline-icon"></i>
+              <input required="required" placeholder="Email" class="has-inline-icon" type="email" value="" name="user[email]" id="user_email" />
+            </fieldset>
+            <fieldset>
+              <i class="fa fa-lock fa-lg inline-icon"></i>
+              <input required="required" placeholder="Password" class="has-inline-icon" type="password" name="user[password]" id="user_password" />
+            </fieldset>
+            <input type="submit" name="commit" value="Get Started" class="btn btn-primary home-get-started ml0 mr0 mb0" data-disable-with="Get Started" />
+</form>        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<section class="home--data-science">
+  <div class="container text-center">
+    <h2>Improve your skills - and your career</h2>
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <p>No matter what industry you’re in, learning how to analyze and understand your data is critical. That’s why DataCamp provides you with the tools to learn the data science skills you need to start your own data projects.</p>
+      </div>
+    </div>
+  </div>
+  <div class="data-science-picture">
+    <span class="gradient"></span>
+    <img src="https://cdn.datacamp.com/main-app/assets/home_logged_out/home_data_science-555c6fd4d8790b9674c43168a9bf0c043f4be0f3da3e90923d0411c11fcfea73.svg" alt="Home data science" />
+  </div>
+</section>
+
+<section class="home--learn">
+  <div class="container text-center coures-container">
+    <h2>What do you want to learn?</h2>
+
+    <!-- Switch with JS for SEO -->
+    <div data-tabs>
+      <a class="active" data-tab-btn="courses">Courses</a>
+      <a data-tab-btn="topics">Topics</a>
+    </div>
+
+    <!-- Courses -->
+    <div id="courses" class="active" data-tab-content="courses">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+          <p>Do you already know what you want to learn? Take one of our dedicated courses in a range of topics.</p>
+        </div>
+      </div>
+      <div class="row">
+            <div class="col-sm-6">
+              <a href="/courses/intro-to-python-for-data-science">
+                  <div class="topic image">
+                    <span>Intro to Python for Data Science</span><div class="continue"></div>
+                    <img alt="Intro to Python for Data Science" width="89" height="89" src="https://assets.datacamp.com/production/course_735/shields/thumb_home/intro_to_python.png?1477576439" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/free-introduction-to-r">
+                  <div class="topic image">
+                    <span>Introduction to R</span><div class="continue"></div>
+                    <img alt="Introduction to R" width="89" height="89" src="https://assets.datacamp.com/production/course_58/shields/thumb_home/shield_image_course_58_20161007-28-1qubmtb?1477576403" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/intermediate-python-for-data-science">
+                  <div class="topic image">
+                    <span>Intermediate Python for Data Science</span><div class="continue"></div>
+                    <img alt="Intermediate Python for Data Science" width="89" height="89" src="https://assets.datacamp.com/production/course_799/shields/thumb_home/intermediate_python.png?1477576447" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/deep-learning-in-python">
+                  <div class="topic image">
+                    <span>Deep Learning in Python</span><div class="continue"></div>
+                    <img alt="Deep Learning in Python" width="89" height="89" src="https://assets.datacamp.com/production/course_1975/shields/thumb_home/shield_image_course_1975_20170419-209-1xtz6eu?1492635276" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/intermediate-r">
+                  <div class="topic image">
+                    <span>Intermediate R</span><div class="continue"></div>
+                    <img alt="Intermediate R" width="89" height="89" src="https://assets.datacamp.com/production/course_672/shields/thumb_home/intermediate_r.png?1477576423" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/cleaning-data-in-python">
+                  <div class="topic image">
+                    <span>Cleaning Data in Python</span><div class="continue"></div>
+                    <img alt="Cleaning Data in Python" width="89" height="89" src="https://assets.datacamp.com/production/course_2023/shields/thumb_home/shield_image_course_2023_20170320-20036-1p91ur5?1490046109" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/beginning-bayes-in-r">
+                  <div class="topic image">
+                    <span>Beginning Bayes in R</span><div class="continue"></div>
+                    <img alt="Beginning Bayes in R" width="89" height="89" src="https://assets.datacamp.com/production/course_2098/shields/thumb_home/shield_image_course_2098_20170327-208-155s8h7?1490622276" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/importing-data-in-r-part-1">
+                  <div class="topic image">
+                    <span>Importing Data in R (Part 1)</span><div class="continue"></div>
+                    <img alt="Importing Data in R (Part 1)" width="89" height="89" src="https://assets.datacamp.com/production/course_1477/shields/thumb_home/shield_image_course_1477_20161010-28-nr53a?1477576749" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/cleaning-data-in-r">
+                  <div class="topic image">
+                    <span>Cleaning Data in R</span><div class="continue"></div>
+                    <img alt="Cleaning Data in R" width="89" height="89" src="https://assets.datacamp.com/production/course_723/shields/thumb_home/cleaning_data_r.png?1477576437" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/introduction-to-machine-learning-with-r">
+                  <div class="topic image">
+                    <span>Introduction to Machine Learning</span><div class="continue"></div>
+                    <img alt="Introduction to Machine Learning" width="89" height="89" src="https://assets.datacamp.com/production/course_682/shields/thumb_home/machine_learning_r.png?1477576426" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/python-data-science-toolbox-part-1">
+                  <div class="topic image">
+                    <span>Python Data Science Toolbox (Part 1)</span><div class="continue"></div>
+                    <img alt="Python Data Science Toolbox (Part 1)" width="89" height="89" src="https://assets.datacamp.com/production/course_1532/shields/thumb_home/shield_image_course_1532_20170404-4213-16cfsr9?1491293117" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/importing-data-in-python-part-1">
+                  <div class="topic image">
+                    <span>Importing Data in Python (Part 1)</span><div class="continue"></div>
+                    <img alt="Importing Data in Python (Part 1)" width="89" height="89" src="https://assets.datacamp.com/production/course_1607/shields/thumb_home/shield_image_course_1607_20170404-4273-1ao036i?1491293267" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/dplyr-data-manipulation-r-tutorial">
+                  <div class="topic image">
+                    <span>Data Manipulation in R with dplyr</span><div class="continue"></div>
+                    <img alt="Data Manipulation in R with dplyr" width="89" height="89" src="https://assets.datacamp.com/production/course_625/shields/thumb_home/dplyr_r.png?1477576416" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/data-visualization-with-ggplot2-1">
+                  <div class="topic image">
+                    <span>Data Visualization with ggplot2 (Part 1)</span><div class="continue"></div>
+                    <img alt="Data Visualization with ggplot2 (Part 1)" width="89" height="89" src="https://assets.datacamp.com/production/course_774/shields/thumb_home/ggplot2_course1_r.png?1477576441" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/intermediate-r-practice">
+                  <div class="topic image">
+                    <span>Intermediate R - Practice</span><div class="continue"></div>
+                    <img alt="Intermediate R - Practice" width="89" height="89" src="https://assets.datacamp.com/production/course_753/shields/thumb_home/shield_image_course_753_20160824-26-1dniha2?1477576440" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/pandas-foundations">
+                  <div class="topic image">
+                    <span>pandas Foundations</span><div class="continue"></div>
+                    <img alt="pandas Foundations" width="89" height="89" src="https://assets.datacamp.com/production/course_1639/shields/thumb_home/shield_image_course_1639_20170324-208-1k76fgv?1490391247" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/supervised-learning-with-scikit-learn">
+                  <div class="topic image">
+                    <span>Supervised Learning with scikit-learn</span><div class="continue"></div>
+                    <img alt="Supervised Learning with scikit-learn" width="89" height="89" src="https://assets.datacamp.com/production/course_1939/shields/thumb_home/shield_image_course_1939_20170404-4273-zq0ayf?1491293024" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/python-data-science-toolbox-part-2">
+                  <div class="topic image">
+                    <span>Python Data Science Toolbox (Part 2)</span><div class="continue"></div>
+                    <img alt="Python Data Science Toolbox (Part 2)" width="89" height="89" src="https://assets.datacamp.com/production/course_1531/shields/thumb_home/shield_image_course_1531_20170404-4213-1xevj6k?1491292977" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/writing-functions-in-r">
+                  <div class="topic image">
+                    <span>Writing Functions in R</span><div class="continue"></div>
+                    <img alt="Writing Functions in R" width="89" height="89" src="https://assets.datacamp.com/production/course_1008/shields/thumb_home/shield_image_course_1008_20170109-27-10tbzeg?1483974690" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/data-visualization-in-r">
+                  <div class="topic image">
+                    <span>Data Visualization in R</span><div class="continue"></div>
+                    <img alt="Data Visualization in R" width="89" height="89" src="https://assets.datacamp.com/production/course_1498/shields/thumb_home/shield_image_course_1498_20161115-27-1qgnd9v?1479253176" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/correlation-and-regression">
+                  <div class="topic image">
+                    <span>Correlation and Regression</span><div class="continue"></div>
+                    <img alt="Correlation and Regression" width="89" height="89" src="https://assets.datacamp.com/production/course_1799/shields/thumb_home/shield_image_course_1799_20161218-28-oi05p6?1482085185" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/statistical-modeling-in-r-part-1">
+                  <div class="topic image">
+                    <span>Statistical Modeling in R (Part 1)</span><div class="continue"></div>
+                    <img alt="Statistical Modeling in R (Part 1)" width="89" height="89" src="https://assets.datacamp.com/production/course_1585/shields/thumb_home/shield_image_course_1585_20170207-27-1gbme29?1486503526" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/importing-data-in-r-part-2">
+                  <div class="topic image">
+                    <span>Importing Data in R (Part 2)</span><div class="continue"></div>
+                    <img alt="Importing Data in R (Part 2)" width="89" height="89" src="https://assets.datacamp.com/production/course_1478/shields/thumb_home/shield_image_course_1478_20170102-30-kekwsc?1483364842" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/unsupervised-learning-in-r">
+                  <div class="topic image">
+                    <span>Unsupervised Learning in R</span><div class="continue"></div>
+                    <img alt="Unsupervised Learning in R" width="89" height="89" src="https://assets.datacamp.com/production/course_1815/shields/thumb_home/shield_image_course_1815_20170228-207-derbg2?1488283863" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/exploratory-data-analysis">
+                  <div class="topic image">
+                    <span>Exploratory Data Analysis</span><div class="continue"></div>
+                    <img alt="Exploratory Data Analysis" width="89" height="89" src="https://assets.datacamp.com/production/course_1796/shields/thumb_home/shield_image_course_1796_20170125-26-lpfkq5?1485370387" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/introduction-to-data">
+                  <div class="topic image">
+                    <span>Introduction to Data</span><div class="continue"></div>
+                    <img alt="Introduction to Data" width="89" height="89" src="https://assets.datacamp.com/production/course_1800/shields/thumb_home/shield_image_course_1800_20161229-28-1ydkoot?1483046948" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/importing-and-managing-financial-data-in-r">
+                  <div class="topic image">
+                    <span>Importing and Managing Financial Data in R</span><div class="continue"></div>
+                    <img alt="Importing and Managing Financial Data in R" width="89" height="89" src="https://assets.datacamp.com/production/course_1329/shields/thumb_home/shield_image_course_1329_20170317-208-152sov3?1489782909" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/introduction-to-r-for-finance">
+                  <div class="topic image">
+                    <span>Introduction to R for Finance</span><div class="continue"></div>
+                    <img alt="Introduction to R for Finance" width="89" height="89" src="https://assets.datacamp.com/production/course_2653/shields/thumb_home/shield_image_course_2653_20170126-28-1ueai6x?1485442331" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/statistical-thinking-in-python-part-1">
+                  <div class="topic image">
+                    <span>Statistical Thinking in Python (Part 1)</span><div class="continue"></div>
+                    <img alt="Statistical Thinking in Python (Part 1)" width="89" height="89" src="https://assets.datacamp.com/production/course_1549/shields/thumb_home/shield_image_course_1549_20170324-208-141qfbb?1490397372" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/data-table-data-manipulation-r-tutorial">
+                  <div class="topic image">
+                    <span>Data Analysis in R, the data.table Way</span><div class="continue"></div>
+                    <img alt="Data Analysis in R, the data.table Way" width="89" height="89" src="https://assets.datacamp.com/production/course_616/shields/thumb_home/data.table_r.png?1477576415" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/importing-data-in-python-part-2">
+                  <div class="topic image">
+                    <span>Importing Data in Python (Part 2)</span><div class="continue"></div>
+                    <img alt="Importing Data in Python (Part 2)" width="89" height="89" src="https://assets.datacamp.com/production/course_1606/shields/thumb_home/shield_image_course_1606_20170404-4213-sniq14?1491293282" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/machine-learning-toolbox">
+                  <div class="topic image">
+                    <span>Machine Learning Toolbox</span><div class="continue"></div>
+                    <img alt="Machine Learning Toolbox" width="89" height="89" src="https://assets.datacamp.com/production/course_1048/shields/thumb_home/shield_image_course_1048_20161216-27-qmtv2h?1481899726" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/joining-data-in-r-with-dplyr">
+                  <div class="topic image">
+                    <span>Joining Data in R with dplyr</span><div class="continue"></div>
+                    <img alt="Joining Data in R with dplyr" width="89" height="89" src="https://assets.datacamp.com/production/course_1074/shields/thumb_home/shield_image_course_1074_20161216-28-1321gip?1481899618" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/introduction-to-data-visualization-with-python">
+                  <div class="topic image">
+                    <span>Introduction to Data Visualization with Python</span><div class="continue"></div>
+                    <img alt="Introduction to Data Visualization with Python" width="89" height="89" src="https://assets.datacamp.com/production/course_1761/shields/thumb_home/shield_image_course_1761_20170324-209-1x9uugl?1490389597" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/introduction-to-relational-databases-in-python">
+                  <div class="topic image">
+                    <span>Introduction to Databases in Python</span><div class="continue"></div>
+                    <img alt="Introduction to Databases in Python" width="89" height="89" src="https://assets.datacamp.com/production/course_1115/shields/thumb_home/shield_image_course_1115_20170327-209-1u4q6xg?1490625074" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/exploratory-data-analysis-in-r-case-study">
+                  <div class="topic image">
+                    <span>Exploratory Data Analysis in R: Case Study</span><div class="continue"></div>
+                    <img alt="Exploratory Data Analysis in R: Case Study" width="89" height="89" src="https://assets.datacamp.com/production/course_1414/shields/thumb_home/shield_image_course_1414_20161216-27-j45jf6?1481899464" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/introduction-to-time-series-analysis">
+                  <div class="topic image">
+                    <span>Introduction to Time Series Analysis</span><div class="continue"></div>
+                    <img alt="Introduction to Time Series Analysis" width="89" height="89" src="https://assets.datacamp.com/production/course_1143/shields/thumb_home/shield_image_course_1143_20161219-28-40ljf5?1482175598" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/manipulating-dataframes-with-pandas">
+                  <div class="topic image">
+                    <span>Manipulating DataFrames with pandas</span><div class="continue"></div>
+                    <img alt="Manipulating DataFrames with pandas" width="89" height="89" src="https://assets.datacamp.com/production/course_1650/shields/thumb_home/shield_image_course_1650_20170324-209-1v0bjj0?1490389728" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/importing-cleaning-data-in-r-case-studies">
+                  <div class="topic image">
+                    <span>Importing &amp; Cleaning Data in R: Case Studies</span><div class="continue"></div>
+                    <img alt="Importing &amp; Cleaning Data in R: Case Studies" width="89" height="89" src="https://assets.datacamp.com/production/course_1294/shields/thumb_home/shield_image_course_1294_20161216-27-masufy?1481899667" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/network-analysis-in-python-part-1">
+                  <div class="topic image">
+                    <span>Network Analysis in Python (Part 1)</span><div class="continue"></div>
+                    <img alt="Network Analysis in Python (Part 1)" width="89" height="89" src="https://assets.datacamp.com/production/course_1822/shields/thumb_home/shield_image_course_1822_20170324-209-8qyoaw?1490390050" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/reporting-with-r-markdown">
+                  <div class="topic image">
+                    <span>Reporting with R Markdown</span><div class="continue"></div>
+                    <img alt="Reporting with R Markdown" width="89" height="89" src="https://assets.datacamp.com/production/course_639/shields/thumb_home/rmarkdown_r.png?1477576419" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/intro-to-text-mining-bag-of-words">
+                  <div class="topic image">
+                    <span>Text Mining: Bag of Words</span><div class="continue"></div>
+                    <img alt="Text Mining: Bag of Words" width="89" height="89" src="https://assets.datacamp.com/production/course_935/shields/thumb_home/shield_image_course_935_20160907-28-l1e27c?1477576469" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/merging-dataframes-with-pandas">
+                  <div class="topic image">
+                    <span>Merging DataFrames with pandas</span><div class="continue"></div>
+                    <img alt="Merging DataFrames with pandas" width="89" height="89" src="https://assets.datacamp.com/production/course_1681/shields/thumb_home/shield_image_course_1681_20170324-208-63yk17?1490389807" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/arima-modeling-with-r">
+                  <div class="topic image">
+                    <span>ARIMA Modeling with R</span><div class="continue"></div>
+                    <img alt="ARIMA Modeling with R" width="89" height="89" src="https://assets.datacamp.com/production/course_1811/shields/thumb_home/shield_image_course_1811_20161219-28-10h36rj?1482187596" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/data-visualization-with-ggplot2-2">
+                  <div class="topic image">
+                    <span>Data Visualization with ggplot2 (Part 2)</span><div class="continue"></div>
+                    <img alt="Data Visualization with ggplot2 (Part 2)" width="89" height="89" src="https://assets.datacamp.com/production/course_775/shields/thumb_home/ggplot2_course2_r.png?1477576442" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/introduction-to-credit-risk-modeling-in-r">
+                  <div class="topic image">
+                    <span>Credit Risk Modeling in R</span><div class="continue"></div>
+                    <img alt="Credit Risk Modeling in R" width="89" height="89" src="https://assets.datacamp.com/production/course_1025/shields/thumb_home/shield_image_course_1025_20160629-28-fu494h?1477576498" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/manipulating-time-series-data-in-r-with-xts-zoo">
+                  <div class="topic image">
+                    <span>Manipulating Time Series Data in R with xts &amp; zoo</span><div class="continue"></div>
+                    <img alt="Manipulating Time Series Data in R with xts &amp; zoo" width="89" height="89" src="https://assets.datacamp.com/production/course_1127/shields/thumb_home/shield_image_course_1127_20160920-24-9dee7r?1477576560" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/interactive-data-visualization-with-bokeh">
+                  <div class="topic image">
+                    <span>Interactive Data Visualization with Bokeh</span><div class="continue"></div>
+                    <img alt="Interactive Data Visualization with Bokeh" width="89" height="89" src="https://assets.datacamp.com/production/course_1392/shields/thumb_home/shield_image_course_1392_20170324-209-yvhdh6?1490389490" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/intermediate-r-for-finance">
+                  <div class="topic image">
+                    <span>Intermediate R for Finance</span><div class="continue"></div>
+                    <img alt="Intermediate R for Finance" width="89" height="89" src="https://assets.datacamp.com/production/course_2659/shields/thumb_home/shield_image_course_2659_20170401-207-1qqufk9?1491074753" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/machine-learning-with-the-experts-school-budgets">
+                  <div class="topic image">
+                    <span>Machine Learning with the Experts: School Budgets</span><div class="continue"></div>
+                    <img alt="Machine Learning with the Experts: School Budgets" width="89" height="89" src="https://assets.datacamp.com/production/course_2533/shields/thumb_home/shield_image_course_2533_20170329-3123-1p8dzrr?1490797813" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/statistical-thinking-in-python-part-2">
+                  <div class="topic image">
+                    <span>Statistical Thinking in Python (Part 2)</span><div class="continue"></div>
+                    <img alt="Statistical Thinking in Python (Part 2)" width="89" height="89" src="https://assets.datacamp.com/production/course_1550/shields/thumb_home/shield_image_course_1550_20170324-208-s34xxh?1490397234" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/unsupervised-learning-in-python">
+                  <div class="topic image">
+                    <span>Unsupervised Learning in Python</span><div class="continue"></div>
+                    <img alt="Unsupervised Learning in Python" width="89" height="89" src="https://assets.datacamp.com/production/course_2072/shields/thumb_home/shield_image_course_2072_20170324-208-s9u19d?1490389747" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/working-with-the-rstudio-ide-part-1">
+                  <div class="topic image">
+                    <span>Working with the RStudio IDE (Part 1)</span><div class="continue"></div>
+                    <img alt="Working with the RStudio IDE (Part 1)" width="89" height="89" src="https://assets.datacamp.com/production/course_944/shields/thumb_home/shield_image_course_944_20161216-28-9k9zkn?1481899646" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/working-with-geospatial-data-in-r">
+                  <div class="topic image">
+                    <span>Working with Geospatial Data in R</span><div class="continue"></div>
+                    <img alt="Working with Geospatial Data in R" width="89" height="89" src="https://assets.datacamp.com/production/course_1816/shields/thumb_home/shield_image_course_1816_20161216-28-1bg9574?1481899707" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/data-visualization-with-ggplot2-part-3">
+                  <div class="topic image">
+                    <span>Data Visualization with ggplot2 (Part 3)</span><div class="continue"></div>
+                    <img alt="Data Visualization with ggplot2 (Part 3)" width="89" height="89" src="https://assets.datacamp.com/production/course_862/shields/thumb_home/ggplot2_course3_r.png?1477576468" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/foundations-of-inference">
+                  <div class="topic image">
+                    <span>Foundations of Inference</span><div class="continue"></div>
+                    <img alt="Foundations of Inference" width="89" height="89" src="https://assets.datacamp.com/production/course_1760/shields/thumb_home/shield_image_course_1760_20161229-28-61899y?1483046924" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/financial-trading-in-r">
+                  <div class="topic image">
+                    <span>Financial Trading in R</span><div class="continue"></div>
+                    <img alt="Financial Trading in R" width="89" height="89" src="https://assets.datacamp.com/production/course_1296/shields/thumb_home/shield_image_course_1296_20160920-24-148x3hh?1477576656" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/working-with-the-rstudio-ide-part-2">
+                  <div class="topic image">
+                    <span>Working with the RStudio IDE (Part 2)</span><div class="continue"></div>
+                    <img alt="Working with the RStudio IDE (Part 2)" width="89" height="89" src="https://assets.datacamp.com/production/course_1057/shields/thumb_home/shield_image_course_1057_20161216-28-x2hwxn?1481899653" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/introduction-to-portfolio-analysis-in-r">
+                  <div class="topic image">
+                    <span>Introduction to Portfolio Analysis in R</span><div class="continue"></div>
+                    <img alt="Introduction to Portfolio Analysis in R" width="89" height="89" src="https://assets.datacamp.com/production/course_985/shields/thumb_home/shield_image_course_985_20170325-209-5howaf?1490410272" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/ggvis-data-visualization-r-tutorial">
+                  <div class="topic image">
+                    <span>Data Visualization in R with ggvis</span><div class="continue"></div>
+                    <img alt="Data Visualization in R with ggvis" width="89" height="89" src="https://assets.datacamp.com/production/course_638/shields/thumb_home/ggvis_r.png?1477576417" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/bond-valuation-and-analysis-in-r">
+                  <div class="topic image">
+                    <span>Bond Valuation and Analysis in R</span><div class="continue"></div>
+                    <img alt="Bond Valuation and Analysis in R" width="89" height="89" src="https://assets.datacamp.com/production/course_1698/shields/thumb_home/shield_image_course_1698_20170104-28-1er4bay?1483554073" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/statistical-modeling-in-r-part-2">
+                  <div class="topic image">
+                    <span>Statistical Modeling in R (Part 2)</span><div class="continue"></div>
+                    <img alt="Statistical Modeling in R (Part 2)" width="89" height="89" src="https://assets.datacamp.com/production/course_1586/shields/thumb_home/shield_image_course_1586_20161216-28-1u9dnc3?1481899725" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/object-oriented-programming-in-r-s3-and-r6">
+                  <div class="topic image">
+                    <span>Object-Oriented Programming in R: S3 and R6</span><div class="continue"></div>
+                    <img alt="Object-Oriented Programming in R: S3 and R6" width="89" height="89" src="https://assets.datacamp.com/production/course_2000/shields/thumb_home/shield_image_course_2000_20161215-27-lmi6de?1481827667" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/manipulating-time-series-data-in-r-case-studies">
+                  <div class="topic image">
+                    <span>Manipulating Time Series Data in R: Case Studies</span><div class="continue"></div>
+                    <img alt="Manipulating Time Series Data in R: Case Studies" width="89" height="89" src="https://assets.datacamp.com/production/course_1964/shields/thumb_home/shield_image_course_1964_20170131-29-1afh932?1485861925" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/intermediate-portfolio-analysis-in-r">
+                  <div class="topic image">
+                    <span>Intermediate Portfolio Analysis in R</span><div class="continue"></div>
+                    <img alt="Intermediate Portfolio Analysis in R" width="89" height="89" src="https://assets.datacamp.com/production/course_1593/shields/thumb_home/shield_image_course_1593_20170306-30647-c44190?1488834957" />
+                  </div>
+</a>            </div>
+            <div class="col-sm-6">
+              <a href="/courses/exploring-pitch-data-with-r">
+                  <div class="topic image">
+                    <span>Exploring Pitch Data with R</span><div class="continue"></div>
+                    <img alt="Exploring Pitch Data with R" width="89" height="89" src="https://assets.datacamp.com/production/course_943/shields/thumb_home/shield_image_course_943_20161216-28-fyql29?1481877349" />
+                  </div>
+</a>            </div>
+        <!-- Hardcoding Conway -->
+        <div class="col-sm-6">
+          <a href="/introduction-to-statistics">
+            <div class="topic image">
+              <span>A Hands-on Introduction to Statistics with R</span><div class="continue"></div>
+              <img alt="A Hands-on Introduction to Statistics with R" src="https://cdn.datacamp.com/main-app/assets/TEMP/intro_to_stats_home-abcf5857f27c4d9e4641f85744f72ab7fb21348196a2ebf7bfeec5adcce4f7cc.png" />
+            </div>
+</a>        </div>
+        <!-- !Hardcoding Conway -->
+      </div>
+    </div>
+    <!-- !Courses -->
+
+    <!-- Topics -->
+    <div id="topics" data-tab-content="topics">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+          <p>A topic is a collection of specialized courses. Each topic covers a different step or technology in the data science process.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <a href="/courses/tech:r">
+              <div class="topic r-prog"><span>R Programming</span><div class="continue"></div></div>
+</a>          <a href="/courses/topic:importing_and_cleaning_data">
+              <div class="topic importing"><span>Importing &amp; Cleaning Data</span><div class="continue"></div></div>
+</a>          <a href="/courses/topic:data_visualization">
+              <div class="topic data-vis"><span>Data Visualization</span><div class="continue"></div></div>
+</a>          <a href="/courses/topic:machine_learning">
+              <div class="topic ml"><span>Machine Learning</span><div class="continue"></div></div>
+</a>        </div>
+        <div class="col-sm-6">
+          <a href="/courses/tech:python">
+              <div class="topic py-prog"><span>Python Programming</span><div class="continue"></div></div>
+</a>          <a href="/courses/topic:data_manipulation">
+              <div class="topic data-manip"><span>Data Manipulation</span><div class="continue"></div></div>
+</a>          <a href="/courses/topic:probablity_and_statistics">
+              <div class="topic stat-mod"><span>Probability &amp; Statistics</span><div class="continue"></div></div>
+</a>          <a href="/courses/topic:reporting">
+              <div class="topic reporting"><span>Reporting</span><div class="continue"></div></div>
+</a>        </div>
+      </div>
+    </div>
+    <!-- !Topics -->
+
+  </div>
+</section>
+
+
+<section class="bg bg-navigation home--classroom">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <img alt="Use DataCamp at work or in the classroom" class="fw" src="https://cdn.datacamp.com/main-app/assets/home_logged_out/classroom-bd8b5eef91f9432e2cf0ea542c278fb1400243000d27c1265f251bd890829d92.svg" />
+      </div>
+    </div>
+
+    <h2>Use DataCamp at work or in the classroom</h2>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <p>DataCamp for Groups is used by companies, universities and governmental organizations worldwide to help employees and students learn the fundamentals of data literacy. Whether you want to keep your team’s skills fresh, onboard new employees or integrate DataCamp’s tutorials with your course curriculum, DataCamp for Groups can help.</p>
+      </div>
+    </div>
+    <a class="btn btn-primary" href="/groups/business">Learn More About Groups</a>
+  </div>
+</section>
+
+<section class="home--quotes">
+  <div class="container text-center">
+    <h2>Don't just take our word for it</h2>
+    <div class="row">
+      <!-- Quote 1 -->
+      <a class="stories--quote" href="/stories">
+        <section class="col-sm-12 col-md-4">
+	<div class="quote card-circle-top ">
+		<img class="card-circle-top-image" width="120" height="120" src="https://cdn.datacamp.com/main-app/assets/quotes/image05-b8122ee4ee07409d52afb133aebe8f4316d446a95cf1878c1da04a59c8da78c8.jpg" alt="Image05" />
+		<div class="quote__text" style="height:130px">
+			<p>“It&#39;s the best tool for beginners to learn R/data analysis that I&#39;ve come across.”</p>
+		</div>
+		<div class="quote__person" style="height: 115px">
+			<p><strong>Anas El Turabi</strong> Harvard PhD Candidate in Health Policy</p>
+		</div>
+</div></section>
+
+      </a>
+
+      <!-- Quote 2 -->
+      <a class="stories--quote" href="/stories/jamen_long">
+        <section class="col-sm-12 col-md-4">
+	<div class="quote card-circle-top ">
+		<img class="card-circle-top-image" width="120" height="120" src="https://cdn.datacamp.com/main-app/assets/quotes/image08-8ccfaf24353fff48b2ad304ae50433b35aec031cde357981c98f5e0b8a5a9ed0.jpg" alt="Image08" />
+		<div class="quote__text" style="height:130px">
+			<p>“DataCamp gives beginners a great place to start, and provides a clear, and effective path forward.”</p>
+		</div>
+		<div class="quote__person" style="height: 115px">
+			<p><strong>Jamen Long</strong> used the skills he learned at DataCamp to get a full time job as a data scientist</p>
+		</div>
+</div></section>
+
+      </a>
+
+      <!-- Quote 3 -->
+      <a class="stories--quote" href="/stories">
+        <section class="col-sm-12 col-md-4">
+	<div class="quote card-circle-top ">
+		<img class="card-circle-top-image" width="120" height="120" src="https://cdn.datacamp.com/main-app/assets/quotes/image03-7461c71913bcc7c22316dff4afa9811f2c15449d41a0ecef56af1242d2a472dd.jpg" alt="Image03" />
+		<div class="quote__text" style="height:130px">
+			<p>“Love love love DataCamp! If only our schools lived and breathed the &#39;learning by doing&#39;.”</p>
+		</div>
+		<div class="quote__person" style="height: 115px">
+			<p><strong>Anastasia Kaiser</strong> is a management consultant analyst at Accenture</p>
+		</div>
+</div></section>
+
+      </a>
+
+    </div>
+    <br>
+    <p class="mt0 text-secondary"><a href="/stories">Read More Stories</a></p>
+  </div>
+</section>
+
+<div class="bottom-navigation">
+  <div class="container clearfix">
+    <div class="navbar--title">
+      <a class="clearfix no-link-style" href="/">
+        <div class="logo"></div>
+        <div class="logo-title">DataCamp</div>
+</a>      <a class="small-link" href="/careers">We&#39;re hiring!</a>
+    </div>
+      <div class="footer-links-container hidden-xs">
+        <ul class="footer-links-list">
+          <li>DataCamp</li>
+            <li><a href="/users/sign_up">Create free account</a></li>
+            <li><a href="/users/sign_in">Sign-in</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/pricing">Pricing</a></li>
+          <li><a href="/brand">Press</a></li>
+          <li><a href="/careers">Jobs</a></li>
+        </ul>
+        <ul class="footer-links-list">
+          <li>Resources</li>
+          <li><a href="/courses">View All Courses</a></li>
+          <li><a href="/community/">Community</a></li>
+          <li><a href="/groups/business">DataCamp for Groups</a></li>
+          <li><a href="/teach/">Become a Teacher</a></li>
+          <li><a target="_blank" href="http://www.r-fiddle.org/">R Fiddle</a></li>
+          <li><a target="_blank" href="https://www.rdocumentation.org">RDocumentation</a></li>
+        </ul>
+        <ul class="footer-links-list">
+          <li>Support</li>
+          <li><a href="/contact-us">Contact Us</a></li>
+          <li><a href="/terms-of-use">Terms of Use</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </div>
+    <div class="social-icons clearfix">
+      <a target="_blank" href="https://twitter.com/datacamp"><i class="fa fa-twitter fa-2x"></i></a>
+      <a target="_blank" href="https://www.facebook.com/pages/DataCamp/726282547396228"><i class="fa fa-facebook fa-2x"></i></a>
+      <a target="_blank" href="https://www.linkedin.com/company/datamind-org"><i class="fa fa-linkedin fa-2x"></i></a>
+      <a target="_blank" href="https://www.youtube.com/channel/UC79Gv3mYp6zKiSwYemEik9A"><i class="fa fa-youtube fa-2x"></i></a>
+    </div>
+  </div>
+</div>
+
+
+<section id="sticky-nav" class="bg bg-navigation" style="display:none;">
+  <div class="container">
+    <nav class="clearfix">
+      <div class="navbar--title">
+        <a class="clearfix no-link-style" href="/">
+          <div class="logo"></div>
+          <div class="logo-title">DataCamp</div>
+</a>        <a class="small-link" href="/careers">We&#39;re hiring!</a>
+      </div>
+
+      <ul class="nav">
+        <li><a class="btn btn-secondary-light" href="/users/sign_up">Create Free Account</a></li>
+        <li class="hidden-xs"><a href="/users/sign_in">Sign in</a></li>
+      </ul>
+    </nav>
+  </div>
+</section>
+
+    </div>
+    <!-- <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+    <script src="https://js.braintreegateway.com/v1/braintree-data.js"></script> -->
+    <script src="https://cdn.datacamp.com/main-app/assets/application-9b57468fd3de68a5872c6aff1abb1497b36b494d6e67f153da13993e48162a5d.js"></script>
+  </body>
+</html>

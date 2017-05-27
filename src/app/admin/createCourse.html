@@ -1,0 +1,194 @@
+<div class="">
+    <div class="row account-settings">
+        <div class="tab-content">
+            <h3>Course</h3>
+            <hr>
+            <form class="edit_user" id="edit_user_727839" method="post">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <fieldset>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Instructor</label>
+                                <md-select ng-model="vm.course.instructorId">
+                                    <md-optgroup label="Instructor">
+                                        <md-option ng-value="instructor.id" ng-repeat="instructor in vm.allInstructors">{{instructor.fullName}}</md-option>
+                                    </md-optgroup>
+                                </md-select>
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <!-- <label for="Title">Title</label>
+                            <input type="text" name="Title" id="Title" ng-model="vm.course.title"> -->
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Title</label>
+                                <input ng-model="vm.course.title">
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <!-- <label for="courseCategoryId">Category</label>
+                            <select ng-model="vm.course.courseCategoryId" ng-options="category.id as category.name for category in vm.activeCourseCategories" name="courseCategoryId" id="courseCategoryId">
+                            </select> -->
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Category</label>
+                                <md-select ng-model="vm.course.courseCategoryId">
+                                    <md-optgroup label="Category">
+                                        <md-option ng-value="category.id" ng-repeat="category in vm.activeCourseCategories">{{category.name}}</md-option>
+                                    </md-optgroup>
+                                </md-select>
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Short Description</label>
+                                <textarea name="shortDesc" id="shortDesc" rows="5" ng-model="vm.course.shortDesc" md-maxlength="130" maxlength="130">
+                            </textarea>
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <!-- <label for="Description">Description</label>
+                            <textarea id="description" name="Description" id="Description" rows="5" ng-model="vm.course.description">
+                            </textarea> -->
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Description</label>
+                                <textarea name="Description" id="Description" rows="5" ng-model="vm.course.description">
+                            </textarea>
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <!-- <label for="freeCourse">Free Course</label> -->
+                            <md-switch class="md-primary" name="freeCourse" id="freeCourse" ng-model="vm.course.freeCourse" aria-label="Free Course" ng-true-value="1" ng-false-value="0">
+                                Free Course
+                            </md-switch>
+                        </fieldset>
+                        <fieldset ng-if="vm.course.freeCourse == 0">
+                            <!-- <label for="CourseFee">Course Fee</label>
+                            <input type="number" name="CourseFee" id="CourseFee" ng-model="vm.course.courseFee"> -->
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Course Fee</label>
+                                <input ng-model="vm.course.courseFee" type="number">
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <!-- <label for="Duration">Duration</label>
+                            <input type="number" name="Duration" id="Duration" ng-model="vm.course.duration"> -->
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Duration</label>
+                                <input ng-model="vm.course.duration" type="number">
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <!-- <label for="DurationParameter">Duration Parameter</label>
+                            <select ng-model="vm.course.durationParameter" id="durationParameter" name="durationParameter" ng-options="duration.value as duration.name for duration in vm.unitDurations"></select> -->
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Duration Parameter</label>
+                                <md-select ng-model="vm.course.durationParameter">
+                                    <md-optgroup label="Parameter">
+                                        <md-option ng-value="duration.id" ng-repeat="duration in vm.unitDurations">{{duration.name}}</md-option>
+                                    </md-optgroup>
+                                </md-select>
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <!-- <label for="maxStudents">Max Student</label>
+                            <input type="number" name="maxStudents" id="maxStudents" ng-model="vm.course.maxStudents"> -->
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Max Student</label>
+                                <input ng-model="vm.course.maxStudents" type="number">
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <!-- <label for="TotalStudents">Total Students</label>
+                            <input type="number" name="TotalStudents" id="TotalStudents" ng-model="vm.course.totalStudents"> -->
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Total Student</label>
+                                <input ng-model="vm.course.totalStudents" type="number">
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <!-- <label for="CourseReviews">Course Reviews</label> -->
+                            <md-switch class="md-primary" name="courseReviews" id="courseReviews" ng-model="vm.course.courseReviews" aria-label="Course Reviews" ng-true-value="1" ng-false-value="0">
+                                Course Reviews
+                            </md-switch>
+                        </fieldset>
+                        <fieldset>
+                            <label for="courseStartDate">Course Start Date</label>
+                            <adm-dtp ng-model='vm.course.courseStartDate'></adm-dtp>
+                            <!-- <md-datepicker ng-model="vm.course.courseStartDate" md-placeholder="Enter date"></md-datepicker> -->
+                        </fieldset>
+                        <fieldset>
+                            <label for="courseEndDate">Course End Date</label>
+                            <adm-dtp ng-model='vm.course.courseEndDate'></adm-dtp>
+                            <!-- <md-datepicker ng-model="vm.course.courseEndDate" md-placeholder="Enter date"></md-datepicker> -->
+                        </fieldset>
+                        <fieldset>
+                            <label>Course Curriculum</label>
+                            <md-select ng-model="vm.course.courseCurriculum" md-on-close="vm.searchUnit='';" data-md-container-class="selectdemoSelectHeader" multiple aria-label="Course Curriculum">
+                                <md-select-header class="demo-select-header">
+                                    <input ng-model="vm.searchUnit.name" type="search" placeholder="Search for unit" ng-keydown="$event.stopPropagation();" />
+                                </md-select-header>
+                                <md-optgroup label="unit.name">
+                                    <md-option ng-value="unit.id" ng-repeat="unit in vm.activeUnits | filter:vm.searchUnit">{{unit.name}}</md-option>
+                                </md-optgroup>
+                            </md-select>
+                        </fieldset>
+                        <fieldset>
+                            <!-- <label for="courseRetakes">Course Retakes</label> -->
+                            <md-switch class="md-primary" name="courseRetakes" id="courseRetakes" ng-model="vm.course.courseRetakes" aria-label="Course Retake" ng-true-value="1" ng-false-value="0">
+                                Course Retakes
+                            </md-switch>
+                        </fieldset>
+                        <fieldset>
+                            <!-- <label for="instructions">Instructions</label>
+                            <textarea id="instructions" name="instructions" rows="5" ng-model="vm.course.instructions">
+                            </textarea> -->
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Instructions</label>
+                                <textarea name="Instructions" id="Instructions" rows="5" ng-model="vm.course.instructions">
+                                </textarea>
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <!-- <label for="completionMessage">Completion Message</label>
+                            <textarea id="completionMessage" name="completionMessage" id="Description" rows="5" ng-model="vm.course.completionMessage">
+                            </textarea> -->
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Completion Message</label>
+                                <textarea name="completionMessage" id="completionMessage" rows="5" ng-model="vm.course.completionMessage">
+                                </textarea>
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                            <!-- <label for="allowComment">Allow Comment</label> -->
+                            <md-switch class="md-primary" name="allowComment" id="allowComment" ng-model="vm.course.allowComments" aria-label="Allow Comment" ng-true-value="1" ng-false-value="0">
+                                Allow Comment
+                            </md-switch>
+                        </fieldset>
+                        <fieldset>
+                            <!-- <label for="status">Status</label> -->
+                            <md-switch class="md-primary" name="status" id="status" ng-model="vm.course.status" aria-label="Course Status" ng-true-value="1" ng-false-value="0">
+                                Status
+                            </md-switch>
+                        </fieldset>
+                    </div>
+                    <div class="col-sm-6">
+                        <fieldset>
+                            <label for="user_avatar">Cover</label>
+                            <div class="avatar-selector">
+                                <img ngf-src="vm.course.image || '/assets/images/avatar.png'" ngf-resize="{width: 150, height: 150, quality: 0.9}" style="border:1px solid lightseagreen; height:150px;" class="img-thumbnail" />
+                                <br />
+                                <button class="btn btn-default center-block" ngf-select type="file" ng-model="vm.course.image" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+                                    Change Cover
+                                </button>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.createCourse(vm.course.image)" data-disable-with="Save Changes">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

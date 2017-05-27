@@ -1,0 +1,87 @@
+<div ng-cloak>
+    <div class="site-wrap">
+        <section class="bg bg-navigation" id="logged-out-header">
+            <div class="container">
+                <main-navbar></main-navbar>
+            </div>
+        </section>
+        <section layout="row" flex class="container-course">
+            <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+                <md-toolbar style="background-color:  #1E232F;">
+                    <div class="md-toolbar-tools">
+                        <h2 flex md-truncate>All Units
+                        </h2>
+                        <md-button class="md-icon-button" aria-label="Close" ng-click="vm.closeSide()" class="md-primary" hide-gt-md>
+                            <i class="fa fa-times fa-lg"></i>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-content>
+                    <md-list style="font-size: 80%;">
+                        <md-list-item ng-repeat-start="unit in vm.course.units">
+                            <p href="javascript:void(0)" ng-bind="unit.name" ng-click="vm.getCourseUnit(unit);"></p>
+                        </md-list-item>
+                        <md-divider ng-repeat-end></md-divider>
+                        <md-list-item class="btn-primary text-center">
+                            <p style="font-size: 1.5em;" href="javascript:void(0)" ng-click="vm.getReviewPage();"> Add Review </p>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                        <md-list-item class="btn-primary text-center">
+                            <p style="font-size: 1.5em;" href="javascript:void(0)" ng-click="vm.showRelatedDiscussion();"> Related Discussions </p>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                    </md-list>
+                </md-content>
+            </md-sidenav>
+            <md-content flex>
+                <md-toolbar style="background-color: #18BC9C;">
+                    <div class="md-toolbar-tools">
+                        <md-button class="md-icon-button" aria-label="Settings" ng-click="vm.toggleLeft()" class="md-primary" hide-gt-md>
+                            <i class="fa fa-bars fa-lg"></i>
+                        </md-button>
+                        <span md-truncate ng-bind="vm.course.title"></span>&nbsp;/&nbsp;<span flex md-truncate ng-bind="vm.unit.name"></span>
+                    </div>
+                </md-toolbar>
+                <div layout="column" layout-padding ng-if="!vm.showReviewPage">
+                    <p ng-bind="vm.unit.description"></p>
+                    <p ng-bind-html="vm.unit.videoHtml" ng-if="vm.unit.videoId" class="text-center"></p>
+                    <p ng-bind-html="vm.unit.unitDescription"></p>
+                    <div ng-if="vm.unit.test">
+                            <p ng-bind="vm.unit.test.title"></p>
+                            <p ng-bind="vm.unit.test.instruction"></p>
+                            <div ng-repeat="question in vm.unit.test.questions">
+                                <h3 style="margin:3px 0px;">Question: <span ng-bind="$index + 1"></span></h3>
+                                <p ng-bind-html="question.question"></p>
+                                <div class="btn-group-vertical ans-options" role="group" style="width:98%;">
+                                    <label class="btn btn-default" ng-model="vm.userQuestion[$index].answer" uib-btn-radio="answer.ansKey" ng-repeat="answer in question.answers | orderBy: 'ansKey'" style="text-align:left;">
+                                        <span ng-bind="($index + 97) | charCodeToChar" class="options-review"></span>)
+                                        <span ng-bind-html="answer.answerText" class="options-review" style="display:inline-block;white-space:pre-wrap"></span>
+                                    </label>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div layout="column" layout-padding ng-if="vm.showReviewPage">
+                    <p>
+                        Please review the course
+                        <br />
+                        <jk-rating-stars max-rating="5" rating="vm.review.reviewRating" read-only="false">
+                        </jk-rating-stars>
+                        {{vm.review.reviewRating}}
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Review Title</label>
+                            <input ng-model="vm.review.reviewTitle" required="required" />
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Review Details</label>
+                            <textarea ng-model="vm.review.reviewDetails" row="5"></textarea>
+                        </md-input-container>
+                        <md-button class="md-raised md-primary" ng-click="vm.submitReview()">Submit</md-button>
+                    </p>
+                </div>
+                <div flex></div>
+            </md-content>
+        </section>
+    </div>
+    <main-footer-bar></main-footer-bar>
+</div>

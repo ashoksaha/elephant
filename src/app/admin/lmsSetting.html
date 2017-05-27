@@ -1,0 +1,42 @@
+<div class="groups__courses">
+    <h4 class="gr-subtitle">
+        <span>Settings</span>
+    </h4>
+    <div class="groups__courses-overview groups__border">
+        <h4 class="gr-subtitle">Social Sharing</h4>
+        <hr>
+        <form class="edit_user" id="edit_password_727839" method="post">
+            <div class="row" ng-repeat="social in vm.socialShare">
+                <div class="col-sm-3 col-sm-offset-1">
+                    <md-switch ng-model="social.status" aria-label="social.name" ng-true-value="1" ng-false-value="0" class="md-warn">
+                        <i class="fa fa-fw" ng-class="social.imageIcon"></i>
+                        <span> {{ social.name }} </span>
+                    </md-switch>
+                </div>
+                <div class="col-sm-6">
+                    <fieldset>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Link</label>
+                            <input ng-model="social.sharerLink" />
+                        </md-input-container>
+                    </fieldset>
+                    <fieldset>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Sequence</label>
+                            <md-select ng-model="social.sequence">
+                                <md-optgroup label="Sequence">
+                                    <md-option ng-value="$index + 1" ng-repeat="social in vm.socialShare">{{$index + 1}}</md-option>
+                                </md-optgroup>
+                            </md-select>
+                        </md-input-container>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.updateSocialShares()" data-disable-with="Save Changes">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

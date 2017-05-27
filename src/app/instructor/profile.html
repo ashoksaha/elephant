@@ -1,0 +1,142 @@
+<div class="container">
+    <div class="row account-settings">
+        <div class="col-sm-3">
+            <div class="side-nav">
+                <h5>Account Settings</h5>
+                <ul class="nav-tabs" role="tablist">
+                    <li role="presentation" ng-click="vm.profileTab = 1;" ng-class="{'active' : vm.profileTab == 1}">
+                        <a href="javascript:void(0);" aria-controls="general" role="tab" data-toggle="tab" aria-expanded="true">General</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-9 vertical-nav-border">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane" id="general" ng-class="{'active' : vm.profileTab == 1}">
+                    <h3>General Information</h3>
+                    <hr>
+                    <form class="edit_user" id="edit_user_727839" method="post">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <fieldset>
+                                    <!-- <label for="UserName">User Name</label>
+                                    <input required="required" type="text" name="Username" id="Username" ng-model="vm.newProfile.userName"> -->
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>User name</label>
+                                        <input ng-model="vm.newProfile.userName" required="required" />
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <!-- <label for="fullName">Full Name</label>
+                                    <input required="required" type="text" name="fullName" id="fullName" ng-model="vm.newProfile.fullName"> -->
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Full name</label>
+                                        <input ng-model="vm.newProfile.fullName" required="required" />
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Designation</label>
+                                        <input ng-model="vm.newProfile.designation" required="required" />
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <!-- <label for="Email">Email</label>
+                                    <input required="required" type="email" name="Email" id="Email" ng-model="vm.newProfile.emailId"> -->
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Email</label>
+                                        <input ng-model="vm.newProfile.emailId" type="email" required="required" />
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <!-- <label for="Mobile">Mobile</label>
+                                    <input required="required" type="number" name="Mobile" id="Mobile" ng-model="vm.newProfile.mobile"> -->
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Mobile</label>
+                                        <input ng-model="vm.newProfile.mobile" type="number" required="required" />
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <!-- <label for="about">About Me</label>
+                                    <textarea id="about" rows="5" ng-model="vm.newProfile.biography">
+                                    </textarea> -->
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>About Me</label>
+                                        <textarea row="5" ng-model="vm.newProfile.biography"></textarea>
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <!-- <label for="Institute">Institute</label>
+                                    <input type="text" name="Institute" id="Institute" ng-model="vm.newProfile.institute"> -->
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Institute</label>
+                                        <input ng-model="vm.newProfile.institute">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <!-- <label for="Website">Website</label>
+                                    <input type="text" name="Website" id="Website" ng-model="vm.newProfile.website"> -->
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Website</label>
+                                        <input ng-model="vm.newProfile.website">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <!-- <label for="Fbprofile">Facebook Url</label>
+                                    <input type="text" name="Fbprofile" id="Fbprofile" ng-model="vm.newProfile.fbProfile"> -->
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Facebook Url</label>
+                                        <input ng-model="vm.newProfile.fbProfile">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <!-- <label for="Twprofile">Twitter Url</label>
+                                    <input type="text" name="Twprofile" id="Twprofile" ng-model="vm.newProfile.twProfile"> -->
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Twitter Url</label>
+                                        <input ng-model="vm.newProfile.twProfile">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <!-- <label for="Lnprofile">Linkdin Url</label>
+                                    <input type="text" name="Lnprofile" id="Lnprofile" ng-model="vm.newProfile.linkdProfile"> -->
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Linkdin Url</label>
+                                        <input ng-model="vm.newProfile.linkdProfile">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <!-- <label for="Youtubeprofile">Youtube Url</label>
+                                    <input type="text" name="Youtubeprofile" id="Youtubeprofile" ng-model="vm.newProfile.youtubeProfile"> -->
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Youtube Url</label>
+                                        <input ng-model="vm.newProfile.youtubeProfile">
+                                    </md-input-container>
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-6">
+                                <fieldset>
+                                    <label for="user_avatar">Avatar</label>
+                                    <div class="avatar-selector">
+                                        <img ngf-src="vm.newProfile.profileImg || '/assets/images/avatar.png'" ngf-resize="{width: 150, height: 150, quality: 0.9}" style="border:1px solid lightseagreen; height:150px;" class="img-thumbnail" />
+                                        <br />
+                                        <button class="btn btn-primary center-block" ngf-select type="file" ng-model="vm.newProfile.profileImg" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+                                            Change Photo
+                                        </button>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.updateProfile(vm.newProfile.profileImg)" data-disable-with="Save Changes">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
