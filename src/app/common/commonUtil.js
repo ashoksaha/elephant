@@ -76,7 +76,7 @@
                 $localStorage.$reset();
             },
             getAppUrl: function() {
-                return 'http://api.fundsplanner.com/v0';
+                return 'http://api.fundsplanner.com/api/v1';
             },
             getTestSeriesAppUrl: function() {
                 return 'http://139.59.44.117/testSeries';
