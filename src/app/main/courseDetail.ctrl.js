@@ -231,7 +231,10 @@
                 amount: vm.course.courseFee,
                 phone: studentInfo.mobile,
                 buyerName: studentInfo.name,
-                email: studentInfo.email
+                email: studentInfo.email,
+                studentId: studentInfo.userId,
+                courseId: vm.course.id,
+                type: 'student'
             };
             $http.post(CommonInfo.getAppUrl() + "/createinstamojorequest", data).then(
                     function(response) {

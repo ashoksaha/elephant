@@ -125,6 +125,10 @@
                 controller: 'StudentCourseDiscussionThreadController',
                 controllerAs: 'vm'
             })
+            .state('aboutUs', {
+                url: '/aboutUs',
+                templateUrl: 'app/main/aboutUs.html'
+            })
             .state('contactUs', {
                 url: '/contactUs',
                 templateUrl: 'app/main/contactUs.html'
@@ -136,6 +140,14 @@
             .state('privacyPolicy', {
                 url: '/privacyPolicy',
                 templateUrl: 'app/main/privacyPolicy.html'
+            })
+            .state('cancellationPolicy', {
+                url: '/cancellationPolicy',
+                templateUrl: 'app/main/cancellationPolicy.html'
+            })
+            .state('faq', {
+                url: '/faq',
+                templateUrl: 'app/main/faq.html'
             })
             .state('instructorLogin', {
                 url: '/instructor/login',
