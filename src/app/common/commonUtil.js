@@ -5,6 +5,7 @@
         .module('flavido')
         .factory('CommonInfo', CommonInfo)
         .directive('whenScrollEnds', whenScrollEnds)
+        .directive('reviewStars', reviewStars)
         .filter('htmlToPlaintext', htmlToPlaintext)
         .filter('charCodeToChar', charCodeToChar)
         .filter('truncate', truncate);
@@ -52,8 +53,24 @@
     }
 
     /** @ngInject */
+    function reviewStars(_) {
+        return {
+            restrict: "E",
+            scope: {
+                rating: '='
+            },
+            template: function(elem) {
+                return "<span class='rating'><span class='star' ng-repeat='star in starLength track by $index' ng-class=\"{'starfull' : rating - $index >= 1, 'starhalf' : rating - $index > 0 && rating - $index < 1,  'starempty' : rating - $index <= 0 }\"></span></span>"
+            },
+            link: function(scope, element, attrs) {
+                scope.starLength = _.fill(Array(parseInt(attrs.stars)), '*');
+                //scope.rating = parseFloat(attrs.rating);
+            }
+        };
+    }
+
+    /** @ngInject */
     function CommonInfo($localStorage, $state, $mdToast) {
-        var studentInfo = {};
         return {
             getInfoObj: function() {
                 return angular.copy($localStorage.fInfoObj);
