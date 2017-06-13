@@ -125,6 +125,18 @@
                 controller: 'StudentCourseDiscussionThreadController',
                 controllerAs: 'vm'
             })
+            .state('contactUs', {
+                url: '/contactUs',
+                templateUrl: 'app/main/contactUs.html'
+            })
+            .state('termsOfUse', {
+                url: '/termsOfUse',
+                templateUrl: 'app/main/termsOfUse.html'
+            })
+            .state('privacyPolicy', {
+                url: '/privacyPolicy',
+                templateUrl: 'app/main/privacyPolicy.html'
+            })
             .state('instructorLogin', {
                 url: '/instructor/login',
                 templateUrl: 'app/instructor/login/instructorLogin.html',
