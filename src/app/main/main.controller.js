@@ -6,7 +6,7 @@
         .controller('MainController', MainController);
 
     /** @ngInject */
-    function MainController(CommonInfo, $http, growl, $state, $log, $localStorage, $window) {
+    function MainController(CommonInfo, $http, growl, $state, $log, $localStorage, $window, _, moment) {
         var vm = this;
 
         vm.showOtpField = false;
@@ -50,26 +50,6 @@
             }
         }
 
-        function getAllInstructors() {
-            $http.post(CommonInfo.getAppUrl() + "/getallusers", { type: 3 }).then(
-                function(response) {
-                    if (response && response.data) {
-                        if (response.data.status == 1) {
-                            vm.allInstructors = response.data.data;
-                            getAllCourses();
-                        } else if (response.data.status == 2) {
-                            $log.log(response.data.message);
-                        }
-                    } else {
-                        $log.log('There is some issue, please try after some time');
-                    }
-                },
-                function(response) {
-                    $log.log('There is some issue, please try after some time');
-                }
-            );
-        }
-
         function login() {
             if (vm.student.emailorphone && vm.student.password) {
                 $http.post(CommonInfo.getAppUrl() + "/studentlogin", vm.student).then(
@@ -80,7 +60,7 @@
                                 CommonInfo.setInfo('studentInfo', response.data.data);
                                 $state.go('dashboard');
                             } else if (response.data.status == 3) {
-                                CommonInfo.setInfo('studentInfo', response.data.data);
+                                //CommonInfo.setInfo('studentInfo', response.data.data);
                                 vm.verification.student_id = response.data.data.userId;
                                 vm.student.student_id = response.data.data.userId;
                                 if (response.data.message == '2') {

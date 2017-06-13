@@ -37,7 +37,7 @@
                                 CommonInfo.setInfo('studentInfo', response.data.data);
                                 $state.go('dashboard');
                             } else if (response.data.status == 3) {
-                                CommonInfo.setInfo('studentInfo', response.data.data);
+                                //CommonInfo.setInfo('studentInfo', response.data.data);
                                 vm.verification.student_id = response.data.data.userId;
                                 vm.verification.phone = response.data.data.mobile;
                                 if (response.data.message == '2') {
