@@ -2175,7 +2175,7 @@ hr {
 
 .bottom-navigation ul li a:hover {
     color: rgb(245, 0, 87);
-    font-size: 0.9em;
+    letter-spacing: 1px;
 }
 
 .bottom-navigation ul li.header {
@@ -4394,6 +4394,7 @@ ol.inline li:last-child:after {
     content: '';
     background: url(/assets/images/close.svg) no-repeat center center;
     width: 20px;
+    right: 300px;
     height: 28px;
     display: block
 }
@@ -4417,7 +4418,7 @@ ol.inline li:last-child:after {
     height: 100%;
     overflow: hidden;
     position: absolute;
-    right: 300px;
+    /*right: 300px;*/
     width: 100%;
     z-index: 1000
 }
@@ -12653,4 +12654,34 @@ dt {
 
 .show-course__chapter-title span.exercise-icon {
     font-size: 18px;
+}
+
+/* Text angular css for height starts*/
+
+.import-questions .ta-editor {
+    height: auto;
+    min-height: auto;
+    max-height: 200px;
+}
+
+.import-questions .ta-bind {
+    min-height: auto;
+}
+
+.test-questions .ta-editor {
+    height: 200px;
+    min-height: 200px;
+}
+
+.test-questions .ta-bind {
+    min-height: 197px;
+}
+
+.test-answer-options .ta-editor {
+    min-height: 61px;
+    height: 61px;
+}
+
+.test-answer-options .ta-bind {
+    min-height: 57px;
 }

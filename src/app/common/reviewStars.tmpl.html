@@ -1,0 +1,3 @@
+<span class="rating">
+	<span class="star" ng-repeat="star in stars" ng-class="{'starfull' : review.reviewRating - $index >= 1, 'starhalf' : review.reviewRating - $index > 0 && review.reviewRating - $index < 1,  'starempty' : review.reviewRating - $index <= 0 }"></span>
+</span>

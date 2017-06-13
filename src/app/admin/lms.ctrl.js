@@ -6,7 +6,7 @@
         .controller('AdminLMSController', AdminLMSController);
 
     /** @ngInject */
-    function AdminLMSController(CommonInfo, $state, $log, $http, growl, _, moment, Upload, $element) {
+    function AdminLMSController(CommonInfo, $state, $log, $http, growl, _, moment, Upload) {
         var vm = this;
 
         vm.lmsTab = 1;
@@ -130,6 +130,7 @@
                     }
                 },
                 function(response) {
+                    $log.log(response);
                     $log.log('There is some issue, please try after some time');
                 }
             );
@@ -157,6 +158,7 @@
                     }
                 },
                 function(response) {
+                    $log.log(response);
                     $log.log('There is some issue, please try after some time');
                 }
             );
@@ -181,6 +183,7 @@
                     }
                 },
                 function(response) {
+                    $log.log(response);
                     $log.log('There is some issue, please try after some time');
                 }
             );
@@ -200,6 +203,7 @@
                     }
                 },
                 function(response) {
+                    $log.log(response);
                     $log.log('There is some issue, please try after some time');
                 }
             );
@@ -215,10 +219,12 @@
                             $log.log(response.data.message);
                         }
                     } else {
+                        $log.log(response);
                         $log.log('There is some issue, please try after some time');
                     }
                 },
                 function(response) {
+                    $log.log(response);
                     $log.log('There is some issue, please try after some time');
                 }
             );
@@ -235,6 +241,7 @@
                             $log.log(response.data.message);
                         }
                     } else {
+                        $log.log(response);
                         $log.log('There is some issue, please try after some time');
                     }
                 },
@@ -251,6 +258,7 @@
                         if (response.data.status == 1) {
                             vm.unitDurations = response.data.data;
                         } else if (response.data.status == 2) {
+                            $log.log(response);
                             $log.log(response.data.message);
                         }
                     } else {
@@ -378,7 +386,7 @@
                 function(response) {
                     if (response && response.data) {
                         if (response.data.status == 1) {
-                            getCoursesByInstructor();
+                            getCoursesByCategoryId(1);
                             vm.course = {};
                             vm.lmsTab = 1;
                             growl.success(msg);

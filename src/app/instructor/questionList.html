@@ -1,0 +1,37 @@
+<div class="groups__courses">
+    <h4 class="gr-subtitle">Questions
+    </h4>
+    <div class="groups__courses-overview groups__border">
+        <p id="emptyCoursesMessage" class="text-center" ng-if="vm.questionsQP.length == 0">
+            <i>Seems like we don't have any question for this question paper.</i>
+        </p>
+        <section class="groups__courses-course js-course" ng-repeat="question in vm.questionsQP">
+            <div class="row course-block">
+                <div class="col-md-12">
+                    <span>Q. <span ng-bind="$index + 1"></span></span>
+                    <a style="margin:0px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" ng-click="question.isEdit = true;" ng-if="!question.isEdit">
+                        Edit
+                    </a>
+                    <p ng-bind-html="question.question" ng-if="!question.isEdit"></p>
+                    <text-angular class="import-questions" ta-toolbar="vm.toolBar" id="question.question" placeholder="Question" ng-model="vm.questionsQPEdit[$index].question" ng-if="question.isEdit"></text-angular>
+                    <ol type="a" ng-if="!question.isEdit">
+                        <li ng-repeat="ans in question.answers">
+                            <p ng-bind-html="ans.answerText"></p>
+                        </li>
+                    </ol>
+                    <ol type="a" ng-if="question.isEdit">
+                        <li ng-repeat="ans in vm.questionsQPEdit[$index].answers">
+                            <text-angular class="import-questions" ta-toolbar="vm.toolBar" placeholder="option" ng-model="ans.answerText"></text-angular>
+                        </li>
+                    </ol>
+                    <a style="margin:0px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" ng-if="question.isEdit" ng-click="vm.saveQuestion(vm.questionsQPEdit[$index], $index)">
+                        Save
+                    </a>
+                    <a style="margin:0px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" ng-if="question.isEdit" ng-click="vm.cancelQuestionChanges($index)">
+                        Cancel
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

@@ -6,7 +6,7 @@
         .controller('AdminOrderListController', AdminOrderListController);
 
     /** @ngInject */
-    function AdminOrderListController(CommonInfo, $http, growl, $log, _, $scope, $timeout) {
+    function AdminOrderListController(CommonInfo, $http, growl, $log, _, $scope) {
         var vm = this;
 
         vm.isCollapsed = true;
@@ -80,10 +80,6 @@
                     $log.log('There is some issue, please try after some time');
                 }
             );
-        }
-
-        function searchStudent() {
-            console.log(123);
         }
     }
 })();

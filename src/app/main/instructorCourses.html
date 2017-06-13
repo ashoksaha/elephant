@@ -16,7 +16,7 @@
                             <p ng-bind="vm.allCourses[0].instructorBiography"></p>
                             <ul>
                                 <li class="icon-video">
-                                    <button type="button" class="btn btn-warning" ng-click="vm.followInstructor();">
+                                    <button type="button" class="btn btn-warning" ng-click="vm.followInstructor($event);">
                                         <span ng-if="vm.isFollower">Un-</span>Follow
                                     </button>
                                 </li>
@@ -39,9 +39,7 @@
                                 <md-card-title>
                                     <md-card-title-text>
                                         <small style="color:#000;">
-                                            <span class="rating">
-                                                <span class="star" ng-repeat="star in vm.stars" ng-class="{'starfull' : course.courseRating - $index > 1, 'starhalf' : course.courseRating - $index > 0 && course.courseRating - $index < 1,  'starempty' : course.courseRating - $index <= 0 }"></span>
-                                            </span> (<span ng-bind="course.reviewCourse || 0"></span> Reviews)
+                                            <review-stars rating="course.reviewCourse" stars='5'></review-stars> (<span ng-bind="course.reviewCourse || 0"></span> Reviews)
                                         </small>
                                         <span class="md-headline md-headline-header" ng-bind="course.title"></span>
                                     </md-card-title-text>

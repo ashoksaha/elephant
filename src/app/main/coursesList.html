@@ -23,10 +23,7 @@
                                 <h4 class="course-block__title" ng-bind="course.title"></h4>
                                 <p class="course-block__description" ng-bind="course.shortDesc"></p>
                                 <p class="course-block__description">
-                                    <span class="rating">
-                                        <span class="star" ng-repeat="star in vm.stars" ng-class="{'starfull' : course.courseRating - $index > 1, 'starhalf' : course.courseRating - $index > 0 && course.courseRating - $index < 1,  'starempty' : course.courseRating - $index <= 0 }"></span>
-                                    </span> (<span ng-bind="course.reviewCourse || 0"></span> Reviews)
-                                </p>
+                                    <review-stars rating="course.reviewCourse" stars='5'></review-stars> (<span ng-bind="course.reviewCourse || 0"></span> Reviews)
                             </div>
                             <div class="course-block__author">
                                 <div class="course-block__author-image">

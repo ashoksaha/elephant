@@ -23,8 +23,8 @@
     return directive;
 
     /** @ngInject */
-    function FooterbarController(moment) {
-      var vm = this;
+    function FooterbarController() {
+      
 
     }
   }

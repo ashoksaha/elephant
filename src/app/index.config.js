@@ -7,7 +7,7 @@
         .config(config);
 
     /** @ngInject */
-    function config($logProvider, $httpProvider, ADMdtpProvider, growlProvider, $sceDelegateProvider) {
+    function config($logProvider, $httpProvider, ADMdtpProvider, growlProvider) {
         // Enable log
         $logProvider.debugEnabled(true);
 

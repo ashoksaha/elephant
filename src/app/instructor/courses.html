@@ -1,8 +1,8 @@
 <div class="groups__courses">
     <h4 class="gr-subtitle">Courses
         <a style="margin:0px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" ui-sref="instructor.lms.createCourses" ng-click="vm.course = {};">
-        <i class="fa fa-plus-square"></i> Add New
-    </a>
+            <i class="fa fa-plus-square"></i> Add New
+        </a>
     </h4>
     <ul class="tabs nav-tabs with-background clearfix">
         <li ng-click="vm.categoryListTab = 1;" ng-class="{'active' : vm.categoryListTab == 1 }">
@@ -37,8 +37,8 @@
                         <span ng-bind="course.title" ng-click="vm.editCourse(course)"></span> <span class="label label-accent pull-right" ng-click="vm.editCourse(course)">Edit</span>
                     </h4>
                     <div>
-                        <i class="fa fa-credit-card" aria-hidden="true"></i> <i class="fa fa-inr" aria-hidden="true" ng-if="course.courseFee"></i> <span ng-bind="course.courseFee || 'Free'"></span> | 
-                        <i class="fa fa-clock-o" aria-hidden="true"></i> <span ng-bind="course.duration"></span> <span ng-bind="course.durationParameterText"></span> | 
+                        <i class="fa fa-credit-card" aria-hidden="true"></i> <i class="fa fa-inr" aria-hidden="true" ng-if="course.courseFee"></i> <span ng-bind="course.courseFee || 'Free'"></span> |
+                        <i class="fa fa-clock-o" aria-hidden="true"></i> <span ng-bind="course.duration"></span> <span ng-bind="course.durationParameterText"></span> |
                         <i class="fa fa-calendar" aria-hidden="true"></i> <span ng-bind="course.courseStartDate"></span>
                     </div>
                     <p ng-bind="course.description"></p>
@@ -94,8 +94,8 @@
                 <div class="col-md-10">
                     <h4><span ng-bind="course.title"></span> <span class="label label-accent pull-right" ng-click="vm.editCourse(course)">Edit</span></h4>
                     <div>
-                        <i class="fa fa-credit-card" aria-hidden="true"></i> <i class="fa fa-inr" aria-hidden="true" ng-if="course.courseFee"></i> <span ng-bind="course.courseFee || 'Free'"></span> | 
-                        <i class="fa fa-clock-o" aria-hidden="true"></i> <span ng-bind="course.duration"></span> <span ng-bind="course.durationParameterText"></span> | 
+                        <i class="fa fa-credit-card" aria-hidden="true"></i> <i class="fa fa-inr" aria-hidden="true" ng-if="course.courseFee"></i> <span ng-bind="course.courseFee || 'Free'"></span> |
+                        <i class="fa fa-clock-o" aria-hidden="true"></i> <span ng-bind="course.duration"></span> <span ng-bind="course.durationParameterText"></span> |
                         <i class="fa fa-calendar" aria-hidden="true"></i> <span ng-bind="course.courseStartDate"></span>
                     </div>
                     <p ng-bind="course.description"></p>

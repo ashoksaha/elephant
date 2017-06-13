@@ -6,7 +6,7 @@
         .controller('CoursesController', CoursesController);
 
     /** @ngInject */
-    function CoursesController(CommonInfo, $http, $state, _, $log) {
+    function CoursesController(CommonInfo, $http, $state, _, $log, moment) {
         var vm = this;
 
         vm.allCourses = [];
@@ -60,24 +60,24 @@
             );
         }
 
-        function getUnitDurations() {
-            $http.get(CommonInfo.getAppUrl() + "/getdurationparameters").then(
-                function(response) {
-                    if (response && response.data) {
-                        if (response.data.status == 1) {
-                            vm.unitDurations = response.data.data;
-                        } else if (response.data.status == 2) {
-                            $log.log(response.data.message);
-                        }
-                    } else {
-                        $log.log('There is some issue, please try after some time');
-                    }
-                },
-                function(response) {
-                    $log.log('There is some issue, please try after some time');
-                }
-            );
-        }
+        // function getUnitDurations() {
+        //     $http.get(CommonInfo.getAppUrl() + "/getdurationparameters").then(
+        //         function(response) {
+        //             if (response && response.data) {
+        //                 if (response.data.status == 1) {
+        //                     vm.unitDurations = response.data.data;
+        //                 } else if (response.data.status == 2) {
+        //                     $log.log(response.data.message);
+        //                 }
+        //             } else {
+        //                 $log.log('There is some issue, please try after some time');
+        //             }
+        //         },
+        //         function(response) {
+        //             $log.log('There is some issue, please try after some time');
+        //         }
+        //     );
+        // }
 
         function searchCoursesByInstructor(instructor) {
             if (instructor) {

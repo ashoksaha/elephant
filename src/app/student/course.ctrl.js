@@ -6,15 +6,17 @@
         .controller('StudentCourseUnitController', StudentCourseUnitController);
 
     /** @ngInject */
-    function StudentCourseUnitController(CommonInfo, $http, $log, $state, $stateParams, $mdSidenav, $scope, $timeout, $sce, growl) {
+    function StudentCourseUnitController(CommonInfo, $http, $log, $state, $stateParams, $mdSidenav, $scope, $timeout, $sce, growl, _, moment) {
         var vm = this;
         var selectedCourseId;
         var selectedUnitId;
         var selectedCourseName;
-        var selectedUnitName;
         var studentInfo;
+        var submitAttempt;
+        var selectedUnitName;
 
         vm.showReviewPage = false;
+        vm.userCurrentQuestion = [];
 
         vm.toggleLeft = buildDelayedToggler('left');
         vm.closeSide = closeSide;
@@ -23,6 +25,7 @@
         vm.getReviewPage = getReviewPage;
         vm.submitReview = submitReview;
         vm.showRelatedDiscussion = showRelatedDiscussion
+        vm.submitExam = submitExam;
 
         activate();
 
@@ -46,7 +49,6 @@
                                 vm.unit = response.data.data;
                                 vm.unit.unitDescription = angular.isString(vm.unit.unitDescription) ? $sce.trustAsHtml(vm.unit.unitDescription) : vm.unit.unitDescription;
                                 vm.unit.videoHtml = angular.isString(vm.unit.videoHtml) ? $sce.trustAsHtml(vm.unit.videoHtml) : vm.unit.videoHtml;
-                                console.log(vm.unit)
                                 if (vm.unit.testId){
                                     getTest(vm.unit.testId);
                                 }
@@ -90,7 +92,7 @@
                     if (response && response.data) {
                         if (!response.data.Error) {
                             vm.unit.test.questions = response.data.questions;
-                            //getTestUserInfo(testId);
+                            getUserTestInfo();
                         } else if (response.data.status == 2) {
                             $log.log(response.data.message);
                         }
@@ -104,30 +106,26 @@
             );
         }
 
-        function getTestUserInfo(testId) {
+        function getUserTestInfo() {
             var data = {
                 userId: studentInfo.userId,
-                testId: testId
+                testId: vm.unit.test.id
             };
             $http.post(CommonInfo.getTestSeriesAppUrl() + '/exam/userInfo', data).then(function(response) {
                 if (response && response.data && !response.data.Error) {
-                    if (compareTimestamp()) {
-                        vm.exam.userInfo = userInfoLocalStorage;
-                    } else {
-                        vm.exam.userInfo = response.data.userTestInfo;
-                    }
-                    if (vm.exam && vm.exam.userInfo && vm.exam.userInfo.status == 'pending' && vm.exam.userInfo.timeRemaining == 0) {
+                    vm.unit.test.userInfo = response.data.userTestInfo;
+                    if (vm.unit.test && vm.unit.test.userInfo && vm.unit.test.userInfo.status == 'pending' && vm.unit.test.userInfo.timeRemaining == 0) {
                         alert('Your exam time is over, press ok to submit exam')
                         submitExam(true);
                     } else {
-                        vm.timer = vm.exam.userInfo.timeRemaining || vm.timer;
-                        vm.showLangChoice = vm.exam.questions[0].questionText ? 1 : 0;
+                        //vm.timer = vm.exam.userInfo.timeRemaining || vm.test.duration;
+                        //vm.showLangChoice = vm.exam.questions[0].questionText ? 1 : 0;
                         if (vm.showLangChoice)
-                            vm.selectedLang = vm.exam.userInfo.selectedLang ? vm.exam.userInfo.selectedLang : 0;
+                            vm.selectedLang = vm.unit.test.userInfo.selectedLang ? vm.unit.test.userInfo.selectedLang : 0;
                         else
                             vm.selectedLang = 1;
-                        _.forEach(vm.exam.questions, function(value, key) {
-                            vm.userCurrentQuestion[key] = _.find(vm.exam.userInfo.answers, { 'questionId': value.id }) || {
+                        _.forEach(vm.unit.test.questions, function(value, key) {
+                            vm.userCurrentQuestion[key] = _.find(vm.unit.test.userInfo.answers, { 'questionId': value.id }) || {
                                 questionId: value.id,
                                 answer: '',
                                 isMarked: false
@@ -140,6 +138,48 @@
             }, function(response) {
                 growl.info('Some error occured, try after some time');
             });
+        }
+
+        function submitExam(isForced, status) {
+            status = status || 'completed';
+            var data = {
+                userId: studentInfo.userId,
+                testId: vm.unit.test.id,
+                answers: vm.userCurrentQuestion,
+                status: status,
+                timestamp: moment(),
+                selectedLang: vm.selectedLang
+            };
+            if (status == 'completed') {
+                vm.isExamEnded = true;
+            }
+            if (isForced || status == 'pending' || confirm('Are you sure, you want to submit(final) your answers')) {
+                $http.post(CommonInfo.getTestSeriesAppUrl() + '/exam/submit', data).then(function(response) {
+                    if (response && response.data) {
+                        if (status == 'completed') {
+                            growl.success('Your answers saved successfully');
+                        } else {
+                            if (status != 'pending') {
+                                if (submitAttempt <= 3) {
+                                    submitAttempt++;
+                                    submitExam(true);
+                                } else {
+                                    growl.info('Unable to submit due to some server error, please try after some time');
+                                }
+                            }
+                        }
+                    }
+                }, function(response) {
+                    if (status != 'pending') {
+                        if (submitAttempt <= 3) {
+                            submitAttempt++;
+                            submitExam(true);
+                        } else {
+                            growl.info('Unable to submit due to some server error, please try after some time');
+                        }
+                    }
+                });
+            }
         }
 
         function getCourseDetails() {
@@ -204,7 +244,7 @@
             $state.go('discussions', { id: selectedCourseId, name: selectedCourseName });
         }
 
-        function debounce(func, wait, context) {
+        function debounce(func, wait) {
             var timer;
 
             return function debounced() {

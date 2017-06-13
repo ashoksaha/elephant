@@ -16,7 +16,6 @@
         vm.course;
 
         vm.loginStage = 1;
-        vm.stars = [1, 2, 3, 4, 5];
         vm.student = {
             student_id: '',
             emailorphone: '',
@@ -70,7 +69,6 @@
                                 //     furl: 'http://139.44.59.117/#/dashboard'
                                 // };
                                 // var hashString = vm.payuData.key + '|' + vm.payuData.txnid + '|' + vm.payuData.amount + '|' + vm.payuData.productinfo + '|' + vm.payuData.firstname + '|' + vm.payuData.email + '|||||||||||eCwWELxi';
-                                // console.log(hashString) 
                                 // vm.payuData.hash = SHA512(hashString).toLowerCase();
                             }
                         } else if (response.data.status == 2) {
@@ -177,23 +175,8 @@
                         }
                     );
                 } else {
-                    getRazorCall();
-                    // $http.post(CommonInfo.getAppUrl() + "/createcourseorder", { studentId: studentInfo.userId, courseId: selectedCourseId, orderBy: studentInfo.userId, type: 'student' }).then(
-                    //     function(response) {
-                    //         if (response && response.data) {
-                    //             if (response.data.status == 1) {
-                    //                 $state.go('dashboard')
-                    //             } else if (response.data.status == 2) {
-                    //                 $log.log(response.data.message);
-                    //             }
-                    //         } else {
-                    //             $log.log('There is some issue, please try after some time');
-                    //         }
-                    //     },
-                    //     function(response) {
-                    //         $log.log('There is some issue, please try after some time');
-                    //     }
-                    // );
+                    //getRazorCall();
+                    getInstamojoCall();
                 }
             }
         }
@@ -238,6 +221,34 @@
             };
             var rzp1 = new Razorpay(rzpOptions);
             rzp1.open()
+        }
+
+        function getInstamojoCall() {
+            var studentInfo = CommonInfo.getInfo('studentInfo');
+            console.log(studentInfo);
+            var data = {
+                purpose: 'Payment stud:' + studentInfo.userId + '_cour:' + vm.course.id,
+                amount: vm.course.courseFee,
+                phone: studentInfo.mobile,
+                buyerName: studentInfo.name,
+                email: studentInfo.email
+            };
+            $http.post(CommonInfo.getAppUrl() + "/createinstamojorequest", data).then(
+                    function(response) {
+                        if (response && response.data) {
+                            if (response.data.status == 1 && response.data) {
+                                window.open(response.data.data + '?embed=form', "_self");
+                            } else if (response.data.status == 2) {
+                                growl.info(response.data.message);
+                            }
+                        } else {
+                            growl.warning('There is some issue, please try after some time');
+                        }
+                    },
+                    function(response) {
+                        growl.warning('There is some issue, please try after some time');
+                    }
+                );
         }
 
         function sendCallbackRequest() {

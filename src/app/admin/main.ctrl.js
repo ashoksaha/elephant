@@ -6,7 +6,7 @@
         .controller('AdminController', AdminController);
 
     /** @ngInject */
-    function AdminController(CommonInfo, $state, SweetAlert, $http, growl, $log) {
+    function AdminController(CommonInfo, $state, SweetAlert, $http, growl, $log, Upload) {
         var vm = this;
 
         vm.isCollapsed = true;
@@ -63,6 +63,7 @@
                     }
                 },
                 function(response) {
+                    $log.log(response);
                     $log.log('There is some issue, please try after some time');
                 }
             );
@@ -82,6 +83,7 @@
                     }
                 },
                 function(response) {
+                    $log.log(response);
                     growl.warning('There is some issue, please try after some time');
                 }
             );

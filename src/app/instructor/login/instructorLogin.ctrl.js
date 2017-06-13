@@ -8,7 +8,6 @@
     /** @ngInject */
     function InstructorLoginController($http, CommonInfo, $log, growl, $state) {
         var vm = this;
-        var userType = [];
 
         vm.user = {
             email: '',

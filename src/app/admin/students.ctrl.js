@@ -6,7 +6,7 @@
         .controller('AdminStudentsController', AdminStudentsController);
 
     /** @ngInject */
-    function AdminStudentsController(CommonInfo, $http, growl, $log, _, $scope, $timeout) {
+    function AdminStudentsController(CommonInfo, $http, growl, $log, _, $scope) {
         var vm = this;
 
         vm.isCollapsed = true;
@@ -38,13 +38,14 @@
                     }
                 },
                 function(response) {
+                    $log.log(response);
                     $log.log('There is some issue, please try after some time');
                 }
             );
         }
 
         function searchStudent() {
-            console.log(123);
+            
         }
     }
 })();

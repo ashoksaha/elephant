@@ -47,18 +47,30 @@
                     <p ng-bind-html="vm.unit.videoHtml" ng-if="vm.unit.videoId" class="text-center"></p>
                     <p ng-bind-html="vm.unit.unitDescription"></p>
                     <div ng-if="vm.unit.test">
-                            <p ng-bind="vm.unit.test.title"></p>
-                            <p ng-bind="vm.unit.test.instruction"></p>
-                            <div ng-repeat="question in vm.unit.test.questions">
-                                <h3 style="margin:3px 0px;">Question: <span ng-bind="$index + 1"></span></h3>
-                                <p ng-bind-html="question.question"></p>
-                                <div class="btn-group-vertical ans-options" role="group" style="width:98%;">
-                                    <label class="btn btn-default" ng-model="vm.userQuestion[$index].answer" uib-btn-radio="answer.ansKey" ng-repeat="answer in question.answers | orderBy: 'ansKey'" style="text-align:left;">
-                                        <span ng-bind="($index + 97) | charCodeToChar" class="options-review"></span>)
-                                        <span ng-bind-html="answer.answerText" class="options-review" style="display:inline-block;white-space:pre-wrap"></span>
-                                    </label>
+                        <p ng-bind="vm.unit.test.title"></p>
+                        <p ng-bind="vm.unit.test.instruction"></p>
+                        <div ng-repeat="question in vm.unit.test.questions">
+                            <h4 style="margin:3px 0px;">Q. <span ng-bind="$index + 1"></span></h4>
+                            <p ng-bind-html="question.question"></p>
+                            <div>
+                                <div class="exercise--instructions-title">
+                                    <h5>Options</h5>
+                                </div>
+                                <div>
+                                    <div class="exercise--instructions exercise--typography">
+                                        <md-radio-group ng-model="vm.userCurrentQuestion[$index].answer" md-no-ink="false">
+                                            <md-radio-button aria-label="options" ng-repeat="answer in question.answers" ng-value="answer.ansKey" class="md-primary">
+                                                <p ng-bind-html="answer.answerText"></p>
+                                            </md-radio-button>
+                                        </md-radio-group>
+                                    </div>
                                 </div>
                             </div>
+                            <hr />
+                        </div>
+                        <div class="vex--buttons">
+                            <a class="btn btn-small btn-primary" href="javascript:void(0);" ng-click="vm.submitExam(false);">Submit</a>
+                        </div>
                     </div>
                 </div>
                 <div layout="column" layout-padding ng-if="vm.showReviewPage">
@@ -67,7 +79,6 @@
                         <br />
                         <jk-rating-stars max-rating="5" rating="vm.review.reviewRating" read-only="false">
                         </jk-rating-stars>
-                        {{vm.review.reviewRating}}
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>Review Title</label>
                             <input ng-model="vm.review.reviewTitle" required="required" />

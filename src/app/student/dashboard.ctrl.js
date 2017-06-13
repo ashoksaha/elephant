@@ -6,7 +6,7 @@
         .controller('DashboardController', DashboardController);
 
     /** @ngInject */
-    function DashboardController(CommonInfo, $http, $log, $state) {
+    function DashboardController(CommonInfo, $http, $log, $state, _, moment) {
         var vm = this;
 
         vm.courseTab = 1;

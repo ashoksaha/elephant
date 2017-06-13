@@ -6,7 +6,7 @@
         .controller('InstructorsController', InstructorsController);
 
     /** @ngInject */
-    function InstructorsController(CommonInfo, $state, $http) {
+    function InstructorsController(CommonInfo, $state, $http, $log) {
         var vm = this;
 
         vm.stars = [1, 2, 3, 4, 5];

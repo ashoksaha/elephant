@@ -6,7 +6,7 @@
         .controller('InstructorCoursesController', InstructorCoursesController);
 
     /** @ngInject */
-    function InstructorCoursesController(CommonInfo, $log, $http, $mdDialog, $stateParams, $scope, $state, $anchorScroll, growl) {
+    function InstructorCoursesController(CommonInfo, $log, $http, $mdDialog, $stateParams, $scope, $state, $anchorScroll, growl, _, moment) {
         var vm = this;
         var selectedInstructorId;
 
@@ -66,7 +66,7 @@
             );
         }
 
-        function followInstructor() {
+        function followInstructor(evt) {
             var studentInfo = CommonInfo.getInfo('studentInfo');
             if (!studentInfo || !studentInfo.userId) {
                 $mdDialog.show({

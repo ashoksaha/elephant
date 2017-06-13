@@ -23,7 +23,6 @@
             selectedDiscussionId = $stateParams.id;
             vm.selectedDiscussionName = $stateParams.name;
             vm.studentInfo = CommonInfo.getInfo('studentInfo');
-            console.log(vm.studentInfo);
             getAllDiscussionThreads();
             newThread();
         }

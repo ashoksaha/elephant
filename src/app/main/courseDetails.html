@@ -125,9 +125,7 @@
                                 </div>
                                 <div class="quote__person">
                                     <small style="color:#000;">
-                                        <span class="rating">
-                                            <span class="star" ng-repeat="star in vm.stars" ng-class="{'starfull' : review.reviewRating - $index > 1, 'starhalf' : review.reviewRating - $index > 0 && review.reviewRating - $index < 1,  'starempty' : review.reviewRating - $index <= 0 }"></span>
-                                        </span>
+                                        <review-stars rating="review.reviewRating" stars='5'></review-stars>
                                     </small>
                                 </div>
                                 <div class="quote__person">

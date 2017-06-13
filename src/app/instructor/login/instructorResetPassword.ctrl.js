@@ -8,7 +8,6 @@
     /** @ngInject */
     function InstructorResetPasswordController($http, CommonInfo, $log, growl) {
         var vm = this;
-        var userType = [];
 
         vm.user = {
             email: ''

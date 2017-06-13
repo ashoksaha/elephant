@@ -6,7 +6,7 @@
         .controller('InstructorLMSController', InstructorLMSController);
 
     /** @ngInject */
-    function InstructorLMSController(CommonInfo, $state, $log, $http, growl, _, moment, Upload, $mdDialog, $scope) {
+    function InstructorLMSController(CommonInfo, $state, $log, $http, growl, _, moment, Upload, $mdDialog, $scope, $document) {
         var vm = this;
 
         vm.lmsTab = 1;
@@ -89,6 +89,8 @@
         vm.importQuestionDoc = importQuestionDoc;
         vm.addtestSeries = addtestSeries;
         vm.editTestSeries = editTestSeries;
+        vm.saveQuestion = saveQuestion;
+        vm.cancelQuestionChanges = cancelQuestionChanges;
 
         vm.getCoursesByCategoryId = getCoursesByCategoryId;
         vm.getUnitsByCourseId = getUnitsByCourseId;
@@ -104,6 +106,7 @@
 
         vm.importCancel = importCancel;
         vm.addQuestion = addQuestion;
+        vm.getQuestions = getQuestions;
 
         activate();
 
@@ -633,7 +636,6 @@
                     if (response && response.data) {
                         if (!response.data.Error) {
                             vm.tests = response.data.tests;
-                            console.log(vm.tests)
                         } else if (response.data.status == 2) {
                             $log.log(response.data.message);
                         }
@@ -794,19 +796,19 @@
                         $mdDialog.show({
                                 scope: $scope.$new(),
                                 templateUrl: 'app/instructor/questions.tmpl.html',
-                                parent: angular.element(document.body)
+                                parent: angular.element($document.body)
                             })
                             .then(function(answer) {
-                                $scope.status = 'You said the information was "' + answer + '".';
+                                
                             }, function() {
-                                $scope.status = 'You cancelled the dialog.';
+                                
                             });
                     }
                 }, function(resp) {
-                    console.log('Error status: ' + resp.status);
+                    $log.log('Error status: ' + resp.status);
                 }, function(evt) {
                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                    console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                    $log.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
                 });
             }
         }
@@ -856,6 +858,32 @@
             $state.go('instructor.lms.createTestSeries');
         }
 
+        function saveQuestion(question, index) {
+            $http.post(CommonInfo.getTestSeriesAppUrl() + "/question", question).then(
+                function(response) {
+                    if (response && response.data) {
+                        if (!response.data.Error) {
+                            growl.success('Question updated successfuly');
+                            vm.questionsQP[index] = angular.copy(question);
+                            vm.questionsQP[index].isEdit = false;
+                        } else if (response.data.status == 2) {
+                            $log.log(response.data.message);
+                        }
+                    } else {
+                        $log.log('There is some issue, please try after some time');
+                    }
+                },
+                function(response) {
+                    $log.log('There is some issue, please try after some time');
+                }
+            );
+        }
+
+        function cancelQuestionChanges(index) {
+            vm.questionsQPEdit[index] = angular.copy(vm.questionsQP[index]);
+            vm.questionsQP[index].isEdit = false;
+        }
+
         function toggleSelectedTest(testId) {
             var index = vm.selectedTest.indexOf(testId);
             if (index > -1) {
@@ -863,7 +891,7 @@
             } else {
                 vm.selectedTest.push(testId);
             }
-            console.log(vm.selectedTest)
+            $log.log(vm.selectedTest)
         }
 
         function addToTestSeries(seriesId) {
@@ -914,6 +942,29 @@
                     $log.log('There is some issue, please try after some time');
                 }
             );
+        }
+
+        function getQuestions(questionPaper) {
+            if (questionPaper.questionCount > 0) {
+                $http.post(CommonInfo.getTestSeriesAppUrl() + "/question/byQPId", { questionPaperId: questionPaper.id }).then(
+                    function(response) {
+                        if (response && response.data) {
+                            if (!response.data.Error) {
+                                vm.questionsQP = response.data.questions;
+                                vm.questionsQPEdit = angular.copy(vm.questionsQP);
+                                $state.go('instructor.lms.questions');
+                            } else if (response.data.status == 2) {
+                                $log.log(response.data.message);
+                            }
+                        } else {
+                            $log.log('There is some issue, please try after some time');
+                        }
+                    },
+                    function(response) {
+                        $log.log('There is some issue, please try after some time');
+                    }
+                );
+            }
         }
     }
 })();

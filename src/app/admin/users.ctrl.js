@@ -6,7 +6,7 @@
         .controller('AdminUserController', AdminUserController);
 
     /** @ngInject */
-    function AdminUserController(CommonInfo, $http, growl, _) {
+    function AdminUserController(CommonInfo, $http, growl, _, $log) {
         var vm = this;
 
         vm.isCollapsed = true;

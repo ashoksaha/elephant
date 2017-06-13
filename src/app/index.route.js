@@ -211,6 +211,10 @@
                 url: '/testSeriesTest',
                 templateUrl: 'app/instructor/testSeriesTest.html'
             })
+            .state('instructor.lms.questions', {
+                url: '/questions',
+                templateUrl: 'app/instructor/questionList.html'
+            })
             .state('adminLogin', {
                 url: '/sitemanager/login',
                 templateUrl: 'app/admin/login/adminLogin.html',

@@ -6,7 +6,7 @@
         .controller('TestListController', TestListController);
 
     /** @ngInject */
-    function TestListController(CommonInfo, $state, $http, $stateParams) {
+    function TestListController(CommonInfo, $state, $http, $stateParams, $log) {
         var vm = this;
         var studentInfo;
 
