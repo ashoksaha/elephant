@@ -55,6 +55,13 @@
                             </md-input-container>
                         </fieldset>
                         <fieldset>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Demo Video</label>
+                                <textarea name="demoVideo" id="demoVideo" rows="5" ng-model="vm.course.demoVideo">
+                            </textarea>
+                            </md-input-container>
+                        </fieldset>
+                        <fieldset>
                             <!-- <label for="freeCourse">Free Course</label> -->
                             <md-switch class="md-primary" name="freeCourse" id="freeCourse" ng-model="vm.course.freeCourse" aria-label="Free Course" ng-true-value="1" ng-false-value="0">
                                 Free Course

@@ -20,7 +20,7 @@
         activate();
 
         function activate() {
-            getUserType();
+            //getUserType();
         }
 
         function getUserType() {

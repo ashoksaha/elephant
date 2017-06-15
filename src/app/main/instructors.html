@@ -46,8 +46,8 @@
             <div class="container">
                 <!-- <h2 class="courses__title">Upcoming Courses</h2> -->
                 <div class="courses__upcoming-list">
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-6 text-left" ng-repeat="instructor in vm.allInstructors">
+                    <div class="row" ng-repeat="instructorRow in vm.instructorRows">
+                        <div class="col-lg-4 col-sm-6 text-left" ng-repeat="instructor in instructorRow">
                             <md-card md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" md-theme-watch ng-click="vm.showInstructorCourses(instructor)">
                                 <md-card-title>
                                     <md-card-title-text>
@@ -68,21 +68,6 @@
                                     </small>
                                 </md-card-actions>
                             </md-card>
-                            <!-- <md-card style="height:395px;">
-                                <img ng-src="{{instructor.image || '/assets/images/avatar.png'}}" class="md-card-image" alt="Washed Out" style="height:195px;">
-                                <md-card-title>
-                                    <md-card-title-text>
-                                        <span class="md-title" ng-bind="instructor.fullName"></span>
-                                        <span class="md-subhead" ng-bind="instructor.designation"></span>
-                                        <small style="color:#000;">
-                                            <span class="rating">
-                                                <span class="star" ng-repeat="star in vm.stars" ng-class="{'starfull' : course.courseRating - $index > 1, 'starhalf' : course.courseRating - $index > 0 && course.courseRating - $index < 1,  'starempty' : course.courseRating - $index <= 0 }"></span>
-                                            </span> (<span ng-bind="course.reviewCourse || 0"></span> Reviews)
-                                        </small>
-                                        <span class="md-headline" ng-bind="instructor.title"></span>
-                                    </md-card-title-text>
-                                </md-card-title>
-                            </md-card> -->
                         </div>
                     </div>
                 </div>

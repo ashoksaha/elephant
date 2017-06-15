@@ -2,8 +2,8 @@
     <section class="courses__start">
         <div class="container">
             <h1 class="courses__title mt0">Starting your preparations here</h1>
-            <div class="row">
-                <div class="col-lg-4 col-sm-6" ng-repeat="course in vm.allCourses">
+            <div class="row" ng-repeat="coursesRow in vm.coursesRows">
+                <div class="col-lg-4 col-sm-6" ng-repeat="course in coursesRow">
                     <a class="no-link-style no-link-color" href="javascript:void(0);" ng-click="vm.showCourseDetails(course)">
                         <div class="course-block" ng-class="{'course-block--r' : $even, 'course-block--g' : $odd}">
                             <div>

@@ -32,8 +32,8 @@
                 <p ng-bind="vm.course.description"></p>
                 <section>
                     <div class="container">
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-6" ng-repeat="course in vm.allCourses">
+                        <div class="row" ng-repeat="coursesRow in vm.coursesRows">
+                            <div class="col-lg-4 col-sm-6" ng-repeat="course in coursesRow">
                                 <md-card style="height:343px;" ng-click="vm.showCourseDetails(course)">
                                 <img ng-src="{{course.image}}" class="md-card-image" alt="Washed Out" style="height:195px;">
                                 <md-card-title>

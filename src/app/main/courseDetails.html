@@ -9,30 +9,34 @@
                         <div class="col-sm-12 col-md-8 col-lg-9">
                             <h5 class="subhead" ng-if="vm.course.freeCourse">free course</h5>
                             <h1 ng-bind="vm.course.title"></h1>
-                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.freeCourse" ng-click="vm.subscribeCourse($event);">
+                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.freeCourse && !vm.course.isSubscribed" ng-click="vm.subscribeCourse($event);">
                                 Start Course For Free
                             </a>
-                           <!--  <form action="https://secure.payu.in/_payment" method="post">
-                                <input type="text" ng-model="vm.payuData.txnid" name="txnid">
-                                <input type="text" ng-model="vm.payuData.key" name="vm.payuData.key">
-                                <input type="text" ng-model="vm.payuData.amount" name="vm.payuData.amount">
-                                <input type="text" ng-model="vm.payuData.productinfo" name="vm.payuData.productinfo">
-                                <input type="text" ng-model="vm.payuData.firstname" name="vm.payuData.firstname">
-                                <input type="text" ng-model="vm.payuData.email" name="vm.payuData.email">
-                                <input type="text" ng-model="vm.payuData.phone" name="vm.payuData.phone">
-                                <input type="text" ng-model="vm.payuData.hash" name="vm.payuData.hash">
-                                <input type="text" ng-model="vm.payuData.surl" name="vm.payuData.surl">
-                                <input type="text" ng-model="vm.payuData.furl" name="vm.payuData.furl">
-                                <button class="button style-10" type="submit" value="submit">Checkout</button>
-                            </form> -->
-                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.courseFee" ng-click="vm.subscribeCourse($event);">
-                                Start Course For <span ng-bind="vm.course.courseFee"></span>
+                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.courseFee && !vm.course.isSubscribed" ng-click="vm.subscribeCourse($event);">
+                                Start Course For <i class="fa fa-inr" aria-hidden="true" style="margin-right:0.2rem;"></i><span ng-bind="vm.course.courseFee"></span>
+                            </a>
+                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.isSubscribed" ng-click="vm.showCourse(vm.course)">
+                                Start Course
+                            </a>
+                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.demoVideo" ng-click="vm.showCourseDemo($event)">
+                                Demo Video
                             </a>
                             <ul>
-                                <li class="icon-video"><i class="fa fa-play-circle" aria-hidden="true"></i> 62&nbsp;Videos</li>
-                                <li class="icon-code"><i class="fa fa-server" aria-hidden="true"></i> 62&nbsp;Exercises</li>
-                                <li class="icon-time"><i class="fa fa-clock-o" aria-hidden="true"></i> 4&nbsp;hours</li>
-                                <li class="icon-participants"><i class="fa fa-users" aria-hidden="true"></i> 383,230&nbsp;Students</li>
+                                <li class="icon-video">
+                                    <i class="fa fa-play-circle" aria-hidden="true"></i>
+                                    <span ng-bind="vm.course.unitTypeCount[1] || 0"></span>&nbsp;Videos
+                                </li>
+                                <li class="icon-code">
+                                    <i class="fa fa-server" aria-hidden="true"></i>
+                                    <span ng-bind="vm.course.unitTypeCount[5] || 0"></span>&nbsp;Exercises</li>
+                                <li class="icon-time">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i> 
+                                    <span ng-bind="vm.course.duration"></span>&nbsp;<span ng-bind="vm.course.durationParameter"></span>
+                                </li>
+                                <li class="icon-participants">
+                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                    <span ng-bind="vm.course.totalStudents || 0"></span>&nbsp;Students
+                                </li>
                                 <li class="icon-xp" ng-if="vm.course.courseRating">
                                     <i class="fa fa-star" aria-hidden="true"></i> 
                                     <span ng-bind="vm.course.courseRating"></span>&nbsp;Rating
@@ -94,7 +98,7 @@
                         <p ng-bind="vm.course.description"></p>
                         <div class="show-course__chapter">
                             <div class="show-course__chapter-header" ng-repeat="unit in vm.course.units">
-                                <h4 class="show-course__chapter-title">
+                                <h4 class="show-course__chapter-title" ng-click="vm.course.isSubscribed && vm.showCourseUnit(unit)">
                                     <span class="chapter-number" ng-bind="$index + 1"></span>
                                     <span class="exercise-icon ">
                                         <i class="fa" ng-class="unit.icon"></i>

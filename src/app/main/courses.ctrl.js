@@ -45,8 +45,8 @@
                     if (response && response.data) {
                         if (response.data.status == 1) {
                             vm.allInstructors = response.data.data;
-                            getAllCourses();
-                            getUpcommingCourses();
+                            //getAllCourses();
+                            //getUpcommingCourses();
                         } else if (response.data.status == 2) {
                             $log.log(response.data.message);
                         }
@@ -110,9 +110,8 @@
                             _.forEach(vm.allCourses, function(value) {
                                 value.courseStartDate = moment(value.courseStartDate).format("YYYY-MM-DD hh:mm");
                                 value.courseEndDate = moment(value.courseEndDate).format("YYYY-MM-DD hh:mm");
-                                //value.durationParameterText = _.map(_.filter(vm.unitDurations, { 'value': value.durationParameter }), 'name')[0];
-                                //value.instructor = _.find(vm.allInstructors, { 'id': value.instructorId });
                             });
+                            vm.coursesRows = _.chunk(vm.allCourses, 3);
                         } else if (response.data.status == 2) {
                             $log.log(response.data.message);
                         }

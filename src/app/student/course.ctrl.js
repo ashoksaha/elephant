@@ -49,7 +49,9 @@
                                 vm.unit = response.data.data;
                                 vm.unit.unitDescription = angular.isString(vm.unit.unitDescription) ? $sce.trustAsHtml(vm.unit.unitDescription) : vm.unit.unitDescription;
                                 vm.unit.videoHtml = angular.isString(vm.unit.videoHtml) ? $sce.trustAsHtml(vm.unit.videoHtml) : vm.unit.videoHtml;
-                                if (vm.unit.testId){
+                                if (angular.isString(vm.unit.downloadLink))
+                                    vm.unit.downloadLink = JSON.parse(vm.unit.downloadLink);
+                                if (vm.unit.testId) {
                                     getTest(vm.unit.testId);
                                 }
                             } else if (response.data.status == 2) {
@@ -63,6 +65,14 @@
                         $log.log('There is some issue, please try after some time');
                     }
                 );
+                // vm.unit = _.filter(vm.course.units, { 'id', unitId });
+                // vm.unit.unitDescription = angular.isString(vm.unit.unitDescription) ? $sce.trustAsHtml(vm.unit.unitDescription) : vm.unit.unitDescription;
+                // vm.unit.videoHtml = angular.isString(vm.unit.videoHtml) ? $sce.trustAsHtml(vm.unit.videoHtml) : vm.unit.videoHtml;
+                // if (angular.isString(vm.unit.downloadLink))
+                //     vm.unit.downloadLink = JSON.parse(vm.unit.downloadLink);
+                // if (vm.unit.testId) {
+                //     getTest(vm.unit.testId);
+                // }
             }
         }
 
@@ -189,6 +199,11 @@
                         if (response.data.status == 1) {
                             if (selectedCourseName == response.data.data[0].title.replace(/ /g, "-")) {
                                 vm.course = response.data.data[0];
+                                vm.review = {
+                                    reviewRating: vm.course.reviewRating,
+                                    reviewTitle: vm.course.reviewTitle,
+                                    reviewDetails: vm.course.reviewDetails
+                                };
                             }
                         } else if (response.data.status == 2) {
                             $log.log(response.data.message);

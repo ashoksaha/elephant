@@ -6,10 +6,10 @@
     </h4>
     <ul class="tabs nav-tabs with-background">
         <li ng-click="vm.categoryListTab = 1;" ng-class="{'active' : vm.categoryListTab == 1 }">
-            <a href="javascript:void(0);">Active Units (<span ng-bind="vm.activeUnits.length"></span>)</a>
+            <a href="javascript:void(0);">Active Units (<span ng-bind="vm.activeUnits.length || 0"></span>)</a>
         </li>
         <li ng-click="vm.categoryListTab = 2;" ng-class="{'active' : vm.categoryListTab == 2 }">
-            <a href="javascript:void(0);">Inactive Units (<span ng-bind="vm.inactiveUnits.length"></span>)</a>
+            <a href="javascript:void(0);">Inactive Units (<span ng-bind="vm.inactiveUnits.length || 0"></span>)</a>
         </li>
     </ul>
     <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 1">
@@ -36,7 +36,7 @@
                     <h4>
                         <span ng-bind="unit.name"></span> <span class="label label-accent pull-right" ng-click="vm.editUnit(unit)">Edit</span>
                     </h4>
-                    <p ng-bind="unit.unitDescription"></p>
+                    <p ng-bind="unit.description"></p>
                     <hr>
                     <span ng-bind="unit.unitTypeName"></span>
                     <!-- <a href="javascript:void(0);">Show Students</a> | <a href="javascript:void(0);">Show Units</a>

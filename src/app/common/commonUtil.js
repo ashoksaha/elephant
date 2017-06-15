@@ -93,10 +93,10 @@
                 $localStorage.$reset();
             },
             getAppUrl: function() {
-                return 'http://api.fundsplanner.com/v0';
+                return 'http://onlinementors.in/apidott/v0';
             },
             getTestSeriesAppUrl: function() {
-                return 'http://139.59.44.117/testSeries';
+                return 'http://onlinementors.in/testSeriesApi';
             },
             showAlert: function(text) {
                 $mdToast.show(

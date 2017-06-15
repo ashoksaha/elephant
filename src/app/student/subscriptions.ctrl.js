@@ -3,10 +3,10 @@
 
     angular
         .module('flavido')
-        .controller('StudentOrdersController', StudentOrdersController);
+        .controller('StudentSubscriptionsController', StudentSubscriptionsController);
 
     /** @ngInject */
-    function StudentOrdersController(CommonInfo, $log, $http, $stateParams, growl, $state) {
+    function StudentSubscriptionsController(CommonInfo, $log, $http, $stateParams, growl, $state) {
         var vm = this;
         var studentInfo;
 

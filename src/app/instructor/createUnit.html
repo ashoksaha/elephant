@@ -52,6 +52,12 @@
                                 <input ng-model="vm.unit.videoId">
                             </md-input-container>
                         </fieldset>
+                        <fieldset ng-if="vm.unit.unitType == 1">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Video Download Link</label>
+                                <input ng-model="vm.unit.downloadLink.videoDownloadLink">
+                            </md-input-container>
+                        </fieldset>
                         <fieldset ng-if="vm.unit.unitType == 5">
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Test</label>

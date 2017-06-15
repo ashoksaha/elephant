@@ -73,7 +73,8 @@
             allowComments: '',
             instructorId: '',
             status: 0,
-            isDeleted: 0
+            isDeleted: 0,
+            socialShare: 0
         };
 
         vm.createCourseCategory = createCourseCategory;
@@ -336,6 +337,7 @@
                 msg = 'Unit edited successfuly';
             }
             vm.unit.addedBy = vm.unit.instructorId = vm.instructorInfo.id;
+            vm.unit.downloadLink = angular.toJson(vm.unit.downloadLink);
             $http.post(CommonInfo.getAppUrl() + api, vm.unit).then(
                 function(response) {
                     if (response && response.data) {
@@ -360,6 +362,8 @@
 
         function editUnit(unit) {
             vm.unit = angular.merge({}, vm.unit, unit);
+            if(angular.isString(vm.unit.downloadLink))
+                vm.unit.downloadLink = JSON.parse(vm.unit.downloadLink);
             $state.go('instructor.lms.createUnit');
         }
 
@@ -383,6 +387,8 @@
             }
             vm.course.courseCurriculum = _.compact(vm.course.courseCurriculum).join(',');
             vm.course.instructorId = vm.instructorInfo.id;
+            if(vm.course.freeCourse == 1)
+                vm.course.courseFee = 0;
             $http.post(CommonInfo.getAppUrl() + api, vm.course).then(
                 function(response) {
                     if (response && response.data) {
@@ -594,9 +600,8 @@
                         if (response.data.status == 1) {
                             $state.go('instructor.lms.students');
                             vm.studentsByCourse = response.data.data;
-
                         } else if (response.data.status == 2) {
-                            $log.log(response.data.message);
+                            growl.info(response.data.message);
                         }
                     } else {
                         $log.log('There is some issue, please try after some time');

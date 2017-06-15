@@ -63,7 +63,7 @@
                     function(response) {
                         if (response && response.data) {
                             if (response.data.status == 1) {
-                                //growl.success('Mobile verified');
+                                growl.success('Mobile verified');
                                 CommonInfo.setInfo('studentInfo', response.data.data);
                                 $state.go('dashboard')
                             } else if (response.data.status == 2) {

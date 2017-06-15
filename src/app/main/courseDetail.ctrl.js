@@ -6,7 +6,7 @@
         .controller('CourseDetailsController', CourseDetailsController);
 
     /** @ngInject */
-    function CourseDetailsController(CommonInfo, $log, $http, $mdDialog, $stateParams, $scope, $state, $anchorScroll, growl, _) {
+    function CourseDetailsController(CommonInfo, $log, $http, $mdDialog, $stateParams, $scope, $state, $anchorScroll, growl, _, $sce) {
         var vm = this;
         var selectedCourseId;
         var selectedCourseName;
@@ -35,6 +35,9 @@
         vm.subscribeCourse = subscribeCourse;
         vm.sendCallbackRequest = sendCallbackRequest;
         vm.showInstructorCourses = showInstructorCourses;
+        vm.showCourse = showCourse;
+        vm.showCourseUnit = showCourseUnit;
+        vm.showCourseDemo = showCourseDemo;
 
         activate();
 
@@ -46,12 +49,22 @@
         }
 
         function getCourseDetails() {
-            $http.post(CommonInfo.getAppUrl() + "/getcourse_descriptionbycourse_id", { id: selectedCourseId }).then(
+            var data = {
+                id: selectedCourseId
+            };
+            var studentInfo = CommonInfo.getInfo('studentInfo');
+            if (studentInfo && studentInfo.userId)
+                data.studentId = studentInfo.userId;
+            $http.post(CommonInfo.getAppUrl() + "/getcourse_descriptionbycourse_id", data).then(
                 function(response) {
                     if (response && response.data) {
                         if (response.data.status == 1) {
                             if (selectedCourseName == response.data.data[0].title.replace(/ /g, "-")) {
                                 vm.course = response.data.data[0];
+                                if (vm.course && vm.course.units) {
+                                    vm.course.unitTypeCount = _.countBy(vm.course.units, 'unitType');
+                                }
+                                vm.course.demoVideo = angular.isString(vm.course.demoVideo) ? $sce.trustAsHtml(vm.course.demoVideo) : vm.course.demoVideo;
                                 if (vm.course.socialShare)
                                     getSocialShare();
                                 if (vm.course.reviewCourse)
@@ -149,7 +162,7 @@
                         scope: $scope.$new(),
                         templateUrl: 'app/main/login.tmpl.html',
                         parent: angular.element(document.body),
-                        clickOutsideToClose:true
+                        clickOutsideToClose: true
                     })
                     .then(function(answer) {
                         $scope.status = 'You said the information was "' + answer + '".';
@@ -190,7 +203,7 @@
                 "description": "By " + vm.course.instructorFullName,
                 "image": "/assets/images/logo.png",
                 "handler": function(response) {
-                      $http.post(CommonInfo.getAppUrl() + "/createcourseorder", { studentId: studentInfo.userId, courseId: selectedCourseId, orderBy: studentInfo.userId, type: 'student', paymentId: response.razorpay_payment_id }).then(
+                    $http.post(CommonInfo.getAppUrl() + "/createcourseorder", { studentId: studentInfo.userId, courseId: selectedCourseId, orderBy: studentInfo.userId, type: 'student', paymentId: response.razorpay_payment_id }).then(
                         function(response) {
                             if (response && response.data) {
                                 if (response.data.status == 1) {
@@ -237,21 +250,21 @@
                 type: 'student'
             };
             $http.post(CommonInfo.getAppUrl() + "/createinstamojorequest", data).then(
-                    function(response) {
-                        if (response && response.data) {
-                            if (response.data.status == 1 && response.data) {
-                                window.open(response.data.data + '?embed=form', "_self");
-                            } else if (response.data.status == 2) {
-                                growl.info(response.data.message);
-                            }
-                        } else {
-                            growl.warning('There is some issue, please try after some time');
+                function(response) {
+                    if (response && response.data) {
+                        if (response.data.status == 1 && response.data) {
+                            window.open(response.data.data + '?embed=form', "_self");
+                        } else if (response.data.status == 2) {
+                            growl.info(response.data.message);
                         }
-                    },
-                    function(response) {
+                    } else {
                         growl.warning('There is some issue, please try after some time');
                     }
-                );
+                },
+                function(response) {
+                    growl.warning('There is some issue, please try after some time');
+                }
+            );
         }
 
         function sendCallbackRequest() {
@@ -281,6 +294,70 @@
         function showInstructorCourses() {
             if (vm.course.instructorId) {
                 $state.go('instructorCourses', { name: vm.course.instructorFullName.replace(/ /g, "-"), id: vm.course.instructorId })
+            }
+        }
+
+        function showCourse(course) {
+            var studentInfo = CommonInfo.getInfo('studentInfo');
+            var courseDetails;
+            $http.post(CommonInfo.getAppUrl() + "/getcoursedetailsbycourse_id", { courseId: course.id, studentId: studentInfo.userId }).then(
+                function(response) {
+                    if (response && response.data) {
+                        if (response.data.status == 1) {
+                            courseDetails = response.data.data[0];
+                            CommonInfo.setInfo('startCourse', { unitId: courseDetails.units[0].id, courseId: courseDetails.id });
+                            $state.go('startCourse', { courseName: courseDetails.title.replace(/ /g, "-") });
+                        } else if (response.data.status == 2) {
+                            $log.log(response.data.message);
+                        }
+                    } else {
+                        $log.log('There is some issue, please try after some time');
+                    }
+                },
+                function(response) {
+                    $log.log('There is some issue, please try after some time');
+                }
+            );
+        }
+
+        function showCourseUnit(unit) {
+            CommonInfo.setInfo('startCourse', { unitId: unit.id, courseId: vm.course.id });
+            $state.go('startCourse', { courseName: vm.course.title.replace(/ /g, "-") });
+        }
+
+        function showCourseDemo(event) {
+            var parentEl = angular.element(document.body);
+            $mdDialog.show({
+                parent: parentEl,
+                targetEvent: event,
+                scope: $scope.$new(),
+                template: '<md-dialog aria-label="List dialog">' +
+                    '<md-toolbar>' +
+                    '<div class="md-toolbar-tools">' +
+                    '<h2><span ng-bind="vm.course.title"></span> (Demo)</h2>' +
+                    '<span flex></span>' +
+                    '<md-button class="md-icon-button" ng-click="closeDialog()">' +
+                    '<i class="fa fa-times" aria-hidden="true"></i>' +
+                    '</md-button>' +
+                    '</div>' +
+                    '</md-toolbar>' +
+                    '<md-dialog-content>' +
+                    '<div ng-bind-html="vm.course.demoVideo">' +
+                    '</div>' +
+                    '</md-dialog-content>' +
+                    '<md-dialog-actions>' +
+                    '<md-button ng-click="closeDialog()" class="md-primary">' +
+                    'Close' +
+                    '</md-button>' +
+                    '</md-dialog-actions>' +
+                    '</md-dialog>',
+                controller: DialogController
+            });
+
+            function DialogController($scope, $mdDialog) {
+                $scope.closeDialog = function() {
+                    $mdDialog.hide();
+                }
             }
         }
 

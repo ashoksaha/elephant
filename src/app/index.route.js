@@ -101,10 +101,10 @@
                 controller: 'StudentProfileController',
                 controllerAs: 'vm'
             })
-            .state('orders', {
-                url: '/orders',
-                templateUrl: 'app/student/orders.html',
-                controller: 'StudentOrdersController',
+            .state('subscriptions', {
+                url: '/subscriptions',
+                templateUrl: 'app/student/subscriptions.html',
+                controller: 'StudentSubscriptionsController',
                 controllerAs: 'vm'
             })
             .state('startCourse', {

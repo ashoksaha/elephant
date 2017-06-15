@@ -6,7 +6,7 @@
         .controller('InstructorsController', InstructorsController);
 
     /** @ngInject */
-    function InstructorsController(CommonInfo, $state, $http, $log) {
+    function InstructorsController(CommonInfo, $state, $http, $log, _) {
         var vm = this;
 
         vm.stars = [1, 2, 3, 4, 5];
@@ -30,6 +30,7 @@
                     if (response && response.data) {
                         if (response.data.status == 1) {
                             vm.allInstructors = response.data.data;
+                            vm.instructorRows = _.chunk(vm.allInstructors, 3);
                         } else if (response.data.status == 2) {
                             $log.log(response.data.message);
                         }

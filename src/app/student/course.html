@@ -44,7 +44,12 @@
                 </md-toolbar>
                 <div layout="column" layout-padding ng-if="!vm.showReviewPage">
                     <p ng-bind="vm.unit.description"></p>
-                    <p ng-bind-html="vm.unit.videoHtml" ng-if="vm.unit.videoId" class="text-center"></p>
+                    <md-button md-no-ink class="md-primary" ng-href="{{vm.unit.downloadLink.videoDownloadLink}}" download aria-label="Download Video" ng-if="vm.unit.downloadLink && vm.unit.downloadLink.videoDownloadLink">
+                        <i class="fa fa-download" aria-hidden="true"></i> Download Video
+                    </md-button>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <p ng-bind-html="vm.unit.videoHtml" ng-if="vm.unit.videoId" class="text-center embed-responsive-item"></p>
+                    </div>
                     <p ng-bind-html="vm.unit.unitDescription"></p>
                     <div ng-if="vm.unit.test">
                         <p ng-bind="vm.unit.test.title"></p>
@@ -77,7 +82,7 @@
                     <p>
                         Please review the course
                         <br />
-                        <jk-rating-stars max-rating="5" rating="vm.review.reviewRating" read-only="false">
+                        <jk-rating-stars max-rating="5" style="padding-bottom:20px" rating="vm.review.reviewRating" read-only="false">
                         </jk-rating-stars>
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>Review Title</label>
@@ -85,7 +90,7 @@
                         </md-input-container>
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>Review Details</label>
-                            <textarea ng-model="vm.review.reviewDetails" row="5"></textarea>
+                            <textarea ng-model="vm.review.reviewDetails" row="5" required="required"></textarea>
                         </md-input-container>
                         <md-button class="md-raised md-primary" ng-click="vm.submitReview()">Submit</md-button>
                     </p>
