@@ -23,7 +23,7 @@
         return directive;
 
         /** @ngInject */
-        function MainNavbarController(CommonInfo, SweetAlert, $state) {
+        function MainNavbarController(CommonInfo, SweetAlert, $state, $http, $log) {
             var vm = this;
 
             vm.studentInfo = {};
@@ -49,14 +49,29 @@
                     function(isConfirm) {
                         //SweetAlert.swal("Booyah!");
                         if (isConfirm) {
-                            CommonInfo.setInfo('studentInfo', '');
-                            $state.go('main', {}, {reload: true});
+                            $http.post(CommonInfo.getAppUrl() + "/studentlogout", { userId: vm.studentInfo.userId }).then(
+                                function(response) {
+                                    if (response && response.data) {
+                                        if (response.data.status == 1) {
+                                            CommonInfo.setInfo('studentInfo', '');
+                                            $state.go('main', {}, { reload: true });
+                                        } else if (response.data.status == 2) {
+                                            $log.log(response.data.message);
+                                        }
+                                    } else {
+                                        $log.log('There is some issue, please try after some time');
+                                    }
+                                },
+                                function(response) {
+                                    $log.log('There is some issue, please try after some time');
+                                }
+                            );
                         }
                     });
             }
 
             function menuToggle() {
-                vm.isCollapsed = ! vm.isCollapsed;
+                vm.isCollapsed = !vm.isCollapsed;
                 angular.element(document.querySelector('.site-wrap')).toggleClass('active');
             }
         }

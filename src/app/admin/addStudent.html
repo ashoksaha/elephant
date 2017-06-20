@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row account-settings">
+        <div class="col-sm-9 vertical-nav-border">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="general">
+                    <h3>Student Information</h3>
+                    <hr>
+                    <form class="edit_student" id="edit_student" method="post">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>User name</label>
+                                        <input ng-model="vm.student.userName">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Email</label>
+                                        <input ng-model="vm.student.emailId" type="email">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Mobile</label>
+                                        <input ng-model="vm.student.mobile" type="number">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Password</label>
+                                        <input ng-model="vm.student.password" type="password">
+                                    </md-input-container>
+                                </fieldset>
+                                <fieldset>
+                                    <md-switch class="md-primary" name="status" id="status" ng-model="vm.student.status" aria-label="User Status" ng-true-value="1" ng-false-value="0">
+                                        Status
+                                    </md-switch>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.createStudent()" data-disable-with="Save Changes">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

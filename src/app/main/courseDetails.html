@@ -19,7 +19,7 @@
                                 Start Course
                             </a>
                             <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.demoVideo" ng-click="vm.showCourseDemo($event)">
-                                Demo Video
+                                <i class="fa fa-play" aria-hidden="true"></i> Demo Video
                             </a>
                             <ul>
                                 <li class="icon-video">
@@ -30,7 +30,7 @@
                                     <i class="fa fa-server" aria-hidden="true"></i>
                                     <span ng-bind="vm.course.unitTypeCount[5] || 0"></span>&nbsp;Exercises</li>
                                 <li class="icon-time">
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i> 
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
                                     <span ng-bind="vm.course.duration"></span>&nbsp;<span ng-bind="vm.course.durationParameter"></span>
                                 </li>
                                 <li class="icon-participants">
@@ -38,7 +38,7 @@
                                     <span ng-bind="vm.course.totalStudents || 0"></span>&nbsp;Students
                                 </li>
                                 <li class="icon-xp" ng-if="vm.course.courseRating">
-                                    <i class="fa fa-star" aria-hidden="true"></i> 
+                                    <i class="fa fa-star" aria-hidden="true"></i>
                                     <span ng-bind="vm.course.courseRating"></span>&nbsp;Rating
                                 </li>
                                 <li class="icon-xp"><i class="fa fa-comments" aria-hidden="true"></i> <span ng-bind="vm.course.reviewCourse || '0'"></span>&nbsp;Reviews</li>
@@ -95,7 +95,13 @@
                     </div>
                     <div class="col-sm-9 col-sm-pull-3 vertical-nav-border">
                         <h3>Course Description</h3>
-                        <p ng-bind="vm.course.description"></p>
+                        <div>
+                            <p ng-bind="vm.course.description | limitTo: vm.charCount"></p>
+                            <a ng-click="vm.charCount = vm.charCount ? '' : 300;">
+                                <span ng-if="vm.charCount && vm.charCount < vm.course.description.length && vm.course.description.length > 315">..Read More</span>
+                                <span ng-if="!vm.charCount && vm.course.description.length > 315">Read Less</span>
+                            </a>
+                        </div>
                         <div class="show-course__chapter">
                             <div class="show-course__chapter-header" ng-repeat="unit in vm.course.units">
                                 <h4 class="show-course__chapter-title" ng-click="vm.course.isSubscribed && vm.showCourseUnit(unit)">

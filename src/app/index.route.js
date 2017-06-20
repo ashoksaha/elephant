@@ -274,6 +274,10 @@
                 controller: 'AdminStudentsController',
                 controllerAs: 'vm'
             })
+            .state('admin.addStudent', {
+                url: '/addStudent',
+                templateUrl: 'app/admin/addStudent.html'
+            })
             .state('admin.userList', {
                 url: '/users',
                 templateUrl: 'app/admin/users.html',
@@ -281,7 +285,7 @@
                 controllerAs: 'vm'
             })
             .state('admin.addUser', {
-                url: '/editUser',
+                url: '/addUser',
                 templateUrl: 'app/admin/addUser.html'
             })
             .state('admin.orderList', {

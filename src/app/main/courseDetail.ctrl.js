@@ -27,6 +27,7 @@
             student_id: '',
             phone: ''
         };
+        vm.charCount = 300;
 
         vm.login = login;
         vm.otpVerification = otpVerification;
@@ -61,6 +62,7 @@
                         if (response.data.status == 1) {
                             if (selectedCourseName == response.data.data[0].title.replace(/ /g, "-")) {
                                 vm.course = response.data.data[0];
+                                vm.charCount = (vm.course.description.length > 315) ? 300 : '';
                                 if (vm.course && vm.course.units) {
                                     vm.course.unitTypeCount = _.countBy(vm.course.units, 'unitType');
                                 }
@@ -331,6 +333,7 @@
                 parent: parentEl,
                 targetEvent: event,
                 scope: $scope.$new(),
+                fullscreen: true,
                 template: '<md-dialog aria-label="List dialog">' +
                     '<md-toolbar>' +
                     '<div class="md-toolbar-tools">' +
@@ -341,8 +344,10 @@
                     '</md-button>' +
                     '</div>' +
                     '</md-toolbar>' +
-                    '<md-dialog-content>' +
-                    '<div ng-bind-html="vm.course.demoVideo">' +
+                    '<md-dialog-content style="max-width:800px;max-height:810px; ">' +
+                    '<div class="embed-responsive embed-responsive-16by9">' +
+                    '<div ng-bind-html="vm.course.demoVideo" class="embed-responsive-item">' +
+                    '</div>' +
                     '</div>' +
                     '</md-dialog-content>' +
                     '<md-dialog-actions>' +
