@@ -6,7 +6,7 @@
         .controller('AdminUserController', AdminUserController);
 
     /** @ngInject */
-    function AdminUserController(CommonInfo, $http, growl, _, $log) {
+    function AdminUserController(CommonInfo, $http, growl, _, $log, $mdDialog, $scope) {
         var vm = this;
 
         vm.isCollapsed = true;
@@ -14,8 +14,11 @@
         vm.userTab = 0;
         vm.users = [];
         vm.userList = [];
+        vm.instructorTestmonial = {};
 
         vm.selectUserType = selectUserType;
+        vm.addTestmonial = addTestmonial;
+        vm.closeModal
 
         activate();
 
@@ -25,7 +28,7 @@
         }
 
         function getAllUsers() {
-            $http.post(CommonInfo.getAppUrl() + "/getallusers", { }).then(
+            $http.post(CommonInfo.getAppUrl() + "/getallusers", {}).then(
                 function(response) {
                     if (response && response.data) {
                         if (response.data.status == 1) {
@@ -66,12 +69,53 @@
 
         function selectUserType(index, type) {
             vm.userTab = index;
-            vm.userType = type.Name;
+            vm.userType = type;
             vm.userList = _.filter(vm.users, { type: type.id });
             vm.userCount = {
-                active: _.size(_.filter(vm.userList, { 'status': 1})),
-                inactive: _.size(_.filter(vm.userList, { 'status': 0}))
+                active: _.size(_.filter(vm.userList, { 'status': 1 })),
+                inactive: _.size(_.filter(vm.userList, { 'status': 0 }))
             };
+        }
+
+        function addTestmonial(evt, instructor) {
+            vm.instructorTestmonial = {
+                instructorName: instructor.fullName,
+                instructorId: instructor.id,
+                added_by: CommonInfo.getInfo('userInfo').id
+            };
+            $mdDialog.show({
+                targetEvent: evt,
+                scope: $scope.$new(),
+                templateUrl: 'app/admin/instructorTestmonial.tmpl.html',
+                parent: angular.element(document.body),
+                controller: DialogController
+            });
+
+            function DialogController($scope, $mdDialog, CommonInfo, $http, $log) {
+                $scope.closeDialog = function() {
+                    $mdDialog.hide();
+                }
+
+                $scope.addTestmonials = function() {
+                    $http.post(CommonInfo.getAppUrl() + "/createtestimonial", vm.instructorTestmonial).then(
+                        function(response) {
+                            if (response && response.data) {
+                                if (response.data.status == 1) {
+                                    growl.success('Testmonial Added successful');
+                                    $mdDialog.hide();
+                                } else if (response.data.status == 2) {
+                                    $log.log(response.data.message);
+                                }
+                            } else {
+                                $log.log('There is some issue, please try after some time');
+                            }
+                        },
+                        function(response) {
+                            $log.log('There is some issue, please try after some time');
+                        }
+                    );
+                }
+            }
         }
     }
 })();

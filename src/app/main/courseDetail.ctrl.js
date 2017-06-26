@@ -71,6 +71,7 @@
                                     getSocialShare();
                                 if (vm.course.reviewCourse)
                                     getCourseReview();
+                                getInstructorTestimonials();
                                 // var studentInfo = CommonInfo.getInfo('studentInfo');
                                 // vm.payuData = {
                                 //     key: 'gtKFFx',
@@ -86,6 +87,30 @@
                                 // var hashString = vm.payuData.key + '|' + vm.payuData.txnid + '|' + vm.payuData.amount + '|' + vm.payuData.productinfo + '|' + vm.payuData.firstname + '|' + vm.payuData.email + '|||||||||||eCwWELxi';
                                 // vm.payuData.hash = SHA512(hashString).toLowerCase();
                             }
+                        } else if (response.data.status == 2) {
+                            $log.log(response.data.message);
+                        }
+                    } else {
+                        $log.log('There is some issue, please try after some time');
+                    }
+                },
+                function(response) {
+                    $log.log('There is some issue, please try after some time');
+                }
+            );
+        }
+
+        function getInstructorTestimonials() {
+            var data = {
+                instructorId: vm.course.instructorId,
+                status: 1
+            };
+            $http.post(CommonInfo.getAppUrl() + "/getactivetestimonials", data).then(
+                function(response) {
+                    if (response && response.data) {
+                        if (response.data.status == 1) {
+                            vm.instrunctorTestmonials = response.data.data;
+                            console.log(vm.instrunctorTestmonials);
                         } else if (response.data.status == 2) {
                             $log.log(response.data.message);
                         }
@@ -334,7 +359,7 @@
                 targetEvent: event,
                 scope: $scope.$new(),
                 fullscreen: true,
-                template: '<md-dialog aria-label="List dialog">' +
+                template: '<md-dialog aria-label="List dialog" flex="70">' +
                     '<md-toolbar>' +
                     '<div class="md-toolbar-tools">' +
                     '<h2><span ng-bind="vm.course.title"></span> (Demo)</h2>' +
@@ -344,7 +369,7 @@
                     '</md-button>' +
                     '</div>' +
                     '</md-toolbar>' +
-                    '<md-dialog-content style="max-width:800px;max-height:810px; ">' +
+                    '<md-dialog-content>' +
                     '<div class="embed-responsive embed-responsive-16by9">' +
                     '<div ng-bind-html="vm.course.demoVideo" class="embed-responsive-item">' +
                     '</div>' +

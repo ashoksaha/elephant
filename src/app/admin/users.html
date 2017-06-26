@@ -4,7 +4,7 @@
         <hr>
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-sm-3 col-sm-push-9">
+            <div class="col-sm-2 col-sm-push-10">
                 <div class="side-nav groups__sidebar">
                     <ul>
                         <li ng-class="{'active' : vm.userTab == $index}" ng-click="vm.selectUserType($index, userType);" ng-repeat="userType in vm.userTypeList">
@@ -13,10 +13,10 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-sm-9 col-sm-pull-3 vertical-nav-border">
+            <div class="col-sm-10 col-sm-pull-2 vertical-nav-border">
                 <!--                          -->
                 <div class="groups__courses">
-                    <h4 class="gr-subtitle"><span ng-bind="vm.userType">Courses</span> 
+                    <h4 class="gr-subtitle"><span ng-bind="vm.userType.Name"></span>
                         <a style="margin:0px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" ui-sref="admin.addUser">
                             <i class="fa fa-plus-square"></i> Add New 
                         </a>
@@ -59,6 +59,7 @@
                                         <th>User Name</th>
                                         <th>Email</th>
                                         <th>Mobile</th>
+                                        <th ng-if="vm.userType.id == 3">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,6 +70,12 @@
                                         <td ng-bind="user.userName"></td>
                                         <td ng-bind="user.emailId"></td>
                                         <td ng-bind="user.mobile"></td>
+                                        <td ng-if="vm.userType.id == 3">
+                                            <button type="button" class="btn btn-default btn-xs" ng-click="vm.addTestmonial($event, user)">
+                                                <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                                                Testmonials
+                                            </button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

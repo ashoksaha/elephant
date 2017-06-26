@@ -1,0 +1,44 @@
+<md-dialog aria-label="Add Testmonials">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Add Testmonials</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <fieldset>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Testmonials</label>
+                        <textarea required="required" rows="5" ng-model="vm.instructorTestmonial.testimonial"></textarea>
+                    </md-input-container>
+                </fieldset>
+                <fieldset>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Testmonial By</label>
+                        <input ng-model="vm.instructorTestmonial.testimonials_by" required="required" />
+                    </md-input-container>
+                </fieldset>
+                <fieldset>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Organization</label>
+                        <input ng-model="vm.instructorTestmonial.by_organization" required="required" />
+                    </md-input-container>
+                </fieldset>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="closeDialog()">
+                Cancel
+            </md-button>
+            <md-button ng-click="addTestmonials()">
+                OK
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

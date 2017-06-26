@@ -79,6 +79,25 @@
                         </div>
                         <a class="btn btn-secondary" href="javascript:void(0);" ng-click="vm.showInstructorCourses();">View all courses</a>
                         <hr />
+                        <p><b>Testmonials</b></p>
+                        <ui-carousel slides="vm.instrunctorTestmonials" slides-to-show="1" slides-to-scroll="1" initial-slide="0" autoplay="true" autoplay-speed="1000" dots="true">
+                            <carousel-item>
+                                <a class="stories--quote" href="javascript:void(0);">
+                                    <!-- <section class="col-sm-12 col-md-4"> -->
+                                        <div class="quote card-circle-top ">
+                                            <img class="card-circle-top-image" width="120" height="120" src="{{item.image}}" alt="Image05" />
+                                            <div class="quote__text" style="height:130px">
+                                                <p ng-bind="item.testimonial">“It&#39;s the best tool for beginners to learn R/data analysis that I&#39;ve come across.”</p>
+                                            </div>
+                                            <div class="quote__person" style="height: 115px">
+                                                <p><strong ng-bind="item.testimonials_by">Anas El Turabi</strong> <i ng-bind="item.by_organization">Harvard PhD Candidate in Health Policy</i></p>
+                                            </div>
+                                        </div>
+                                    <!-- </section> -->
+                                </a>
+                            </carousel-item>
+                        </ui-carousel>
+                        <hr />
                         <p><b>Request A Callback</b></p>
                         <form class="new_user ng-pristine ng-valid" name="callbackRequest" method="post">
                             <div class="form-group">

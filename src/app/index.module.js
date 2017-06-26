@@ -17,7 +17,8 @@
             'ngMaterial',
             'ADM-dateTimePicker',
             'jkAngularRatingStars',
-            'textAngular'
+            'textAngular',
+            'ui.carousel'
         ]);
 
 })();
