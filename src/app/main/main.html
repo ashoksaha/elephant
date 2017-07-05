@@ -6,6 +6,18 @@
                 <div class="row">
                     <div class="col-sm-7">
                         <div class="home--header">
+                            <div>
+                                <div uib-carousel active="0" interval="5000" no-wrap="false">
+                                    <div uib-slide ng-repeat="slide in vm.mainBanners" index="$index">
+                                        <img ng-src="{{slide.src}}" style="margin:auto;max-height: 275px">
+                                        <div class="carousel-caption">
+                                            <p>{{slide.text}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="home--header">
                             <hr>
                             <h4 class="subhead">THE EASIEST WAY TO</h4>
                             <h1>Learn Anything, On Your Schedule</h1>
@@ -28,7 +40,7 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-sm-5">
                         <div class="home--sign-up card">
@@ -67,7 +79,6 @@
         </section>
         <section class="home--learn courses__start">
             <div class="container text-center coures-container">
-                <h2>Optional Notes (IAS,PCS &amp; Judicial Services)</h2>
                 <!-- <ui-carousel slides="vm.optionalNotes" initial-slide="0" slides-to-show="8" slides-to-scroll="3" dots="true">
                     <carousel-item> -->
                 <!-- <div class="row">
@@ -91,18 +102,106 @@
                 </div> -->
                 <!-- </carousel-item>
                 </ui-carousel> -->
-                <ui-carousel slides="vm.optionalNotes" initial-slide="0" slides-to-show="8" slides-to-scroll="3" dots="true">
-                    <carousel-item>
-                        <a href="javascript:void(0);">
-                            <a ng-href="{{item[0].link}}" target="_blank">
-                                <img ng-src="{{item[0].img}}" alt="" width="129" height="83" />
-                            </a>
-                            <a ng-href="{{item[1].link}}" target="_blank">
-                                <img ng-src="{{item[1].img}}" alt="" width="129" height="83" />
-                            </a>
-                        </a>
-                    </carousel-item>
-                </ui-carousel>
+                <div style="height:200px;">
+                    <h3>Optional Notes (IAS,PCS &amp; Judicial Services)</h3>
+                    <ui-carousel slides="vm.optionalNotes" initial-slide="2" slides-to-show="8" slides-to-scroll="3" dots="true" autoplay="true" autoplay-speed="1000">
+                        <carousel-item>
+                            <img ng-src="{{item[0].img}}" alt="" width="129px" height="83px" />
+                            <img ng-src="{{item[1].img}}" alt="" width="129px" height="83px" />
+                        </carousel-item>
+                    </ui-carousel>
+                </div>
+            </div>
+        </section>
+        <section class="home--learn courses__start">
+            <div class="container text-center coures-container">
+        <div style="height:200px;">
+                    <h3>Optional Notes (IAS,PCS &amp; Judicial Services)</h3>
+                    <ui-carousel slides="vm.optionalNotes" initial-slide="2" slides-to-show="8" slides-to-scroll="3" dots="true" autoplay="true" autoplay-speed="1000">
+                        <carousel-item>
+                            <img ng-src="{{item[0].img}}" alt="" width="129px" height="83px" />
+                            <img ng-src="{{item[1].img}}" alt="" width="129px" height="83px" />
+                        </carousel-item>
+                    </ui-carousel>
+                </div>
+            </div>
+        </section>
+        <section class="home--learn courses__start">
+            <div class="container text-center coures-container">
+        <div style="height:200px;">
+                    <h3>Optional Notes (IAS,PCS &amp; Judicial Services)</h3>
+                    <ui-carousel slides="vm.optionalNotes" initial-slide="2" slides-to-show="8" slides-to-scroll="3" dots="true" autoplay="true" autoplay-speed="1000">
+                        <carousel-item>
+                            <img ng-src="{{item[0].img}}" alt="" width="129px" height="83px" />
+                            <img ng-src="{{item[1].img}}" alt="" width="129px" height="83px" />
+                        </carousel-item>
+                    </ui-carousel>
+                </div>
+            </div>
+        </section>
+        <section class="home--learn courses__start">
+            <div class="container text-center coures-container">
+        <div style="height:200px;">
+                    <h3>Optional Notes (IAS,PCS &amp; Judicial Services)</h3>
+                    <ui-carousel slides="vm.optionalNotes" initial-slide="2" slides-to-show="8" slides-to-scroll="3" dots="true" autoplay="true" autoplay-speed="1000">
+                        <carousel-item>
+                            <img ng-src="{{item[0].img}}" alt="" width="129px" height="83px" />
+                            <img ng-src="{{item[1].img}}" alt="" width="129px" height="83px" />
+                        </carousel-item>
+                    </ui-carousel>
+                </div>
+            </div>
+        </section>
+        <section class="home--learn courses__start">
+            <div class="container text-center coures-container">
+        <div style="height:200px;">
+                    <h3>Optional Notes (IAS,PCS &amp; Judicial Services)</h3>
+                    <ui-carousel slides="vm.optionalNotes" initial-slide="2" slides-to-show="8" slides-to-scroll="3" dots="true" autoplay="true" autoplay-speed="1000">
+                        <carousel-item>
+                            <img ng-src="{{item[0].img}}" alt="" width="129px" height="83px" />
+                            <img ng-src="{{item[1].img}}" alt="" width="129px" height="83px" />
+                        </carousel-item>
+                    </ui-carousel>
+                </div>
+            </div>
+        </section>
+        <section class="home--learn courses__start">
+            <div class="container text-center coures-container">
+        <div style="height:200px;">
+                    <h3>Optional Notes (IAS,PCS &amp; Judicial Services)</h3>
+                    <ui-carousel slides="vm.optionalNotes" initial-slide="2" slides-to-show="8" slides-to-scroll="3" dots="true" autoplay="true" autoplay-speed="1000">
+                        <carousel-item>
+                            <img ng-src="{{item[0].img}}" alt="" width="129px" height="83px" />
+                            <img ng-src="{{item[1].img}}" alt="" width="129px" height="83px" />
+                        </carousel-item>
+                    </ui-carousel>
+                </div>
+            </div>
+        </section>
+        <section class="home--learn courses__start">
+            <div class="container text-center coures-container">
+        <div style="height:200px;">
+                    <h3>Optional Notes (IAS,PCS &amp; Judicial Services)</h3>
+                    <ui-carousel slides="vm.optionalNotes" initial-slide="2" slides-to-show="8" slides-to-scroll="3" dots="true" autoplay="true" autoplay-speed="1000">
+                        <carousel-item>
+                            <img ng-src="{{item[0].img}}" alt="" width="129px" height="83px" />
+                            <img ng-src="{{item[1].img}}" alt="" width="129px" height="83px" />
+                        </carousel-item>
+                    </ui-carousel>
+                </div>
+            </div>
+        </section>
+        <section class="home--learn courses__start">
+            <div class="container text-center coures-container">
+                <div style="height:200px;" class="clear-fix">
+                    <h3>Optional Notes (IAS,PCS &amp; Judicial Services)</h3>
+                    <ui-carousel slides="vm.optionalNotes" initial-slide="2" slides-to-show="8" slides-to-scroll="3" dots="true" autoplay="true" autoplay-speed="2000">
+                        <carousel-item>
+                            <img ng-src="{{item[0].img}}" alt="" width="129px" height="83px" />
+                            <img ng-src="{{item[1].img}}" alt="" width="129px" height="83px" />
+                        </carousel-item>
+                    </ui-carousel>
+                </div>
                 <!-- <div data-tabs>
                     <a data-tab-btn="courses" ng-class="{'active' : vm.homeLearnSelected == 0}" ng-click="vm.homeLearnSelected=0">Latest Courses</a>
                     <a data-tab-btn="topics" ng-class="{'active' : vm.homeLearnSelected == 1}" ng-click="vm.homeLearnSelected=1">Latest Notes</a>

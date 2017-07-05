@@ -19,7 +19,8 @@
             'jkAngularRatingStars',
             'textAngular',
             'ui.carousel',
-            'ngCsv'
+            'ngCsv',
+            'ui.bootstrap'
         ]);
 
 })();

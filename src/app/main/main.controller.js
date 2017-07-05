@@ -28,6 +28,20 @@
             phone: ''
         };
 
+        vm.mainBanners = [{
+            text: "Asdcvdfj",
+            src: "https://flavido.com/wp-content/uploads/2017/06/pendrive_courses.jpg"
+        }, {
+            text: "xbthr",
+            src: "https://flavido.com/wp-content/uploads/2017/06/big_banner_anthro-2.jpg"
+        }, {
+            text: "ertrert",
+            src: "https://flavido.com/wp-content/uploads/2017/06/sociology_big_ban_1200x400.jpg"
+        }, {
+            text: "xvxcvxvxc",
+            src: "https://flavido.com/wp-content/uploads/2017/07/1200x400_slider_1200x400.jpg"
+        }];
+
         vm.optionalNotes = [
             [{
                 link: "https://flavido.com/category/upsc-optional-notes/geography-optional/",
