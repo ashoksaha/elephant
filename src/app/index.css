@@ -1,8 +1,9 @@
 @font-face {
-  font-family: "karmina";
-  src: url("/assets/fonts/Karmina Regular.otf");
-  font-weight: normal;
-  font-style: normal; }
+    font-family: "karmina";
+    src: url("/assets/fonts/Karmina Regular.otf");
+    font-weight: normal;
+    font-style: normal;
+}
 
 ul.tagit {
     padding: 1px 5px;
@@ -1120,6 +1121,11 @@ hr {
     border-radius: 4px;
     /*height: 340px;*/
     position: relative
+}
+
+.course-block:hover {
+    -webkit-transform: translate(0, -6px);
+    transform: translate(0, -6px)
 }
 
 .course-block:hover,
@@ -12663,6 +12669,7 @@ dt {
     font-size: 18px;
 }
 
+
 /* Text angular css for height starts*/
 
 .import-questions .ta-editor {
@@ -12694,15 +12701,17 @@ dt {
 }
 
 .autocomplete-custom-template li {
-  border-bottom: 1px solid #ccc;
-  height: auto;
-  white-space: normal;
+    border-bottom: 1px solid #ccc;
+    height: auto;
+    white-space: normal;
 }
+
 .autocomplete-custom-template li:last-child {
-  border-bottom-width: 0;
+    border-bottom-width: 0;
 }
+
 .autocomplete-custom-template .item-title,
 .autocomplete-custom-template .item-metadata {
-  display: block;
-  line-height: 2;
+    display: block;
+    line-height: 2;
 }

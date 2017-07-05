@@ -70,7 +70,7 @@
                 <h2>Optional Notes (IAS,PCS &amp; Judicial Services)</h2>
                 <!-- <ui-carousel slides="vm.optionalNotes" initial-slide="0" slides-to-show="8" slides-to-scroll="3" dots="true">
                     <carousel-item> -->
-                <div class="row" >
+                <!-- <div class="row">
                     <div class="col-md-2" ng-repeat="item in vm.optionalNotes | limitTo : 6: vm.optionalNotesStart">
                         <a href="javascript:void(0);">
                             <a ng-href="{{item[0].link}}" target="_blank">
@@ -83,13 +83,26 @@
                     </div>
                     <div class="col-md-12">
                         <div class="btn-group btn-group-sm" role="group" aria-label="view category" style="margin:2px auto;">
-                            <button type="button" class="btn btn-default" ng-disabled="vm.optionalNotesStart == 0" ng-click="vm.optionalNotesStart = vm.optionalNotesStart - 2;"><<</button>
-                            <button type="button" class="btn btn-default" ng-disabled="vm.optionalNotesStart + 6 > vm.optionalNotes.length" ng-click="vm.optionalNotesStart = vm.optionalNotesStart + 2;">>></button>
+                            <button type="button" class="btn btn-default" ng-disabled="vm.optionalNotesStart == 0" ng-click="vm.optionalNotesStart = vm.optionalNotesStart - 2;">
+                                <<</button>
+                                    <button type="button" class="btn btn-default" ng-disabled="vm.optionalNotesStart + 6 > vm.optionalNotes.length" ng-click="vm.optionalNotesStart = vm.optionalNotesStart + 2;">>></button>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- </carousel-item>
                 </ui-carousel> -->
+                <ui-carousel slides="vm.optionalNotes" initial-slide="0" slides-to-show="8" slides-to-scroll="3" dots="true">
+                    <carousel-item>
+                        <a href="javascript:void(0);">
+                            <a ng-href="{{item[0].link}}" target="_blank">
+                                <img ng-src="{{item[0].img}}" alt="" width="129" height="83" />
+                            </a>
+                            <a ng-href="{{item[1].link}}" target="_blank">
+                                <img ng-src="{{item[1].img}}" alt="" width="129" height="83" />
+                            </a>
+                        </a>
+                    </carousel-item>
+                </ui-carousel>
                 <!-- <div data-tabs>
                     <a data-tab-btn="courses" ng-class="{'active' : vm.homeLearnSelected == 0}" ng-click="vm.homeLearnSelected=0">Latest Courses</a>
                     <a data-tab-btn="topics" ng-class="{'active' : vm.homeLearnSelected == 1}" ng-click="vm.homeLearnSelected=1">Latest Notes</a>
