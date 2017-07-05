@@ -37,7 +37,9 @@
                         <span ng-bind="course.title" ng-click="vm.editCourse(course)"></span> <span class="label label-accent pull-right" ng-click="vm.editCourse(course)">Edit</span>
                     </h4>
                     <div>
-                        <i class="fa fa-credit-card" aria-hidden="true"></i> <i class="fa fa-inr" aria-hidden="true" ng-if="course.courseFee"></i> <span ng-bind="course.courseFee || 'Free'"></span> |
+                        <i class="fa fa-credit-card" aria-hidden="true"></i>
+                        <span ng-if="course.courseFee" ng-bind="course.courseFee | INR"></span>
+                        <span ng-if="!course.courseFee" ng-bind="'Free'"></span> | 
                         <i class="fa fa-clock-o" aria-hidden="true"></i> <span ng-bind="course.duration"></span> <span ng-bind="course.durationParameterText"></span> |
                         <i class="fa fa-calendar" aria-hidden="true"></i> <span ng-bind="course.courseStartDate"></span>
                     </div>

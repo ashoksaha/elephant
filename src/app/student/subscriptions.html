@@ -12,23 +12,31 @@
                         <thead>
                             <tr>
                                 <th>SN</th>
-                                <th>Txn Id</th>
+                                <th>Order Id</th>
                                 <th>Course</th>
-                                <th>Instructor</th>
                                 <th>Order Date</th>
                                 <th>Amount</th>
                                 <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="order in vm.orders">
                                 <td ng-bind="$index + 1"></td>
                                 <td ng-bind="order.txnID"></td>
-                                <td ng-bind="order.courseName" ng-click="vm.showCourseDetails(order.courseName, order.courseId)"></td>
-                                <td ng-bind="order.fullname"></td>
-                                <td ng-bind="order.orderDate"></td>
-                                <td ng-bind="order.amount || 'Free'"></td>
+                                <td ng-click="vm.showCourseDetails(order.courseName, order.courseId)">
+                                    <span ng-bind="order.courseName"></span><br />
+                                    By <span ng-bind="order.fullname"></span>
+                                </td>
+                                <td ng-bind="order.orderDate | date:'short'"></td>
+                                <td>
+                                    <span ng-if="order.amount" ng-bind="order.amount | INR"></span>
+                                    <span ng-if="!order.amount" ng-bind="'Free'"></span>
+                                </td>
                                 <td ng-bind="order.status ? 'Complete' : 'Pending'"></td>
+                                <td>
+                                    <i class="fa fa fa-file-pdf-o" aria-hidden="true" ng-href="{{order.invoiceFile}}" download ng-if="order.invoiceFile" title="Download Invoice Pdf"></i>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

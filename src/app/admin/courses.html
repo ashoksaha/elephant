@@ -43,8 +43,10 @@
                         <span ng-bind="course.title" ng-click="vm.editCourse(course)"></span> <span class="label label-accent pull-right" ng-click="vm.editCourse(course)">Edit</span>
                     </h4>
                     <div>
-                        <i class="fa fa-credit-card" aria-hidden="true"></i> <i class="fa fa-inr" aria-hidden="true" ng-if="course.courseFee"></i> <span ng-bind="course.courseFee || 'Free'"></span> | 
-                        <i class="fa fa-clock-o" aria-hidden="true"></i> <span ng-bind="course.duration"></span> <span ng-bind="course.durationParameter"></span> | 
+                        <i class="fa fa-credit-card" aria-hidden="true"></i>
+                        <span ng-if="course.courseFee" ng-bind="course.courseFee | INR"></span>
+                        <span ng-if="!course.courseFee" ng-bind="'Free'"></span> |
+                        <i class="fa fa-clock-o" aria-hidden="true"></i> <span ng-bind="course.duration"></span> <span ng-bind="course.durationParameter"></span> |
                         <i class="fa fa-calendar" aria-hidden="true"></i> <span ng-bind="course.courseStartDate"></span>
                     </div>
                     <p ng-bind="course.description"></p>
@@ -55,28 +57,6 @@
             </div>
         </section>
     </div>
-    <!-- <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 1">
-        <p class="text-center" ng-if="vm.activeCourses.length == 0"><b>Currently no active courses.</b></p>
-        <table ng-if="vm.activeCourses.length > 0">
-            <tbody>
-                <tr ng-repeat="course in vm.activeCourses">
-                    <td><span ng-bind="$index + 1"></span></td>
-                    <td><img width="35" height="35" src="{{course.images}}" alt="{{course.name}}" /></td>
-                    <td style="width:45%">
-                        <a ng-bind="course.title" href="javascript:void(0);" ng-click="vm.editCourse(course)"></a>
-                    </td>
-                    <td>
-                        <sapn ng-bind="course.description">
-                            </span>
-                    </td>
-                    <td>
-                        <sapn ng-bind="course.courseStartDate">
-                            </span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div> -->
     <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 2">
         <div class="groups__courses-filters clearfix">
             <div class="select select--small">
@@ -105,8 +85,8 @@
                 <div class="col-md-10">
                     <h4><span ng-bind="course.title"></span> <span class="label label-accent pull-right" ng-click="vm.editCourse(course)">Edit</span></h4>
                     <div>
-                        <i class="fa fa-credit-card" aria-hidden="true"></i> <i class="fa fa-inr" aria-hidden="true" ng-if="course.courseFee"></i> <span ng-bind="course.courseFee || 'Free'"></span> | 
-                        <i class="fa fa-clock-o" aria-hidden="true"></i> <span ng-bind="course.duration"></span> <span ng-bind="course.durationParameterText"></span> | 
+                        <i class="fa fa-credit-card" aria-hidden="true"></i> <i class="fa fa-inr" aria-hidden="true" ng-if="course.courseFee"></i> <span ng-bind="course.courseFee || 'Free'"></span> |
+                        <i class="fa fa-clock-o" aria-hidden="true"></i> <span ng-bind="course.duration"></span> <span ng-bind="course.durationParameterText"></span> |
                         <i class="fa fa-calendar" aria-hidden="true"></i> <span ng-bind="course.courseStartDate"></span>
                     </div>
                     <p ng-bind="course.description"></p>

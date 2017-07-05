@@ -40,6 +40,9 @@
         vm.showCourseUnit = showCourseUnit;
         vm.showCourseDemo = showCourseDemo;
 
+        vm.getInstamojoCall = getInstamojoCall;
+        vm.getRazorCall = getRazorCall;
+
         activate();
 
         function activate() {
@@ -110,7 +113,6 @@
                     if (response && response.data) {
                         if (response.data.status == 1) {
                             vm.instrunctorTestmonials = response.data.data;
-                            console.log(vm.instrunctorTestmonials);
                         } else if (response.data.status == 2) {
                             $log.log(response.data.message);
                         }
@@ -230,7 +232,7 @@
                 "description": "By " + vm.course.instructorFullName,
                 "image": "/assets/images/logo.png",
                 "handler": function(response) {
-                    $http.post(CommonInfo.getAppUrl() + "/createcourseorder", { studentId: studentInfo.userId, courseId: selectedCourseId, orderBy: studentInfo.userId, type: 'student', paymentId: response.razorpay_payment_id }).then(
+                    $http.post(CommonInfo.getAppUrl() + "/createrazorpayorder", { studentId: studentInfo.userId, courseId: selectedCourseId, orderBy: studentInfo.userId, type: 'student', paymentId: response.razorpay_payment_id }).then(
                         function(response) {
                             if (response && response.data) {
                                 if (response.data.status == 1) {
@@ -265,7 +267,6 @@
 
         function getInstamojoCall() {
             var studentInfo = CommonInfo.getInfo('studentInfo');
-            console.log(studentInfo);
             var data = {
                 purpose: 'Payment stud:' + studentInfo.userId + '_cour:' + vm.course.id,
                 amount: vm.course.courseFee,
@@ -347,9 +348,218 @@
             );
         }
 
-        function showCourseUnit(unit) {
-            CommonInfo.setInfo('startCourse', { unitId: unit.id, courseId: vm.course.id });
-            $state.go('startCourse', { courseName: vm.course.title.replace(/ /g, "-") });
+        function showCourseUnit(event, unit) {
+            if (vm.course.isSubscribed) {
+                CommonInfo.setInfo('startCourse', { unitId: unit.id, courseId: vm.course.id });
+                $state.go('startCourse', { courseName: vm.course.title.replace(/ /g, "-") });
+            } else if (!vm.course.isSubscribed && unit.freeUnit) {
+                var studentInfo = CommonInfo.getInfo('studentInfo');
+                $http.post(CommonInfo.getAppUrl() + "/getunitdetailsbyunit_id", { id: unit.id, userName: studentInfo.name, userEmail: studentInfo.email }).then(
+                    function(response) {
+                        if (response && response.data) {
+                            if (response.data.status == 1) {
+                                vm.unit = response.data.data;
+                                vm.unit.unitDescription = angular.isString(vm.unit.unitDescription) ? $sce.trustAsHtml(vm.unit.unitDescription) : vm.unit.unitDescription;
+                                vm.unit.videoHtml = angular.isString(vm.unit.videoHtml) ? $sce.trustAsHtml(vm.unit.videoHtml) : vm.unit.videoHtml;
+                                if (angular.isString(vm.unit.downloadLink))
+                                    vm.unit.downloadLink = JSON.parse(vm.unit.downloadLink);
+                                if (vm.unit.testId) {
+                                    getTest(vm.unit.testId);
+                                }
+                                var parentEl = angular.element(document.body);
+                                $mdDialog.show({
+                                    parent: parentEl,
+                                    targetEvent: event,
+                                    scope: $scope.$new(),
+                                    fullscreen: true,
+                                    template: '<md-dialog aria-label="List dialog" flex="70">' +
+                                        '<md-toolbar>' +
+                                        '<div class="md-toolbar-tools">' +
+                                        '<h2><span ng-bind="vm.course.title"></span> (Demo)</h2>' +
+                                        '<span flex></span>' +
+                                        '<md-button class="md-icon-button" ng-click="closeDialog()">' +
+                                        '<i class="fa fa-times" aria-hidden="true"></i>' +
+                                        '</md-button>' +
+                                        '</div>' +
+                                        '</md-toolbar>' +
+                                        '<md-dialog-content>' +
+                                        '<p ng-bind="vm.unit.description"></p>' +
+                                        '<md-button md-no-ink class="md-primary" ng-href="{{vm.unit.downloadLink.videoDownloadLink}}" download aria-label="Download Video" ng-if="vm.unit.downloadLink && vm.unit.downloadLink.videoDownloadLink">' +
+                                        '<i class="fa fa-download" aria-hidden="true"></i> Download Video' +
+                                        '</md-button>' +
+                                        '<div ng-if="vm.unit.videoId" class="embed-responsive embed-responsive-16by9">' +
+                                        '<p ng-bind-html="vm.unit.videoHtml" class="text-center embed-responsive-item"></p>' +
+                                        '</div>' +
+                                        '<p ng-bind-html="vm.unit.unitDescription"></p>' +
+                                        '<div ng-if="vm.unit.test">' +
+                                        '<p ng-bind="vm.unit.test.title"></p>' +
+                                        '<p ng-bind="vm.unit.test.instruction"></p>' +
+                                        '<div ng-repeat="question in vm.unit.test.questions">' +
+                                        '<h4 style="margin:3px 0px;">Q. <span ng-bind="$index + 1"></span></h4>' +
+                                        '<p ng-bind-html="question.question"></p>' +
+                                        '<div>' +
+                                        '<div class="exercise--instructions-title">' +
+                                        '<h5>Options</h5>' +
+                                        '</div>' +
+                                        '<div>' +
+                                        '<div class="exercise--instructions exercise--typography">' +
+                                        '<md-radio-group ng-model="vm.userCurrentQuestion[$index].answer" md-no-ink="false">' +
+                                        '<md-radio-button aria-label="options" ng-repeat="answer in question.answers" ng-value="answer.ansKey" class="md-primary">' +
+                                        '<p ng-bind-html="answer.answerText"></p>' +
+                                        '</md-radio-button>' +
+                                        '</md-radio-group>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '<hr />' +
+                                        '</div>' +
+                                        '<div class="vex--buttons">' +
+                                        '<a class="btn btn-small btn-primary" href="javascript:void(0);" ng-click="vm.submitExam(false);">Submit</a>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</md-dialog-content>' +
+                                        '<md-dialog-actions>' +
+                                        '<md-button ng-click="closeDialog()" class="md-primary">' +
+                                        'Close' +
+                                        '</md-button>' +
+                                        '</md-dialog-actions>' +
+                                        '</md-dialog>',
+                                    controller: DialogController
+                                });
+
+                                function DialogController($scope, $mdDialog) {
+                                    $scope.closeDialog = function() {
+                                        $mdDialog.hide();
+                                    }
+                                }
+                            } else if (response.data.status == 2) {
+                                $log.log(response.data.message);
+                            }
+                        } else {
+                            $log.log('There is some issue, please try after some time');
+                        }
+                    },
+                    function(response) {
+                        $log.log('There is some issue, please try after some time');
+                    }
+                );
+            }
+        }
+
+        function getTest(testId) {
+            $http.post(CommonInfo.getTestSeriesAppUrl() + "/test/byId", { testId: testId }).then(
+                function(response) {
+                    if (response && response.data) {
+                        if (!response.data.Error) {
+                            vm.unit.test = response.data.test;
+                            getTestQuestions(testId);
+                        } else if (response.data.status == 2) {
+                            $log.log(response.data.message);
+                        }
+                    } else {
+                        $log.log('There is some issue, please try after some time');
+                    }
+                },
+                function(response) {
+                    $log.log('There is some issue, please try after some time');
+                }
+            );
+        }
+
+        function getTestQuestions(testId) {
+            $http.post(CommonInfo.getTestSeriesAppUrl() + "/exam/byId", { testId: testId }).then(
+                function(response) {
+                    if (response && response.data) {
+                        if (!response.data.Error) {
+                            vm.unit.test.questions = response.data.questions;
+                            getUserTestInfo();
+                        } else if (response.data.status == 2) {
+                            $log.log(response.data.message);
+                        }
+                    } else {
+                        $log.log('There is some issue, please try after some time');
+                    }
+                },
+                function(response) {
+                    $log.log('There is some issue, please try after some time');
+                }
+            );
+        }
+
+        function getUserTestInfo() {
+            var data = {
+                userId: studentInfo.userId,
+                testId: vm.unit.test.id
+            };
+            $http.post(CommonInfo.getTestSeriesAppUrl() + '/exam/userInfo', data).then(function(response) {
+                if (response && response.data && !response.data.Error) {
+                    vm.unit.test.userInfo = response.data.userTestInfo;
+                    if (vm.unit.test && vm.unit.test.userInfo && vm.unit.test.userInfo.status == 'pending' && vm.unit.test.userInfo.timeRemaining == 0) {
+                        alert('Your exam time is over, press ok to submit exam')
+                        submitExam(true);
+                    } else {
+                        //vm.timer = vm.exam.userInfo.timeRemaining || vm.test.duration;
+                        //vm.showLangChoice = vm.exam.questions[0].questionText ? 1 : 0;
+                        if (vm.showLangChoice)
+                            vm.selectedLang = vm.unit.test.userInfo.selectedLang ? vm.unit.test.userInfo.selectedLang : 0;
+                        else
+                            vm.selectedLang = 1;
+                        _.forEach(vm.unit.test.questions, function(value, key) {
+                            vm.userCurrentQuestion[key] = _.find(vm.unit.test.userInfo.answers, { 'questionId': value.id }) || {
+                                questionId: value.id,
+                                answer: '',
+                                isMarked: false
+                            };
+                        });
+                    }
+                } else {
+                    growl.info('Some error occured, try after some time');
+                }
+            }, function(response) {
+                growl.info('Some error occured, try after some time');
+            });
+        }
+
+        function submitExam(isForced, status) {
+            status = status || 'completed';
+            var data = {
+                userId: studentInfo.userId,
+                testId: vm.unit.test.id,
+                answers: vm.userCurrentQuestion,
+                status: status,
+                timestamp: moment(),
+                selectedLang: vm.selectedLang
+            };
+            if (status == 'completed') {
+                vm.isExamEnded = true;
+            }
+            if (isForced || status == 'pending' || confirm('Are you sure, you want to submit(final) your answers')) {
+                $http.post(CommonInfo.getTestSeriesAppUrl() + '/exam/submit', data).then(function(response) {
+                    if (response && response.data) {
+                        if (status == 'completed') {
+                            growl.success('Your answers saved successfully');
+                        } else {
+                            if (status != 'pending') {
+                                if (submitAttempt <= 3) {
+                                    submitAttempt++;
+                                    submitExam(true);
+                                } else {
+                                    growl.info('Unable to submit due to some server error, please try after some time');
+                                }
+                            }
+                        }
+                    }
+                }, function(response) {
+                    if (status != 'pending') {
+                        if (submitAttempt <= 3) {
+                            submitAttempt++;
+                            submitExam(true);
+                        } else {
+                            growl.info('Unable to submit due to some server error, please try after some time');
+                        }
+                    }
+                });
+            }
         }
 
         function showCourseDemo(event) {

@@ -23,7 +23,14 @@
                                 <h4 class="course-block__title" ng-bind="course.title"></h4>
                                 <p class="course-block__description" ng-bind="course.shortDesc"></p>
                                 <p class="course-block__description">
-                                    <review-stars rating="course.courseRating" stars='5'></review-stars> (<span ng-bind="course.reviewCourse || 0"></span> Reviews)
+                                    <span>
+                                        <review-stars rating="course.courseRating" stars='5'></review-stars> (<span ng-bind="course.reviewCourse || 0"></span> Reviews)
+                                    </span>
+                                    <span class="pull-right">
+                                        <i class="fa fa-users" aria-hidden="true" ng-attr-title="{{course.totalStudents || 0}}"></i> 
+                                        <span ng-bind="course.totalStudents || 0"></span>
+                                    </span>
+                                </p>
                             </div>
                             <div class="course-block__author">
                                 <div class="course-block__author-image">
@@ -38,6 +45,10 @@
                                 <span>
                                     <i class="fa fa-clock-o" aria-hidden="true" ng-attr-title="{{course.duration}} {{course.durationParameter}}"></i> 
                                     <span ng-bind="course.duration"></span><span ng-bind="course.durationParameter"></span>
+                                </span>
+                                <span class="pull-right">
+                                    <span ng-if="course.courseFee" ng-bind="course.courseFee | INR"></span>
+                                    <span ng-if="!course.courseFee" ng-bind="'Free'"></span>
                                 </span>
                             </div>
                         </div>

@@ -6,7 +6,7 @@
         .controller('StudentSubscriptionsController', StudentSubscriptionsController);
 
     /** @ngInject */
-    function StudentSubscriptionsController(CommonInfo, $log, $http, $stateParams, growl, $state) {
+    function StudentSubscriptionsController(CommonInfo, $log, $http, $stateParams, growl, $state, _) {
         var vm = this;
         var studentInfo;
 
@@ -25,6 +25,9 @@
                     if (response && response.data) {
                         if (response.data.status == 1) {
                             vm.orders = response.data.data;
+                            _.forEach(vm.orders, function(value, key){
+                                value.orderDate = new Date(value.orderDate);
+                            });
                         } else if (response.data.status == 2) {
                             growl.info(response.data.message);
                         }

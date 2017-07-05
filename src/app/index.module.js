@@ -18,7 +18,8 @@
             'ADM-dateTimePicker',
             'jkAngularRatingStars',
             'textAngular',
-            'ui.carousel'
+            'ui.carousel',
+            'ngCsv'
         ]);
 
 })();

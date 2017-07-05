@@ -47,8 +47,8 @@
                     <md-button md-no-ink class="md-primary" ng-href="{{vm.unit.downloadLink.videoDownloadLink}}" download aria-label="Download Video" ng-if="vm.unit.downloadLink && vm.unit.downloadLink.videoDownloadLink">
                         <i class="fa fa-download" aria-hidden="true"></i> Download Video
                     </md-button>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <p ng-bind-html="vm.unit.videoHtml" ng-if="vm.unit.videoId" class="text-center embed-responsive-item"></p>
+                    <div class="embed-responsive embed-responsive-16by9" ng-if="vm.unit.videoId">
+                        <p ng-bind-html="vm.unit.videoHtml" class="text-center embed-responsive-item"></p>
                     </div>
                     <p ng-bind-html="vm.unit.unitDescription"></p>
                     <div ng-if="vm.unit.test">

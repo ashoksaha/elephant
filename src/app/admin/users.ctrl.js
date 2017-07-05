@@ -91,12 +91,23 @@
                 controller: DialogController
             });
 
-            function DialogController($scope, $mdDialog, CommonInfo, $http, $log) {
+            function DialogController($scope, $mdDialog, CommonInfo, $http, $log, Upload) {
                 $scope.closeDialog = function() {
                     $mdDialog.hide();
                 }
 
-                $scope.addTestmonials = function() {
+                $scope.addTestmonials = function(file) {
+                    if (!file || angular.isString(file)) {
+                        uploadTestmonials();
+                    } else {
+                        Upload.base64DataUrl(file).then(function(url) {
+                            vm.instructorTestmonial.image = url;
+                            uploadTestmonials();
+                        });
+                    }
+                }
+
+                function uploadTestmonials() {
                     $http.post(CommonInfo.getAppUrl() + "/createtestimonial", vm.instructorTestmonial).then(
                         function(response) {
                             if (response && response.data) {

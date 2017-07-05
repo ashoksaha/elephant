@@ -32,8 +32,8 @@
                 <p ng-bind="vm.course.description"></p>
                 <section>
                     <div class="container">
-                        <div class="row" ng-repeat="coursesRow in vm.coursesRows">
-                            <div class="col-lg-4 col-sm-6" ng-repeat="course in coursesRow">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6" ng-repeat="course in vm.allCourses">
                                 <md-card style="height:343px;" ng-click="vm.showCourseDetails(course)">
                                 <img ng-src="{{course.image}}" class="md-card-image" alt="Washed Out" style="height:195px;">
                                 <md-card-title>
@@ -48,8 +48,8 @@
                                     <p ng-bind="course.description | truncate:60"></p>
                                 </md-card-content> -->
                                 <md-card-actions layout="row" layout-align="end center">
-                                    <i class="fa fa-inr" aria-hidden="true" ng-if="course.courseFee"></i>&nbsp;
-                                    <span ng-bind="course.courseFee || 'Free'"></span>
+                                    <span ng-if="course.courseFee" ng-bind="course.courseFee | INR"></span>
+                                    <span ng-if="!course.courseFee" ng-bind="'Free'"></span>
                                 </md-card-actions>
                             </md-card>
                                 <!-- <a class="no-link-style no-link-color" href="javascript:void(0);" ng-click="vm.showCourseDetails(course)">

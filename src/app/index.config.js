@@ -7,7 +7,7 @@
         .config(config);
 
     /** @ngInject */
-    function config($logProvider, $httpProvider, ADMdtpProvider, growlProvider) {
+    function config($logProvider, $httpProvider, ADMdtpProvider, growlProvider, cfpLoadingBarProvider, blockUIConfig) {
         // Enable log
         $logProvider.debugEnabled(true);
 
@@ -20,13 +20,19 @@
             format: 'YYYY-MM-DD hh:mm',
             default: 'today'
         });
+
+        blockUIConfig.requestFilter = function(config) {
+            if (config.data && config.data.ignoreBlockUI) {
+                return false;
+            }
+        };
     }
 
     function flavidoInterceptor() {
         return {
             request: function(config) {
-                if(!config.url.match(/testSeries/)){
-                    config.headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+                if (!config.url.match(/testSeries/)) {
+                    config.headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
                 }
                 return config;
             }

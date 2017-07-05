@@ -15,10 +15,10 @@
     <li class="offscreen-nav-li" ui-sref="instructors">
         <a href="javascript:void(0);">Instructor</a>
     </li>
-    <li class="offscreen-nav-li" ui-sref="subscriptions">
+    <li class="offscreen-nav-li" ui-sref="subscriptions" ng-if="vm.isStudentLogedIn">
         <a href="javascript:void(0);">Subscriptions</a>
     </li>
-    <li class="offscreen-nav-li">
+    <li class="offscreen-nav-li" ng-if="vm.isStudentLogedIn">
         <a href="javascript:void(0);">Orders</a>
     </li>
     <li class="offscreen-nav-li" ui-sref="profile" ng-if="vm.isStudentLogedIn">

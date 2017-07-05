@@ -145,6 +145,10 @@
                 url: '/cancellationPolicy',
                 templateUrl: 'app/main/cancellationPolicy.html'
             })
+            .state('shippingPolicy', {
+                url: '/shippingPolicy',
+                templateUrl: 'app/main/shippingPolicy.html'
+            })
             .state('faq', {
                 url: '/faq',
                 templateUrl: 'app/main/faq.html'
@@ -268,15 +272,27 @@
                 url: '/dashboard',
                 templateUrl: 'app/admin/dashboard.html'
             })
-            .state('admin.studentList', {
-                url: '/students',
-                templateUrl: 'app/admin/students.html',
+            .state('admin.student', {
+                url: '/student',
+                templateUrl: 'app/admin/student.html',
                 controller: 'AdminStudentsController',
                 controllerAs: 'vm'
             })
-            .state('admin.addStudent', {
+            .state('admin.student.studentList', {
+                url: '/list',
+                templateUrl: 'app/admin/studentList.html'
+            })
+            .state('admin.student.addStudent', {
                 url: '/addStudent',
                 templateUrl: 'app/admin/addStudent.html'
+            })
+            .state('admin.student.editStudent', {
+                url: '/editStudent',
+                templateUrl: 'app/admin/addStudent.html'
+            })
+            .state('admin.student.loginLog', {
+                url: '/loginLog',
+                templateUrl: 'app/admin/studentLoginLog.html'
             })
             .state('admin.userList', {
                 url: '/users',

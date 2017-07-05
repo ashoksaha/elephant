@@ -25,7 +25,12 @@
                             </div>
                         </div>
                         <nav aria-label="Page navigation clearfix">
-                            <div class="pull-left" style="margin:9px 12px;">Total: <span ng-bind="vm.totalOrders"></span></div>
+                            <a style="margin:4px 2px;" class="btn btn-default btn-sm pull-left" href="javascript:void(0);" ng-click="vm.addOrder($event);">
+                                <i class="fa fa-plus-square"></i> Add Order
+                            </a>
+                            <a style="margin:4px 2px;" class="btn btn-default btn-sm pull-left" href="javascript:void(0);" ng-click="vm.exportOrders();">
+                                <i class="fa fa-plus-square"></i> Export
+                            </a>
                             <ul class="pagination pull-right" style="margin:4px 2px;">
                                 <li>
                                     <a href="javascript:void(0);" aria-label="First" ng-click="vm.getAllOrders(0)">
@@ -47,6 +52,7 @@
                                     </a>
                                 </li>
                             </ul>
+                            <div class="pull-right" style="margin:9px 12px;">Total: <span ng-bind="vm.totalOrders"></span></div>
                         </nav>
                         <div class="clearfix"></div>
                         <p id="emptyCoursesMessage" class="text-center" ng-if="(vm.activeCourses.length == 0 && (vm.activeSelectedCategory || vm.studentSearchText))">
@@ -56,28 +62,36 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
+                                        <th>#</th>
                                         <th>ID</th>
                                         <th>Course</th>
-                                        <th>Instructor</th>
-                                        <th>Sudent</th>
-                                        <th>Email</th>
-                                        <th>Mobile</th>
+                                        <th>Student</th>
                                         <th>Ordered On</th>
                                         <th>Amount</th>
+                                        <th>Payment</th>
                                         <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="order in vm.orderList">
-                                        <td ng-bind="order.id"></td>
-                                        <td ng-bind="order.courseName"></td>
-                                        <td ng-bind="order.fullname"></td>
-                                        <td ng-bind="order.userName"></td>
-                                        <td ng-bind="order.userEmail"></td>
-                                        <td ng-bind="order.mobile"></td>
-                                        <td ng-bind="order.orderDate"></td>
-                                        <td ng-bind="order.amount"></td>
+                                        <td ng-bind="$index + 1"></td>
+                                        <td ng-bind="order.txnID"></td>
+                                        <td>
+                                            <span ng-bind="order.courseName"></span>
+                                            <br />by <span ng-bind="order.fullname"></span>
+                                        </td>
+                                        <td>
+                                            <span ng-bind="order.userEmail"></span>
+                                            <br /> (<span ng-bind="order.userName"></span>) <b ng-bind="order.mobile"></b>
+                                        </td>
+                                        <td ng-bind="order.orderDate | date:'short'"></td>
+                                        <td ng-bind="order.amount | INR"></td>
+                                        <td ng-bind="order.pg"></td>
                                         <td ng-bind="order.status? 'Complete' : 'Pending'"></td>
+                                        <td>
+                                            <i class="fa fa fa-file-pdf-o" aria-hidden="true" ng-href="{{order.invoiceFile}}" download ng-if="order.invoiceFile" title="Download Invoice Pdf"></i>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

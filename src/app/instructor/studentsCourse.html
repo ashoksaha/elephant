@@ -2,8 +2,8 @@
     <h4 class="gr-subtitle">
         <span ng-bind="vm.selectedCourse.title"></span>
         <small class="label label-accent pull-right">
-            <i class="fa fa-inr" aria-hidden="true" ng-if="vm.selectedCourse.courseFee"></i> 
-            <span ng-bind="vm.selectedCourse.courseFee || 'Free'"></span>
+            <span ng-if="vm.selectedCourse.courseFee" ng-bind="vm.selectedCourse.courseFee | INR"></span>
+            <span ng-if="!vm.selectedCourse.courseFee" ng-bind="'Free'"></span>
         </small>
     </h4>
     <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 1">
@@ -32,6 +32,7 @@
                         <th>Mobile</th>
                         <th>Enroll Date</th>
                         <th>Amount</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,7 +43,13 @@
                         <td ng-bind="student.email"></td>
                         <td ng-bind="student.mobile"></td>
                         <td ng-bind="student.enrollDate"></td>
-                        <td ng-bind="student.amount || 'Free'"></td>
+                        <td>
+                            <span ng-if="student.amount" ng-bind="student.amount | INR"></span>
+                            <span ng-if="!student.amount" ng-bind="'Free'"></span>
+                        </td>
+                        <td>
+                            <a type="button" class="btn btn-xs btn-default" ng-href="{{student.invoiceFile}}" download ng-if="student.invoiceFile" role="button"><i class="fa fa fa-download fa-fw" aria-hidden="true"></i> Invoice</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

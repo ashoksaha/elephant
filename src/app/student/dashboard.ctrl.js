@@ -22,7 +22,7 @@
         function activate() {
             vm.studentInfo = CommonInfo.getInfo('studentInfo');
             getSubscribedCourses();
-            getAllCourses();
+            //getAllCourses();
         }
 
         function getSubscribedCourses() {
@@ -30,7 +30,8 @@
                 function(response) {
                     if (response && response.data) {
                         if (response.data.status == 1) {
-                            vm.subscribedCourses = response.data.data;
+                            vm.subscribedCourses = _.filter(response.data.data, { 'isSubscribed': 1 });
+                            vm.allCourses = _.filter(response.data.data, { 'isSubscribed': 0 });
                         } else if (response.data.status == 2) {
                             $log.log(response.data.message);
                         }
@@ -44,28 +45,28 @@
             );
         }
 
-        function getAllCourses() {
-            $http.post(CommonInfo.getAppUrl() + "/searchcourses", { status: 1 }).then(
-                function(response) {
-                    if (response && response.data) {
-                        if (response.data.status == 1) {
-                            vm.allCourses = response.data.data;
-                            _.forEach(vm.allCourses, function(value) {
-                                value.courseStartDate = moment(value.courseStartDate).format("YYYY-MM-DD hh:mm");
-                                value.courseEndDate = moment(value.courseEndDate).format("YYYY-MM-DD hh:mm");
-                            });
-                        } else if (response.data.status == 2) {
-                            $log.log(response.data.message);
-                        }
-                    } else {
-                        $log.log('There is some issue, please try after some time');
-                    }
-                },
-                function(response) {
-                    $log.log('There is some issue, please try after some time');
-                }
-            );
-        }
+        // function getAllCourses() {
+        //     $http.post(CommonInfo.getAppUrl() + "/searchcourses", { status: 1 }).then(
+        //         function(response) {
+        //             if (response && response.data) {
+        //                 if (response.data.status == 1) {
+        //                     vm.allCourses = response.data.data;
+        //                     _.forEach(vm.allCourses, function(value) {
+        //                         value.courseStartDate = moment(value.courseStartDate).format("YYYY-MM-DD hh:mm");
+        //                         value.courseEndDate = moment(value.courseEndDate).format("YYYY-MM-DD hh:mm");
+        //                     });
+        //                 } else if (response.data.status == 2) {
+        //                     $log.log(response.data.message);
+        //                 }
+        //             } else {
+        //                 $log.log('There is some issue, please try after some time');
+        //             }
+        //         },
+        //         function(response) {
+        //             $log.log('There is some issue, please try after some time');
+        //         }
+        //     );
+        // }
 
         function sendInvitation() {
             if (vm.invitationMail) {

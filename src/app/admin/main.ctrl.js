@@ -14,7 +14,6 @@
 
         vm.logout = logout;
         vm.createUser = createUser;
-        vm.createStudent = createStudent;
 
         activate();
 
@@ -88,29 +87,6 @@
                     growl.warning('There is some issue, please try after some time');
                 }
             );
-        }
-
-        function createStudent() {
-            if (vm.student.userName && vm.student.emailId && vm.student.mobile) {
-                vm.student.registerBy = vm.userInfo.id;
-                $http.post(CommonInfo.getAppUrl() + '/addstudentbyadmin', vm.student).then(
-                    function(response) {
-                        if (response && response.data) {
-                            if (response.data.status == 1) {
-                                growl.success('Student added successfuly');
-                            } else if (response.data.status == 2) {
-                                growl.info(response.data.message);
-                            }
-                        } else {
-                            growl.info('There is some issue, please try after some time');
-                        }
-                    },
-                    function(response) {
-                        $log.log(response);
-                        growl.warning('There is some issue, please try after some time');
-                    }
-                );
-            }
         }
     }
 })();

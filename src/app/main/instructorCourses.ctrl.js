@@ -53,7 +53,7 @@
                                 value.courseStartDate = moment(value.courseStartDate).format("YYYY-MM-DD hh:mm");
                                 value.courseEndDate = moment(value.courseEndDate).format("YYYY-MM-DD hh:mm");
                             });
-                            vm.coursesRows = _.chunk(vm.allCourses, 3);
+                            //vm.coursesRows = _.chunk(vm.allCourses, 3);
                         } else if (response.data.status == 2) {
                             $log.log(response.data.message);
                         }

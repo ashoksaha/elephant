@@ -9,18 +9,6 @@
                         <div class="col-sm-12 col-md-8 col-lg-9">
                             <h5 class="subhead" ng-if="vm.course.freeCourse">free course</h5>
                             <h1 ng-bind="vm.course.title"></h1>
-                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.freeCourse && !vm.course.isSubscribed" ng-click="vm.subscribeCourse($event);">
-                                Start Course For Free
-                            </a>
-                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.courseFee && !vm.course.isSubscribed" ng-click="vm.subscribeCourse($event);">
-                                Start Course For <i class="fa fa-inr" aria-hidden="true" style="margin-right:0.2rem;"></i><span ng-bind="vm.course.courseFee"></span>
-                            </a>
-                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.isSubscribed" ng-click="vm.showCourse(vm.course)">
-                                Start Course
-                            </a>
-                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.demoVideo" ng-click="vm.showCourseDemo($event)">
-                                <i class="fa fa-play" aria-hidden="true"></i> Demo Video
-                            </a>
                             <ul>
                                 <li class="icon-video">
                                     <i class="fa fa-play-circle" aria-hidden="true"></i>
@@ -43,6 +31,26 @@
                                 </li>
                                 <li class="icon-xp"><i class="fa fa-comments" aria-hidden="true"></i> <span ng-bind="vm.course.reviewCourse || '0'"></span>&nbsp;Reviews</li>
                             </ul>
+                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.freeCourse && !vm.course.isSubscribed" ng-click="vm.subscribeCourse($event);">
+                                Start Course For Free
+                            </a>
+                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.courseFee && !vm.course.isSubscribed" ng-click="vm.subscribeCourse($event);">
+                                Start Course For <span ng-bind="vm.course.courseFee | INR"></span>
+                            </a>
+                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.isSubscribed" ng-click="vm.showCourse(vm.course)">
+                                Start Course
+                            </a>
+                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.demoVideo" ng-click="vm.showCourseDemo($event)">
+                                <i class="fa fa-play" aria-hidden="true"></i> Demo Video
+                            </a>
+                            <div>
+                                <p>Choose Payment Option</p> {{vm.paymentOption}}
+                                <md-radio-group ng-model="vm.paymentOption" ng-Change="" md-no-ink="false">
+                                    <md-radio-button value="internetBanking"> Internet Banking </md-radio-button>
+                                    <md-radio-button value="card" ng-click="vm.getInstamojoCall();"> Debit/Credit Card </md-radio-button>
+                                    <md-radio-button value="mobikwik" ng-click="vm.getRazorCall();"> Mobikwik </md-radio-button>
+                                </md-radio-group>
+                            </div>
                         </div>
                         <div class="hidden-xs hidden-sm col-md-4 col-lg-3">
                             <div class="header-image" ng-if="vm.course.image">
@@ -79,25 +87,6 @@
                         </div>
                         <a class="btn btn-secondary" href="javascript:void(0);" ng-click="vm.showInstructorCourses();">View all courses</a>
                         <hr />
-                        <p><b>Testmonials</b></p>
-                        <ui-carousel slides="vm.instrunctorTestmonials" slides-to-show="1" slides-to-scroll="1" initial-slide="0" autoplay="true" autoplay-speed="1000" dots="true">
-                            <carousel-item>
-                                <a class="stories--quote" href="javascript:void(0);">
-                                    <!-- <section class="col-sm-12 col-md-4"> -->
-                                        <div class="quote card-circle-top ">
-                                            <img class="card-circle-top-image" width="120" height="120" src="{{item.image}}" alt="Image05" />
-                                            <div class="quote__text" style="height:130px">
-                                                <p ng-bind="item.testimonial">“It&#39;s the best tool for beginners to learn R/data analysis that I&#39;ve come across.”</p>
-                                            </div>
-                                            <div class="quote__person" style="height: 115px">
-                                                <p><strong ng-bind="item.testimonials_by">Anas El Turabi</strong> <i ng-bind="item.by_organization">Harvard PhD Candidate in Health Policy</i></p>
-                                            </div>
-                                        </div>
-                                    <!-- </section> -->
-                                </a>
-                            </carousel-item>
-                        </ui-carousel>
-                        <hr />
                         <p><b>Request A Callback</b></p>
                         <form class="new_user ng-pristine ng-valid" name="callbackRequest" method="post">
                             <div class="form-group">
@@ -111,6 +100,23 @@
                             </div>
                         </form>
                         <a class="btn btn-primary" href="javascript:void(0);" ng-click="vm.sendCallbackRequest();">Send Request</a>
+                        <hr ng-if="vm.instrunctorTestmonials.length > 0" />
+                        <p ng-if="vm.instrunctorTestmonials.length > 0"><b>Testmonials</b></p>
+                        <ui-carousel slides="vm.instrunctorTestmonials" autoplay="true" autoplay-speed="1000" dots="true">
+                            <carousel-item>
+                                <a class="stories--quote" href="javascript:void(0);">
+                                    <div class="quote card-circle-top ">
+                                        <img class="card-circle-top-image" width="120" height="120" src="{{item.image}}" alt="Image05" />
+                                        <div class="quote__text" style="height:130px">
+                                            <p ng-bind="item.testimonial">“It&#39;s the best tool for beginners to learn R/data analysis that I&#39;ve come across.”</p>
+                                        </div>
+                                        <div class="quote__person" style="height: 115px">
+                                            <p><strong ng-bind="item.testimonials_by">Anas El Turabi</strong> <i ng-bind="item.by_organization">Harvard PhD Candidate in Health Policy</i></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </carousel-item>
+                        </ui-carousel>
                     </div>
                     <div class="col-sm-9 col-sm-pull-3 vertical-nav-border">
                         <h3>Course Description</h3>
@@ -123,12 +129,15 @@
                         </div>
                         <div class="show-course__chapter">
                             <div class="show-course__chapter-header" ng-repeat="unit in vm.course.units">
-                                <h4 class="show-course__chapter-title" ng-click="vm.course.isSubscribed && vm.showCourseUnit(unit)">
+                                <h4 class="show-course__chapter-title" ng-click="vm.showCourseUnit($event, unit)">
                                     <span class="chapter-number" ng-bind="$index + 1"></span>
                                     <span class="exercise-icon ">
                                         <i class="fa" ng-class="unit.icon"></i>
                                     </span>
                                     <span class="show-course__exercise__title" ng-bind="unit.name"></span>
+                                    <span ng-if="unit.freeUnit">
+                                        <span class="label label-success">Free</span>
+                                    </span>
                                 </h4>
                                 <p ng-bind="unit.description"></p>
                             </div>

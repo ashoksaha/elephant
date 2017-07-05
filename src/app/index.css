@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "karmina";
+  src: url("/assets/fonts/Karmina Regular.otf");
+  font-weight: normal;
+  font-style: normal; }
+
 ul.tagit {
     padding: 1px 5px;
     overflow: auto;
@@ -75,7 +81,7 @@ ul.tagit input[type="text"] {
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 
 html {
-    font-family: sans-serif;
+    font-family: "karmina", sans-serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%
 }
@@ -200,7 +206,7 @@ code,
 kbd,
 pre,
 samp {
-    font-family: monospace, monospace;
+    font-family: "karmina", monospace;
     font-size: 1em
 }
 
@@ -4382,7 +4388,8 @@ ol.inline li:last-child:after {
 }
 
 .nav--resp-menu-toggle.active {
-    z-index: 1001
+    z-index: 1001;
+    right: 20rem;
 }
 
 .nav--resp-menu-toggle.active a i {
@@ -4927,7 +4934,7 @@ ul.tagit input[type="text"] {
 }
 
 ul.tagit {
-    font-family: "karmina-sans", sans-serif;
+    font-family: "karmina", sans-serif;
     background-color: #ebf4f7;
     border: 1px solid #ebf4f7;
     border-radius: 5px;
@@ -4996,7 +5003,7 @@ ul.tagit:focus {
 .ui-widget select,
 .ui-widget textarea,
 .ui-widget button {
-    font-family: "karmina-sans", sans-serif
+    font-family: "karmina", sans-serif
 }
 
 .invite__block a {
@@ -5161,7 +5168,7 @@ ul.tagit:focus {
     position: absolute;
     z-index: 1070;
     display: block;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "karmina", Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: normal;
     letter-spacing: normal;
@@ -5548,7 +5555,7 @@ html {
 body {
     font-size: 1rem;
     line-height: 1.5;
-    font-family: "karmina-sans", sans-serif;
+    font-family: "karmina", sans-serif;
     color: #3a3a3a;
     font-weight: 200
 }
@@ -5617,7 +5624,7 @@ h5 {
 }
 
 .text-mono {
-    font-family: monospace
+    font-family: "karmina", monospace
 }
 
 .text-danger {
@@ -5748,7 +5755,7 @@ mark {
 
 code,
 pre {
-    font-family: monospace;
+    font-family: "karmina", monospace;
     font-size: 0.9rem
 }
 
@@ -6997,7 +7004,7 @@ dt {
 .show-course__header .btn,
 .show-course__header .admin .btn-change-state,
 .admin .show-course__header .btn-change-state {
-    margin: 0 2rem 2rem 0
+    margin: 2rem 2rem 0 0
 }
 
 .show-course__header .subhead {
@@ -12000,14 +12007,14 @@ dt {
 }
 
 .cybermonday__navbar .nav {
-    font-family: 'Source Code Pro', monospace;
+    font-family: "karmina", monospace;
     font-size: 0.8rem
 }
 
 .cybermonday__header {
     text-align: center;
     padding: 2rem 0;
-    font-family: 'Source Code Pro', monospace;
+    font-family: "karmina", monospace;
     background-color: #3a3a3a;
     color: #ffffff
 }
@@ -12030,7 +12037,7 @@ dt {
     padding: 15px;
     border: 3px solid #33aacc;
     display: inline-block;
-    font-family: monospace;
+    font-family: "karmina", monospace;
     position: relative
 }
 
@@ -12073,7 +12080,7 @@ dt {
 .cybermonday__regular span {
     font-weight: bold;
     font-size: 2rem;
-    font-family: monospace;
+    font-family: "karmina", monospace;
     margin-top: 0.5rem;
     display: block
 }
@@ -12091,7 +12098,7 @@ dt {
 
 .cybermonday__special-cta .price {
     font-size: 4rem;
-    font-family: monospace;
+    font-family: "karmina", monospace;
     font-weight: bold;
     margin-bottom: 1rem
 }
@@ -12113,7 +12120,7 @@ dt {
 
 .cybermonday .pricing__value-proposition,
 .cybermonday .pricing__quotes {
-    font-family: 'Source Code Pro', monospace;
+    font-family: "karmina", monospace;
     font-size: 0.8rem;
     font-weight: normal
 }
@@ -12135,13 +12142,13 @@ dt {
 }
 
 .cybermonday .footer-links-list {
-    font-family: 'Source Code Pro', monospace;
+    font-family: "karmina", monospace;
     font-size: 0.8rem;
     font-weight: normal
 }
 
 .cybermonday__banner {
-    font-family: monospace;
+    font-family: "karmina", monospace;
     font-size: 0.9rem
 }
 
@@ -12156,7 +12163,7 @@ dt {
 .newyear2017__header .counter {
     color: #ffffff;
     font-size: 3.4375rem;
-    font-family: 'Source Code Pro', monospace;
+    font-family: "karmina", monospace;
     font-weight: 100;
     text-align: center;
     font-weight: normal;
@@ -12173,7 +12180,7 @@ dt {
     border: 3px solid #cda247;
     display: inline-block;
     background: rgba(22, 22, 22, 0.7);
-    font-family: monospace;
+    font-family: "karmina", monospace;
     position: relative
 }
 
@@ -12301,7 +12308,7 @@ dt {
 
 .newyear2017__banner {
     font-size: 0.9rem;
-    font-family: "Source Code Pro", monospace
+    font-family: "karmina", monospace
 }
 
 .newyear2017__promobox {
@@ -12684,4 +12691,18 @@ dt {
 
 .test-answer-options .ta-bind {
     min-height: 57px;
+}
+
+.autocomplete-custom-template li {
+  border-bottom: 1px solid #ccc;
+  height: auto;
+  white-space: normal;
+}
+.autocomplete-custom-template li:last-child {
+  border-bottom-width: 0;
+}
+.autocomplete-custom-template .item-title,
+.autocomplete-custom-template .item-metadata {
+  display: block;
+  line-height: 2;
 }

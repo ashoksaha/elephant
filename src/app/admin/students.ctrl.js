@@ -6,20 +6,25 @@
         .controller('AdminStudentsController', AdminStudentsController);
 
     /** @ngInject */
-    function AdminStudentsController(CommonInfo, $http, growl, $log, _, $scope) {
+    function AdminStudentsController(CommonInfo, $http, growl, $log, _, $scope, $state) {
         var vm = this;
 
         vm.isCollapsed = true;
         vm.studentListTab = 1;
 
-        vm.searchStudent = searchStudent;
         vm.getAllStudents = getAllStudents;
         vm.isStudentSelected = isStudentSelected;
         vm.addToCourse = addToCourse;
 
+        vm.createStudent = createStudent;
+        vm.updateStudent = updateStudent;
+        vm.editStudent = editStudent;
+        vm.showLoginLog = showLoginLog;
+
         activate();
 
         function activate() {
+            vm.userInfo = CommonInfo.getInfo('userInfo');
             getAllStudents(0);
             getAllCourses();
         }
@@ -98,8 +103,89 @@
             }
         }
 
-        function searchStudent() {
+        function createStudent() {
+            if (vm.student.userName && vm.student.emailId && vm.student.mobile) {
+                if (vm.student.id)
+                    vm.student.updatedBy = vm.userInfo.id;
+                else
+                    vm.student.registerBy = vm.userInfo.id;
+                $http.post(CommonInfo.getAppUrl() + '/addstudentbyadmin', vm.student).then(
+                    function(response) {
+                        if (response && response.data) {
+                            if (response.data.status == 1) {
+                                growl.success('Student added successfuly');
+                            } else if (response.data.status == 2) {
+                                growl.info(response.data.message);
+                            }
+                        } else {
+                            growl.info('There is some issue, please try after some time');
+                        }
+                    },
+                    function(response) {
+                        $log.log(response);
+                        growl.warning('There is some issue, please try after some time');
+                    }
+                );
+            }
+        }
 
+        function updateStudent() {
+            if (vm.student.userName && vm.student.email && vm.student.mobile) {
+                vm.student.updatedBy = vm.userInfo.id;
+                vm.student.studentId = vm.student.id;
+                $http.post(CommonInfo.getAppUrl() + '/updatestudentbyadmin', vm.student).then(
+                    function(response) {
+                        if (response && response.data) {
+                            if (response.data.status == 1) {
+                                growl.success('Student updated successfuly');
+                                $state.go('admin.student.studentList')
+                            } else if (response.data.status == 2) {
+                                growl.info(response.data.message);
+                            }
+                        } else {
+                            growl.info('There is some issue, please try after some time');
+                        }
+                    },
+                    function(response) {
+                        $log.log(response);
+                        growl.warning('There is some issue, please try after some time');
+                    }
+                );
+            }
+        }
+
+        function editStudent(student) {
+            vm.student = student;
+            $state.go('admin.student.editStudent');
+        }
+
+        function showLoginLog(student) {
+            var data = {};
+            vm.studentLoginLog = [];
+            vm.allStudentLoginLog = null;
+            if(student)
+                data.studentId = student.id;
+            $http.post(CommonInfo.getAppUrl() + '/getstudentloginlogs', data).then(
+                function(response) {
+                    if (response && response.data) {
+                        if (response.data.status == 1) {
+                            if(student)
+                                vm.studentLoginLog = response.data.data;
+                            else
+                                vm.allStudentLoginLog = _.groupBy(response.data.data, 'studentId');
+                            $state.go('admin.student.loginLog')
+                        } else if (response.data.status == 2) {
+                            growl.info(response.data.message);
+                        }
+                    } else {
+                        growl.info('There is some issue, please try after some time');
+                    }
+                },
+                function(response) {
+                    $log.log(response);
+                    growl.warning('There is some issue, please try after some time');
+                }
+            );
         }
     }
 })();

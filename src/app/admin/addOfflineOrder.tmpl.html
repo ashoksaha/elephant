@@ -1,0 +1,62 @@
+<md-dialog aria-label="List dialog">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Add Offline Order</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="closeDialog()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content style="min-width:800px;">
+        <div class="md-dialog-content">
+            <div layout-gt-sm="row">
+                <!-- <md-input-container flex-gt-sm> -->
+                <md-autocomplete flex md-input-name="autocompleteField" md-input-maxlength="18" md-selected-item="order.selectedStudent" md-search-text="searchStudentText" md-items="item in querySearchStudent(searchStudentText)" md-item-text="item.userName" md-require-match md-floating-label="Student" md-menu-class="autocomplete-custom-template">
+                    <md-item-template>
+                        <span class="item-title">
+                            <span md-highlight-text="searchStudentText"> {{item.userName}} </span>
+                        </span>
+                        <span class="item-metadata">
+                            <span>
+                                <strong>{{item.email}}</strong>
+                            </span>
+                        </span>
+                    </md-item-template>
+                </md-autocomplete>
+                <!-- </md-input-container> -->
+                <div flex="5" hide-xs hide-sm>
+                    <!-- Spacer //-->
+                </div>
+                <!-- <md-input-container flex-gt-sm> -->
+                <md-autocomplete flex md-input-name="autocompleteField" md-input-maxlength="18" md-selected-item="order.selectedCourse" md-search-text="searchCourseText" md-items="item in querySearchCourse(searchCourseText)" md-item-text="item.title" md-require-match md-floating-label="Course" md-menu-class="autocomplete-custom-template">
+                    <md-item-template>
+                        <span class="item-title">
+                            <span md-highlight-text="searchCourseText"> {{item.title}} </span>
+                        </span>
+                        <span class="item-metadata">
+                            <span>
+                                <strong>{{item.instructorFullName}}</strong>
+                            </span>
+                        </span>
+                    </md-item-template>
+                </md-autocomplete>
+                <!-- </md-input-container> -->
+            </div>
+            <md-input-container class="md-block">
+                <label>Amount</label>
+                <input type="number" ng-model="order.selectedCourse.courseFee" />
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Remark</label>
+                <textarea required ng-model="order.remark" rows="3"></textarea>
+            </md-input-container>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button ng-click="addOfflineOrder()" class="md-primary">Save
+        </md-button>
+        <md-button ng-click="closeDialog()" class="md-primary">Close
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

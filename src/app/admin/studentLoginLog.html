@@ -1,0 +1,113 @@
+<div>
+    <h4 class="gr-subtitle"> 
+           Login Log
+        </h4>
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-sm-12">
+            <!--                          -->
+            <div class="groups__courses">
+                <div class="groups__courses-overview groups__border">
+                    <p class="text-center" ng-if="(vm.activeCourses.length == 0 && (vm.activeSelectedCategory || vm.studentSearchText))">
+                        <i>Seems like we don't have any Log for this student.</i>
+                    </p>
+                    <div class="table-responsive" style="margin:2px;">
+                        <table class="table table-hover" ng-if="vm.studentLoginLog.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th></th>
+                                    <th>OS</th>
+                                    <th>OS Version</th>
+                                    <th>Browser (Version)</th>
+                                    <th>IP</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="log in vm.studentLoginLog">
+                                    <td ng-bind="$index + 1"></td>
+                                    <td>
+                                        <i ng-if="log.device.toLowerCase() == 'desktop'" class="fa fa-desktop" aria-hidden="true"></i>
+                                        <i ng-if="log.device.toLowerCase() == 'mobile'" class="fa fa-mobile fa-lg" aria-hidden="true"></i>
+                                    </td>
+                                    <td>
+                                        <span ng-bind="log.platform"></span>
+                                    </td>
+                                    <td ng-bind="log.platformVersion"></td>
+                                    <td>
+                                        <span ng-bind="log.browser"></span> (<span ng-bind="log.browserVersion"></span>)
+                                    </td>
+                                    <td ng-bind="log.ipAddress"></td>
+                                    <td ng-style="{'color': log.loginTime ? 'green' : 'red'}">
+                                        <i ng-if="log.loginTime" class="fa fa-sign-in" aria-hidden="true"></i>
+                                        <i ng-if="log.logoutTime" class="fa fa-sign-out" aria-hidden="true"></i>
+                                        <span ng-if="log.loginTime" ng-bind="log.loginTime"></span>
+                                        <span ng-if="log.logoutTime" ng-bind="log.logoutTime"></span>
+                                        <i class="fa fa-circle" aria-hidden="true" ng-style="{'color': log.loginTime ? 'green' : 'red'}"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-hover" ng-if="vm.allStudentLoginLog">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th colspan="7">Student Id</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat-start="(key, value) in vm.allStudentLoginLog">
+                                    <td ng-bind="$index + 1"></td>
+                                    <td ng-bind="key"></td>
+                                </tr>
+                                <tr ng-repeat-end>
+                                    <td></td>
+                                    <td colspan="7">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th></th>
+                                                    <th>OS</th>
+                                                    <th>OS Version</th>
+                                                    <th>Browser (Version)</th>
+                                                    <th>IP</th>
+                                                    <th>Time</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="log in value">
+                                                    <td ng-bind="$index + 1"></td>
+                                                    <td>
+                                                        <i ng-if="log.device.toLowerCase() == 'desktop'" class="fa fa-desktop" aria-hidden="true"></i>
+                                                        <i ng-if="log.device.toLowerCase() == 'mobile'" class="fa fa-mobile fa-lg" aria-hidden="true"></i>
+                                                    </td>
+                                                    <td>
+                                                        <span ng-bind="log.platform"></span>
+                                                    </td>
+                                                    <td ng-bind="log.platformVersion"></td>
+                                                    <td>
+                                                        <span ng-bind="log.browser"></span> (<span ng-bind="log.browserVersion"></span>)
+                                                    </td>
+                                                    <td ng-bind="log.ipAddress"></td>
+                                                    <td ng-style="{'color': log.loginTime ? 'green' : 'red'}">
+                                                        <i ng-if="log.loginTime" class="fa fa-sign-in" aria-hidden="true"></i>
+                                                        <i ng-if="log.logoutTime" class="fa fa-sign-out" aria-hidden="true"></i>
+                                                        <span ng-if="log.loginTime" ng-bind="log.loginTime"></span>
+                                                        <span ng-if="log.logoutTime" ng-bind="log.logoutTime"></span>
+                                                        <i class="fa fa-circle" aria-hidden="true" ng-style="{'color': log.loginTime ? 'green' : 'red'}"></i>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
