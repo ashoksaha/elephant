@@ -6,6 +6,7 @@
         .factory('CommonInfo', CommonInfo)
         .directive('whenScrollEnds', whenScrollEnds)
         .directive('reviewStars', reviewStars)
+        .directive('fldSlider', fldSlider)
         .filter('htmlToPlaintext', htmlToPlaintext)
         .filter('charCodeToChar', charCodeToChar)
         .filter('truncate', truncate)
@@ -89,6 +90,28 @@
             link: function(scope, element, attrs) {
                 scope.starLength = _.fill(Array(parseInt(attrs.stars)), '*');
                 //scope.rating = parseFloat(attrs.rating);
+            }
+        };
+    }
+
+    /** @ngInject */
+    function fldSlider(_) {
+        return {
+            restrict: "E",
+            scope: {
+                step: '=',
+                data: '@',
+                slides: '='
+            },
+            transclude: true,
+            template: function(elem) {
+                return '<div ng-repeat="item in data track by $index" ng-transclude></div>';
+            },
+            link: function(scope, element, attrs) {
+                //scope.starLength = _.fill(Array(parseInt(attrs.stars)), '*');
+            },
+            controller: function($scope, $element) {
+                $scope.item;
             }
         };
     }

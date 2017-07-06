@@ -1,0 +1,36 @@
+<div class="groups__courses">
+    <h4 class="gr-subtitle">Home Page
+        <a style="margin:0px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" ng-click="vm.addCategories();">
+        <i class="fa fa-plus-square"></i> Add New
+    </a>
+    </h4>
+    <hr />
+    <div class="groups__courses-overview ">
+        <form class="edit_user" id="edit_password_727839" method="post">
+            <p ng-if="vm.homeCategories.length == 0" class="text-center">No home page categories found</p>
+            <md-list ng-if="vm.homeCategories.length > 0">
+                <md-subheader class="md-no-sticky">Categories</md-subheader>
+                <md-list-item class="secondary-button-padding" ng-click="$event.stopPropagation();" ng-repeat="category in vm.homeCategories | filter: {'parentId': 0 } | orderBy: 'position'">
+                    <md-checkbox ng-model="category.status" ng-true-value="1" ng-false-value="0"></md-checkbox>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Name</label>
+                        <input ng-model="category.name" />
+                    </md-input-container>
+                    <md-button class="md-secondary" ui-sref="admin.settings.subCategories" ng-click="vm.parentId = category.id">
+                        View Child
+                    </md-button>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Position</label>
+                        <input ng-model="category.position" type="number" />
+                    </md-input-container>
+                    <!-- <md-divider ng-if="!$last"></md-divider> -->
+                </md-list-item>
+            </md-list>
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-5">
+                    <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.updateCategories()" data-disable-with="Save Changes">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

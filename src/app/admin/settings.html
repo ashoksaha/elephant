@@ -1,0 +1,25 @@
+<div ng-cloak>
+    <div class="container groups__container">
+        <h2> Settings </h2>
+        <hr>
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-sm-3 col-sm-push-9">
+                <div class="side-nav groups__sidebar">
+                    <ul>
+                        <li ng-class="{'active' : vm.settingTab == 1}" ng-click="vm.settingTab = 1;" ui-sref="admin.settings.homePage">
+                            <a href="javascript:void(0);">Home Page</a>
+                        </li>
+                        <li ng-class="{'active' : vm.settingTab == 2}" ng-click="vm.settingTab = 2;">
+                            <a href="javascript:void(0);">Categories</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-9 col-sm-pull-3 vertical-nav-border">
+                <div ui-view >
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

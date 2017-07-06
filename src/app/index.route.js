@@ -355,6 +355,20 @@
             .state('admin.lms.setting', {
                 url: '/setting',
                 templateUrl: 'app/admin/lmsSetting.html'
+            })
+            .state('admin.settings', {
+                url: '/settings',
+                templateUrl: 'app/admin/settings.html',
+                controller: 'AdminSettingsController',
+                controllerAs: 'vm'
+            })
+            .state('admin.settings.homePage', {
+                url: '/homePage',
+                templateUrl: 'app/admin/homePageSetting.html'
+            })
+            .state('admin.settings.subCategories', {
+                url: '/subLevel',
+                templateUrl: 'app/admin/homePageSubcategories.html'
             });
 
         $urlRouterProvider.otherwise('/');
