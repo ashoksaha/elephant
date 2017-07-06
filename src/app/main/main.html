@@ -85,10 +85,10 @@
                         <img ng-src="{{item.src}}" alt="" width="129" height="83" />
                     </a> -->
                 </fld-slider>
-                <div ng-repeat="cate in vm.homeCategories | filter: {'parentId': 0 } | orderBy: 'position'">
+                <div ng-repeat="cate in vm.homeCategories | filter: {'parentId': 0 } | orderBy: 'position'"  ng-init="cate.slidStart = 0">
                 <h4 ng-bind="cate.name">Optional Notes (IAS,PCS & Judicial Services)</h4>
                 <div class="row">
-                    <div class="col-md-2" ng-repeat="item in vm.homeCategories | filter: {'parentId': cate.id } | limitTo : 6: vm.optionalNotesStart | orderBy: 'position'">
+                    <div class="col-md-2" ng-repeat="item in vm.homeCategories | filter: {'parentId': cate.id } | limitTo : 6: vm.optionalNotesStart | orderBy: 'position' as resultList">
                         <a href="javascript:void(0);">
                             <a ng-href="{{item.imageHref}}" target="_blank">
                                 <img ng-src="{{item.imageLink}}" alt="" width="129" height="83" />
@@ -100,9 +100,9 @@
                     </div>
                     <div class="col-md-12">
                         <div class="btn-group btn-group-sm" role="group" aria-label="view category" style="margin:2px auto;">
-                            <button type="button" class="btn btn-default" ng-disabled="vm.optionalNotesStart == 0" ng-click="vm.optionalNotesStart = vm.optionalNotesStart - 2;">
+                            <button type="button" class="btn btn-default" ng-disabled="cate.slidStart == 0" ng-click="cate.slidStart = cate.slidStart - 2;">
                                 << </button>
-                                    <button type="button" class="btn btn-default" ng-disabled="vm.optionalNotesStart + 6 > vm.optionalNotes.length" ng-click="vm.optionalNotesStart = vm.optionalNotesStart + 2;">
+                                    <button type="button" class="btn btn-default" ng-disabled="cate.slidStart + 6 > resultList.length" ng-click="cate.slidStart = cate.slidStart + 2;">
                                         >>
                                     </button>
                         </div>
