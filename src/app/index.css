@@ -12729,3 +12729,7 @@ h3.slider_heading {
     margin-top: 4%;
     margin-bottom: 2%;
 }
+
+.cat-row:first-child {
+    margin-top: 0;
+}
