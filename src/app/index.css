@@ -12724,3 +12724,8 @@ h3.slider_heading {
     font-size: 24px;
     letter-spacing: 1px;
 }
+
+.cat-row {
+    margin-top: 4%;
+    margin-bottom: 2%;
+}

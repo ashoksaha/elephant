@@ -90,7 +90,7 @@
                         </div>
                     </div>
                 </fld-slider> -->
-                <div class="row" style="padding: 12px auto;" ng-repeat="cate in vm.homeCategories | orderBy: 'position'" ng-init="cate.slidStart = 0;">
+                <div class="row cat-row" ng-repeat="cate in vm.homeCategories | orderBy: 'position'" ng-init="cate.slidStart = 0;">
                     <!-- <h4 ng-bind="cate.name">Optional Notes (IAS,PCS & Judicial Services)</h4>
                     <div class="row">
                         <div class="col-md-2" ng-repeat="item in vm.homeCategories | filter: {'parentId': cate.id } | limitTo : 6: cate.slidStart | orderBy: 'position'">
@@ -130,7 +130,7 @@
                                 <div class="col-item">
                                     <div class="photo">
                                         <a ng-href="{{item.imageHref}}" target="_blank">
-                                            <img ng-src="{{item.imageLink}}" class="img-responsive" alt="a">
+                                            <img ng-src="{{item.imageLink}}" class="img-responsive" alt="{{item.name}}" title="{{item.name}}">
                                         </a>
                                     </div>
                                 </div>
