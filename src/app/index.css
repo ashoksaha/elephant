@@ -12715,3 +12715,12 @@ dt {
     display: block;
     line-height: 2;
 }
+
+h3.slider_heading {
+    color: #2e2e2e;
+    text-align: left;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: 1px;
+}

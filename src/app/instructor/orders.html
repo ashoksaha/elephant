@@ -1,0 +1,92 @@
+<div ng-cloak>
+    <div class="container groups__container">
+        <h2> Orders </h2>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="groups__courses">
+                    <div class="groups__courses-overview groups__border">
+                        <div class="groups__courses-filters clearfix">
+                            <div class="search">
+                                <i class="fa fa-search search-icon" aria-hidden="true"></i>
+                                <input type="text" name="search" placeholder="Search" ng-model="vm.studentSearchText" ng-keydown="($event.keyCode === 13 || vm.studentSearchText == '') && vm.getAllOrders(0)">
+                            </div>
+                        </div>
+                        <nav aria-label="Page navigation clearfix">
+                            <a style="margin:4px 2px;" class="btn btn-default btn-sm pull-left" href="javascript:void(0);" ng-click="vm.exportOrders();">
+                                <i class="fa fa-plus-square"></i> Export
+                            </a>
+                            <ul class="pagination pull-right" style="margin:4px 2px;">
+                                <li>
+                                    <a href="javascript:void(0);" aria-label="First" ng-click="vm.getAllOrders(0)">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li ng-class="{'disabled': vm.currentPage == 0}">
+                                    <a href="javascript:void(0);" ng-click="vm.currentPage != 1 && vm.getAllOrders(vm.currentPage - 1)">Previous</a>
+                                </li>
+                                <li class="active">
+                                    <a href="javascript:void(0);" ng-bind="vm.currentPage + 1"></a>
+                                </li>
+                                <li ng-class="{'disabled': vm.currentPage == vm.lastPage}">
+                                    <a href="javascript:void(0);" ng-click="vm.currentPage != vm.lastPage && vm.getAllOrders(vm.currentPage + 1)">Next</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" aria-label="Last" ng-click="vm.getAllOrders(vm.lastPage)">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="pull-right" style="margin:9px 12px;">Total: <span ng-bind="vm.totalOrders"></span></div>
+                        </nav>
+                        <div class="clearfix"></div>
+                        <p id="emptyCoursesMessage" class="text-center" ng-if="(vm.activeCourses.length == 0 && (vm.activeSelectedCategory || vm.studentSearchText))">
+                            <i>Seems like we don't have any courses for this. <a id="resetCoursesFilter" href="javascript:void(0);">Reset</a> your search.</i>
+                        </p>
+                        <div class="table-responsive" style="margin:2px;">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th></th>
+                                        <th>ID</th>
+                                        <th>Course</th>
+                                        <th>Student</th>
+                                        <th>Ordered On</th>
+                                        <th>Amount</th>
+                                        <th>Payment</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="order in vm.orderList">
+                                        <td ng-bind="$index + 1">
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-dot-circle-o" aria-hidden="true" ng-style="{'color': order.status ? 'green' : 'red'}"></i>
+                                        </td>
+                                        <td>
+                                            <span ng-bind="order.txnID"></span>
+                                        </td>
+                                        <td>
+                                            <span ng-bind="order.courseName"></span>
+                                        </td>
+                                        <td>
+                                            <span ng-bind="order.userEmail"></span>
+                                            <br /> (<span ng-bind="order.userName"></span>) <b ng-bind="order.mobile"></b>
+                                        </td>
+                                        <td ng-bind="order.orderDate | date:'short'"></td>
+                                        <td ng-bind="order.amount | INR"></td>
+                                        <td ng-bind="order.pg"></td>
+                                        <td>
+                                            <i class="fa fa fa-file-pdf-o" aria-hidden="true" ng-href="{{order.invoiceFile}}" download ng-if="order.invoiceFile" title="Download Invoice Pdf"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

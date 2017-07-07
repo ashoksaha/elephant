@@ -184,6 +184,12 @@
                 controller: 'InstructorResetPasswordController',
                 controllerAs: 'vm'
             })
+            .state('instructor.orders', {
+                url: '/orders',
+                templateUrl: 'app/instructor/orders.html',
+                controller: 'InstructorOrderListController',
+                controllerAs: 'vm'
+            })
             .state('instructor.lms', {
                 url: '/lms',
                 abstract: true,

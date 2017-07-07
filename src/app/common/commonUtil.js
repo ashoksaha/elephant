@@ -100,14 +100,17 @@
             restrict: "E",
             scope: {
                 step: '=',
-                data: '@',
-                slides: '='
+                slidelist: '=',
+                slides: '=',
+                index: '='
             },
             transclude: true,
             template: function(elem) {
-                return '<div ng-repeat="item in data track by $index" ng-transclude></div>';
+                return '<div ng-transclude></div><span ng-bind="slidelist.length"></span><div class="row"><div class="col-md-12"><div class="controls pull-right hidden-xs"><a class="left fa fa-chevron-left btn btn-primary" ng-disabled="index == 0" ng-click="index = index - step;"></a><a class="right fa fa-chevron-right btn btn-primary" ng-disabled="index + slides > data.length" ng-click="index = index + step;"></a></div></div></div>';
             },
             link: function(scope, element, attrs) {
+                attrs.index = 0;
+                console.log(scope.slidelist);
                 //scope.starLength = _.fill(Array(parseInt(attrs.stars)), '*');
             },
             controller: function($scope, $element) {
