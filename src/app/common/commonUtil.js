@@ -4,6 +4,7 @@
     angular
         .module('flavido')
         .factory('CommonInfo', CommonInfo)
+        .factory('RouterTracker', RouterTracker)
         .directive('whenScrollEnds', whenScrollEnds)
         .directive('reviewStars', reviewStars)
         .directive('fldSlider', fldSlider)
@@ -157,5 +158,29 @@
                 );
             }
         };
+    }
+
+    function RouterTracker($rootScope) {
+        var routeHistory = [];
+        var service = {
+            getRouteHistory: getRouteHistory,
+            getPreviousRoute: getPreviousRoute
+        };
+
+        $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
+            routeHistory.push({ route: from, routeParams: fromParams });
+        });
+
+        function getRouteHistory() {
+            return routeHistory;
+        }
+
+        function getPreviousRoute() {
+            console.log('routeHistory');
+            console.log(routeHistory);
+            return routeHistory[routeHistory.length - 1];
+        }
+
+        return service;
     }
 })();

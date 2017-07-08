@@ -31,10 +31,11 @@
                                 </li>
                                 <li class="icon-xp"><i class="fa fa-comments" aria-hidden="true"></i> <span ng-bind="vm.course.reviewCourse || '0'"></span>&nbsp;Reviews</li>
                             </ul>
+                            <div class="clearfix"></div>
                             <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.freeCourse && !vm.course.isSubscribed" ng-click="vm.subscribeCourse($event);">
                                 Start Course For Free
                             </a>
-                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.courseFee && !vm.course.isSubscribed" ng-click="vm.showPaymentOptions = !vm.showPaymentOptions;">
+                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.courseFee && !vm.course.isSubscribed" ng-click="vm.subscribeCourse($event);">
                                 Start Course For <span ng-bind="vm.course.courseFee | INR"></span>
                             </a>
                             <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.isSubscribed" ng-click="vm.showCourse(vm.course)">
@@ -47,8 +48,8 @@
                                 <p style="margin-top: 2%;">Choose Payment Option</p>
                                 <md-radio-group ng-model="vm.paymentOption" ng-Change="" md-no-ink="false">
                                     <md-radio-button value="internetBanking"> Internet Banking </md-radio-button>
-                                    <md-radio-button value="card" ng-click="vm.subscribeCourse($event, 'instamojo');"> Debit/Credit Card </md-radio-button>
-                                    <md-radio-button value="mobikwik" ng-click="vm.subscribeCourse($event, 'razor');"> Mobikwik </md-radio-button>
+                                    <md-radio-button value="card" ng-click="vm.buyCourse('instamojo');"> Debit/Credit Card </md-radio-button>
+                                    <md-radio-button value="mobikwik" ng-click="vm.buyCourse('razor');"> Mobikwik </md-radio-button>
                                 </md-radio-group>
                             </div>
                         </div>

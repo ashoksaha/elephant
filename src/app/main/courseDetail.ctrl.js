@@ -6,7 +6,7 @@
         .controller('CourseDetailsController', CourseDetailsController);
 
     /** @ngInject */
-    function CourseDetailsController(CommonInfo, $log, $http, $mdDialog, $stateParams, $scope, $state, $anchorScroll, growl, _, $sce) {
+    function CourseDetailsController(CommonInfo, $log, $http, $mdDialog, $stateParams, $scope, $state, $anchorScroll, growl, _, $sce, RouterTracker) {
         var vm = this;
         var selectedCourseId;
         var selectedCourseName;
@@ -34,6 +34,7 @@
         vm.sendOTP = sendOTP;
 
         vm.subscribeCourse = subscribeCourse;
+        vm.buyCourse = buyCourse;
         vm.sendCallbackRequest = sendCallbackRequest;
         vm.showInstructorCourses = showInstructorCourses;
         vm.showCourse = showCourse;
@@ -74,6 +75,9 @@
                                     getSocialShare();
                                 if (vm.course.reviewCourse)
                                     getCourseReview();
+                                var routerInfo = RouterTracker.getPreviousRoute();
+                                if(data.studentId && !vm.course.isSubscribed && routerInfo && routerInfo.route && routerInfo.route.name == 'courseDetails')
+                                    vm.showPaymentOptions = true;
                                 getInstructorTestimonials();
                                 // var studentInfo = CommonInfo.getInfo('studentInfo');
                                 // vm.payuData = {
@@ -183,7 +187,14 @@
             );
         }
 
-        function subscribeCourse(evt, type) {
+        function buyCourse(type) {
+            if(type == 'razor')
+                getRazorCall();
+            else
+                getInstamojoCall();
+        }
+
+        function subscribeCourse(evt) {
             var studentInfo = CommonInfo.getInfo('studentInfo');
             if (!studentInfo || !studentInfo.userId) {
                 $mdDialog.show({
@@ -217,10 +228,7 @@
                         }
                     );
                 } else {
-                    if(type == 'razor')
-                        getRazorCall();
-                    else
-                        getInstamojoCall();
+                    vm.showPaymentOptions = !vm.showPaymentOptions;
                 }
             }
         }
@@ -612,7 +620,7 @@
                                 $mdDialog.hide();
                                 //growl.success('Login Successfuly');
                                 CommonInfo.setInfo('studentInfo', response.data.data);
-                                subscribeCourse();
+                                $state.reload();
                             } else if (response.data.status == 3) {
                                 CommonInfo.setInfo('studentInfo', response.data.data);
                                 vm.verification.student_id = response.data.data.userId;
@@ -641,7 +649,7 @@
                         if (response && response.data) {
                             if (response.data.status == 1) {
                                 CommonInfo.setInfo('studentInfo', response.data.data);
-                                subscribeCourse();
+                                $state.reload();
                             } else if (response.data.status == 2) {
                                 growl.info(response.data.message);
                             }

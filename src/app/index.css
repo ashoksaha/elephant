@@ -12740,13 +12740,13 @@ h3.slider_heading {
 
 .photo a > img {
     border: 0.2px solid cornflowerblue;
+    transition: 0.3s ease;
 }
 
 .photo a > img:hover {
     box-shadow: 10px;
     border: 0.2px solid cornflowerblue;
-    position: absolute;
-    height: 90px;
     clear: both;
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.75);
+    transform: scale(1.5, 1.5);
 }
