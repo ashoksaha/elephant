@@ -76,8 +76,10 @@
                                 if (vm.course.reviewCourse)
                                     getCourseReview();
                                 var routerInfo = RouterTracker.getPreviousRoute();
-                                if(data.studentId && !vm.course.isSubscribed && routerInfo && routerInfo.route && routerInfo.route.name == 'courseDetails')
+                                if (data.studentId && !vm.course.isSubscribed && routerInfo && routerInfo.route && routerInfo.route.name == 'courseDetails') {
+                                    getPaymentMethodes();
                                     vm.showPaymentOptions = true;
+                                }
                                 getInstructorTestimonials();
                                 // var studentInfo = CommonInfo.getInfo('studentInfo');
                                 // vm.payuData = {
@@ -188,7 +190,8 @@
         }
 
         function buyCourse(type) {
-            if(type == 'razor')
+            var pg = _.find(vm.paymentGateways, {'id': type});
+            if (pg.name.toLowerCase() == 'razorpay')
                 getRazorCall();
             else
                 getInstamojoCall();
@@ -228,15 +231,52 @@
                         }
                     );
                 } else {
+                    getPaymentMethodes();
                     vm.showPaymentOptions = !vm.showPaymentOptions;
                 }
             }
         }
 
+        function getPaymentMethodes() {
+                $http.post(CommonInfo.getAppUrl() + "/getpaymentmethods", {}).then(
+                    function(response) {
+                        if (response && response.data) {
+                            if (response.data.status == 1) {
+                                vm.paymentMethods = response.data.data;
+                            } else if (response.data.status == 2) {
+                                growl.info(response.data.message);
+                            }
+                        } else {
+                            growl.warning('There is some issue, please try after some time');
+                        }
+                    },
+                    function(response) {
+                        growl.warning('There is some issue, please try after some time');
+                    }
+                );
+                $http.post(CommonInfo.getAppUrl() + "/getpaymentgateways", { status: 1 }).then(
+                    function(response) {
+                        if (response && response.data) {
+                            if (response.data.status == 1) {
+                                vm.paymentGateways = response.data.data;
+                            } else if (response.data.status == 2) {
+                                growl.info(response.data.message);
+                            }
+                        } else {
+                            growl.warning('There is some issue, please try after some time');
+                        }
+                    },
+                    function(response) {
+                        growl.warning('There is some issue, please try after some time');
+                    }
+                );
+            }
+
         function getRazorCall() {
             var studentInfo = CommonInfo.getInfo('studentInfo');
+            var pg = _.find(vm.paymentGateways, {'name': 'Razorpay'});
             var rzpOptions = {
-                "key": "rzp_test_RWAWwXop7iV1hU",
+                "key": pg.apiKey,
                 "amount": vm.course.courseFee * 100,
                 "name": vm.course.title,
                 "description": "By " + vm.course.instructorFullName,

@@ -375,6 +375,10 @@
             .state('admin.settings.subCategories', {
                 url: '/subLevel',
                 templateUrl: 'app/admin/homePageSubcategories.html'
+            })
+            .state('admin.settings.paymentMethods', {
+                url: '/paymentMethods',
+                templateUrl: 'app/admin/paymentMethods.html'
             });
 
         $urlRouterProvider.otherwise('/');

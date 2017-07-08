@@ -1,0 +1,45 @@
+<div class="groups__courses">
+    <h4 class="gr-subtitle">Payment Methods
+        <a style="margin:0px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" ng-click="vm.addPaymentMethod();">
+        <i class="fa fa-plus-square"></i> Add New
+    </a>
+    </h4>
+    <hr />
+    <div class="groups__courses-overview ">
+        <form class="edit_user" id="edit_password_727839" method="post">
+            <p ng-if="vm.paymentMethods.length == 0" class="text-center">No payment methods found</p>
+            <md-list ng-if="vm.paymentMethods.length > 0">
+                <!-- <md-subheader class="md-no-sticky">Categories</md-subheader> -->
+                <md-list-item class="secondary-button-padding" ng-click="$event.stopPropagation();" ng-repeat="payment in vm.paymentMethods">
+                    <div style="width:100%;">
+                        <md-checkbox ng-model="payment.status" ng-true-value="1" ng-false-value="0"></md-checkbox>
+                        <md-input-container>
+                            <label>Name</label>
+                            <input ng-model="payment.name" />
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Payment Gateway</label>
+                            <md-select ng-model="payment.pgId">
+                                <md-option ng-repeat="pg in vm.paymentGateways" ng-value="pg.id">
+                                    <span ng-bind="pg.name"></span>
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Position</label>
+                            <input ng-model="payment.position" type="number" />
+                        </md-input-container>
+                        <md-button class="md-secondary" ng-click="vm.addMethod(payment)">
+                            Save
+                        </md-button>
+                    </div>
+                </md-list-item>
+            </md-list>
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-5">
+                    <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.updateCategories()" data-disable-with="Save Changes">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -47,9 +47,11 @@
                             <div ng-if="vm.showPaymentOptions">
                                 <p style="margin-top: 2%;">Choose Payment Option</p>
                                 <md-radio-group ng-model="vm.paymentOption" ng-Change="" md-no-ink="false">
-                                    <md-radio-button value="internetBanking"> Internet Banking </md-radio-button>
-                                    <md-radio-button value="card" ng-click="vm.buyCourse('instamojo');"> Debit/Credit Card </md-radio-button>
-                                    <md-radio-button value="mobikwik" ng-click="vm.buyCourse('razor');"> Mobikwik </md-radio-button>
+                                    <md-radio-button value="{{payment.id}}" ng-repeat="payment in vm.paymentMethods" ng-click="vm.buyCourse(payment.pgId)">
+                                        <span ng-bind="payment.name"></span>
+                                    </md-radio-button>
+                                    <!-- <md-radio-button value="card" ng-click="vm.buyCourse('instamojo');"> Debit/Credit Card </md-radio-button>
+                                    <md-radio-button value="mobikwik" ng-click="vm.buyCourse('razor');"> Mobikwik </md-radio-button> -->
                                 </md-radio-group>
                             </div>
                         </div>
