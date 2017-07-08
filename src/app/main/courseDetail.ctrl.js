@@ -40,8 +40,8 @@
         vm.showCourseUnit = showCourseUnit;
         vm.showCourseDemo = showCourseDemo;
 
-        vm.getInstamojoCall = getInstamojoCall;
-        vm.getRazorCall = getRazorCall;
+        //vm.getInstamojoCall = getInstamojoCall;
+        //vm.getRazorCall = getRazorCall;
 
         activate();
 
@@ -183,7 +183,7 @@
             );
         }
 
-        function subscribeCourse(evt) {
+        function subscribeCourse(evt, type) {
             var studentInfo = CommonInfo.getInfo('studentInfo');
             if (!studentInfo || !studentInfo.userId) {
                 $mdDialog.show({
@@ -217,8 +217,10 @@
                         }
                     );
                 } else {
-                    //getRazorCall();
-                    getInstamojoCall();
+                    if(type == 'razor')
+                        getRazorCall();
+                    else
+                        getInstamojoCall();
                 }
             }
         }

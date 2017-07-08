@@ -8886,7 +8886,7 @@ dt {
 }
 
 .home--learn .container {
-    padding-top: 4rem;
+    padding-top: 2rem;
     padding-bottom: 4rem
 }
 
@@ -12732,4 +12732,20 @@ h3.slider_heading {
 
 .cat-row:first-child {
     margin-top: 0;
+}
+
+.cat-title {
+    margin-bottom: 1%;
+}
+
+.photo a > img {
+    border: 0.2px solid cornflowerblue;
+}
+
+.photo a > img:hover {
+    box-shadow: 10px;
+    border: 0.2px solid cornflowerblue;
+    display: block;
+    clear: both;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.75);
 }

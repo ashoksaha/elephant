@@ -22,6 +22,7 @@
                                     <th>Browser (Version)</th>
                                     <th>IP</th>
                                     <th>Time</th>
+                                    <th>City</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,7 +37,8 @@
                                     </td>
                                     <td ng-bind="log.platformVersion"></td>
                                     <td>
-                                        <span ng-bind="log.browser"></span> (<span ng-bind="log.browserVersion"></span>)
+                                        <span ng-bind="log.browser"></span>
+                                        <br />(<span ng-bind="log.browserVersion"></span>)
                                     </td>
                                     <td ng-bind="log.ipAddress"></td>
                                     <td ng-style="{'color': log.loginTime ? 'green' : 'red'}">
@@ -44,7 +46,11 @@
                                         <i ng-if="log.logoutTime" class="fa fa-sign-out" aria-hidden="true"></i>
                                         <span ng-if="log.loginTime" ng-bind="log.loginTime"></span>
                                         <span ng-if="log.logoutTime" ng-bind="log.logoutTime"></span>
-                                        <i class="fa fa-circle" aria-hidden="true" ng-style="{'color': log.loginTime ? 'green' : 'red'}"></i>
+                                    </td>
+                                    <td>
+                                        <span ng-bind="log.city"></span>
+                                        <br />
+                                        <span ng-bind="log.latitude"></span> <span ng-bind="log.longitude"></span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -74,6 +80,7 @@
                                                     <th>Browser (Version)</th>
                                                     <th>IP</th>
                                                     <th>Time</th>
+                                                    <th>City</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -88,7 +95,8 @@
                                                     </td>
                                                     <td ng-bind="log.platformVersion"></td>
                                                     <td>
-                                                        <span ng-bind="log.browser"></span> (<span ng-bind="log.browserVersion"></span>)
+                                                        <span ng-bind="log.browser"></span>
+                                                        <br />(<span ng-bind="log.browserVersion"></span>)
                                                     </td>
                                                     <td ng-bind="log.ipAddress"></td>
                                                     <td ng-style="{'color': log.loginTime ? 'green' : 'red'}">
@@ -96,7 +104,11 @@
                                                         <i ng-if="log.logoutTime" class="fa fa-sign-out" aria-hidden="true"></i>
                                                         <span ng-if="log.loginTime" ng-bind="log.loginTime"></span>
                                                         <span ng-if="log.logoutTime" ng-bind="log.logoutTime"></span>
-                                                        <i class="fa fa-circle" aria-hidden="true" ng-style="{'color': log.loginTime ? 'green' : 'red'}"></i>
+                                                    </td>
+                                                    <td>
+                                                        <span ng-bind="log.city"></span>
+                                                        <br />
+                                                        <span ng-bind="log.latitude"></span> <span ng-bind="log.longitude"></span>
                                                     </td>
                                                 </tr>
                                             </tbody>

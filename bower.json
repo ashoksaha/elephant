@@ -49,16 +49,25 @@
         "dist/fonts/ui-carousel.ttf"
       ]
     },
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css",
+        "dist/fonts/glyphicons-halflings-regular.eot",
+        "dist/fonts/glyphicons-halflings-regular.svg",
+        "dist/fonts/glyphicons-halflings-regular.ttf",
+        "dist/fonts/glyphicons-halflings-regular.woff",
+        "dist/fonts/glyphicons-halflings-regular.woff2"
+      ]
+    },
     "components-font-awesome": {
       "main": [
         "css/font-awesome.css",
-        "css/font-awesome.css.map",
-        "scss/font-awesome.scss",
         "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont.svg",
+        "fonts/fontawesome-webfont.ttf",
         "fonts/fontawesome-webfont.woff",
         "fonts/fontawesome-webfont.woff2",
-        "fonts/fontawesome-webfont.ttf",
-        "fonts/fontawesome-webfont.svg"
+        "fonts/FontAwesome.otf"
       ]
     },
     "angular-data-grid": {
