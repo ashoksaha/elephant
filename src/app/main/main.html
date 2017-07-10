@@ -4,19 +4,17 @@
             <div class="container">
                 <main-navbar></main-navbar>
                 <div class="row" style="margin-right: -30px;margin-left: -30px;">
-                    <div class="col-sm-8">
+                    <div class="col-sm-7" style="margin:auto -10px;">
                         <div class="home--header">
-                            <div>
                                 <div uib-carousel active="0" interval="5000" no-wrap="false">
                                     <div uib-slide ng-repeat="slide in vm.mainBanners" index="$index">
-                                        <img ng-src="{{slide.src}}" style="margin:auto;max-width: 100%;">
+                                        <img ng-src="{{slide.src}}" style="margin:auto;max-width: 100%;min-height: 240px;">
                                         <div class="carousel-caption">
                                             <p>{{slide.text}}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         <!-- <div class="home--header">
                             <hr>
                             <h4 class="subhead">THE EASIEST WAY TO</h4>
@@ -42,7 +40,7 @@
                             </div>
                         </div> -->
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-5">
                         <div class="home--sign-up card">
                             <h4>Sign In To Your Account</h4>
                             <form class="new_user" id="new_user" method="post" ng-if="vm.loginStage == 1">
@@ -154,14 +152,14 @@
                 </div>
             </div>
         </section>
-        <section class="stories-ready">
+        <!-- <section class="stories-ready">
             <div class="container">
                 <h3 class="stories-ready__title">Ready To Learn?</h3>
                 <p>Join 1,000,000 Enthusiasts Aspirants today!</p>
                 <a class="btn btn-primary stories-ready__button" href="/users/sign_up">Create Free Account Now</a>
                 <a class="btn btn-secondary  stories-ready__button" href="#bottom">Get Full Access</a>
             </div>
-        </section>
+        </section> -->
         <section class="bg bg-navigation home--classroom" ng-if="false">
             <div class="container text-center">
                 <div class="row">
