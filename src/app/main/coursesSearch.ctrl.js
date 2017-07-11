@@ -82,7 +82,6 @@
                 }
                 else if(param == 'search')
                     vm.courseSearchCriteria['name'] = value;
-                console.log(vm.courseSearchCriteria);
             } else {
                 $state.go('courses.list');
             }

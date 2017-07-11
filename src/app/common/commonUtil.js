@@ -111,7 +111,6 @@
             },
             link: function(scope, element, attrs) {
                 attrs.index = 0;
-                console.log(scope.slidelist);
                 //scope.starLength = _.fill(Array(parseInt(attrs.stars)), '*');
             },
             controller: function($scope, $element) {
@@ -176,8 +175,6 @@
         }
 
         function getPreviousRoute() {
-            console.log('routeHistory');
-            console.log(routeHistory);
             return routeHistory[routeHistory.length - 1];
         }
 

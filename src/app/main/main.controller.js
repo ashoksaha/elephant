@@ -9,6 +9,7 @@
     function MainController(CommonInfo, $http, growl, $state, $log, $localStorage, $window, _, moment) {
         var vm = this;
 
+        vm.contactUs = {};
         vm.showOtpField = false;
         vm.homeLearnSelected = 0;
         vm.loginStage = 1;

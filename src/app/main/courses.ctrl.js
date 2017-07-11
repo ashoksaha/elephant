@@ -18,7 +18,7 @@
             categoryId: '',
             instructorId: ''
         };
-        vm.selectedInstructor = 'All Instructors';
+        //vm.selectedInstructor = 'All Instructors';
         vm.listLimit = 3;
 
         vm.getAllCourses = getAllCourses;
@@ -32,6 +32,7 @@
         activate();
 
         function activate() {
+            vm.user = CommonInfo.getInfo('studentInfo');
             getAllCategories();
             getAllInstructors();
             getAllCourses();
@@ -60,11 +61,11 @@
         function searchCoursesByInstructor(instructor) {
             if (instructor) {
                 vm.courseSearchCriteria.instructorId = instructor.id;
-                vm.selectedInstructor = instructor.fullName;
+                //vm.selectedInstructor = instructor.fullName;
                 $state.go('courses.search', { param: 'instructor', value: instructor.id, name: instructor.fullName.replace(/ /g, "-") });
             } else {
                 vm.courseSearchCriteria.instructorId = '';
-                vm.selectedInstructor = 'All Instructors';
+                //vm.selectedInstructor = 'All Instructors';
                 $state.go('courses.list');
             }
             //getAllCourses();
@@ -87,7 +88,6 @@
             // var value = $stateParams.value;
             // if (param && value) {
             //     vm.courseSearchCriteria[param] = value;
-            //     console.log(vm.courseSearchCriteria);
             // } else {
             //     $state.go('courses.list');
             // }
@@ -122,8 +122,8 @@
                             _.forEach(vm.allUpcommingCourses, function(value) {
                                 value.courseStartDate = moment(value.courseStartDate).format("YYYY-MM-DD hh:mm");
                                 value.courseEndDate = moment(value.courseEndDate).format("YYYY-MM-DD hh:mm");
-                                value.durationParameterText = _.map(_.filter(vm.unitDurations, { 'value': value.durationParameter }), 'name')[0];
-                                value.instructor = _.find(vm.allInstructors, { 'id': value.instructorId });
+                                //value.durationParameterText = _.map(_.filter(vm.unitDurations, { 'value': value.durationParameter }), 'name')[0];
+                                //value.instructor = _.find(vm.allInstructors, { 'id': value.instructorId });
                             });
                         } else if (response.data.status == 2) {
                             $log.log(response.data.message);

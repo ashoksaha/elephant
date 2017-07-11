@@ -29,29 +29,29 @@
         <section class="show-course__body">
             <div class="container">
                 <h3>Courses</h3>
-                <p ng-bind="vm.course.description"></p>
                 <section>
                     <div class="container">
+                        <h3 class="text-center" ng-if="vm.allCourses.length == 0"> No courses found </h3>
                         <div class="row">
                             <div class="col-lg-4 col-sm-6" ng-repeat="course in vm.allCourses">
                                 <md-card style="height:343px;" ng-click="vm.showCourseDetails(course)">
-                                <img ng-src="{{course.image}}" class="md-card-image" alt="Washed Out" style="height:195px;">
-                                <md-card-title>
-                                    <md-card-title-text>
-                                        <small style="color:#000;">
+                                    <img ng-src="{{course.image}}" class="md-card-image" alt="Washed Out" style="height:195px;">
+                                    <md-card-title>
+                                        <md-card-title-text>
+                                            <small style="color:#000;">
                                             <review-stars rating="course.courseRating" stars='5'></review-stars> (<span ng-bind="course.reviewCourse || 0"></span> Reviews)
                                         </small>
-                                        <span class="md-headline md-headline-header" ng-bind="course.title"></span>
-                                    </md-card-title-text>
-                                </md-card-title>
-                                <!-- <md-card-content>
+                                            <span class="md-headline md-headline-header" ng-bind="course.title"></span>
+                                        </md-card-title-text>
+                                    </md-card-title>
+                                    <!-- <md-card-content>
                                     <p ng-bind="course.description | truncate:60"></p>
                                 </md-card-content> -->
-                                <md-card-actions layout="row" layout-align="end center">
-                                    <span ng-if="course.courseFee" ng-bind="course.courseFee | INR"></span>
-                                    <span ng-if="!course.courseFee" ng-bind="'Free'"></span>
-                                </md-card-actions>
-                            </md-card>
+                                    <md-card-actions layout="row" layout-align="end center">
+                                        <span ng-if="course.courseFee" ng-bind="course.courseFee | INR"></span>
+                                        <span ng-if="!course.courseFee" ng-bind="'Free'"></span>
+                                    </md-card-actions>
+                                </md-card>
                                 <!-- <a class="no-link-style no-link-color" href="javascript:void(0);" ng-click="vm.showCourseDetails(course)">
                                     <div class="course-block" ng-class="{'course-block--r' : $even, 'course-block--g' : $odd}">
                                         <div>

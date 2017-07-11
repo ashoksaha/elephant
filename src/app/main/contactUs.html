@@ -5,7 +5,43 @@
                 <main-navbar></main-navbar>
             </div>
         </section>
-
+        <div class="container">
+            <div class="contact-small-container">
+                <section class="contact-form">
+                    <h2 class="contact-form__title">Have feedback or a question about Flavido? We'd love to hear it!</h2>
+                    <p class="contact-form__subtitle">Want to see a new feature or course topic? Found a bug in one of our exercises? Use the form below to let us know or contact us at <a class="btn btn-quinary contact-form__mailto" href="mailto:support@flavido.com">support@flavido.com</a></p>
+                    <form class="contact-form__form js-contact-form">
+                        <div>
+                            <!--This div is needed for flex layout-->
+                            <input type="text" name="name" ng-model="vm.contactUs.name" required="required" class="contact-form__input contact-form__input--name" placeholder="Your Name">
+                            <input type="text" name="subject" ng-model="vm.contactUs.subject" required="required" class="contact-form__input" placeholder="Subject">
+                        </div>
+                        <div>
+                            <!--This div is needed for flex layout-->
+                            <input type="number" name="mobile" ng-model="vm.contactUs.mobile" required="required" class="contact-form__input contact-form__input--name" placeholder="Your Mobile">
+                            <input type="email" name="email" ng-model="vm.contactUs.email" required="required" class="contact-form__input" placeholder="Your Email">
+                        </div>
+                        <textarea name="message" ng-model="vm.contactUs.message" required="required" placeholder="Flavido is awesome because..." class="contact-form__textarea"></textarea>
+                        <button name="button" ng-click="vm.sendContactUs()" class="btn btn-primary contact-form__submit">Submit</button>
+                    </form>
+                    <div class="contact-form__thanks js-contact-form-thanks" style="display: none;">
+                        <p class="contact-form__thanks-title">Thanks for your feedback! We will respond shortly</p>
+                        <button name="button" type="submit" class="js-contact-form-back btn btn-quinary contact-form__thanks-button">Have more feedback?</button>
+                    </div>
+                </section>
+                <section class="contact-where js-maps-wrapper">
+                    <h2 class="contact-where__title">Where to find us?</h2>
+                    <h3 class="contact-where__subtitle">Gurgaon</h3>
+                    <p class="contact-where__address">Bougainvillea Marg, Plot No 24,
+                        <br>DLF Phase 2, Gurgaon</p>
+                    <div class="contact-where__map js-usa-map" style="position: relative; overflow: hidden;">
+                        <div style="height: 100%;width: 100%;position: absolute;top: 0px;left: 0px;/* background-color: rgb(229, 227, 223); */">
+                            <iframe style="border: 0;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9575.761043687053!2d77.09120905693143!3d28.484322916932214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf915096e0925d42d!2sFlavido+Store!5e1!3m2!1sen!2sin!4v1463051129753" width="530" height="450" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
+    </div>
     <main-footer-bar></main-footer-bar>
 </div>

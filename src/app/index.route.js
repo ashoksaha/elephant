@@ -133,7 +133,9 @@
             })
             .state('contactUs', {
                 url: '/contactUs',
-                templateUrl: 'app/main/contactUs.html'
+                templateUrl: 'app/main/contactUs.html',
+                controller: 'StudentContactUsController',
+                controllerAs: 'vm'
             })
             .state('terms-conditions', {
                 url: '/terms-conditions',
@@ -154,6 +156,10 @@
             .state('faq', {
                 url: '/faq',
                 templateUrl: 'app/main/faq.html'
+            })
+            .state('career', {
+                url: '/career',
+                templateUrl: 'app/main/career.html'
             })
             .state('instructorLogin', {
                 url: '/instructor/login',

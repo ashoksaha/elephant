@@ -17,7 +17,7 @@
                             <md-menu md-position-mode="target-right target" class="dropdown js-custom-select">
                                 <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdMenu.open($event)" style="width:160px;">
                                     <span class="js-custom-select-value">
-                                        <a href="javascript:void(0);" class="active" ng-bind="vm.selectedInstructor"></a>
+                                        <a href="javascript:void(0);" class="active">Instructors</a>
                                     </span><i class="fa fa-caret-down"></i>
                                 </md-button>
                                 <md-menu-content width="4">
@@ -65,7 +65,7 @@
                                         </div>
                                     </div>
                                     <div class="course-block__footer">
-                                        <h4 style="font-size: 1rem">Coming soon!</h4>
+                                        <h4 style="font-size: 1rem" ng-bind="course.courseStartDate || 'Coming soon' "></h4>
                                     </div>
                                 </div>
                             </a>
@@ -74,7 +74,7 @@
                 </div>
             </div>
         </section>
-        <section class="courses__cta">
+        <section class="courses__cta" ng-if="!vm.user || !vm.user.userId">
             <h3 class="courses__cta-text-title">Ready To Learn</h3>
             <p class="mb0">
                 <a class="btn btn-primary" href="javascript:void(0);" ui-sref="register">Create Free Account Now</a>

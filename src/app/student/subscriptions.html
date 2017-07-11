@@ -25,17 +25,19 @@
                                 <td ng-bind="$index + 1"></td>
                                 <td ng-bind="order.txnID"></td>
                                 <td ng-click="vm.showCourseDetails(order.courseName, order.courseId)">
-                                    <span ng-bind="order.courseName"></span><br />
-                                    By <span ng-bind="order.fullname"></span>
+                                    <span ng-bind="order.courseName"></span>
+                                    <br /> By <span ng-bind="order.fullname"></span>
                                 </td>
                                 <td ng-bind="order.orderDate | date:'short'"></td>
                                 <td>
                                     <span ng-if="order.amount" ng-bind="order.amount | INR"></span>
                                     <span ng-if="!order.amount" ng-bind="'Free'"></span>
                                 </td>
-                                <td ng-bind="order.status ? 'Complete' : 'Pending'"></td>
                                 <td>
-                                    <i class="fa fa fa-file-pdf-o" aria-hidden="true" ng-href="{{order.invoiceFile}}" download ng-if="order.invoiceFile" title="Download Invoice Pdf"></i>
+                                    <span ng-bind="order.status ? 'Complete' : 'Pending'" ng-class="{'completeOrder' : order.status}"></span>
+                                </td>
+                                <td>
+                                    <i class="fa fa fa-file-pdf-o" aria-hidden="true" ng-href="{{order.invoiceFile}}" download ng-if="order.invoiceFile" title="Download Invoice Pdf" style="color: orangered;"></i>
                                 </td>
                             </tr>
                         </tbody>

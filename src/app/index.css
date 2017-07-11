@@ -1,6 +1,6 @@
 @font-face {
     font-family: "karmina";
-    src: url("/assets/fonts/Karmina Regular.otf");
+    src: url("/assets/fonts/Karmen Regular.otf");
     font-weight: normal;
     font-style: normal;
 }
@@ -12771,4 +12771,123 @@ h3.slider_heading {
     .controls.pull-right.visible-xs {
         width: 100%;
     }
+}
+
+
+/*.repeatItem.ng-enter {
+  -webkit-transition: 1s;
+  transition: 1s;
+  margin-left: 100%;
+}
+
+.repeatItem.ng-enter-active {
+  margin-left: 0;
+}
+
+.repeatItem.ng-leave {
+  -webkit-transition: 1s;
+  transition: 1s;
+  margin-left: 0;
+}
+
+.repeatItem.ng-leave-active {
+  margin-left: 100%;
+}
+
+.repeatItem.ng-move {
+  -webkit-transition: 1s;
+  transition: 1s;
+  background: gold;
+}*/
+
+.contact-small-container {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.contact-form {
+    text-align: center;
+    border-bottom: 1px solid #d1d3d8;
+    overflow: auto;
+    padding-bottom: 4rem;
+}
+
+.contact-where {
+    margin: 5rem 0 6rem;
+    text-align: center;
+}
+
+.contact-form__title {
+    margin-top: 3rem;
+}
+
+.contact-form__subtitle {
+    width: 75%;
+    margin: 1rem auto 3rem;
+}
+
+.contact-form__mailto {
+    border-bottom: 1px solid #33aacc;
+}
+
+application_v2-1604891….css:1 .btn-quinary {
+    color: #33aacc;
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+    transition: none;
+    display: inline;
+    min-height: auto;
+}
+
+.contact-form__form,
+.contact-form__thanks {
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form__form {
+    overflow: auto;
+}
+
+.contact-form__input--name {
+    margin-right: 1rem;
+}
+
+.contact-form__input {
+    width: calc(50% - 0.5rem - 3px);
+    margin-bottom: 1rem;
+}
+
+.contact-form__textarea {
+    resize: none;
+    flex: 1;
+}
+
+.contact-form__submit {
+    float: left;
+    width: 100%;
+    max-width: 8rem;
+    margin: 1rem 0 0;
+}
+
+.contact-where__subtitle {
+    font-weight: 600;
+    margin-top: 2rem;
+}
+
+.contact-where__address {
+    margin-top: 0.5rem;
+}
+
+.contact-where__map {
+    width: 100%;
+    margin-bottom: 1rem;
+    height: 400px;
+}
+
+.completeOrder {
+    background: greenyellow;
+    padding: 6%;
 }
