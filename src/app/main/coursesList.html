@@ -3,7 +3,7 @@
         <div class="container">
             <h2 class="courses__title">Browse by Categories</h2>
             <div class="courses__topics-list">
-                <a href="javascript:void(0);" class="topic-block js-topic-block" ng-repeat="category in vm.categories" ng-click="vm.searchCoursesByCategory(category.id)">
+                <a href="javascript:void(0);" class="topic-block js-topic-block" ng-repeat="category in vm.categories" ng-click="vm.searchCoursesByCategory(category)">
                     <div class="topic-block-icon topic--programming" ng-style="{ 'background-color': category.bgColor }">
                         <h5 class="topic-block-title" ng-bind="category.name"></h5>
                     </div>
@@ -15,7 +15,7 @@
         <div class="container">
             <h1 class="courses__title mt0">Starting your preparations here</h1>
             <div class="row">
-                <div class="col-lg-4 col-sm-6" ng-repeat="course in vm.allCourses | limitTo: 3">
+                <div class="col-lg-4 col-sm-6" ng-repeat="course in vm.allCourses | limitTo: vm.listLimit">
                     <a class="no-link-style no-link-color" href="javascript:void(0);" ng-click="vm.showCourseDetails(course)">
                         <div class="course-block" ng-class="{'course-block--r' : $even, 'course-block--g' : $odd}">
                             <div>
@@ -55,8 +55,8 @@
                     </a>
                 </div>
             </div>
-            <div class="courses__explore-see-more text-center" ng-if="vm.allCourses.length > 3">
-                <a class="btn btn-secondary" href="javascript:void(0);" ng-click="vm.showAllCourses();">See all <span ng-bind="vm.allCourses.length"></span> courses</a>
+            <div class="courses__explore-see-more text-center" ng-if="vm.allCourses.length > 3 && vm.listLimit != ''">
+                <a class="btn btn-secondary" href="javascript:void(0);" ng-click="vm.listLimit = ''">See all <span ng-bind="vm.allCourses.length"></span> courses</a>
             </div>
         </div>
     </section>

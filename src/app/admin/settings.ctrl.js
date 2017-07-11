@@ -16,6 +16,7 @@
         vm.addCategories = addCategories;
         vm.updateCategories = updateCategories;
         vm.addPaymentMethod = addPaymentMethod;
+        vm.updatePaymentMethods = updatePaymentMethods;
 
         vm.addMethod = addMethod;
 
@@ -63,7 +64,7 @@
                 function(response) {
                     growl.warning('There is some issue, please try after some time');
                 }
-            );   
+            );
         }
 
         function getPaymentMethods() {
@@ -86,7 +87,7 @@
         }
 
         function updateCategories() {
-            $http.post(CommonInfo.getAppUrl() + "/updatehomepagecategory", {categories: vm.homeCategories}).then(
+            $http.post(CommonInfo.getAppUrl() + "/updatehomepagecategory", { categories: vm.homeCategories }).then(
                 function(response) {
                     if (response && response.data) {
                         if (response.data.status == 1) {
@@ -239,25 +240,45 @@
             }
         }
 
-        function addMethod (paymentMethod) {
-                    $http.post(CommonInfo.getAppUrl() + "/createpaymentmethod", paymentMethod).then(
-                        function(response) {
-                            if (response && response.data) {
-                                if (response.data.status == 1) {
-                                    growl.success('Payment method added successfuly');
-                                    getPaymentMethods();
-                                    $mdDialog.hide();
-                                } else if (response.data.status == 2) {
-                                    growl.info(response.data.message);
-                                }
-                            } else {
-                                growl.warning('There is some issue, please try after some time');
-                            }
-                        },
-                        function(response) {
-                            growl.warning('There is some issue, please try after some time');
+        function addMethod(paymentMethod) {
+            $http.post(CommonInfo.getAppUrl() + "/createpaymentmethod", paymentMethod).then(
+                function(response) {
+                    if (response && response.data) {
+                        if (response.data.status == 1) {
+                            growl.success('Payment method added successfuly');
+                            getPaymentMethods();
+                            $mdDialog.hide();
+                        } else if (response.data.status == 2) {
+                            growl.info(response.data.message);
                         }
-                    );
+                    } else {
+                        growl.warning('There is some issue, please try after some time');
+                    }
+                },
+                function(response) {
+                    growl.warning('There is some issue, please try after some time');
                 }
+            );
+        }
+
+        function updatePaymentMethods() {
+            $http.post(CommonInfo.getAppUrl() + "/updatepaymentmethods", { paymentMethods : vm.paymentMethods }).then(
+                function(response) {
+                    if (response && response.data) {
+                        if (response.data.status == 1) {
+                            growl.success('Payment method updated successfuly');
+                            getPaymentMethods();
+                        } else if (response.data.status == 2) {
+                            growl.info(response.data.message);
+                        }
+                    } else {
+                        growl.warning('There is some issue, please try after some time');
+                    }
+                },
+                function(response) {
+                    growl.warning('There is some issue, please try after some time');
+                }
+            );
+        }
     }
 })();

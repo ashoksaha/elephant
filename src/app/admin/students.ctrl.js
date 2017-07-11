@@ -104,7 +104,7 @@
         }
 
         function createStudent() {
-            if (vm.student.userName && vm.student.emailId && vm.student.mobile) {
+            if (vm.student.userName && vm.student.email && vm.student.mobile) {
                 if (vm.student.id)
                     vm.student.updatedBy = vm.userInfo.id;
                 else

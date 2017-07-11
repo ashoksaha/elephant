@@ -50,8 +50,10 @@
                 templateUrl: 'app/main/coursesList.html'
             })
             .state('courses.search', {
-                url: '/schqu/:query',
-                templateUrl: 'app/main/coursesSearch.html'
+                url: '/:param/:value/:name',
+                templateUrl: 'app/main/coursesSearch.html',
+                controller: 'CourseSearchController',
+                controllerAs: 'vm'
             })
             .state('courseDetails', {
                 url: '/course/:id/:name',
@@ -133,9 +135,9 @@
                 url: '/contactUs',
                 templateUrl: 'app/main/contactUs.html'
             })
-            .state('termsOfUse', {
-                url: '/termsOfUse',
-                templateUrl: 'app/main/termsOfUse.html'
+            .state('terms-conditions', {
+                url: '/terms-conditions',
+                templateUrl: 'app/main/termsConditions.html'
             })
             .state('privacyPolicy', {
                 url: '/privacyPolicy',

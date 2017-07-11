@@ -36,13 +36,17 @@
                             if (response.data.status == 1) {
                                 CommonInfo.setInfo('studentInfo', response.data.data);
                                 $state.go('dashboard');
+                                location.reload();
                             } else if (response.data.status == 3) {
                                 //CommonInfo.setInfo('studentInfo', response.data.data);
                                 vm.verification.student_id = response.data.data.userId;
                                 vm.verification.phone = response.data.data.mobile;
-                                if (response.data.message == '2') {
-                                    vm.loginStage = 2;
-                                }
+                                if(response.data.message == '1')
+                                    vm.showOtpField = true;
+                                vm.loginStage = 2;
+                                // if (response.data.message == '2') {
+                                //     vm.loginStage = 2;
+                                // }
                             } else if (response.data.status == 2) {
                                 growl.info(response.data.message);
                             }
@@ -64,7 +68,9 @@
                         if (response && response.data) {
                             if (response.data.status == 1) {
                                 //growl.success('Mobile verified');
+                                CommonInfo.setInfo('studentInfo', response.data.data);
                                 $state.go('dashboard');
+                                location.reload();
                             } else if (response.data.status == 2) {
                                 growl.info(response.data.message);
                             }

@@ -8887,7 +8887,7 @@ dt {
 
 .home--learn .container {
     padding-top: 2rem;
-    padding-bottom: 4rem
+    /*padding-bottom: 4rem;*/
 }
 
 .home--learn [data-tabs] {
@@ -8974,8 +8974,8 @@ dt {
 }
 
 .home--quotes .container {
-    padding-top: 4rem;
-    padding-bottom: 2rem
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .home--quotes .stories--quote section {
@@ -10016,6 +10016,7 @@ dt {
     font-weight: 300;
     padding-top: 6%;
     padding-bottom: 6%;
+    min-height: 200px;
 }
 
 .quote__text p {

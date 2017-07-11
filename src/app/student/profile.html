@@ -60,9 +60,9 @@
                                             <fieldset>
                                                 <label for="user_avatar">Avatar</label>
                                                 <div class="avatar-selector">
-                                                    <img ngf-src="vm.newProfile.image || '/assets/images/avatar.png'" ngf-resize="{width: 150, height: 150, quality: 0.9}" style="border:1px solid lightseagreen; height:150px;" class="img-thumbnail" />
+                                                    <img ngf-src="vm.newProfile.image || '/assets/images/avatar.png'" ngf-resize="{width: 150, height: 150, quality: 0.9, centerCrop: true}" style="border:1px solid lightseagreen; height:150px;" class="img-thumbnail" ngf-fix-orientation="true" />
                                                     <br />
-                                                    <button class="btn btn-primary center-block" ngf-select type="file" ng-model="vm.newProfile.image" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+                                                    <button class="btn btn-primary center-block" ngf-select type="file" ng-model="vm.newProfile.image" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-fix-orientation="true">
                                                         Change Photo
                                                     </button>
                                                 </div>

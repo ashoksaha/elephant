@@ -8,7 +8,7 @@
                     <h2 class="text-center" ng-if="vm.registerStage == 2">Welcome</h2>
                     <div class="row login-form">
                         <div class="col-lg-6 col-sm-8 col-lg-offset-3 col-sm-offset-2">
-                            <form class="new_user ng-pristine ng-valid" name="new_user" method="post" ng-if="vm.registerStage == 1" >
+                            <form class="new_user ng-pristine ng-valid" name="new_user" method="post" ng-if="vm.registerStage == 1">
                                 <fieldset>
                                     <i class="fa fa-user fa-lg inline-icon"></i>
                                     <input autofocus="autofocus" ng-required="required" placeholder="Username" class="has-inline-icon" type="text" value="" name="Username" id="Username" ng-model="vm.student.username">
@@ -25,6 +25,7 @@
                                     <div class="col-sm-6 sign-in-btn">
                                         <input type="submit" name="commit" value="Sign up" class="btn btn-primary m0" data-disable-with="Sign up" ng-click="vm.signup()" ng-disabled="!new_user.$valid" />
                                     </div>
+                                    <p class="col-sm-12 need-free-account text-tertiary">By creating this account, you agree to <a href="javascript:void(0);" ui-sref="terms-conditions">our T&C</a> & <a href="javascript:void(0);" ui-sref="privacyPolicy">Privacy Policy</a></p>
                                     <p class="col-sm-12 need-free-account text-tertiary">Already have an account? <a href="javascript:void(0);" ui-sref="login">Sign In</a></p>
                                 </div>
                             </form>

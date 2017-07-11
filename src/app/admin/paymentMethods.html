@@ -29,15 +29,12 @@
                             <label>Position</label>
                             <input ng-model="payment.position" type="number" />
                         </md-input-container>
-                        <md-button class="md-secondary" ng-click="vm.addMethod(payment)">
-                            Save
-                        </md-button>
                     </div>
                 </md-list-item>
             </md-list>
             <div class="row">
                 <div class="col-sm-4 col-sm-offset-5">
-                    <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.updateCategories()" data-disable-with="Save Changes">
+                    <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.updatePaymentMethods()" data-disable-with="Save Changes">
                 </div>
             </div>
         </form>

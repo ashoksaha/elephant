@@ -15,13 +15,19 @@
                         <fieldset>
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Email</label>
-                                <input ng-model="vm.student.email" type="email">
+                                <input ng-model="vm.student.email" type="email" ng-change="vm.student.sendEmail = vm.student.email ? vm.student.sendEmail : 0">
+                                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="!vm.student.email" ng-model="vm.student.sendEmail" class="md-primary" ng-true-value='1' ng-false-value='0'>
+                                    Send login info Mail to student
+                                </md-checkbox>
                             </md-input-container>
                         </fieldset>
                         <fieldset>
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Mobile</label>
-                                <input ng-model="vm.student.mobile" type="number">
+                                <input ng-model="vm.student.mobile" type="number" ng-change="vm.student.isPhoneverify = vm.student.mobile ? vm.student.isPhoneverify : 0">
+                                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="!vm.student.mobile" ng-model="vm.student.isPhoneverify" class="md-primary" ng-true-value='1' ng-false-value='0'>
+                                    Is verified contact number
+                                </md-checkbox>
                             </md-input-container>
                         </fieldset>
                         <fieldset>

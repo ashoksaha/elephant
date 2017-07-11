@@ -11,6 +11,7 @@
 
         vm.lmsTab = 1;
         vm.categoryListTab = 1;
+        vm.userInfo = CommonInfo.getInfo('userInfo');
         vm.searchUnit = {
             name: ''
         };
@@ -145,8 +146,8 @@
                             _.forEach(vm.allCourses, function(value) {
                                 value.courseStartDate = moment(value.courseStartDate).format("YYYY-MM-DD hh:mm");
                                 value.courseEndDate = moment(value.courseEndDate).format("YYYY-MM-DD hh:mm");
-                                value.durationParameterText = _.map(_.filter(vm.unitDurations, { 'value': value.durationParameter }), 'name')[0];
-                                value.instructor = _.find(vm.allInstructors, { 'id': value.instructorId });
+                                //value.durationParameterText = _.map(_.filter(vm.unitDurations, { 'value': value.durationParameter }), 'name')[0];
+                                //value.instructor = _.find(vm.allInstructors, { 'id': value.instructorId });
                             });
                             vm.coursesList = vm.activeCourses = _.filter(vm.allCourses, { 'status': 1 });
                             vm.inactiveCourses = _.filter(vm.allCourses, { 'status': 0 });
@@ -334,7 +335,7 @@
                 api = "/updatecourseunit";
                 msg = 'Unit edited successfuly';
             }
-            vm.unit.addedBy = vm.unit.instructorId = vm.instructorInfo.id;
+            vm.unit.addedBy = vm.userInfo.id;
             vm.unit.downloadLink = angular.toJson(vm.unit.downloadLink);
             $http.post(CommonInfo.getAppUrl() + api, vm.unit).then(
                 function(response) {
@@ -384,14 +385,14 @@
                 msg = 'Course edited successfuly';
             }
             vm.course.courseCurriculum = _.compact(vm.course.courseCurriculum).join(',');
-            vm.course.instructorId = vm.instructorInfo.id;
+            vm.course.addedBy = vm.userInfo.id;
             if(vm.course.freeCourse == 1)
                 vm.course.courseFee = 0;
             $http.post(CommonInfo.getAppUrl() + api, vm.course).then(
                 function(response) {
                     if (response && response.data) {
                         if (response.data.status == 1) {
-                            getCoursesByCategoryId(1);
+                            getAllCourses();
                             vm.course = {};
                             vm.lmsTab = 1;
                             growl.success(msg);
@@ -445,8 +446,7 @@
             } else {
                 var data = {
                     id: categoryId,
-                    status: status,
-                    instructorId: vm.instructorInfo.id
+                    status: status
                 };
                 $http.post(CommonInfo.getAppUrl() + '/getcourseslistbycat_id', data).then(
                     function(response) {

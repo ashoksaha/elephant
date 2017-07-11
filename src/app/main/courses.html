@@ -9,10 +9,10 @@
             <div class="container">
                 <form class="js-search-with-colons" method="get">
                     <div class="search search--big">
-                        <button name="button" type="submit" class="search-icon" id="btn-search" ng-click="vm.getAllCourses();">
+                        <button name="button" type="submit" class="search-icon" id="btn-search" ng-click="vm.searchCoursesByText();">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
-                        <input type="text" ng-model="vm.courseSearchCriteria.name" autofocus="autofocus" class="js-end-of-line-cursor" placeholder="Search courses" ng-keyup="($event.keyCode === 13 || vm.courseSearchCriteria.name == '') && vm.getAllCourses()">
+                        <input type="text" ng-model="vm.searchText" autofocus="autofocus" class="js-end-of-line-cursor" placeholder="Search courses" ng-keyup="($event.keyCode === 13 || vm.searchText == '') && vm.searchCoursesByText()">
                         <ul class="search__filter">
                             <md-menu md-position-mode="target-right target" class="dropdown js-custom-select">
                                 <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdMenu.open($event)" style="width:160px;">

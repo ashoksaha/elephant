@@ -3,27 +3,19 @@
 
     angular
         .module('flavido')
-        .controller('CoursesController', CoursesController);
+        .controller('CourseSearchController', CourseSearchController);
 
     /** @ngInject */
-    function CoursesController(CommonInfo, $http, $state, _, $log, moment) {
+    function CourseSearchController(CommonInfo, $http, $state, _, $log, moment, $stateParams) {
         var vm = this;
 
         vm.allCourses = [];
         vm.allInstructors = [];
-        vm.stars = [1,2,3,4,5];
-        vm.courseSearchCriteria = {
-            status: 1,
-            name: '',
-            categoryId: '',
-            instructorId: ''
-        };
         vm.selectedInstructor = 'All Instructors';
-        vm.listLimit = 3;
+        vm.courseSearchCriteria = {};
 
         vm.getAllCourses = getAllCourses;
         vm.searchCoursesByInstructor = searchCoursesByInstructor;
-        vm.searchCoursesByCategory = searchCoursesByCategory;
         vm.searchCoursesByText = searchCoursesByText;
 
         vm.showCourseDetails = showCourseDetails;
@@ -61,36 +53,39 @@
             if (instructor) {
                 vm.courseSearchCriteria.instructorId = instructor.id;
                 vm.selectedInstructor = instructor.fullName;
-                $state.go('courses.search', { param: 'instructor', value: instructor.id, name: instructor.fullName.replace(/ /g, "-") });
+                $state.go('courses.search', { param: 'instructor', value: instructor.id });
             } else {
                 vm.courseSearchCriteria.instructorId = '';
                 vm.selectedInstructor = 'All Instructors';
                 $state.go('courses.list');
             }
-            //getAllCourses();
-        }
-
-        function searchCoursesByCategory(category) {
-            vm.courseSearchCriteria.categoryId = category.id;
-            $state.go('courses.search', { param: 'category', value: category.id, name: category.name.replace(/ /g, "-") });
-            //getAllCourses();
+            getAllCourses();
         }
 
         function searchCoursesByText() {
             vm.courseSearchCriteria.name = vm.searchText;
-            $state.go('courses.search', { param: 'search', value: vm.searchText, name: '' });
-            //getAllCourses();
+            $state.go('courses.search', { param: 'search', value: vm.searchText });
+            getAllCourses();
         }
 
         function getAllCourses() {
-            // var param = $stateParams.param;
-            // var value = $stateParams.value;
-            // if (param && value) {
-            //     vm.courseSearchCriteria[param] = value;
-            //     console.log(vm.courseSearchCriteria);
-            // } else {
-            //     $state.go('courses.list');
-            // }
+            var param = $stateParams.param;
+            var value = $stateParams.value;
+            var name = $stateParams.name ? $stateParams.name.replace(/-/g, " ") : '';
+            if (param && value) {
+                if(param == 'category'){
+                    vm.courseSearchCriteria['categoryId'] = value;
+                }
+                else if(param == 'instructor'){
+                    vm.courseSearchCriteria['instructorId'] = value;
+                    vm.selectedInstructor = name;
+                }
+                else if(param == 'search')
+                    vm.courseSearchCriteria['name'] = value;
+                console.log(vm.courseSearchCriteria);
+            } else {
+                $state.go('courses.list');
+            }
             $http.post(CommonInfo.getAppUrl() + "/searchcourses", vm.courseSearchCriteria).then(
                 function(response) {
                     if (response && response.data) {

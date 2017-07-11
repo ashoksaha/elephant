@@ -53,8 +53,9 @@
             vm.height = $window.innerHeight;
             vm.width = $window.innerWidth;
             getTestimonials();
-            getAllCourses();
+            //getAllCourses();
             gethomeCategories();
+            gethomeCourses();
             var studentInfo = CommonInfo.getInfo('studentInfo');
             if (studentInfo && studentInfo.userId) {
                 $state.go('dashboard');
@@ -72,13 +73,18 @@
                                 //growl.success('Login Successfuly');
                                 CommonInfo.setInfo('studentInfo', response.data.data);
                                 $state.go('dashboard');
+                                location.reload();
                             } else if (response.data.status == 3) {
                                 //CommonInfo.setInfo('studentInfo', response.data.data);
                                 vm.verification.student_id = response.data.data.userId;
                                 vm.student.student_id = response.data.data.userId;
-                                if (response.data.message == '2') {
-                                    vm.loginStage = 2;
-                                }
+                                vm.verification.phone = response.data.data.mobile;
+                                if(response.data.message == '1')
+                                    vm.showOtpField = true;
+                                vm.loginStage = 2;
+                                // if (response.data.message == '2') {
+                                //     vm.loginStage = 2;
+                                // }
                             } else if (response.data.status == 2) {
                                 growl.info(response.data.message);
                             }
@@ -102,6 +108,7 @@
                                 growl.success(response.data.message);
                                 CommonInfo.setInfo('studentInfo', response.data.data);
                                 $state.go('dashboard');
+                                location.reload();
                             } else if (response.data.status == 2) {
                                 growl.info(response.data.message);
                             }
@@ -144,6 +151,9 @@
                     if (response && response.data) {
                         if (response.data.status == 1) {
                             vm.testimonials = response.data.data;
+                            _.forEach(vm.testimonials, function(value, key){
+                                value.charCount = (value.testimonial.length > 240) ? 230 : '';
+                            });
                         } else if (response.data.status == 2) {
                             $log.log(response.data.message);
                         }
@@ -191,6 +201,25 @@
                             _.forEach(vm.homeCategories, function(value, key){
                                 value.childCategories = _.filter(response.data.data, { 'parentId': value.id });
                             });
+                        } else if (response.data.status == 2) {
+                            growl.info(response.data.message);
+                        }
+                    } else {
+                        growl.warning('There is some issue, please try after some time');
+                    }
+                },
+                function(response) {
+                    growl.warning('There is some issue, please try after some time');
+                }
+            );
+        }
+
+        function gethomeCourses() {
+            $http.post(CommonInfo.getAppUrl() + "/searchcourses", { showOnhome: 1 }).then(
+                function(response) {
+                    if (response && response.data) {
+                        if (response.data.status == 1) {
+                            vm.homeCourses = response.data.data;
                         } else if (response.data.status == 2) {
                             growl.info(response.data.message);
                         }
