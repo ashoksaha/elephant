@@ -744,10 +744,10 @@ hr {
     border: none
 }*/
 
-.btn .fa,
+/*.btn .fa,
 .admin .btn-change-state .fa {
     margin-right: 0.5rem
-}
+}*/
 
 .btn.disabled,
 .admin .disabled.btn-change-state,

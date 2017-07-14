@@ -32,10 +32,14 @@
                 <!-- <div class="col-md-2">
                     <img src="{{unit.image}}" alt="{{unit.name}}" />
                 </div> -->
-                <div class="col-md-10">
-                    <h4>
-                        <span ng-bind="unit.name"></span> <span class="label label-accent pull-right" ng-click="vm.editUnit(unit)">Edit</span>
+                <div class="col-md-11">
+                    <h4><span ng-bind="unit.name"></span>
                     </h4>
+                </div>
+                <div class="col-md-1">
+                    <span class="label label-accent pull-right" ng-click="vm.editUnit(unit)">Edit</span>
+                </div>
+                <div class="col-md-12">
                     <p ng-bind="unit.description"></p>
                     <hr>
                     <span ng-bind="unit.unitTypeName"></span>
@@ -79,7 +83,13 @@
                     <img src="{{unit.image}}" alt="{{unit.name}}">
                 </div> -->
                 <div class="col-md-10">
-                    <h4><span ng-bind="unit.name"></span> <span class="label label-accent pull-right" ng-click="vm.editUnit(unit)">Edit</span></h4>
+                    <h4><span ng-bind="unit.name"></span>
+                    </h4>
+                </div>
+                <div class="col-md-2">
+                    <span class="label label-accent pull-right" ng-click="vm.editUnit(unit)">Edit</span>
+                </div>
+                <div class="col-md-12">
                     <p ng-bind="unit.unitDescription"></p>
                     <hr>
                     <span ng-bind="unit.unitTypeName"></span>

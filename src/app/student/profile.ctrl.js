@@ -61,6 +61,9 @@
 
         function activate() {
             vm.studentInfo = CommonInfo.getInfo('studentInfo');
+            if(!vm.studentInfo || !vm.studentInfo.userId){
+                $state.go('main');
+            }
             if (vm.studentInfo) {
                 vm.newProfile.userName = vm.studentInfo.name;
                 vm.newProfile.image = vm.studentInfo.profile_picture;

@@ -20,7 +20,8 @@
             'textAngular',
             'ui.carousel',
             'ngCsv',
-            'ui.bootstrap'
+            'ui.bootstrap',
+            '720kb.socialshare'
         ]);
 
 })();

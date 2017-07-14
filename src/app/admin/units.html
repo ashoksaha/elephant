@@ -15,13 +15,13 @@
     <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 1">
         <div class="groups__courses-filters clearfix">
             <div class="select select--small">
-                <select ng-options="course.id as course.title for course in vm.coursesList" ng-model="vm.activeSelectedCourse" ng-change="vm.getUnitsByCourseId(1, vm.activeSelectedCourse)">
+                <select ng-options="course.id as course.title for course in vm.coursesList" ng-model="vm.activeSelectedCourse" ng-change="vm.getUnitsByCourseId(vm.activeSelectedCourse)">
                     <option value="">All Courses</option>
                 </select>
             </div>
             <div class="search">
                 <i class="fa fa-search search-icon" aria-hidden="true"></i>
-                <input type="text" name="search" placeholder="Search" ng-model="vm.activeUnitSearchText" ng-keydown="$event.keyCode === 13 && vm.searchUnits(1, vm.activeUnitSearchText)">
+                <input type="text" name="search" placeholder="Search" ng-model="vm.activeUnitSearchText" ng-keyup="($event.keyCode === 13 || vm.activeUnitSearchText == '') && vm.searchUnits(1, vm.activeUnitSearchText)">
             </div>
         </div>
         <p id="emptyCoursesMessage" class="text-center" ng-if="(vm.activeUnits.length == 0 && (vm.activeSelectedCourse || vm.activeUnitSearchText))">
@@ -61,7 +61,7 @@
     <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 2">
         <div class="groups__courses-filters clearfix">
             <div class="select select--small">
-                <select ng-options="course.id as course.title for course in vm.coursesList" ng-model="vm.inactiveSelectedCourse" ng-change="vm.getUnitsByCourseId(0, vm.inactiveSelectedCourse)">
+                <select ng-options="course.id as course.title for course in vm.coursesList" ng-model="vm.inactiveSelectedCourse" ng-change="vm.getUnitsByCourseId(vm.inactiveSelectedCourse)">
                     <option value="">All Courses</option>
                 </select>
             </div>

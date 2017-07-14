@@ -22,6 +22,9 @@
             selectedCourseId = $stateParams.id;
             vm.selectedCourseName = $stateParams.name;
             studentInfo = CommonInfo.getInfo('studentInfo');
+            if(!studentInfo || !studentInfo.userId){
+                $state.go('main');
+            }
             getAllDiscussions();
         }
 

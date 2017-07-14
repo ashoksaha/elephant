@@ -12,7 +12,6 @@
 
         vm.selectedInstructorName;
         vm.stars = [1, 2, 3, 4, 5];
-        vm.isFollower = false;
 
         vm.loginStage = 1;
         vm.student = {
@@ -44,16 +43,25 @@
         }
 
         function getCourses() {
-            $http.post(CommonInfo.getAppUrl() + "/searchcourses", { instructorId: selectedInstructorId }).then(
+            $http.post(CommonInfo.getAppUrl() + "/getInstructorCourses", { instructorId: selectedInstructorId }).then(
                 function(response) {
                     if (response && response.data) {
                         if (response.data.status == 1) {
-                            vm.allCourses = response.data.data;
-                            _.forEach(vm.allCourses, function(value) {
-                                value.courseStartDate = moment(value.courseStartDate).format("YYYY-MM-DD hh:mm");
-                                value.courseEndDate = moment(value.courseEndDate).format("YYYY-MM-DD hh:mm");
-                            });
-                            //vm.coursesRows = _.chunk(vm.allCourses, 3);
+                            vm.instructorDetails = response.data.data;
+                            vm.instructorDetails.isFollowed = false;
+                            if (vm.instructorDetails && vm.instructorDetails.courses) {
+                                _.forEach(vm.instructorDetails.courses, function(value) {
+                                    value.courseStartDate = moment(value.courseStartDate).format("YYYY-MM-DD hh:mm");
+                                    value.courseEndDate = moment(value.courseEndDate).format("YYYY-MM-DD hh:mm");
+                                });
+                            }
+                            if (vm.instructorDetails && vm.instructorDetails.followers) {
+                                var studentInfo = CommonInfo.getInfo('studentInfo');
+                                if (studentInfo && studentInfo.userId) {
+                                    vm.instructorDetails.isFollowed = _.filter(vm.instructorDetails.followers, { 'id': studentInfo.userId}).length ? true : false;
+                                }
+                            }
+
                         } else if (response.data.status == 2) {
                             $log.log(response.data.message);
                         }
@@ -75,7 +83,7 @@
                         scope: $scope.$new(),
                         templateUrl: 'app/main/login.tmpl.html',
                         parent: angular.element(document.body),
-                        clickOutsideToClose:true
+                        clickOutsideToClose: true
                     })
                     .then(function(answer) {
                         $scope.status = 'You said the information was "' + answer + '".';
@@ -87,7 +95,8 @@
                     function(response) {
                         if (response && response.data) {
                             if (response.data.status == 1) {
-                                vm.isFollower = true;
+                                vm.instructorDetails.isFollowed = response.data.data;
+                                growl.success(response.data.message);
                             } else if (response.data.status == 2) {
                                 $log.log(response.data.message);
                             }
@@ -118,9 +127,10 @@
                                 $mdDialog.hide();
                                 //growl.success('Login Successfuly');
                                 CommonInfo.setInfo('studentInfo', response.data.data);
+                                $state.reload();
                                 followInstructor();
                             } else if (response.data.status == 3) {
-                                CommonInfo.setInfo('studentInfo', response.data.data);
+                                //CommonInfo.setInfo('studentInfo', response.data.data);
                                 vm.verification.student_id = response.data.data.userId;
                                 vm.student.student_id = response.data.data.userId;
                                 if (response.data.message == '2') {
@@ -147,6 +157,7 @@
                         if (response && response.data) {
                             if (response.data.status == 1) {
                                 CommonInfo.setInfo('studentInfo', response.data.data);
+                                $state.reload();
                                 followInstructor();
                             } else if (response.data.status == 2) {
                                 growl.info(response.data.message);

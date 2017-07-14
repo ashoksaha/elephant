@@ -662,7 +662,7 @@
                                 CommonInfo.setInfo('studentInfo', response.data.data);
                                 $state.reload();
                             } else if (response.data.status == 3) {
-                                CommonInfo.setInfo('studentInfo', response.data.data);
+                                //CommonInfo.setInfo('studentInfo', response.data.data);
                                 vm.verification.student_id = response.data.data.userId;
                                 vm.student.student_id = response.data.data.userId;
                                 if (response.data.message == '2') {

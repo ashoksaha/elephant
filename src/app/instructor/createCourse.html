@@ -9,7 +9,6 @@
                         <fieldset>
                             <!-- <label for="Title">Title</label>
                             <input type="text" name="Title" id="Title" ng-model="vm.course.title"> -->
-                            {{vm.course.title}}
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Title</label>
                                 <input ng-model="vm.course.title">
@@ -32,7 +31,7 @@
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Short Description</label>
                                 <textarea name="shortDesc" id="shortDesc" rows="5" ng-model="vm.course.shortDesc" md-maxlength="130" maxlength="130">
-                            </textarea>
+                                </textarea>
                             </md-input-container>
                         </fieldset>
                         <fieldset>
@@ -42,14 +41,14 @@
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Description</label>
                                 <textarea name="Description" id="Description" rows="5" ng-model="vm.course.description">
-                            </textarea>
+                                </textarea>
                             </md-input-container>
                         </fieldset>
                         <fieldset>
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Demo Video</label>
                                 <textarea name="demoVideo" id="demoVideo" rows="5" ng-model="vm.course.demoVideo">
-                            </textarea>
+                                </textarea>
                             </md-input-container>
                         </fieldset>
                         <fieldset>
@@ -120,6 +119,24 @@
                         </fieldset>
                         <fieldset>
                             <label>Course Curriculum</label>
+                            <md-chips ng-model="vm.course.oldUnits" readonly="true" md-removable="true">
+                                <md-chip-template>
+                                    <strong>{{$chip.name}}</strong>
+                                </md-chip-template>
+                            </md-chips>
+                            <md-chips ng-model="vm.course.addUnits" md-autocomplete-snap md-require-match="true" md-transform-chip="vm.checkUnit($chip)">
+                                <md-autocomplete md-selected-item="vm.selectedItem" md-search-text="vm.searchText.name" md-items="item in vm.activeUnits | filter:vm.searchText" md-item-text="item.name" placeholder="Search for units">
+                                    <span md-highlight-text="vm.searchText.name">{{item.name}}</span>
+                                </md-autocomplete>
+                                <md-chip-template>
+                                    <span>
+                                        <strong>{{$chip.name}}</strong>
+                                    </span>
+                                </md-chip-template>
+                            </md-chips>
+                        </fieldset>
+                        <!-- <fieldset>
+                            <label>Course Curriculum</label>
                             <md-select ng-model="vm.course.courseCurriculum" md-on-close="vm.searchUnit='';" data-md-container-class="selectdemoSelectHeader" multiple aria-label="Course Curriculum">
                                 <md-select-header class="demo-select-header">
                                     <input ng-model="vm.searchUnit.name" type="search" placeholder="Search for unit" ng-keydown="$event.stopPropagation();" />
@@ -128,7 +145,7 @@
                                     <md-option ng-value="unit.id" ng-repeat="unit in vm.activeUnits | filter:vm.searchUnit">{{unit.name}}</md-option>
                                 </md-optgroup>
                             </md-select>
-                        </fieldset>
+                        </fieldset> -->
                         <fieldset>
                             <!-- <label for="courseRetakes">Course Retakes</label> -->
                             <md-switch class="md-primary" name="courseRetakes" id="courseRetakes" ng-model="vm.course.courseRetakes" aria-label="Course Retake" ng-true-value="1" ng-false-value="0">
@@ -170,6 +187,11 @@
                             <!-- <label for="status">Status</label> -->
                             <md-switch class="md-primary" name="status" id="status" ng-model="vm.course.status" aria-label="Course Status" ng-true-value="1" ng-false-value="0">
                                 Status
+                            </md-switch>
+                        </fieldset>
+                        <fieldset>
+                            <md-switch class="md-primary" name="notification" id="notification" ng-model="vm.course.notification" aria-label="Notification" ng-true-value="1" ng-false-value="0">
+                                Send mail when new unit is added
                             </md-switch>
                         </fieldset>
                         <fieldset>

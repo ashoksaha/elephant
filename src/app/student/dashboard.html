@@ -47,7 +47,9 @@
                                         <a class="btn m0" href="javascript:void(0);" ng-click="vm.showCourse(course)" ng-class="{'btn-r' : $odd, 'btn-g' : $even}">Start Course</a>
                                         <a class="btn m0 pull-right-cards" href="javascript:void(0);" ng-click="vm.showCourseDetails(course)" ng-class="{'btn-r' : $odd, 'btn-g' : $even}">View Course</a>
                                     </div>
-                                    
+                                    <div class="course-block__footer">
+                                        <span class="pull-right">Course expire <span ng-bind="course.courseEndDate | timeRemaining"></span></span>
+                                    </div>
                                     <!-- <div class="course-block__footer">
                                     <div class="course-block__chapters">
                                         <a class="incompleted" data-toggle="tooltip" data-placement="bottom" data-title="Intro to basics" href="javascript:void(0);"></a>

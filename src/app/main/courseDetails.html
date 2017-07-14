@@ -69,8 +69,10 @@
                             <ul>
                                 <li>Share On: </li>
                                 <li ng-repeat="social in vm.socialShare">
-                                    <i class="fa" ng-class="social.imageIcon"></i>
-                                    <span><a href="javascript:void(0);" ng-click="social.sharerLink" ng-bind="social.name"></a></span>
+                                    <!-- <i class="fa" ng-class="social.imageIcon"></i>
+                                    <span><a href="javascript:void(0);" ng-click="social.sharerLink" ng-bind="social.name"></a></span> -->
+                                    <social-sharing link="social.sharerLink" media="social.name" text="vm.course.title" icon="social.imageIcon" img="vm.course.image">
+                                    </social-sharing>
                                 </li>
                             </ul>
                         </div>

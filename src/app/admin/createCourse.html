@@ -41,7 +41,7 @@
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Short Description</label>
                                 <textarea name="shortDesc" id="shortDesc" rows="5" ng-model="vm.course.shortDesc" md-maxlength="130" maxlength="130">
-                            </textarea>
+                                </textarea>
                             </md-input-container>
                         </fieldset>
                         <fieldset>
@@ -51,14 +51,14 @@
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Description</label>
                                 <textarea name="Description" id="Description" rows="5" ng-model="vm.course.description">
-                            </textarea>
+                                </textarea>
                             </md-input-container>
                         </fieldset>
                         <fieldset>
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Demo Video</label>
                                 <textarea name="demoVideo" id="demoVideo" rows="5" ng-model="vm.course.demoVideo">
-                            </textarea>
+                                </textarea>
                             </md-input-container>
                         </fieldset>
                         <fieldset>
@@ -129,6 +129,22 @@
                         </fieldset>
                         <fieldset>
                             <label>Course Curriculum</label>
+                            <md-chips ng-model="vm.course.oldUnits" readonly="true" md-removable="true">
+                                <md-chip-template>
+                                    <strong>{{$chip.name}}</strong>
+                                </md-chip-template>
+                            </md-chips>
+                            <md-chips ng-model="vm.course.addUnits" md-autocomplete-snap md-require-match="true" md-transform-chip="vm.checkUnit($chip)">
+                                <md-autocomplete md-selected-item="vm.selectedItem" md-search-text="vm.searchText.name" md-items="item in vm.activeUnits | filter:vm.searchText" md-item-text="item.name" placeholder="Search for units">
+                                    <span md-highlight-text="vm.searchText.name">{{item.name}}</span>
+                                </md-autocomplete>
+                                <md-chip-template>
+                                    <span>
+                                        <strong>{{$chip.name}}</strong>
+                                    </span>
+                                </md-chip-template>
+                            </md-chips>
+                            <!-- <label>Course Curriculum</label>
                             <md-select ng-model="vm.course.courseCurriculum" md-on-close="vm.searchUnit='';" data-md-container-class="selectdemoSelectHeader" multiple aria-label="Course Curriculum">
                                 <md-select-header class="demo-select-header">
                                     <input ng-model="vm.searchUnit.name" type="search" placeholder="Search for unit" ng-keydown="$event.stopPropagation();" />
@@ -136,7 +152,7 @@
                                 <md-optgroup label="unit.name">
                                     <md-option ng-value="unit.id" ng-repeat="unit in vm.activeUnits | filter:vm.searchUnit">{{unit.name}}</md-option>
                                 </md-optgroup>
-                            </md-select>
+                            </md-select> -->
                         </fieldset>
                         <fieldset>
                             <!-- <label for="courseRetakes">Course Retakes</label> -->
@@ -165,6 +181,11 @@
                             </md-input-container>
                         </fieldset>
                         <fieldset>
+                            <md-switch class="md-primary" name="socialShare" id="socialShare" ng-model="vm.course.socialShare" aria-label="social share" ng-true-value="1" ng-false-value="0">
+                                Social Share
+                            </md-switch>
+                        </fieldset>
+                        <fieldset>
                             <!-- <label for="allowComment">Allow Comment</label> -->
                             <md-switch class="md-primary" name="allowComment" id="allowComment" ng-model="vm.course.allowComments" aria-label="Allow Comment" ng-true-value="1" ng-false-value="0">
                                 Allow Comment
@@ -177,6 +198,11 @@
                             </md-switch>
                         </fieldset>
                         <fieldset>
+                            <md-switch class="md-primary" name="notification" id="notification" ng-model="vm.course.notification" aria-label="Notification" ng-true-value="1" ng-false-value="0">
+                                Send mail when new unit is added
+                            </md-switch>
+                        </fieldset>
+                        <fieldset>
                             <md-switch class="md-primary" name="showOnHome" id="showOnHome" ng-model="vm.course.showOnhome" aria-label="Show on home Page" ng-true-value="1" ng-false-value="0">
                                 Show on home page
                             </md-switch>
@@ -186,7 +212,7 @@
                         <fieldset>
                             <label for="user_avatar">Cover</label>
                             <div class="avatar-selector">
-                                <img ngf-src="vm.course.image || '/assets/images/avatar.png'" ngf-resize="{width: 150, height: 150, quality: 0.9}" style="border:1px solid lightseagreen; height:150px;" class="img-thumbnail" />
+                                <img ngf-src="vm.course.image || '/assets/images/course-default.png'" ngf-resize="{width: 150, height: 150, quality: 0.9}" style="border:1px solid lightseagreen; height:150px;" class="img-thumbnail" />
                                 <br />
                                 <button class="btn btn-default center-block" ngf-select type="file" ng-model="vm.course.image" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
                                     Change Cover

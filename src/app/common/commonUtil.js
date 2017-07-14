@@ -8,9 +8,11 @@
         .directive('whenScrollEnds', whenScrollEnds)
         .directive('reviewStars', reviewStars)
         .directive('fldSlider', fldSlider)
+        .directive('socialSharing', socialSharing)
         .filter('htmlToPlaintext', htmlToPlaintext)
         .filter('charCodeToChar', charCodeToChar)
         .filter('truncate', truncate)
+        .filter('timeRemaining', timeRemaining)
         .filter('INR', INR);
 
     /** @ngInject */
@@ -31,6 +33,13 @@
     function truncate() {
         return function(text, char) {
             return text.length > char ? text.substr(0, char) + '...' : text;
+        }
+    }
+
+    /** @ngInject */
+    function timeRemaining() {
+        return function(text) {
+            return moment(text).fromNow();
         }
     }
 
@@ -120,6 +129,46 @@
     }
 
     /** @ngInject */
+    function socialSharing($window) {
+        return {
+            restrict: "E",
+            scope: {
+                link: '=',
+                media: '=',
+                text: '=',
+                icon: '=',
+                img: '='
+            },
+            compile: function(element, attributes) {
+                var linkFunction = function($scope, element, attributes) {
+                    var url = $window.location.href;
+                    if ($scope.media == 'facebook') {
+                        element.html('<a href="javascript:void(0)" ng-click="share()"><i class="fa ' + $scope.icon + '"></i></a>');
+                        element.bind('click', function() {
+                            FB.ui({
+                                method: 'feed',
+                                name: $scope.text,
+                                link: $window.location.href,
+                                picture: $scope.img,
+                                caption: 'caption',
+                                description: 'description',
+                                message: 'message'
+                            });
+                        });
+                    } else if ($scope.media == 'linkedin' || $scope.media == 'pintrest') {
+                        element.html('<a href="' + $scope.link + url + '" target="_blank"><i class="fa ' + $scope.icon + '"></i></a>');
+                    } else if ($scope.media == 'twitter') {
+                        element.html('<a href="' + $scope.link + $scope.text + '" target="_blank"><i class="fa ' + $scope.icon + '"></i></a>');
+                    } else if ($scope.media == 'whatsapp') {
+                        element.html('<a href="' + $scope.link + $scope.text + '+' + url + '" target="_blank"><i class="fa ' + $scope.icon + '"></i></a>');
+                    }
+                }
+                return linkFunction;
+            }
+        };
+    }
+
+    /** @ngInject */
     function CommonInfo($localStorage, $state, $mdToast) {
         return {
             getInfoObj: function() {
@@ -143,7 +192,7 @@
                 $localStorage.$reset();
             },
             getAppUrl: function() {
-                return 'http://onlinementors.in/apidott/v0';
+                return 'http://139.59.17.78/apidott/v0';
             },
             getTestSeriesAppUrl: function() {
                 return 'http://onlinementors.in/testSeriesApi';

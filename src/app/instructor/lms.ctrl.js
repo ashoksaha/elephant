@@ -101,6 +101,7 @@
 
         vm.searchCourses = searchCourses;
         vm.searchUnits = searchUnits;
+        vm.checkUnit = checkUnit;
 
         vm.toggleSelectedTest = toggleSelectedTest;
         vm.addToTestSeries = addToTestSeries;
@@ -385,10 +386,15 @@
                 api = "/updatecourse";
                 msg = 'Course edited successfuly';
             }
-            vm.course.courseCurriculum = _.compact(vm.course.courseCurriculum).join(',');
+            vm.course.courseCurriculum = _.map(vm.course.oldUnits, 'id');
+            if (vm.course.courseCurriculum && vm.course.courseCurriculum.length)
+                vm.course.courseCurriculum = _.compact(vm.course.courseCurriculum).join(',');
             vm.course.instructorId = vm.instructorInfo.id;
             if(vm.course.freeCourse == 1)
                 vm.course.courseFee = 0;
+            vm.course.newUnits = _.map(vm.course.addUnits, 'id');
+            if (vm.course.newUnits && vm.course.newUnits.length)
+                vm.course.newUnits = _.compact(vm.course.newUnits).join(',');
             $http.post(CommonInfo.getAppUrl() + api, vm.course).then(
                 function(response) {
                     if (response && response.data) {
@@ -413,8 +419,17 @@
 
         function editCourse(course) {
             vm.course = angular.merge({}, vm.course, course);
-            vm.course.courseCurriculum = _.split(vm.course.courseCurriculum, ',');
+            var units = _.split(vm.course.courseCurriculum, ',');
+            vm.course.oldUnits = _.reject(vm.activeUnits, function(o) {
+                return _.indexOf(units, o.id.toString()) == -1; });
+            vm.course.addUnits = [];
             $state.go('instructor.lms.createCourses');
+        }
+
+        function checkUnit(chip) {
+            if(_.includes(vm.course.oldUnits, chip))
+                return null;
+            return chip;
         }
 
         function getCoursesByCategoryId(status, categoryId) {
@@ -480,7 +495,7 @@
         function getUnitsByCourseId(status, courseId) {
             var units = {};
             if (courseId === null) {
-                $http.post(CommonInfo.getAppUrl() + "/getcourseunitsby_Inst_Id", { id: vm.instructorInfo.id }).then(
+                $http.post(CommonInfo.getAppUrl() + "/searchunit", {instructorId: vm.instructorInfo.id }).then(
                     function(response) {
                         if (response && response.data) {
                             if (response.data.status == 1) {
@@ -488,9 +503,9 @@
                                 _.forEach(units, function(value) {
                                     value.unitTypeName = _.map(_.filter(vm.unitTypes, { 'id': value.unitType }), 'name')[0];
                                 });
-                                if (status == 1)
+                                //if (status == 1)
                                     vm.activeUnits = _.filter(units, { 'status': 1 });
-                                else
+                                //else
                                     vm.inactiveUnits = _.filter(units, { 'status': 0 });
                             } else if (response.data.status == 2) {
                                 $log.log(response.data.message);
@@ -505,9 +520,8 @@
                 );
             } else {
                 var data = {
-                    id: courseId,
-                    status: status,
-                    instructorId: vm.instructorInfo.id
+                    courseId: courseId,
+                    status: status
                 };
                 $http.post(CommonInfo.getAppUrl() + '/getunitslistbycourse_id', data).then(
                     function(response) {
@@ -564,7 +578,7 @@
         }
 
         function searchCourses(status, courseName, categoryId) {
-            $http.post(CommonInfo.getAppUrl() + "/searchcourses", { status: status, name: courseName, categoryId: categoryId }).then(
+            $http.post(CommonInfo.getAppUrl() + "/searchcourses", { status: status, name: courseName, categoryId: categoryId, instructorId: vm.instructorInfo.id }).then(
                 function(response) {
                     if (response && response.data) {
                         if (response.data.status == 1) {

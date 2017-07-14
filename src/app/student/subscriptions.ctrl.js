@@ -16,6 +16,9 @@
 
         function activate() {
             studentInfo = CommonInfo.getInfo('studentInfo');
+            if(!studentInfo || !studentInfo.userId){
+                $state.go('main');
+            }
             getAllOrders();
         }
 

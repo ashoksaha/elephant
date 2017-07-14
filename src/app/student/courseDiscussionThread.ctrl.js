@@ -23,6 +23,9 @@
             selectedDiscussionId = $stateParams.id;
             vm.selectedDiscussionName = $stateParams.name;
             vm.studentInfo = CommonInfo.getInfo('studentInfo');
+            if(!vm.studentInfo || !vm.studentInfo.userId){
+                $state.go('main');
+            }
             getAllDiscussionThreads();
             newThread();
         }

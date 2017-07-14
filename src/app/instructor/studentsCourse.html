@@ -48,7 +48,8 @@
                             <span ng-if="!student.amount" ng-bind="'Free'"></span>
                         </td>
                         <td>
-                            <a type="button" class="btn btn-xs btn-default" ng-href="{{student.invoiceFile}}" download ng-if="student.invoiceFile" role="button"><i class="fa fa fa-download fa-fw" aria-hidden="true"></i> Invoice</a>
+                            <!-- <a type="button" class="btn btn-xs btn-default" ng-href="{{student.invoiceFile}}" download ng-if="student.invoiceFile" role="button"><i class="fa fa fa-download fa-fw" aria-hidden="true"></i>Invoice</a> -->
+                            <a ng-href="{{student.invoiceFile}}" style="color:orangered;border:none;" download ng-if="student.invoiceFile" role="button"><i class="fa fa fa-file-pdf-o" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 </tbody>

@@ -21,6 +21,9 @@
 
         function activate() {
             vm.studentInfo = CommonInfo.getInfo('studentInfo');
+            if(!vm.studentInfo || !vm.studentInfo.userId){
+                $state.go('main');
+            }
             getSubscribedCourses();
             //getAllCourses();
         }

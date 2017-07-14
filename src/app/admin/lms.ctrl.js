@@ -76,7 +76,7 @@
         vm.createCourse = createCourse;
         vm.editCourse = editCourse;
 
-        vm.getCoursesByCategoryId = getCoursesByCategoryId;
+        //vm.getCoursesByCategoryId = getCoursesByCategoryId;
         vm.getUnitsByCourseId = getUnitsByCourseId;
         vm.getCourseStudents = getCourseStudents;
         vm.getCourseCallrequests = getCourseCallrequests;
@@ -89,6 +89,8 @@
         vm.searchActiveCourses = searchActiveCourses;
         vm.searchInactiveCourses = searchInactiveCourses;
         vm.searchUnits = searchUnits;
+
+        vm.checkUnit = checkUnit;
 
         activate();
 
@@ -138,7 +140,7 @@
         }
 
         function getAllCourses() {
-            $http.post(CommonInfo.getAppUrl() + "/searchcourses", { }).then(
+            $http.post(CommonInfo.getAppUrl() + "/searchcourses", {}).then(
                 function(response) {
                     if (response && response.data) {
                         if (response.data.status == 1) {
@@ -361,7 +363,7 @@
 
         function editUnit(unit) {
             vm.unit = angular.merge({}, vm.unit, unit);
-            if(angular.isString(vm.unit.downloadLink))
+            if (angular.isString(vm.unit.downloadLink))
                 vm.unit.downloadLink = JSON.parse(vm.unit.downloadLink);
             $state.go('admin.lms.editUnit');
         }
@@ -384,10 +386,15 @@
                 api = "/updatecourse";
                 msg = 'Course edited successfuly';
             }
-            vm.course.courseCurriculum = _.compact(vm.course.courseCurriculum).join(',');
+            vm.course.courseCurriculum = _.map(vm.course.oldUnits, 'id');
+            if (vm.course.courseCurriculum && vm.course.courseCurriculum.length)
+                vm.course.courseCurriculum = _.compact(vm.course.courseCurriculum).join(',');
             vm.course.addedBy = vm.userInfo.id;
-            if(vm.course.freeCourse == 1)
+            if (vm.course.freeCourse == 1)
                 vm.course.courseFee = 0;
+            vm.course.newUnits = _.map(vm.course.addUnits, 'id');
+            if (vm.course.newUnits && vm.course.newUnits.length)
+                vm.course.newUnits = _.compact(vm.course.newUnits).join(',');
             $http.post(CommonInfo.getAppUrl() + api, vm.course).then(
                 function(response) {
                     if (response && response.data) {
@@ -412,73 +419,82 @@
 
         function editCourse(course) {
             vm.course = angular.merge({}, vm.course, course);
-            vm.course.courseCurriculum = _.split(vm.course.courseCurriculum, ',');
+            var units = _.split(vm.course.courseCurriculum, ',');
+            vm.course.oldUnits = _.reject(vm.activeUnits, function(o) {
+                return _.indexOf(units, o.id.toString()) == -1; });
+            vm.course.addUnits = [];
             $state.go('admin.lms.editCourse');
         }
 
-        function getCoursesByCategoryId(status, categoryId) {
-            if (categoryId === null) {
-                $http.post(CommonInfo.getAppUrl() + "/getallcoursesby_Inst_Id", { id: vm.instructorInfo.id }).then(
-                    function(response) {
-                        if (response && response.data) {
-                            if (response.data.status == 1) {
-                                vm.allCourses = response.data.data;
-                                _.forEach(vm.allCourses, function(value) {
-                                    value.courseStartDate = moment(value.courseStartDate).format("YYYY-MM-DD hh:mm");
-                                    value.courseEndDate = moment(value.courseEndDate).format("YYYY-MM-DD hh:mm");
-                                    value.durationParameterText = _.map(_.filter(vm.unitDurations, { 'value': value.durationParameter }), 'name')[0];
-                                });
-                                if (status == 1)
-                                    vm.activeCourses = _.filter(vm.allCourses, { 'status': 1 });
-                                else
-                                    vm.inactiveCourses = _.filter(vm.allCourses, { 'status': 0 });
-                            } else if (response.data.status == 2) {
-                                $log.log(response.data.message);
-                            }
-                        } else {
-                            $log.log('There is some issue, please try after some time');
-                        }
-                    },
-                    function(response) {
-                        $log.log('There is some issue, please try after some time');
-                    }
-                );
-            } else {
-                var data = {
-                    id: categoryId,
-                    status: status
-                };
-                $http.post(CommonInfo.getAppUrl() + '/getcourseslistbycat_id', data).then(
-                    function(response) {
-                        if (response && response.data) {
-                            if (response.data.status == 1) {
-                                _.forEach(response.data.data, function(value) {
-                                    value.courseStartDate = moment(value.courseStartDate).format("YYYY-MM-DD hh:mm");
-                                    value.courseEndDate = moment(value.courseEndDate).format("YYYY-MM-DD hh:mm");
-                                });
-                                if (status == 1) {
-                                    vm.activeCourses = response.data.data;
-                                } else {
-                                    vm.inactiveCourses = response.data.data;
-                                }
-                            } else if (response.data.status == 2) {
-                                growl.info(response.data.message);
-                            }
-                        } else {
-                            growl.info('There is some issue, please try after some time');
-                        }
-                    },
-                    function(response) {
-                        growl.warning('There is some issue, please try after some time');
-                    }
-                );
-            }
+        function checkUnit(chip) {
+            if(_.includes(vm.course.oldUnits, chip))
+                return null;
+            return chip;
         }
 
-        function getUnitsByCourseId(status, courseId) {
+        // function getCoursesByCategoryId(status, categoryId) {
+        //     if (categoryId === null) {
+        //         $http.post(CommonInfo.getAppUrl() + "/getallcoursesby_Inst_Id", { id: vm.instructorInfo.id }).then(
+        //             function(response) {
+        //                 if (response && response.data) {
+        //                     if (response.data.status == 1) {
+        //                         vm.allCourses = response.data.data;
+        //                         _.forEach(vm.allCourses, function(value) {
+        //                             value.courseStartDate = moment(value.courseStartDate).format("YYYY-MM-DD hh:mm");
+        //                             value.courseEndDate = moment(value.courseEndDate).format("YYYY-MM-DD hh:mm");
+        //                             value.durationParameterText = _.map(_.filter(vm.unitDurations, { 'value': value.durationParameter }), 'name')[0];
+        //                         });
+        //                         if (status == 1)
+        //                             vm.activeCourses = _.filter(vm.allCourses, { 'status': 1 });
+        //                         else
+        //                             vm.inactiveCourses = _.filter(vm.allCourses, { 'status': 0 });
+        //                     } else if (response.data.status == 2) {
+        //                         $log.log(response.data.message);
+        //                     }
+        //                 } else {
+        //                     $log.log('There is some issue, please try after some time');
+        //                 }
+        //             },
+        //             function(response) {
+        //                 $log.log('There is some issue, please try after some time');
+        //             }
+        //         );
+        //     } else {
+        //         var data = {
+        //             id: categoryId,
+        //             status: status
+        //         };
+        //         $http.post(CommonInfo.getAppUrl() + '/getcourseslistbycat_id', data).then(
+        //             function(response) {
+        //                 if (response && response.data) {
+        //                     if (response.data.status == 1) {
+        //                         _.forEach(response.data.data, function(value) {
+        //                             value.courseStartDate = moment(value.courseStartDate).format("YYYY-MM-DD hh:mm");
+        //                             value.courseEndDate = moment(value.courseEndDate).format("YYYY-MM-DD hh:mm");
+        //                         });
+        //                         if (status == 1) {
+        //                             vm.activeCourses = response.data.data;
+        //                         } else {
+        //                             vm.inactiveCourses = response.data.data;
+        //                         }
+        //                     } else if (response.data.status == 2) {
+        //                         growl.info(response.data.message);
+        //                     }
+        //                 } else {
+        //                     growl.info('There is some issue, please try after some time');
+        //                 }
+        //             },
+        //             function(response) {
+        //                 growl.warning('There is some issue, please try after some time');
+        //             }
+        //         );
+        //     }
+        // }
+
+        function getUnitsByCourseId(courseId) {
             var units = {};
             if (courseId === null) {
-                $http.post(CommonInfo.getAppUrl() + "/getcourseunitsby_Inst_Id", { id: vm.instructorInfo.id }).then(
+                $http.post(CommonInfo.getAppUrl() + "/searchunit", {}).then(
                     function(response) {
                         if (response && response.data) {
                             if (response.data.status == 1) {
@@ -486,10 +502,8 @@
                                 _.forEach(units, function(value) {
                                     value.unitTypeName = _.map(_.filter(vm.unitTypes, { 'id': value.unitType }), 'name')[0];
                                 });
-                                if (status == 1)
-                                    vm.activeUnits = _.filter(units, { 'status': 1 });
-                                else
-                                    vm.inactiveUnits = _.filter(units, { 'status': 0 });
+                                vm.activeUnits = _.filter(units, { 'status': 1 });
+                                vm.inactiveUnits = _.filter(units, { 'status': 0 });
                             } else if (response.data.status == 2) {
                                 $log.log(response.data.message);
                             }
@@ -502,11 +516,9 @@
                     }
                 );
             } else {
-                var data = {
-                    id: courseId,
-                    status: status,
-                    instructorId: vm.instructorInfo.id
-                };
+                var data = {};
+                if (courseId)
+                    data.courseId = courseId;
                 $http.post(CommonInfo.getAppUrl() + '/getunitslistbycourse_id', data).then(
                     function(response) {
                         if (response && response.data) {
@@ -515,11 +527,8 @@
                                 _.forEach(units, function(value) {
                                     value.unitTypeName = _.map(_.filter(response.data.data, { 'id': value.unitType }), 'name')[0];
                                 });
-                                if (status == 1) {
-                                    vm.activeUnits = response.data.data;
-                                } else {
-                                    vm.inactiveUnits = response.data.data;
-                                }
+                                vm.activeUnits = _.filter(response.data.data, { 'status': 1 });
+                                vm.inactiveUnits = _.filter(response.data.data, { 'status': 0 });
                             } else if (response.data.status == 2) {
                                 growl.info(response.data.message);
                             }
@@ -536,7 +545,7 @@
 
         function searchUnits(status, unitName) {
             var units = {};
-            $http.post(CommonInfo.getAppUrl() + "/searchunit", { status: status, name: unitName, instructorId: vm.instructorInfo.id }).then(
+            $http.post(CommonInfo.getAppUrl() + "/searchunit", { status: status, name: unitName }).then(
                 function(response) {
                     if (response && response.data) {
                         if (response.data.status == 1) {
@@ -549,7 +558,7 @@
                             else
                                 vm.inactiveUnits = _.filter(units, { 'status': 0 });
                         } else if (response.data.status == 2) {
-                            $log.log(response.data.message);
+                            growl.log(response.data.message);
                         }
                     } else {
                         $log.log('There is some issue, please try after some time');
@@ -561,11 +570,11 @@
             );
         }
 
-        function searchActiveCourses(){
+        function searchActiveCourses() {
             searchCourses(1, vm.activeCourseSearchText, vm.activeSelectedCategory, vm.activeSelectedInstructor);
         }
 
-        function searchInactiveCourses(){
+        function searchInactiveCourses() {
             searchCourses(0, vm.inactiveCourseSearchText, vm.inactiveSelectedCategory, vm.inactiveSelectedInstructor);
         }
 

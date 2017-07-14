@@ -31,6 +31,9 @@
 
         function activate() {
             studentInfo = CommonInfo.getInfo('studentInfo');
+            if(!studentInfo || !studentInfo.userId){
+                $state.go('main');
+            }
             var startCourse = CommonInfo.getInfo('startCourse');
             selectedCourseId = startCourse.courseId;
             selectedCourseName = $stateParams.courseName;
