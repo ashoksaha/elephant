@@ -1,9 +1,61 @@
 <div ng-cloak>
-    <section class="home__ads top">
-        <div class="container">
-            <div class="home__ad js-home-ad-upgrade_premium" data-ad-id="upgrade_premium">
-                <img src="/assets/images/image.png" />
+  <section class="home__ads top">
+    <div class="container groups__container">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="row">
+            <div class="col-sm-12 transction_div">
+              <h3> Monthly orders </h3>
+              <h4>Latest 6 months order</h4>
+              <div class="table-responsive">
+                <table class="table">
+                  <tbody>
+                    <tr ng-repeat="order in vm.monthlyOrders" class="text-center">
+                      <td><strong ng-bind="order.monthName"></strong></td>
+                      <td ng-bind="order.orderTotal | INR"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>
+                <button ui-sref="instructor.orders" type="button" class="btn btn-default">View All</button>
+              </p>
             </div>
+          </div>
         </div>
-    </section>
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-1 middle_graph1">
+              <h2 class="myCourse">Courses</h2>
+              <p class="current_course">
+                <strong>Your current Course and student counts</strong>
+              </p>
+              <p ng-repeat="course in vm.recentCourses">
+              		<span ng-bind="course.name"></span>
+                  <span class="pull-right">
+                      <span ng-bind="course.totalStudents"></span>
+                  </span>
+              </p>
+              <p>
+                <button type="button" class="btn btn-primary" ui-sref="instructor.lms.createCourses">
+                  <strong>CREATE COURSE <i class="fa fa-plus" aria-hidden="true"></i></strong>
+                </button>
+                <span class="pull=right">
+                	<button type="button" class="btn btn-default" ui-sref="instructor.lms.courses">
+                		<strong>VIEW ALL</strong>
+            		</button>
+        		</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="row">
+            <div class="col-sm-12 right_myAccount1">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

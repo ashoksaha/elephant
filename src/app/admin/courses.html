@@ -42,6 +42,9 @@
                     <h4>
                         <span ng-bind="course.title" ng-click="vm.editCourse(course)"></span> <span class="label label-accent pull-right" ng-click="vm.editCourse(course)">Edit</span>
                     </h4>
+                    <h5>
+                        By <span ng-bind="course.instructorFullName"></span>
+                    </h5>
                     <div>
                         <i class="fa fa-credit-card" aria-hidden="true"></i>
                         <span ng-if="course.courseFee" ng-bind="course.courseFee | INR"></span>
@@ -49,10 +52,12 @@
                         <i class="fa fa-clock-o" aria-hidden="true"></i> <span ng-bind="course.duration"></span> <span ng-bind="course.durationParameter"></span> |
                         <i class="fa fa-calendar" aria-hidden="true"></i> <span ng-bind="course.courseStartDate"></span>
                     </div>
-                    <p ng-bind="course.description"></p>
+                    <p ng-bind="course.shortDescription"></p>
                     <hr>
                     <a href="javascript:void(0);" ng-click="vm.getCourseStudents(course)">Show Students</a> | <a href="javascript:void(0);">Show Units</a>
-                    <a class="btn btn-primary btn-small m0 pull-right js-open-assignment-dialog" href="javascript:void(0)">Add unit</a>
+                    <a class="btn btn-primary btn-small m0 pull-right js-open-assignment-dialog" href="javascript:void(0)" ng-click="vm.addReview($event, course)">
+                        Add review
+                    </a>
                 </div>
             </div>
         </section>
@@ -89,7 +94,7 @@
                         <i class="fa fa-clock-o" aria-hidden="true"></i> <span ng-bind="course.duration"></span> <span ng-bind="course.durationParameterText"></span> |
                         <i class="fa fa-calendar" aria-hidden="true"></i> <span ng-bind="course.courseStartDate"></span>
                     </div>
-                    <p ng-bind="course.description"></p>
+                    <p ng-bind="course.shortDescription"></p>
                     <hr>
                     <a href="javascript:void(0);">Show Students</a> | <a href="javascript:void(0);">Show Units</a>
                     <a class="btn btn-primary btn-small m0 pull-right js-open-assignment-dialog" href="javascript:void(0)">Add unit</a>

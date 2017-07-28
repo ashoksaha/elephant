@@ -1,0 +1,45 @@
+<div class="groups__courses">
+	<h4 class="gr-subtitle">
+    	Coupon
+    	<a style="margin:0px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" ng-click="vm.addCoupon()">
+        <i class="fa fa-plus-square"></i> Add New
+    </a>
+  </h4>
+  <div class="groups__courses-overview groups__border">
+    <p id="emptyCoursesMessage" class="text-center" ng-if="vm.coupons.length == 0">
+      <i>Seems like we don't have any student call request for this course.</i>
+    </p>
+    <div class="table-responsive" ng-if="vm.coupons.length > 0">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Expiry Date</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="coupon in vm.coupons">
+            <td ng-bind="$index + 1"></td>
+            <td ng-bind="coupon.code"></td>
+            <td ng-bind="coupon.description"></td>
+            <td ng-bind="coupon.discountType | capitalize"></td>
+            <td ng-bind="coupon.dateExpires"></td>
+            <td ng-bind="coupon.amount"></td>
+            <td ng-bind="coupon.status ? 'Active' : 'Inactive'"></td>
+            <td>
+              <a ng-href="javascript:void(0);" role="button" ng-click="vm.addCoupon(coupon)">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

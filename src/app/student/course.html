@@ -1,103 +1,106 @@
 <div ng-cloak>
-    <div class="site-wrap">
-        <section class="bg bg-navigation" id="logged-out-header">
-            <div class="container">
-                <main-navbar></main-navbar>
-            </div>
-        </section>
-        <section layout="row" flex class="container-course">
-            <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
-                <md-toolbar style="background-color:  #1E232F;">
-                    <div class="md-toolbar-tools">
-                        <h2 flex md-truncate>All Units
+  <div class="site-wrap">
+    <section class="bg bg-navigation" id="logged-out-header">
+      <div class="container">
+        <main-navbar></main-navbar>
+      </div>
+    </section>
+    <section layout="row" flex class="container-course">
+      <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+        <md-toolbar style="background-color: #29c5a7;">
+          <div class="md-toolbar-tools">
+            <h2 flex md-truncate>All Units
                         </h2>
-                        <md-button class="md-icon-button" aria-label="Close" ng-click="vm.closeSide()" class="md-primary" hide-gt-md>
-                            <i class="fa fa-times fa-lg"></i>
-                        </md-button>
-                    </div>
-                </md-toolbar>
-                <md-content>
-                    <md-list style="font-size: 80%;">
-                        <md-list-item ng-repeat-start="unit in vm.course.units">
-                            <p href="javascript:void(0)" ng-bind="unit.name" ng-click="vm.getCourseUnit(unit);"></p>
-                        </md-list-item>
-                        <md-divider ng-repeat-end></md-divider>
-                        <md-list-item class="btn-primary text-center">
-                            <p style="font-size: 1.5em;" href="javascript:void(0)" ng-click="vm.getReviewPage();"> Add Review </p>
-                        </md-list-item>
-                        <md-divider></md-divider>
-                        <md-list-item class="btn-primary text-center">
-                            <p style="font-size: 1.5em;" href="javascript:void(0)" ng-click="vm.showRelatedDiscussion();"> Related Discussions </p>
-                        </md-list-item>
-                        <md-divider></md-divider>
-                    </md-list>
-                </md-content>
-            </md-sidenav>
-            <md-content flex>
-                <md-toolbar style="background-color: #18BC9C;">
-                    <div class="md-toolbar-tools">
-                        <md-button class="md-icon-button" aria-label="Settings" ng-click="vm.toggleLeft()" class="md-primary" hide-gt-md>
-                            <i class="fa fa-bars fa-lg"></i>
-                        </md-button>
-                        <span md-truncate ng-bind="vm.course.title"></span>&nbsp;/&nbsp;<span flex md-truncate ng-bind="vm.unit.name"></span>
-                    </div>
-                </md-toolbar>
-                <div layout="column" layout-padding ng-if="!vm.showReviewPage">
-                    <p ng-bind="vm.unit.description"></p>
-                    <md-button md-no-ink class="md-primary" ng-href="{{vm.unit.downloadLink.videoDownloadLink}}" download aria-label="Download Video" ng-if="vm.unit.downloadLink && vm.unit.downloadLink.videoDownloadLink">
-                        <i class="fa fa-download" aria-hidden="true"></i> Download Video
-                    </md-button>
-                    <div class="embed-responsive embed-responsive-16by9" ng-if="vm.unit.videoId">
-                        <p ng-bind-html="vm.unit.videoHtml" class="text-center embed-responsive-item"></p>
-                    </div>
-                    <p ng-bind-html="vm.unit.unitDescription"></p>
-                    <div ng-if="vm.unit.test">
-                        <p ng-bind="vm.unit.test.title"></p>
-                        <p ng-bind="vm.unit.test.instruction"></p>
-                        <div ng-repeat="question in vm.unit.test.questions">
-                            <h4 style="margin:3px 0px;">Q. <span ng-bind="$index + 1"></span></h4>
-                            <p ng-bind-html="question.question"></p>
-                            <div>
-                                <div class="exercise--instructions-title">
-                                    <h5>Options</h5>
-                                </div>
-                                <div>
-                                    <div class="exercise--instructions exercise--typography">
-                                        <md-radio-group ng-model="vm.userCurrentQuestion[$index].answer" md-no-ink="false">
-                                            <md-radio-button aria-label="options" ng-repeat="answer in question.answers" ng-value="answer.ansKey" class="md-primary">
-                                                <p ng-bind-html="answer.answerText"></p>
-                                            </md-radio-button>
-                                        </md-radio-group>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr />
-                        </div>
-                        <div class="vex--buttons">
-                            <a class="btn btn-small btn-primary" href="javascript:void(0);" ng-click="vm.submitExam(false);">Submit</a>
-                        </div>
-                    </div>
+            <md-button class="md-icon-button" aria-label="Close" ng-click="vm.closeSide()" class="md-primary" hide-gt-md>
+              <i class="fa fa-times fa-lg"></i>
+            </md-button>
+          </div>
+        </md-toolbar>
+        <md-content>
+          <md-list>
+            <md-list-item ng-repeat-start="unit in vm.course.units">
+              <p href="javascript:void(0)" ng-bind="unit.name" ng-click="vm.getCourseUnit(unit);"></p>
+            </md-list-item>
+            <md-divider ng-repeat-end></md-divider>
+            <md-list-item class="btn-primary text-center">
+              <p href="javascript:void(0)" ng-click="vm.getReviewPage();"> Add Review </p>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item class="btn-primary text-center">
+              <p href="javascript:void(0)" ng-click="vm.showRelatedDiscussion();"> Related Discussions </p>
+            </md-list-item>
+            <md-divider></md-divider>
+          </md-list>
+        </md-content>
+      </md-sidenav>
+      <md-content flex>
+        <md-toolbar style="background-color: #18BC9C;">
+          <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="Settings" ng-click="vm.toggleLeft()" class="md-primary" hide-gt-md>
+              <i class="fa fa-bars fa-lg"></i>
+            </md-button>
+            <span md-truncate ng-bind="vm.course.title"></span>
+          </div>
+        </md-toolbar>
+        <!-- <div layout="column" layout-padding ng-if="!vm.showReviewPage"> -->
+        <h4 ng-bind="vm.unit.name" style="padding:8px;"></h4>
+        <!-- </div> -->
+        <div layout="column" layout-padding ng-if="!vm.showReviewPage">
+          <p ng-bind="vm.unit.description"></p>
+          <md-button md-no-ink class="md-primary" ng-href="{{vm.unit.downloadLink.videoDownloadLink}}" download aria-label="Download Video" ng-if="vm.unit.downloadLink && vm.unit.downloadLink.videoDownloadLink">
+            <i class="fa fa-download" aria-hidden="true"></i> Download Video
+          </md-button>
+          <div class="embed-responsive embed-responsive-16by9" ng-if="vm.unit.videoId">
+            <p ng-bind-html="vm.unit.videoHtml" class="text-center embed-responsive-item"></p>
+          </div>
+          <p ng-bind-html="vm.unit.unitDescription"></p>
+          <div ng-if="vm.unit.test">
+            <p ng-bind="vm.unit.test.title"></p>
+            <p ng-bind="vm.unit.test.instruction"></p>
+            <div ng-repeat="question in vm.unit.test.questions">
+              <h4 style="margin:3px 0px;">Q. <span ng-bind="$index + 1"></span></h4>
+              <p ng-bind-html="question.question"></p>
+              <div>
+                <div class="exercise--instructions-title">
+                  <h5>Options</h5>
                 </div>
-                <div layout="column" layout-padding ng-if="vm.showReviewPage">
-                    <p>
-                        Please review the course
-                        <br />
-                        <jk-rating-stars max-rating="5" style="padding-bottom:20px" rating="vm.review.reviewRating" read-only="false">
-                        </jk-rating-stars>
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label>Review Title</label>
-                            <input ng-model="vm.review.reviewTitle" required="required" />
-                        </md-input-container>
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label>Review Details</label>
-                            <textarea ng-model="vm.review.reviewDetails" row="5" required="required"></textarea>
-                        </md-input-container>
-                        <md-button class="md-raised md-primary" ng-click="vm.submitReview()">Submit</md-button>
-                    </p>
+                <div>
+                  <div class="exercise--instructions exercise--typography">
+                    <md-radio-group ng-model="vm.userCurrentQuestion[$index].answer" md-no-ink="false">
+                      <md-radio-button aria-label="options" ng-repeat="answer in question.answers" ng-value="answer.ansKey" class="md-primary">
+                        <p ng-bind-html="answer.answerText"></p>
+                      </md-radio-button>
+                    </md-radio-group>
+                  </div>
                 </div>
-                <div flex></div>
-            </md-content>
-        </section>
-    </div>
-    <main-footer-bar></main-footer-bar>
+              </div>
+              <hr />
+            </div>
+            <div class="vex--buttons">
+              <a class="btn btn-small btn-primary" href="javascript:void(0);" ng-click="vm.submitExam(false);">Submit</a>
+            </div>
+          </div>
+        </div>
+        <div layout="column" layout-padding ng-if="vm.showReviewPage">
+          <p>
+            Please review the course
+            <br />
+            <jk-rating-stars max-rating="5" style="padding-bottom:20px" rating="vm.review.reviewRating" read-only="false">
+            </jk-rating-stars>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Review Title</label>
+              <input ng-model="vm.review.reviewTitle" required="required" />
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Review Details</label>
+              <textarea ng-model="vm.review.reviewDetails" row="5" required="required"></textarea>
+            </md-input-container>
+            <md-button class="md-raised md-primary" ng-click="vm.submitReview()">Submit</md-button>
+          </p>
+        </div>
+        <div flex></div>
+      </md-content>
+    </section>
+  </div>
+  <main-footer-bar></main-footer-bar>
 </div>

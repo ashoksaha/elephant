@@ -11,7 +11,7 @@
                             <input type="text" name="Title" id="Title" ng-model="vm.course.title"> -->
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Title</label>
-                                <input ng-model="vm.course.title">
+                                <input ng-model="vm.course.title" md-maxlength="30" maxlength="30">
                             </md-input-container>
                         </fieldset>
                         <fieldset>
@@ -125,7 +125,7 @@
                                 </md-chip-template>
                             </md-chips>
                             <md-chips ng-model="vm.course.addUnits" md-autocomplete-snap md-require-match="true" md-transform-chip="vm.checkUnit($chip)">
-                                <md-autocomplete md-selected-item="vm.selectedItem" md-search-text="vm.searchText.name" md-items="item in vm.activeUnits | filter:vm.searchText" md-item-text="item.name" placeholder="Search for units">
+                                <md-autocomplete md-selected-item="vm.selectedItem" md-search-text="vm.searchText.name" md-items="item in vm.activeUnits | filter:vm.searchText" md-item-text="item.name" placeholder="Search for units" md-dropdown-position="bottom">
                                     <span md-highlight-text="vm.searchText.name">{{item.name}}</span>
                                 </md-autocomplete>
                                 <md-chip-template>
@@ -197,6 +197,12 @@
                         <fieldset>
                             <md-switch class="md-primary" name="showOnHome" id="showOnHome" ng-model="vm.course.showOnhome" aria-label="Show on home Page" ng-true-value="1" ng-false-value="0">
                                 Show on home page
+                            </md-switch>
+                        </fieldset>
+
+                        <fieldset>
+                            <md-switch class="md-primary" name="isForSale" id="isForSale" ng-model="vm.course.isForsale" aria-label="isForSale" ng-true-value="1" ng-false-value="0">
+                                Is For Sale
                             </md-switch>
                         </fieldset>
                     </div>

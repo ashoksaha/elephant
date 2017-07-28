@@ -148,7 +148,7 @@
         }
 
         function getCoursesByInstructor() {
-            $http.post(CommonInfo.getAppUrl() + "/getallcoursesby_Inst_Id", { id: vm.instructorInfo.id }).then(
+            $http.post(CommonInfo.getAppUrl() + "/getallcoursesby_Inst_Id", { id: vm.instructorInfo.id, isForsale: '' }).then(
                 function(response) {
                     if (response && response.data) {
                         if (response.data.status == 1) {

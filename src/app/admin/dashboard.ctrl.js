@@ -1,20 +1,22 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('flavido')
-        .controller('AdminDashboardController', AdminDashboardController);
+  angular
+    .module('flavido')
+    .controller('AdminDashboardController', AdminDashboardController);
 
-    /** @ngInject */
-    function AdminDashboardController(CommonInfo) {
-        var vm = this;
+  /** @ngInject */
+  function AdminDashboardController(CommonInfo) {
+    var vm = this;
 
-        vm.userInfo = {};
+    vm.userInfo = {};
 
-        activate();
+    activate();
 
-        function activate() {
-            vm.userInfo = CommonInfo.getInfo('userInfo');
-        }
+    function activate() {
+      vm.userInfo = CommonInfo.getInfo('userInfo');
     }
+
+
+  }
 })();

@@ -49,7 +49,7 @@
                     function(isConfirm) {
                         //SweetAlert.swal("Booyah!");
                         if (isConfirm) {
-                            $http.post(CommonInfo.getAppUrl() + "/studentlogout", { studentId: vm.studentInfo.userId }).then(
+                            $http.post(CommonInfo.getAppUrl() + "/studentlogout", { fromSource: "flavido", studentId: vm.studentInfo.userId }).then(
                                 function(response) {
                                     if (response && response.data) {
                                         if (response.data.status == 1) {

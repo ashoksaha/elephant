@@ -9,6 +9,18 @@
         <form class="edit_user" id="edit_password_727839" method="post">
             <p ng-if="vm.homeCategories.length == 0" class="text-center">No home page categories found</p>
             <md-list ng-if="vm.homeCategories.length > 0">
+                <md-subheader class="md-no-sticky">Slider</md-subheader>
+                <md-list-item class="secondary-button-padding" ng-click="$event.stopPropagation();">
+                    <md-checkbox ng-model="category.status" ng-true-value="1" ng-false-value="0"></md-checkbox>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Home Silder</label>
+                    </md-input-container>
+                    <md-button class="md-secondary" ui-sref="admin.settings.subCategories" ng-click="vm.parentId = category.id">
+                        View Child
+                    </md-button>
+                </md-list-item>
+            </md-list>
+            <md-list ng-if="vm.homeCategories.length > 0">
                 <md-subheader class="md-no-sticky">Categories</md-subheader>
                 <md-list-item class="secondary-button-padding" ng-click="$event.stopPropagation();" ng-repeat="category in vm.homeCategories | filter: {'parentId': 0 } | orderBy: 'position'">
                     <md-checkbox ng-model="category.status" ng-true-value="1" ng-false-value="0"></md-checkbox>

@@ -13,7 +13,7 @@
         var selectedCourseName;
         var studentInfo;
         var submitAttempt;
-        var selectedUnitName;
+        //var selectedUnitName;
 
         vm.showReviewPage = false;
         vm.userCurrentQuestion = [];
@@ -38,13 +38,14 @@
             selectedCourseId = startCourse.courseId;
             selectedCourseName = $stateParams.courseName;
             selectedUnitId = startCourse.unitId;
-            selectedUnitName = $stateParams.unitName;
+            //selectedUnitName = $stateParams.unitName;
             getUnitDetails(selectedUnitId);
             getCourseDetails();
         }
 
         function getUnitDetails(unitId) {
             if (studentInfo && studentInfo.name && studentInfo.email) {
+                CommonInfo.setInfo('startCourse', { unitId: unitId, courseId: selectedCourseId });
                 $http.post(CommonInfo.getAppUrl() + "/getunitdetailsbyunit_id", { id: unitId, userName: studentInfo.name, userEmail: studentInfo.email }).then(
                     function(response) {
                         if (response && response.data) {
@@ -202,6 +203,14 @@
                         if (response.data.status == 1) {
                             if (selectedCourseName == response.data.data[0].title.replace(/ /g, "-")) {
                                 vm.course = response.data.data[0];
+                                if(vm.course && vm.course.courseCurriculum && vm.course.units.length > 0) {
+                                    var units = [];
+                                    var unitIds = vm.course.courseCurriculum.split(',');
+                                    _.forEach(unitIds, function(value, key){
+                                        units.push(_.find(vm.course.units, { 'id': parseInt(value) }));
+                                    });
+                                    vm.course.units = units;
+                                }
                                 vm.review = {
                                     reviewRating: vm.course.reviewRating,
                                     reviewTitle: vm.course.reviewTitle,
@@ -209,7 +218,8 @@
                                 };
                             }
                         } else if (response.data.status == 2) {
-                            $log.log(response.data.message);
+                            growl.info(response.data.message);
+                            $state.go('dashboard');
                         }
                     } else {
                         $log.log('There is some issue, please try after some time');

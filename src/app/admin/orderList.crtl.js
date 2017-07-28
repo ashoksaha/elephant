@@ -79,7 +79,7 @@
                     '</div>' +
                     '</md-dialog-content>' +
                     '<md-dialog-actions>' +
-                    '<md-button class="md-primary" lazy-load="true" ng-csv="getOrderList();" filename="order.csv" field-separator="," decimal-separator="." csv-header="exportOrderHeader();">' +
+                    '<md-button class="md-primary" lazy-load="true" ng-csv="getOrderList();" filename="order.csv" field-separator="," decimal-separator="." csv-header="">' +
                     'Export' +
                     '</md-button>' +
                     '<md-button ng-click="closeDialog()" class="md-primary">' +
@@ -103,7 +103,9 @@
                     var deferred = $q.defer();
                     var data = {
                         fromDate: moment($scope.fromDate).format("YYYY-MM-DD"),
-                        toDate: moment($scope.toDate).format("YYYY-MM-DD")
+                        toDate: moment($scope.toDate).format("YYYY-MM-DD"),
+                        instructorId: vm.selectedInstructor,
+                        categoryId: vm.selectedCategory
                     };
 
                     $http
@@ -175,7 +177,7 @@
                     var deferred = $q.defer();
 
                     $http
-                        .post(CommonInfo.getAppUrl() + "/searchstudent", { email: searchText, name: searchText, ignoreBlockUI: true })
+                        .post(CommonInfo.getAppUrl() + "/searchstudent", { searchText: searchText, ignoreBlockUI: true })
                         .success(function(data, status, headers, config) {
                             deferred.resolve(data.data);
                         });

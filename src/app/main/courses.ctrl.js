@@ -14,6 +14,7 @@
         vm.stars = [1,2,3,4,5];
         vm.courseSearchCriteria = {
             status: 1,
+            isForsale: 1,
             name: '',
             categoryId: '',
             instructorId: ''
@@ -28,6 +29,7 @@
 
         vm.showCourseDetails = showCourseDetails;
         vm.showAllCourses = showAllCourses;
+        vm.showInstructorCourses = showInstructorCourses;
 
         activate();
 
@@ -167,6 +169,12 @@
 
         function showAllCourses() {
             $state.go('courses.search', { query: '123' });
+        }
+
+        function showInstructorCourses(course) {
+            if (course.instructorId) {
+                $state.go('instructorCourses', { name: course.instructorFullName.replace(/ /g, "-"), id: course.instructorId })
+            }
         }
     }
 })();

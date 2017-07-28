@@ -47,7 +47,6 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th></th>
                                         <th>ID</th>
                                         <th>Course</th>
                                         <th>Student</th>
@@ -60,9 +59,6 @@
                                 <tbody>
                                     <tr ng-repeat="order in vm.orderList">
                                         <td ng-bind="$index + 1">
-                                        </td>
-                                        <td>
-                                            <i class="fa fa-dot-circle-o" aria-hidden="true" ng-style="{'color': order.status ? 'green' : 'red'}"></i>
                                         </td>
                                         <td>
                                             <span ng-bind="order.txnID"></span>

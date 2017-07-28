@@ -1,190 +1,130 @@
 <div ng-cloak>
-    <div class="site-wrap">
-        <section class="bg bg-navigation" id="logged-out-header">
-            <div class="container">
-                <main-navbar></main-navbar>
+  <div class="site-wrap">
+    <section class="bg bg-navigation" id="logged-out-header">
+      <div class="container">
+        <main-navbar></main-navbar>
+      </div>
+    </section>
+    <section class="home__ads top" ng-if="false">
+      <div class="container">
+        <div class="home__ad blue js-home-ad-upgrade_premium" data-ad-id="upgrade_premium">
+          <div class="row">
+            <div class="col-sm-4">
+              <img style="margin-bottom: -4rem; margin-left: -2rem" src="assets/images/premium1.png" alt="Upgrade premium" />
             </div>
-        </section>
-        <section class="home__ads top" ng-if="false">
-            <div class="container">
-                <div class="home__ad blue js-home-ad-upgrade_premium" data-ad-id="upgrade_premium">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <img style="margin-bottom: -4rem; margin-left: -2rem" src="assets/images/premium1.png" alt="Upgrade premium" />
-                        </div>
-                        <div class="col-sm-8">
-                            <h3 class="home__ad-title">Upgrade now for access to all flavido courses and&nbsp;resources.</h3>
-                            <p>If you are preparing for UPSC IAS Civil Services Examination, you have just landed on India’s Largest Network for UPSC IAS Preparation. If you have the UPSC IAS Civil services dream, we have the right Guidance for you.
-                            </p>
-                            <a class="btn btn-primary-invert ml0" href="javascript:void(0);">Upgrade Now</a>
-                        </div>
-                    </div>
-                    <div class="home__ad-close js-dismiss-home-ad" data-cookie="upgrade_premium" data-cookie-expires="&quot;2017-05-02T06:32:27.967+00:00&quot;"></div>
-                </div>
+            <div class="col-sm-8">
+              <h3 class="home__ad-title">Upgrade now for access to all flavido courses and&nbsp;resources.</h3>
+              <p>If you are preparing for UPSC IAS Civil Services Examination, you have just landed on India’s Largest Network for UPSC IAS Preparation. If you have the UPSC IAS Civil services dream, we have the right Guidance for you.
+              </p>
+              <a class="btn btn-primary-invert ml0" href="javascript:void(0);">Upgrade Now</a>
             </div>
-        </section>
-        <section class="home__courses">
-            <div class="container">
-                <ul class="home__tabs nav-tabs" role="tablist">
-                    <li ng-class="{ 'active' : vm.courseTab == 1 }" ng-click="vm.courseTab = 1">
-                        <a href="javascript:void(0);" aria-controls="my-courses">My Courses</a>
-                    </li>
-                    <li ng-class="{ 'active' : vm.courseTab == 2 }" ng-click="vm.courseTab = 2">
-                        <a href="javascript:void(0);" aria-controls="library">Course Library</a>
-                    </li>
-                </ul>
-                <div class="tab-pane home__tab-pane" id="my-courses" ng-class="{ 'active' : vm.courseTab == 1 }">
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-6" ng-repeat="course in vm.subscribedCourses">
-                            <a class="no-link-style no-link-color" href="javascript:void(0);">
-                                <div class='course-block' ng-class="{'course-block--r' : $even, 'course-block--g' : $odd}">
-                                    <div>
-                                        <!-- Don't remove these. Needed for flexbox -->
-                                        <h4 class="course-block__title" ng-bind="course.title"></h4>
-                                        <p class="course-block__description" ng-bind="course.shortDesc"></p>
-                                    </div>
-                                    <div class="course-block__author">
-                                        <a class="btn m0" href="javascript:void(0);" ng-click="vm.showCourse(course)" ng-class="{'btn-r' : $odd, 'btn-g' : $even}">Start Course</a>
-                                        <a class="btn m0 pull-right-cards" href="javascript:void(0);" ng-click="vm.showCourseDetails(course)" ng-class="{'btn-r' : $odd, 'btn-g' : $even}">View Course</a>
-                                    </div>
-                                    <div class="course-block__footer">
-                                        <span class="pull-right">Course expire <span ng-bind="course.courseEndDate | timeRemaining"></span></span>
-                                    </div>
-                                    <!-- <div class="course-block__footer">
-                                    <div class="course-block__chapters">
-                                        <a class="incompleted" data-toggle="tooltip" data-placement="bottom" data-title="Intro to basics" href="javascript:void(0);"></a>
-                                        <a class="incompleted" data-toggle="tooltip" data-placement="bottom" data-title="Vectors" href="javascript:void(0);"></a>
-                                        <a class="incompleted" data-toggle="tooltip" data-placement="bottom" data-title="Matrices" href="javascript:void(0);"></a>
-                                        <a class="incompleted" data-toggle="tooltip" data-placement="bottom" data-title="Factors" href="javascript:void(0);"></a>
-                                        <a class="incompleted" data-toggle="tooltip" data-placement="bottom" data-title="Data frames" href="javascript:void(0);"></a>
-                                        <a class="incompleted" data-toggle="tooltip" data-placement="bottom" data-title="Lists" href="javascript:void(0);"></a>
-                                    </div>
-                                </div> -->
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- CTA -->
-                    <!-- <a class="btn btn-primary home__tab-button js-tab-open" href="javascript:void(0);">Explore Course Library</a> -->
+          </div>
+          <div class="home__ad-close js-dismiss-home-ad" data-cookie="upgrade_premium" data-cookie-expires="&quot;2017-05-02T06:32:27.967+00:00&quot;"></div>
+        </div>
+      </div>
+    </section>
+    <section class="home__courses">
+      <div class="container">
+        <ul class="home__tabs nav-tabs" role="tablist">
+          <li ng-class="{ 'active' : vm.courseTab == 1 }" ng-click="vm.courseTab = 1">
+            <a href="javascript:void(0);" aria-controls="my-courses">My Courses</a>
+          </li>
+          <li ng-class="{ 'active' : vm.courseTab == 2 }" ng-click="vm.courseTab = 2">
+            <a href="javascript:void(0);" aria-controls="library">Course Library</a>
+          </li>
+        </ul>
+        <div class="tab-pane home__tab-pane" id="my-courses" ng-class="{ 'active' : vm.courseTab == 1 }">
+          <div class="row">
+            <div class="col-lg-4 col-sm-6" ng-repeat="course in vm.subscribedCourses">
+              <!-- <a class="no-link-style no-link-color" href="javascript:void(0);"> -->
+              <div class='course-block' ng-class="{'course-block--r' : $even, 'course-block--g' : $odd}">
+                <div>
+                  <!-- Don't remove these. Needed for flexbox -->
+                  <h4 class="course-block__title" ng-bind="course.title"></h4>
+                  <p class="course-block__description" ng-bind="'By ' + course.instructorFullName"></p>
+                  <p class="course-block__description" ng-bind="course.shortDesc"></p>
                 </div>
-                <div role="tabpanel" class="tab-pane home__tab-pane" id="library" ng-class="{ 'active' : vm.courseTab == 2 }">
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-6" ng-repeat="course in vm.allCourses">
-                            <a class="no-link-style no-link-color" href="javascript:void(0);" ng-click="vm.showCourseDetails(course)">
-                                <div class="course-block" ng-class="{'course-block--r' : $even, 'course-block--g' : $odd}">
-                                    <div>
-                                        <!-- Don't remove these. Needed for flexbox -->
-                                        <h4 class="course-block__title" ng-bind="course.title"></h4>
-                                        <p class="course-block__description" md-truncate ng-bind="course.shortDesc"></p>
-                                    </div>
-                                    <div class="course-block__author">
-                                        <div class="course-block__author-image">
-                                            <img class="image-rounded" width="70" height="70" src="{{course.instructorImage || '/assets/images/avatar.png'}}">
-                                        </div>
-                                        <div class="course-block__author-description">
-                                            <h5 ng-bind="course.instructorFullName"></h5>
-                                            <p ng-bind="course.instructorDesignation"></p>
-                                        </div>
-                                    </div>
-                                    <div class="course-block__footer">
-                                        <span>
-                                    <i class="fa fa-clock-o" aria-hidden="true" ng-attr-title="{{course.duration}} {{course.durationParameter}}"></i> 
-                                    <span ng-bind="course.duration"></span><span ng-bind="course.durationParameter"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                <div class="course-block__base">
+                  <a class="btn m0" href="javascript:void(0);" ng-click="vm.showCourse(course)" ng-class="{'btn-r' : $odd, 'btn-g' : $even}">Start Course</a>
+                  <a class="btn m0 pull-right-cards" href="javascript:void(0);" ng-click="vm.showCourseDetails(course)" ng-class="{'btn-r' : $odd, 'btn-g' : $even}" style="left:44%;">
+                                            View Course
+                                        </a>
                 </div>
+                <div class="course-block__footer">
+                  <span class="pull-right">Course expire <span ng-bind="course.courseEndDate | timeRemaining"></span></span>
+                </div>
+                <!-- <div class="course-block__footer">
+                    <div class="course-block__chapters">
+                        <a class="incompleted" data-toggle="tooltip" data-placement="bottom" data-title="Intro to basics" href="javascript:void(0);"></a>
+                        <a class="incompleted" data-toggle="tooltip" data-placement="bottom" data-title="Vectors" href="javascript:void(0);"></a>
+                        <a class="incompleted" data-toggle="tooltip" data-placement="bottom" data-title="Matrices" href="javascript:void(0);"></a>
+                        <a class="incompleted" data-toggle="tooltip" data-placement="bottom" data-title="Factors" href="javascript:void(0);"></a>
+                        <a class="incompleted" data-toggle="tooltip" data-placement="bottom" data-title="Data frames" href="javascript:void(0);"></a>
+                        <a class="incompleted" data-toggle="tooltip" data-placement="bottom" data-title="Lists" href="javascript:void(0);"></a>
+                    </div>
+                </div> -->
+              </div>
+              <!-- </a> -->
             </div>
-        </section>
-        <section class="home__ads bottom ">
-            <div class="container ">
-                <div class="home__ad js-home-ad-gift_free " data-ad-id="gift_free ">
-                    <div class="row ">
-                        <div class="col-sm-4 ">
-                            <img class="home__ad-img " src="assets/images/giftFree.png" alt="Gift free " />
-                        </div>
-                        <div class="col-sm-8 ">
-                            <h3 class="home__ad-title ">We want to give you a chance to try out all our courses for free!</h3>
-                            <p class="home__ad-descr ">Give each of your friends 2 days of unlimited access and get 2 days for free as well.
-                                <br> For each friend who registers you will get 2 days of full access to our entire course curriculum.</p>
-                            <form class="js-email-gift-form " method="post ">
-                                <span class="form-error " id="to-error ">Please pass a list of email addresses separated by commas.</span>
-                                <div class="input-button ">
-                                    <input type="text " name="to " id="to " placeholder="friend1@gmail.com, friend2@gmail.com " ng-model="vm.invitationMail" />
-                                    <input type="submit" name="commit" value="Send Invitation" class="btn btn-primary" data-disable-with="Send Invitation" ng-click="vm.sendInvitation();" />
-                                </div>
-                                <ul class="home__ad-sharing ">
-                                    <li><span>or</span></li>
-                                    <li>
-                                        <a href="javascript:void(0); " target="_blank "><i class="fa fa-facebook "></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0); " target="_blank "><i class="fa fa-twitter "></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0); " target="_blank "><i class="fa fa-linkedin "></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0); " data-toggle="modal " data-target="#linkWindow "><i class="fa fa-link "></i></a>
-                                    </li>
-                                </ul>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="home__ad-close js-dismiss-home-ad " data-cookie="gift_free " data-cookie-expires="&quot;2017-05-02T06:32:28.348+00:00&quot; "></div>
+          </div>
+          <!-- CTA -->
+          <!-- <a class="btn btn-primary home__tab-button js-tab-open" href="javascript:void(0);">Explore Course Library</a> -->
+        </div>
+        <div role="tabpanel" class="tab-pane home__tab-pane" id="library" ng-class="{ 'active' : vm.courseTab == 2 }">
+          <div class="row">
+            <div class="col-lg-4 col-sm-6" ng-repeat="course in vm.allCourses">
+              <!-- <a class="no-link-style no-link-color" href="javascript:void(0);" ng-click="vm.showCourseDetails(course)"> -->
+              <div class="course-block" ng-class="{'course-block--r' : $even, 'course-block--g' : $odd}">
+                <div ng-click="vm.showCourseDetails(course)">
+                  <!-- Don't remove these. Needed for flexbox -->
+                  <h4 class="course-block__title" ng-bind="course.title"></h4>
+                  <p class="course-block__description" md-truncate ng-bind="course.shortDesc"></p>
                 </div>
-                <!-- Link modal -->
-                <div class="modal fade preview-window gifts tracked-modal " id="linkWindow " tabindex="-1 " role="dialog " aria-labelledby="linkWindowLabel ">
-                    <div class="modal-dialog preview-dialog " role="document ">
-                        <div class="modal-content ">
-                            <div class="modal-body ">
-                                <div class="row " style="margin: 0; margin-bottom: 10px; padding: 0; ">
-                                    <div class="col-sm-12 ">
-                                        <div class="tab-title ">
-                                            <span class="title ">Share this link to give <i class="fa fa-gift "></i> and get <i class="fa fa-money "></i> off</span>
-                                        </div>
-                                        <div class="share-wrap ">
-                                            <div class="col-sm-12 " style="padding-left: 0; ">
-                                                <input type="text " name="share-url " id="share-url " value=" " readonly="readonly " class="set_tracking_location " oncopy="trackAnalytics(&#39;Link Copied&#39;, $(this).data(&#39;tracking-location&#39;)) " />
-                                            </div>
-                                            <!-- <button id="copy-button " class="set_tracking_location " style="padding-bottom: 36px " data-clipboard-target='share-url' data-clipboard-text="Copy Link! " onclick="trackAnalytics( 'Link Copied', $(this).data( 'tracking-location')) ">
-                                            <i class="fa fa-clipboard fa-lg "></i>
-                                        </button> -->
-                                            <p class="copied-text ">copied link to clipboard!</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="course-block__author" ng-click="vm.showInstructorCourses(course)">
+                  <div class="course-block__author-image">
+                    <img class="image-rounded" width="70" height="70" src="{{course.instructorImage || '/assets/images/avatar.png'}}">
+                  </div>
+                  <div class="course-block__author-description">
+                    <h5 ng-bind="course.instructorFullName"></h5>
+                    <p ng-bind="course.instructorDesignation"></p>
+                  </div>
                 </div>
-                <div class="modal fade thank-you-window gifts " id="thankYouWindow " tabindex="-1 " role="dialog " aria-labelledby="thankYouLabel ">
-                    <div class="modal-dialog thank-you-dialog " role="document ">
-                        <div class="modal-content ">
-                            <div class="modal-header ">
-                                <button type="button " class="close " data-dismiss="modal " aria-label="Close "><span aria-hidden="true ">&times;</span></button>
-                                <div class="row ">
-                                    <h2>You. Rock.</h2>
-                                </div>
-                            </div>
-                            <div class="modal-body ">
-                                <div class="row banner ">
-                                    <img src=" " alt="Thank you " />
-                                </div>
-                                <div class="row whats-next ">
-                                    <h4>What's Next?</h4>
-                                    <p>Your friends will receive 2 free days of unlimited course access. For each friend that purchases a subscription you'll receive 25% off your monthly payment as long as they stay subscribed.</p>
-                                    <div class="btn btn-primary send-more ">Send More Gifts!</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="course-block__footer">
+                  <span>
+                    <i class="fa fa-clock-o" aria-hidden="true" ng-attr-title="{{course.duration}} {{course.durationParameter}}"></i>
+                        <span ng-bind="course.duration"></span><span ng-bind="course.durationParameter || 'Days'"></span>
+                  </span>
                 </div>
+              </div>
+              <!-- </a> -->
             </div>
-        </section>
-    </div>
-    <main-footer-bar></main-footer-bar>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="home__ads bottom" ng-if="false">
+      <div class="container ">
+        <div class="home__ad js-home-ad-gift_free " data-ad-id="gift_free ">
+          <div class="row ">
+            <div class="col-sm-4 ">
+              <img class="home__ad-img " src="assets/images/giftFree.png" alt="Gift free " />
+            </div>
+            <div class="col-sm-8 ">
+              <h3 class="home__ad-title ">We want to give you a chance to try out all our courses for free!</h3>
+              <p class="home__ad-descr ">Give each of your friends 2 days of unlimited access and get 2 days for free as well.
+                <br> For each friend who registers you will get 2 days of full access to our entire course curriculum.</p>
+              <form class="js-email-gift-form " method="post ">
+                <span class="form-error " id="to-error ">Please pass a list of email addresses separated by commas.</span>
+                <div class="input-button ">
+                  <input type="text " name="to " id="to " placeholder="friend1@gmail.com, friend2@gmail.com " ng-model="vm.invitationMail" />
+                  <input type="submit" name="commit" value="Send Invitation" class="btn btn-primary" data-disable-with="Send Invitation" ng-click="vm.sendInvitation();" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <main-footer-bar></main-footer-bar>
 </div>

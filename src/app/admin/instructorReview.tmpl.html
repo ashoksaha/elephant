@@ -1,0 +1,64 @@
+<md-dialog aria-label="Add Testmonials">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Add Course Review</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="closeDialog()">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <form class="edit_user">
+        <div class="md-dialog-content row">
+          <div class="col-md-4">
+            <!--  <fieldset> -->
+            <label for="user_avatar">Avatar</label>
+            <div class="avatar-selector">
+              <img ngf-src="vm.courseReiview.image || '/assets/images/avatar.png'" ngf-resize="{width: 150, height: 150, quality: 0.9}" style="border:1px solid lightseagreen; height:150px;" class="img-thumbnail" />
+              <br />
+              <button class="btn btn-primary center-block" ngf-select type="file" ng-model="vm.courseReiview.image" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+                Change Photo
+              </button>
+            </div>
+            <!-- </fieldset> -->
+          </div>
+          <div class="col-md-8">
+            <fieldset>
+              <jk-rating-stars max-rating="5" style="padding-bottom:20px" rating="vm.courseReiview.reviewRating" read-only="false">
+              </jk-rating-stars>
+            </fieldset>
+            <fieldset>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Review By</label>
+                <input ng-model="vm.courseReiview.studentName" required="required" />
+              </md-input-container>
+            </fieldset>
+            <fieldset>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Review Title</label>
+                <input ng-model="vm.courseReiview.reviewTitle" required="required" />
+              </md-input-container>
+            </fieldset>
+            <fieldset>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Review Details</label>
+                <textarea required="required" rows="5" ng-model="vm.courseReiview.reviewDetails"></textarea>
+              </md-input-container>
+            </fieldset>
+          </div>
+        </div>
+      </form>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="closeDialog()">
+        Cancel
+      </md-button>
+      <md-button ng-click="addReviews(vm.courseReiview.image)">
+        OK
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

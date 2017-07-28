@@ -1,185 +1,220 @@
 <div ng-cloak>
-    <drop-down-navbar></drop-down-navbar>
-    <div class="site-wrap">
-        <section class="bg bg-navigation bg-pattern" id="logged-out-header">
-            <div class="container">
-                <main-navbar></main-navbar>
-                <div class="show-course__header">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-8 col-lg-9">
-                            <h5 class="subhead" ng-if="vm.course.freeCourse">free course</h5>
-                            <h1 ng-bind="vm.course.title"></h1>
-                            <ul>
-                                <li class="icon-video">
-                                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                                    <span ng-bind="vm.course.unitTypeCount[1] || 0"></span>&nbsp;Videos
-                                </li>
-                                <li class="icon-code">
-                                    <i class="fa fa-server" aria-hidden="true"></i>
-                                    <span ng-bind="vm.course.unitTypeCount[5] || 0"></span>&nbsp;Exercises</li>
-                                <li class="icon-time">
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                    <span ng-bind="vm.course.duration"></span>&nbsp;<span ng-bind="vm.course.durationParameter"></span>
-                                </li>
-                                <li class="icon-participants">
-                                    <i class="fa fa-users" aria-hidden="true"></i>
-                                    <span ng-bind="vm.course.totalStudents || 0"></span>&nbsp;Students
-                                </li>
-                                <li class="icon-xp" ng-if="vm.course.courseRating">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <span ng-bind="vm.course.courseRating"></span>&nbsp;Rating
-                                </li>
-                                <li class="icon-xp"><i class="fa fa-comments" aria-hidden="true"></i> <span ng-bind="vm.course.reviewCourse || '0'"></span>&nbsp;Reviews</li>
-                            </ul>
-                            <div class="clearfix"></div>
-                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.freeCourse && !vm.course.isSubscribed" ng-click="vm.subscribeCourse($event);">
-                                Start Course For Free
-                            </a>
-                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.courseFee && !vm.course.isSubscribed" ng-click="vm.subscribeCourse($event);">
-                                Start Course For <span ng-bind="vm.course.courseFee | INR"></span>
-                            </a>
-                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.isSubscribed" ng-click="vm.showCourse(vm.course)">
-                                Start Course
-                            </a>
-                            <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.demoVideo" ng-click="vm.showCourseDemo($event)">
-                                <i class="fa fa-play" aria-hidden="true"></i> Demo Video
-                            </a>
-                            <div ng-if="vm.showPaymentOptions">
-                                <p style="margin-top: 2%;">Choose Payment Option</p>
-                                <md-radio-group ng-model="vm.paymentOption" ng-Change="" md-no-ink="false">
-                                    <md-radio-button value="{{payment.id}}" ng-repeat="payment in vm.paymentMethods" ng-click="vm.buyCourse(payment.pgId)">
-                                        <span ng-bind="payment.name"></span>
-                                    </md-radio-button>
-                                    <!-- <md-radio-button value="card" ng-click="vm.buyCourse('instamojo');"> Debit/Credit Card </md-radio-button>
-                                    <md-radio-button value="mobikwik" ng-click="vm.buyCourse('razor');"> Mobikwik </md-radio-button> -->
-                                </md-radio-group>
-                            </div>
-                        </div>
-                        <div class="hidden-xs hidden-sm col-md-4 col-lg-3">
-                            <div class="header-image" ng-if="vm.course.image">
-                                <div class="progress" data-value="0" data-size="1000" data-thickness="20" data-fill="{&quot;color&quot;: &quot;#ebf4f7&quot;}" data-line-cap="round" data-empty-fill="rgba(213,234,239,0.1)"></div>
-                                <img src="{{vm.course.image}}">
-                            </div>
-                        </div>
-                    </div>
+  <drop-down-navbar></drop-down-navbar>
+  <div class="site-wrap">
+    <section class="bg bg-navigation bg-pattern" id="logged-out-header">
+      <div class="container">
+        <main-navbar></main-navbar>
+        <div class="show-course__header">
+          <div class="row">
+            <div class="col-sm-12 col-md-8 col-lg-9">
+              <h5 class="subhead" ng-if="vm.course.freeCourse">free course</h5>
+              <h1 ng-bind="vm.course.title"></h1>
+              <ul>
+                <li class="icon-video">
+                  <i class="fa fa-play-circle" aria-hidden="true"></i>
+                  <span ng-bind="vm.course.unitTypeCount[1] || 0"></span>&nbsp;Videos
+                </li>
+                <li class="icon-code">
+                  <i class="fa fa-server" aria-hidden="true"></i>
+                  <span ng-bind="vm.course.unitTypeCount[5] || 0"></span>&nbsp;Exercises</li>
+                <li class="icon-time">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  <span ng-bind="vm.course.duration"></span>&nbsp;<span ng-bind="vm.course.durationParameter || 'Days'"></span>
+                </li>
+                <li class="icon-participants">
+                  <i class="fa fa-users" aria-hidden="true"></i>
+                  <span ng-bind="vm.course.totalStudents || 0"></span>&nbsp;Students
+                </li>
+                <li class="icon-xp" ng-if="vm.course.courseRating">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <span ng-bind="vm.course.courseRating"></span>&nbsp;Rating
+                </li>
+                <li class="icon-xp"><i class="fa fa-comments" aria-hidden="true"></i> <span ng-bind="vm.course.reviewCourse || '0'"></span>&nbsp;Reviews</li>
+              </ul>
+              <div class="clearfix"></div>
+              <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.freeCourse && !vm.course.isSubscribed" ng-click="vm.subscribeCourse($event);">
+                Start Course For Free
+              </a>
+              <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.courseFee && !vm.course.isSubscribed" ng-click="vm.subscribeCourse($event);">
+                Start Course For <span ng-bind="vm.course.courseFee | INR"></span>
+              </a>
+              <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.isSubscribed && !vm.course.isExpired" ng-click="vm.showCourse(vm.course)">
+                Start Course
+              </a>
+              <a class="btn btn-primary btn-large" ng-disabled="true" href="javascript:void(0);" ng-if="vm.course.isExpired">
+                Course Expired
+              </a>
+              <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.demoVideo" ng-click="vm.showCourseDemo($event)">
+                  <i class="fa fa-play" aria-hidden="true"></i> Demo Video
+              </a>
+              <div ng-if="vm.showPaymentOptions" class="row">
+                <hr />
+                <div class="col-md-6">
+                  <p style="margin-top: 2%;">Choose Payment Options</p>
+                  <md-radio-group ng-model="vm.payment.option" ng-Change="" md-no-ink="false">
+                    <md-radio-button ng-value="payment.id" ng-repeat="payment in vm.paymentMethods">
+                      <span ng-bind="payment.name"></span>
+                    </md-radio-button>
+                  </md-radio-group>
                 </div>
-                <div class="show-social__header" ng-if="vm.socialShare">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-8 col-lg-9">
-                            <ul>
-                                <li>Share On: </li>
-                                <li ng-repeat="social in vm.socialShare">
-                                    <!-- <i class="fa" ng-class="social.imageIcon"></i>
+                <div class="col-md-6" style="margin-top: 35px;">
+                  <md-input-container class="md-block md-accent" flex-gt-sm>
+                    <label style="color:#fff;">Enter coupon</label>
+                    <input style="color:#fff;" ng-model="vm.payment.coupon" />
+                  </md-input-container>
+                  <md-button ng-disabled="!vm.payment.coupon" class="md-raised pull-right" ng-click="vm.applyCoupon()">Apply Coupon</md-button>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 row">
+                  <hr />
+                  <div class="col-md-4 text-center">
+                    <dl class="dl-horizontal">
+                      <dt><h4>Price: </h4></dt>
+                      <dd><h4><span ng-bind="vm.payment.amount | INR"></span></h4></dd>
+                      <dt ng-if="vm.payment.discount"><h4>Discounted Price: </h4></dt>
+                      <dd ng-if="vm.payment.discount"><h4><span ng-bind="vm.payment.discount | INR"></span></h4></dd>
+                    </dl>
+                  </div>
+                  <div class="col-md-6 text-center">
+                    <md-button ng-disabled="!vm.payment.option" class="md-raised" ng-click="vm.buyCourse()">Proceed TO Payment</md-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="hidden-xs hidden-sm col-md-4 col-lg-3">
+              <div class="header-image" ng-if="vm.course.image">
+                <div class="progress" data-value="0" data-size="1000" data-thickness="20" data-fill="{&quot;color&quot;: &quot;#ebf4f7&quot;}" data-line-cap="round" data-empty-fill="rgba(213,234,239,0.1)"></div>
+                <img src="{{vm.course.image}}">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="show-social__header" ng-if="vm.socialShare">
+          <div class="row">
+            <div class="col-sm-12 col-md-8 col-lg-9">
+              <ul>
+                <li>Share On: </li>
+                <li ng-repeat="social in vm.socialShare">
+                  <!-- <i class="fa" ng-class="social.imageIcon"></i>
                                     <span><a href="javascript:void(0);" ng-click="social.sharerLink" ng-bind="social.name"></a></span> -->
-                                    <social-sharing link="social.sharerLink" media="social.name" text="vm.course.title" icon="social.imageIcon" img="vm.course.image">
-                                    </social-sharing>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                  <social-sharing link="social.sharerLink" media="social.name" text="vm.course.title" icon="social.imageIcon" img="vm.course.image">
+                  </social-sharing>
+                </li>
+              </ul>
             </div>
-        </section>
-        <section class="show-course__body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-3 col-sm-push-9 text-center">
-                        <p><b>Instructor</b></p>
-                        <div class="show-course__instructor">
-                            <img width="100" height="100" class="center-block image-rounded" src="{{vm.course.instructorImage || '/assets/images/avatar.png'}}">
-                            <h5 ng-bind="vm.course.instructorFullName"></h5>
-                            <p ng-bind="vm.course.instructorBiography" class="text-justify"></p>
-                        </div>
-                        <a class="btn btn-secondary" href="javascript:void(0);" ng-click="vm.showInstructorCourses();">View all courses</a>
-                        <hr />
-                        <p><b>Request A Callback</b></p>
-                        <form class="new_user ng-pristine ng-valid" name="callbackRequest" method="post">
-                            <div class="form-group">
-                                <input required="required" class="form-control" placeholder="Name*" type="text" value="" name="name" id="name" ng-model="vm.callbackRequest.name">
-                            </div>
-                            <div class="form-group">
-                                <input ng-required="required" class="form-control" placeholder="Email*" type="email" value="" name="Email" id="Email" ng-model="vm.callbackRequest.email">
-                            </div>
-                            <div class="form-group">
-                                <input required="required" class="form-control" placeholder="Mobile*" type="number" name="Mobile" id="Mobile" ng-model="vm.callbackRequest.mobile">
-                            </div>
-                        </form>
-                        <a class="btn btn-primary" href="javascript:void(0);" ng-click="vm.sendCallbackRequest();">Send Request</a>
-                        <hr ng-if="vm.instrunctorTestmonials.length > 0" />
-                        <p ng-if="vm.instrunctorTestmonials.length > 0"><b>Testmonials</b></p>
-                        <ui-carousel slides="vm.instrunctorTestmonials" autoplay="true" autoplay-speed="1000" dots="true">
-                            <carousel-item>
-                                <a class="stories--quote" href="javascript:void(0);">
-                                    <div class="quote card-circle-top ">
-                                        <img class="card-circle-top-image" width="120" height="120" src="{{item.image}}" alt="Image05" />
-                                        <div class="quote__text" style="height:130px">
-                                            <p ng-bind="item.testimonial">“It&#39;s the best tool for beginners to learn R/data analysis that I&#39;ve come across.”</p>
-                                        </div>
-                                        <div class="quote__person" style="height: 115px">
-                                            <p><strong ng-bind="item.testimonials_by">Anas El Turabi</strong> <i ng-bind="item.by_organization">Harvard PhD Candidate in Health Policy</i></p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </carousel-item>
-                        </ui-carousel>
-                    </div>
-                    <div class="col-sm-9 col-sm-pull-3 vertical-nav-border">
-                        <h3>Course Description</h3>
-                        <div>
-                            <p ng-bind="vm.course.description | limitTo: vm.charCount"></p>
-                            <a ng-click="vm.charCount = vm.charCount ? '' : 300;">
-                                <span ng-if="vm.charCount && vm.charCount < vm.course.description.length && vm.course.description.length > 315">..Read More</span>
-                                <span ng-if="!vm.charCount && vm.course.description.length > 315">Read Less</span>
-                            </a>
-                        </div>
-                        <div class="show-course__chapter">
-                            <div class="show-course__chapter-header" ng-repeat="unit in vm.course.units">
-                                <h4 class="show-course__chapter-title" ng-click="vm.showCourseUnit($event, unit)">
-                                    <span class="chapter-number" ng-bind="$index + 1"></span>
-                                    <span class="exercise-icon ">
-                                        <i class="fa" ng-class="unit.icon"></i>
-                                    </span>
-                                    <span class="show-course__exercise__title" ng-bind="unit.name"></span>
-                                    <span ng-if="unit.freeUnit">
-                                        <span class="label label-success">Free</span>
-                                    </span>
-                                </h4>
-                                <p ng-bind="unit.description"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="show-course__body">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-9 vertical-nav-border">
+            <h3>Course Description</h3>
+            <div>
+              <p ng-bind-html="vm.course.description | limitTo: vm.charCount"></p>
+              <a ng-click="vm.charCount = vm.charCount ? '' : 300;">
+                <span ng-if="vm.charCount && vm.charCount < vm.course.description.length && vm.course.description.length > 315">..Read More</span>
+                <span ng-if="!vm.charCount && vm.course.description.length > 315">Read Less</span>
+              </a>
             </div>
-        </section>
-        <section class="show-course__body" ng-if="vm.coursesReview.length > 0">
-            <div class="container text-center">
-                <h2>Students Reviews</h2>
-                <div class="row">
-                    <!-- Quote 1 -->
-                    <a class="stories--quote" href="javascript:void(0);" ng-repeat="review in vm.coursesReview">
-                        <section class="col-sm-12 col-md-4">
-                            <div class="quote card-circle-top ">
-                                <img class="card-circle-top-image" width="120" height="120" src="{{review.studentImage || '/assets/images/avatar.png'}}" alt="Image05" />
-                                <div class="quote__text">
-                                    <h4 ng-bind="review.reviewTitle"></h4>
-                                </div>
-                                <div class="quote__text">
-                                    <p ng-bind="review.reviewDetails"></p>
-                                </div>
-                                <div class="quote__person">
-                                    <small style="color:#000;">
-                                        <review-stars rating="review.reviewRating" stars='5'></review-stars>
-                                    </small>
-                                </div>
-                                <div class="quote__person">
-                                    <p><strong ng-bind="review.studentName"></strong> on <i ng-bind="review.addedDate">Harvard PhD Candidate in Health Policy</i></p>
-                                </div>
-                            </div>
-                        </section>
-                    </a>
-                </div>
+            <div class="show-course__chapter">
+              <div class="show-course__chapter-header" ng-repeat="unit in vm.course.units">
+                <h4 class="show-course__chapter-title" ng-click="vm.showCourseUnit($event, unit)">
+                  <span class="chapter-number" ng-bind="$index + 1"></span>
+                  <span class="exercise-icon ">
+                    <i class="fa" ng-class="unit.icon"></i>
+                  </span>
+                  <span class="show-course__exercise__title" ng-bind="unit.name"></span>
+                  <span ng-if="unit.freeUnit">
+                    <span class="label label-success">Free</span>
+                  </span>
+                </h4>
+                <p ng-bind="unit.description" style="margin-left:32px;"></p>
+              </div>
             </div>
-        </section>
-    </div>
-    <main-footer-bar></main-footer-bar>
+          </div>
+          <div class="col-sm-3 text-center">
+            <p><b>Instructor</b></p>
+            <div class="show-course__instructor">
+              <img width="100" height="100" class="center-block image-rounded" src="{{vm.course.instructorImage || '/assets/images/avatar.png'}}">
+              <h5 ng-bind="vm.course.instructorFullName"></h5>
+              <p ng-bind="vm.course.instructorBiography" class="text-justify"></p>
+            </div>
+            <a class="btn btn-secondary" href="javascript:void(0);" ng-click="vm.showInstructorCourses();">View all courses</a>
+            <hr />
+            <p><b>Request A Callback</b></p>
+            <form class="new_user ng-pristine ng-valid" name="callbackRequest" method="post">
+              <div class="form-group">
+                <input required="required" class="form-control" placeholder="Name*" type="text" value="" name="name" id="name" ng-model="vm.callbackRequest.name">
+              </div>
+              <div class="form-group">
+                <input ng-required="required" class="form-control" placeholder="Email*" type="email" value="" name="Email" id="Email" ng-model="vm.callbackRequest.email">
+              </div>
+              <div class="form-group">
+                <input required="required" class="form-control" placeholder="Mobile*" type="number" name="Mobile" id="Mobile" ng-model="vm.callbackRequest.mobile">
+              </div>
+            </form>
+            <a class="btn btn-primary" href="javascript:void(0);" ng-click="vm.sendCallbackRequest();">Send Request</a>
+            <hr ng-if="vm.instrunctorTestmonials.length > 0" />
+            <p ng-if="vm.instrunctorTestmonials.length > 0"><b>Student Testimonial</b></p>
+            <ui-carousel slides="vm.instrunctorTestmonials" autoplay="true" autoplay-speed="15000">
+              <carousel-item>
+                <a class="stories--quote" href="javascript:void(0);">
+                  <div class="quote card-circle-top ">
+                    <img class="card-circle-top-image" width="120" height="120" src="{{item.image}}" alt="Image05" style="top:5px;border-radius:9%;" />
+                    <div class="quote__text" style="height:480px">
+                      <p ng-bind="item.testimonial">“It&#39;s the best tool for beginners to learn R/data analysis that I&#39;ve come across.”</p>
+                    </div>
+                    <div class="quote__person" style="height: 50px">
+                      <p><strong ng-bind="item.testimonials_by">Anas El Turabi</strong> <i ng-bind="item.by_organization">Harvard PhD Candidate in Health Policy</i></p>
+                    </div>
+                  </div>
+                </a>
+              </carousel-item>
+            </ui-carousel>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="show-course__body" ng-if="vm.coursesReview.length > 0">
+      <div class="container">
+        <h2>Students Reviews</h2>
+        <div class="row">
+          <div class="col-md-8" style="border-bottom:1px solid #ccc; padding-bottom: 20px; padding-top: 20px;" ng-repeat="review in vm.coursesReview">
+            <!--start row-->
+            <div class="row">
+              <div class="col-sm-1">
+                <a href="#">
+                  <img src="{{review.studentImage || '/assets/images/avatar.png'}}" alt="avatar" style="border-radius:100%;width:50px;">
+                </a>
+              </div>
+              <div class="col-sm-3">
+                <p style="font-size: 14; color: #999999;margin: 0; padding: 0;"><span ng-bind="review.addedDate | timeRemaining: true"></span></p>
+                <p style="font-size: 14; color: #333333; margin: 0; padding: 0;"><span ng-bind="review.studentName"></span></p>
+              </div>
+              <div class="col-sm-8">
+                <p style="margin:0; padding: 0;color:#3F51B5">
+                  <small style="color:#000;">
+                        <review-stars rating="review.reviewRating" stars='5'></review-stars>
+                    </small>
+                </p>
+                <p style="font-size: 16px; line-height: 23px; color:#242f3c">
+                  <strong ng-bind="review.reviewTitle"></strong>
+                </p>
+                <p style="font-size: 16px; line-height: 23px; color:#242f3c" ng-bind="review.reviewDetails">
+                </p>
+                <!-- <p>
+                  <span style="font-size: 13px;color: #999999; line-height: 19px;">Was this review helpful? </span>
+                  <span style="margin:0 5px"><a href="#" class="yesBtn">Yes</a> <a href="#" class="yesBtn">Yes</a></span>
+                  <span style="font-size: 13px;color: #999999; line-height: 19px;">Reposrt? </span>
+                </p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <main-footer-bar></main-footer-bar>
 </div>

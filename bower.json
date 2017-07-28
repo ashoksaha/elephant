@@ -30,7 +30,9 @@
     "textAngular": "^1.5.1",
     "ng-csv": "^0.3.6",
     "angular-bootstrap": "^2.5.0",
-    "angular-socialshare": "angularjs-socialshare#^2.3.11"
+    "angular-socialshare": "angularjs-socialshare#^2.3.11",
+    "angular-tawk-to": "^0.0.2",
+    "angular-drag-and-drop-lists": "^2.1.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.5.3"

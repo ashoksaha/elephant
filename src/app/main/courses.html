@@ -1,85 +1,97 @@
 <div ng-cloak>
-    <div class="site-wrap">
-        <section class="bg bg-navigation" id="logged-out-header">
-            <div class="container">
-                <main-navbar></main-navbar>
+  <div class="site-wrap">
+    <section class="bg bg-navigation" id="logged-out-header">
+      <div class="container">
+        <main-navbar></main-navbar>
+      </div>
+    </section>
+    <section class="courses__search">
+      <div class="container">
+        <form class="js-search-with-colons" method="get">
+          <div class="search search--big">
+            <button name="button" type="submit" class="search-icon" id="btn-search" ng-click="vm.searchCoursesByText();">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+            <input type="text" ng-model="vm.searchText" class="js-end-of-line-cursor" placeholder="Search courses" ng-keyup="($event.keyCode === 13 || vm.searchText == '') && vm.searchCoursesByText()">
+            <ul class="search__filter">
+              <md-menu md-position-mode="target-right target" class="dropdown js-custom-select">
+                <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdMenu.open($event)" style="width:160px;">
+                  <span class="js-custom-select-value">
+                    <a href="javascript:void(0);" class="active">Instructors</a>
+                </span><i class="fa fa-caret-down"></i>
+                </md-button>
+                <md-menu-content width="4">
+                  <md-menu-item>
+                    <md-button aria-label="chosse option" ng-click="vm.searchCoursesByInstructor()">
+                      <div layout="row" flex>
+                        <p flex>All Instructors</p>
+                      </div>
+                    </md-button>
+                  </md-menu-item>
+                  <md-menu-item ng-repeat="instructor in vm.allInstructors">
+                    <md-button aria-label="chosse option" ng-click="vm.searchCoursesByInstructor(instructor)">
+                      <div layout="row" flex>
+                        <p flex ng-bind="instructor.fullName"></p>
+                      </div>
+                    </md-button>
+                  </md-menu-item>
+                </md-menu-content>
+              </md-menu>
+            </ul>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section class="courses__topics">
+      <div class="container">
+        <h2 class="courses__title">Browse by Categories</h2>
+        <div class="courses__topics-list" style="margin-bottom: 2rem;">
+          <a href="javascript:void(0);" class="topic-block js-topic-block" ng-repeat="category in vm.categories" ng-click="vm.searchCoursesByCategory(category)">
+            <div class="topic-block-icon topic--programming" ng-style="{ 'background-color': category.bgColor }">
+              <h4 class="topic-block-title" ng-bind="category.name"></h4>
             </div>
-        </section>
-        <section class="courses__search">
-            <div class="container">
-                <form class="js-search-with-colons" method="get">
-                    <div class="search search--big">
-                        <button name="button" type="submit" class="search-icon" id="btn-search" ng-click="vm.searchCoursesByText();">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </button>
-                        <input type="text" ng-model="vm.searchText" autofocus="autofocus" class="js-end-of-line-cursor" placeholder="Search courses" ng-keyup="($event.keyCode === 13 || vm.searchText == '') && vm.searchCoursesByText()">
-                        <ul class="search__filter">
-                            <md-menu md-position-mode="target-right target" class="dropdown js-custom-select">
-                                <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdMenu.open($event)" style="width:160px;">
-                                    <span class="js-custom-select-value">
-                                        <a href="javascript:void(0);" class="active">Instructors</a>
-                                    </span><i class="fa fa-caret-down"></i>
-                                </md-button>
-                                <md-menu-content width="4">
-                                    <md-menu-item>
-                                        <md-button aria-label="chosse option" ng-click="vm.searchCoursesByInstructor()">
-                                            <div layout="row" flex>
-                                                <p flex>All Instructors</p>
-                                            </div>
-                                        </md-button>
-                                    </md-menu-item>
-                                    <md-menu-item ng-repeat="instructor in vm.allInstructors">
-                                        <md-button aria-label="chosse option" ng-click="vm.searchCoursesByInstructor(instructor)">
-                                            <div layout="row" flex>
-                                                <p flex ng-bind="instructor.fullName"></p>
-                                            </div>
-                                        </md-button>
-                                    </md-menu-item>
-                                </md-menu-content>
-                            </md-menu>
-                        </ul>
+          </a>
+        </div>
+      </div>
+    </section>
+    <div ui-view></div>
+    <section class="courses__upcoming" ng-if="false">
+      <div class="container">
+        <h2 class="courses__title">Upcoming Courses</h2>
+        <div class="courses__upcoming-list">
+          <div class="row">
+            <div class="col-lg-4 col-sm-6" ng-repeat="course in vm.allUpcommingCourses">
+              <a class="no-link-style no-link-color" href="javascript:void(0);" ng-click="vm.showCourseDetails(course)">
+                <div class="course-block" ng-class="{'course-block--r' : $even, 'course-block--g' : $odd}">
+                  <div>
+                    <h4 class="course-block__title" ng-bind="course.title"></h4>
+                    <p class="course-block__description" ng-bind="course.shortDesc"></p>
+                  </div>
+                  <div class="course-block__author">
+                    <div class="course-block__author-image">
+                      <img class="image-rounded" width="70" height="70" src="{{course.instructorImage || '/assets/images/avatar.png'}}">
                     </div>
-                </form>
-            </div>
-        </section>
-        <div ui-view></div>
-        <section class="courses__upcoming" ng-if="vm.allUpcommingCourses.length > 0">
-            <div class="container">
-                <h2 class="courses__title">Upcoming Courses</h2>
-                <div class="courses__upcoming-list">
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-6" ng-repeat="course in vm.allUpcommingCourses">
-                            <a class="no-link-style no-link-color" href="javascript:void(0);" ng-click="vm.showCourseDetails(course)">
-                                <div class="course-block" ng-class="{'course-block--r' : $even, 'course-block--g' : $odd}">
-                                    <div>
-                                        <h4 class="course-block__title" ng-bind="course.title"></h4>
-                                        <p class="course-block__description" ng-bind="course.shortDesc"></p>
-                                    </div>
-                                    <div class="course-block__author">
-                                        <div class="course-block__author-image">
-                                            <img class="image-rounded" width="70" height="70" src="{{course.instructorImage || '/assets/images/avatar.png'}}">
-                                        </div>
-                                        <div class="course-block__author-description">
-                                            <h5 ng-bind="course.instructorFullName"></h5>
-                                            <p ng-bind="course.instructorDesignation"></p>
-                                        </div>
-                                    </div>
-                                    <div class="course-block__footer">
-                                        <h4 style="font-size: 1rem" ng-bind="course.courseStartDate || 'Coming soon' "></h4>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                    <div class="course-block__author-description">
+                      <h5 ng-bind="course.instructorFullName"></h5>
+                      <p ng-bind="course.instructorDesignation"></p>
                     </div>
+                  </div>
+                  <div class="course-block__footer">
+                    <h4 style="font-size: 1rem" ng-bind="course.courseStartDate || 'Coming soon' "></h4>
+                  </div>
                 </div>
+              </a>
             </div>
-        </section>
-        <section class="courses__cta" ng-if="!vm.user || !vm.user.userId">
-            <h3 class="courses__cta-text-title">Ready To Learn</h3>
-            <p class="mb0">
-                <a class="btn btn-primary" href="javascript:void(0);" ui-sref="register">Create Free Account Now</a>
-            </p>
-        </section>
-    </div>
-    <main-footer-bar></main-footer-bar>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="courses__cta" ng-if="!vm.user || !vm.user.userId">
+      <h3 class="courses__cta-text-title">Ready To Learn</h3>
+      <p class="mb0">
+        <a class="btn btn-primary" href="javascript:void(0);" ui-sref="register">Create Free Account Now</a>
+      </p>
+    </section>
+  </div>
+  <main-footer-bar></main-footer-bar>
 </div>

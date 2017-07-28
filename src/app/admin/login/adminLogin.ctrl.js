@@ -13,7 +13,7 @@
         vm.user = {
             email: '',
             password: '',
-            type: ''
+            type: 2
         };
 
         vm.login = login;

@@ -1,43 +1,55 @@
 <div class="groups__courses">
-    <h4 class="gr-subtitle">
+  <h4 class="gr-subtitle">
         <span ng-bind="vm.selectedCourse.title"></span>
         <small class="label label-accent pull-right">
             <span ng-if="vm.selectedCourse.courseFee" ng-bind="vm.selectedCourse.courseFee | INR"></span>
             <span ng-if="!vm.selectedCourse.courseFee" ng-bind="'Free'"></span>
         </small>
     </h4>
-    <div class="groups__courses-overview groups__border" ng-if="vm.categoryListTab == 1">
-        <p id="emptyCoursesMessage" class="text-center" ng-if="vm.studentsByCourse.length == 0">
-            <i>Seems like we don't have any student for this course.</i>
-        </p>
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>SN</th>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Mobile</th>
-                        <th>Enroll Date</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="student in vm.studentsByCourse">
-                        <td ng-bind="$index + 1"></td>
-                        <td><img src="{{student.image}}" style="height:50px;" /></td>
-                        <td ng-bind="student.name"></td>
-                        <td ng-bind="student.email"></td>
-                        <td ng-bind="student.mobile"></td>
-                        <td ng-bind="student.enrollDate"></td>
-                        <td>
-                            <span ng-if="student.amount" ng-bind="student.amount | INR"></span>
-                            <span ng-if="!student.amount" ng-bind="'Free'"></span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+  <div class="groups__courses-overview groups__border">
+    <div class="groups__courses-filters clearfix">
+      <div class="search">
+        <i class="fa fa-search search-icon" aria-hidden="true"></i>
+        <input type="text" name="search" placeholder="Search" ng-model="vm.courseStudentSearchText" ng-keyup="($event.keyCode === 13 || vm.courseStudentSearchText == '') && vm.showCourseStudents()">
+      </div>
     </div>
+    <div class="clearfix"></div>
+    <p id="emptyCoursesMessage" class="text-center" ng-if="vm.studentsByCourse.length == 0">
+      <i>Seems like we don't have any student for this course.</i>
+    </p>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th></th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Enroll Date</th>
+            <th>Expiry Date</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="student in vm.studentsByCourse">
+            <td ng-bind="$index + 1"></td>
+            <td><img src="{{student.image}}" style="height:50px;" /></td>
+            <td ng-bind="student.name"></td>
+            <td ng-bind="student.email"></td>
+            <td ng-bind="student.mobile"></td>
+            <td ng-bind="student.enrollDate"></td>
+            <td ng-click="vm.editStudentSubscription(student)">
+              <span ng-bind="student.expiryDate" ng-style="{'color' : student.isExpired == 1 ? 'red' : 'green' }"></span>
+              <i class="fa fa-pencil-square-o" aria-hidden="true" style="vertical-align: middle;"></i>
+            </td>
+            <td>
+              <span ng-if="student.amount" ng-bind="student.amount | INR"></span>
+              <span ng-if="!student.amount" ng-bind="'Free'"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

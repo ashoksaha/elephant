@@ -77,6 +77,7 @@
 
          function login() {
             if (vm.student.emailorphone && vm.student.password) {
+                vm.student.fromSource = "flavido";
                 $http.post(CommonInfo.getAppUrl() + "/studentlogin", vm.student).then(
                     function(response) {
                         if (response && response.data) {

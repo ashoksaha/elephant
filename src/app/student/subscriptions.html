@@ -1,53 +1,53 @@
 <div ng-cloak>
-    <div class="site-wrap">
-        <section class="bg bg-navigation" id="logged-out-header">
-            <div class="container">
-                <main-navbar></main-navbar>
-            </div>
-        </section>
-        <section class="home__courses">
-            <div class="container">
-                <div class="table-responsive" ng-if="vm.orders.length">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>SN</th>
-                                <th>Order Id</th>
-                                <th>Course</th>
-                                <th>Order Date</th>
-                                <th>Amount</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="order in vm.orders">
-                                <td ng-bind="$index + 1"></td>
-                                <td ng-bind="order.txnID"></td>
-                                <td ng-click="vm.showCourseDetails(order.courseName, order.courseId)">
-                                    <span ng-bind="order.courseName"></span>
-                                    <br /> By <span ng-bind="order.fullname"></span>
-                                </td>
-                                <td ng-bind="order.orderDate | date:'short'"></td>
-                                <td>
-                                    <span ng-if="order.amount" ng-bind="order.amount | INR"></span>
-                                    <span ng-if="!order.amount" ng-bind="'Free'"></span>
-                                </td>
-                                <td>
-                                    <span ng-bind="order.status ? 'Complete' : 'Pending'" ng-class="{'completeOrder' : order.status}"></span>
-                                </td>
-                                <td>
-                                    <i class="fa fa fa-file-pdf-o" aria-hidden="true" ng-href="{{order.invoiceFile}}" download ng-if="order.invoiceFile" title="Download Invoice Pdf" style="color: orangered;"></i>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <p ng-if="vm.orders.length == 0" class="text-center">
-                    You have no orders to show
-                </p>
-            </div>
-        </section>
-    </div>
-    <main-footer-bar></main-footer-bar>
+  <div class="site-wrap">
+    <section class="bg bg-navigation" id="logged-out-header">
+      <div class="container">
+        <main-navbar></main-navbar>
+      </div>
+    </section>
+    <section class="home__courses">
+      <div class="container">
+        <div class="table-responsive" ng-if="vm.orders.length">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>SN</th>
+                <th>Order Id</th>
+                <th>Course</th>
+                <th>Order Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="order in vm.orders">
+                <td ng-bind="$index + 1"></td>
+                <td ng-bind="order.txnID"></td>
+                <td ng-click="vm.showCourseDetails(order.courseName, order.courseId)">
+                  <span ng-bind="order.courseName"></span>
+                  <br /> By <span ng-bind="order.fullname"></span>
+                </td>
+                <td ng-bind="order.orderDate | date:'short'"></td>
+                <td>
+                  <span ng-if="order.amount" ng-bind="order.amount | INR"></span>
+                  <span ng-if="!order.amount" ng-bind="'Free'"></span>
+                </td>
+                <td>
+                  <span ng-bind="order.status ? 'Complete' : 'Pending'" ng-class="{'completeOrder' : order.status}"></span>
+                </td>
+                <td>
+                  <a ng-href="{{order.invoiceFile}}" style="color:orangered;border:none;" download ng-if="order.invoiceFile" role="button" target="_blank"><i class="fa fa fa-file-pdf-o" aria-hidden="true"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p ng-if="vm.orders.length == 0" class="text-center">
+          You have no orders to show
+        </p>
+      </div>
+    </section>
+  </div>
+  <main-footer-bar></main-footer-bar>
 </div>

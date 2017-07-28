@@ -43,7 +43,7 @@
         }
 
         function getCourses() {
-            $http.post(CommonInfo.getAppUrl() + "/getInstructorCourses", { instructorId: selectedInstructorId }).then(
+            $http.post(CommonInfo.getAppUrl() + "/getInstructorCourses", { instructorId: selectedInstructorId, isForsale: 1 }).then(
                 function(response) {
                     if (response && response.data) {
                         if (response.data.status == 1) {
@@ -120,6 +120,7 @@
 
         function login() {
             if (vm.student.emailorphone && vm.student.password) {
+                vm.student.fromSource = "flavido";
                 $http.post(CommonInfo.getAppUrl() + "/studentlogin", vm.student).then(
                     function(response) {
                         if (response && response.data) {

@@ -1,126 +1,61 @@
 <div ng-cloak>
-    <!-- <div class="container">
-        <div class="home__ad mb0">
-            <div class="row">
-                <div class="col-sm-6">
-                    <a class="home__ad-white-well" style="height: 216px; display: block;" href="javascript:void(0);">
-                        <h4 class="home__ad-title">Explore Career Tracks&nbsp;<i class="fa fa-chevron-right"></i></h4>
-                        <p class="home__ad-descr m0">
-                            Our career tracks are hand-picked by industry experts. You will learn all you need to start a new career in the data science field.
-                        </p>
-                        <img class="home__ad-img-right" width="140" height="140" src="" alt="Placeholder career" />
-                    </a>
-                </div>
-                <div class="col-sm-6">
-                    <a class="home__ad-white-well" style="height: 216px; display: block;" href="javascript:void(0);">
-                        <h4 class="home__ad-title">Explore Skill Tracks&nbsp;<i class="fa fa-chevron-right"></i></h4>
-                        <p class="home__ad-descr m0">
-                            Skill tracks guide you to proficiency in a specific technology, methodology or domain. Become an expert in Machine Learning, Data Visualization, and more.
-                        </p>
-                        <img class="home__ad-img-right" width="140" height="140" src="" alt="Placeholder skill" />
-                    </a>
-                </div>
+  <section class="home__ads top">
+    <div class="container groups__container">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="row">
+            <div class="col-sm-12 transction_div">
+              <h3> Monthly orders </h3>
+              <h4>Latest 6 months order</h4>
+              <div class="table-responsive">
+                <table class="table">
+                  <tbody>
+                    <tr ng-repeat="order in vm.monthlyOrders" class="text-center">
+                      <td><strong ng-bind="order.monthName"></strong></td>
+                      <td ng-bind="order.orderTotal | INR"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>
+                <button ui-sref="admin.orderList" type="button" class="btn btn-default">View All</button>
+              </p>
             </div>
+          </div>
         </div>
-    </div> -->
-    <section class="home__ads top">
-        <div class="container">
-            <div class="home__ad js-home-ad-upgrade_premium" data-ad-id="upgrade_premium">
-                <img src="/assets/images/image.png" />
+        <div class="col-sm-6">
+          <!-- <div class="row">
+            <div class="col-sm-10 col-sm-offset-1 middle_graph1">
+              <h2 class="myCourse">Courses</h2>
+              <p class="current_course">
+                <strong>Your current Course and student counts</strong>
+              </p>
+              <p ng-repeat="course in vm.recentCourses">
+                    <span ng-bind="course.name"></span>
+                  <span class="pull-right">
+                      <span ng-bind="course.totalStudents"></span>
+                  </span>
+              </p>
+              <p>
+                <button type="button" class="btn btn-primary" ui-sref="instructor.lms.createCourses">
+                  <strong>CREATE COURSE <i class="fa fa-plus" aria-hidden="true"></i></strong>
+                </button>
+                <span class="pull=right">
+                    <button type="button" class="btn btn-default" ui-sref="instructor.lms.courses">
+                        <strong>VIEW ALL</strong>
+                    </button>
+                </span>
+              </p>
             </div>
+          </div> -->
         </div>
-    </section>
-    <section class="home__ads bottom">
-        <div class="container">
-            <div class="home__ad js-home-ad-gift_free" data-ad-id="gift_free">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <img class="home__ad-img" src="assets/images/giftFree.png" alt="Gift free" />
-                    </div>
-                    <div class="col-sm-8">
-                        <h3 class="home__ad-title">We want to give you a chance to try out all our courses for free!</h3>
-                        <p class="home__ad-descr">Give each of your friends 2 days of unlimited access and get 2 days for free as well.
-                            <br> For each friend who registers you will get 2 days of full access to our entire course curriculum.</p>
-                        <form class="js-email-gift-form" method="post">
-                            <span class="form-error" id="general-error"></span>
-                            <span class="form-error" id="to-error">Please pass a list of email addresses separated by commas.</span>
-                            <div class="input-button">
-                                <input type="text" name="to" id="to" placeholder="friend1@gmail.com, friend2@gmail.com" />
-                                <input type="submit" name="commit" value="Send Invitation" class="btn btn-primary" data-disable-with="Send Invitation" />
-                            </div>
-                            <ul class="home__ad-sharing">
-                                <li><span>or</span></li>
-                                <li>
-                                    <a href="javascript:void(0);" target="_blank">
-                                        <i class="fa fa-facebook"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" target="_blank">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" target="_blank">
-                                        <i class="fa fa-linkedin"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#linkWindow"><i class="fa fa-link"></i></a>
-                                </li>
-                            </ul>
-                        </form>
-                    </div>
-                </div>
-                <div class="home__ad-close js-dismiss-home-ad" data-cookie="gift_free" data-cookie-expires="&quot;2017-05-02T06:32:28.348+00:00&quot;"></div>
+        <div class="col-sm-2">
+          <div class="row">
+            <div class="col-sm-12 right_myAccount1">
             </div>
-            <!-- Link modal -->
-            <div class="modal fade preview-window gifts tracked-modal" id="linkWindow" tabindex="-1" role="dialog" aria-labelledby="linkWindowLabel">
-                <div class="modal-dialog preview-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="row" style="margin: 0; margin-bottom: 10px; padding: 0;">
-                                <div class="col-sm-12">
-                                    <div class="tab-title">
-                                        <span class="title">Share this link to give <i class="fa fa-gift"></i> and get <i class="fa fa-money"></i> off</span>
-                                    </div>
-                                    <div class="share-wrap">
-                                        <div class="col-sm-12" style="padding-left: 0;">
-                                            <input type="text" name="share-url" id="share-url" value="" readonly="readonly" class="set_tracking_location" oncopy="trackAnalytics(&#39;Link Copied&#39;, $(this).data(&#39;tracking-location&#39;))" />
-                                        </div>
-                                        <button id="copy-button" class="set_tracking_location" style="padding-bottom: 36px" data-clipboard-target='share-url' data-clipboard-text="Copy Link!" onclick="trackAnalytics('Link Copied', $(this).data('tracking-location'))">
-                                            <i class="fa fa-clipboard fa-lg"></i>
-                                        </button>
-                                        <p class="copied-text">copied link to clipboard!</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade thank-you-window gifts" id="thankYouWindow" tabindex="-1" role="dialog" aria-labelledby="thankYouLabel">
-                <div class="modal-dialog thank-you-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <div class="row">
-                                <h2>You. Rock.</h2>
-                            </div>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row banner">
-                                <img src="" alt="Thank you" />
-                            </div>
-                            <div class="row whats-next">
-                                <h4>What's Next?</h4>
-                                <p>Your friends will receive 2 free days of unlimited course access. For each friend that purchases a subscription you'll receive 25% off your monthly payment as long as they stay subscribed.</p>
-                                <div class="btn btn-primary send-more">Send More Gifts!</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </div>

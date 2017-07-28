@@ -1,108 +1,109 @@
 <div>
-    <h4 class="gr-subtitle"> 
-            <a style="margin:0px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" ui-sref="admin.student.addStudent" ng-click="vm.student = {status: 0}">
-                <i class="fa fa-plus-square"></i> Add New 
-            </a>
-            <a style="margin:0px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" ng-click="vm.showLoginLog();">
-                <i class="fa fa-plus-square"></i> Show All Log 
-            </a>
+  <h4 class="gr-subtitle"> 
+            
         </h4>
-    <div class="row">
-        <!-- Sidebar -->
-        <div class="col-sm-12">
-            <!--                          -->
-            <div class="groups__courses">
-                <div class="groups__courses-overview groups__border">
-                    <div class="groups__courses-filters clearfix" ng-if="!vm.isStudentSelected()">
-                        <div class="select select--small">
-                            <select ng-options="category.id as category.name for category in vm.activeCourseCategories" ng-model="vm.activeSelectedCategory" ng-change="vm.searchActiveCourses()">
-                                <option value="">All Categories</option>
-                            </select>
-                        </div>
-                        <div class="select select--small">
-                            <select ng-options="instructor.id as instructor.fullName for instructor in vm.allInstructors" ng-model="vm.activeSelectedInstructor" ng-change="vm.searchActiveCourses()">
-                                <option value="">All Instructor</option>
-                            </select>
-                        </div>
-                        <div class="search">
-                            <i class="fa fa-search search-icon" aria-hidden="true"></i>
-                            <!-- <i class="fa fa-times remove-icon" aria-hidden="true" ng-if="vm.studentSearchText" ng-click="vm.studentSearchText = '';"></i> -->
-                            <input type="text" name="search" placeholder="Search" ng-model="vm.studentSearchText" ng-keydown="($event.keyCode === 13 || vm.studentSearchText == '') && vm.searchStudent()">
-                        </div>
-                    </div>
-                    <nav aria-label="Page navigation clearfix" ng-if="!vm.isStudentSelected()">
-                        <div class="pull-left" style="margin:9px 12px;">Total: <span ng-bind="vm.totalStudents"></span></div>
-                        <ul class="pagination pull-right" style="margin:4px 2px;">
-                            <li>
-                                <a href="javascript:void(0);" aria-label="First" ng-click="vm.currentPage != 0 && vm.getAllStudents(0)">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li ng-class="{'disabled': vm.currentPage == 0}">
-                                <a href="javascript:void(0);" ng-click="vm.currentPage != 0 && vm.getAllStudents(vm.currentPage - 1)">Previous</a>
-                            </li>
-                            <li class="active">
-                                <a href="javascript:void(0);" ng-bind="vm.currentPage + 1"></a>
-                            </li>
-                            <li ng-class="{'disabled': vm.currentPage == vm.lastPage}">
-                                <a href="javascript:void(0);" ng-click="vm.currentPage != vm.lastPage && vm.getAllStudents(vm.currentPage + 1)">Next</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);" aria-label="Last" ng-click="vm.currentPage != vm.lastPage && vm.getAllStudents(vm.lastPage)">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="groups__courses-filters clearfix" ng-if="vm.isStudentSelected()">
-                        <md-menu>
-                            <md-button aria-label="Open phone interactions menu" class="btn btn-default btn-sm pull-right" ng-click="$mdMenu.open($event)">
-                                Add to Course
-                            </md-button>
-                            <md-menu-content width="4">
-                                <md-menu-item ng-repeat="course in vm.allCourses">
-                                    <md-button ng-click="vm.addToCourse(course.id)" aria-label="Open phone interactions menu">
-                                        <span ng-bind="course.title"></span>
-                                    </md-button>
-                                </md-menu-item>
-                            </md-menu-content>
-                        </md-menu>
-                    </div>
-                    <div class="clearfix"></div>
-                    <p id="emptyCoursesMessage" class="text-center" ng-if="(vm.activeCourses.length == 0 && (vm.activeSelectedCategory || vm.studentSearchText))">
-                        <i>Seems like we don't have any courses for this. <a id="resetCoursesFilter" href="javascript:void(0);">Reset</a> your search.</i>
-                    </p>
-                    <div class="table-responsive" style="margin:2px;">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th> </th>
-                                    <th>ID</th>
-                                    <th>User Name</th>
-                                    <th>Email</th>
-                                    <th>Mobile</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="student in vm.students">
-                                    <td>
-                                        <md-checkbox class="md-primary" aria-label="student" ng-click="student.isSelected = !student.isSelected"></md-checkbox>
-                                    </td>
-                                    <td ng-bind="student.id"></td>
-                                    <td ng-bind="student.userName"></td>
-                                    <td ng-bind="student.email"></td>
-                                    <td ng-bind="student.mobile"></td>
-                                    <td>
-                                        <i class="fa fa-pencil-square-o fa-lg fa-fw" ng-click="vm.editStudent(student)" aria-hidden="true"></i>
-                                        <i class="fa fa-tasks fa-lg fa-fw" ng-click="vm.showLoginLog(student)" aria-hidden="true"></i>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-sm-12">
+      <!--                          -->
+      <div class="groups__courses">
+        <div class="groups__courses-overview groups__border">
+          <div class="groups__courses-filters clearfix" ng-if="!vm.isStudentSelected()">
+            <div class="search--small pull-right">
+              <i class="fa fa-search search-icon" aria-hidden="true"></i>
+              <input type="text" name="search" placeholder="Search" ng-model="vm.studentSearchText" ng-keyup="($event.keyCode === 13 || vm.studentSearchText == '') && vm.getAllStudents(0)">
             </div>
+          </div>
+          <div class="clearfix"></div>
+          <p id="emptyCoursesMessage" class="text-center" ng-if="(vm.activeCourses.length == 0 && (vm.activeSelectedCategory || vm.studentSearchText))">
+            <i>Seems like we don't have any courses for this. <a id="resetCoursesFilter" href="javascript:void(0);">Reset</a> your search.</i>
+          </p>
+          <div class="table-responsive" style="margin:2px;">
+            <div class="groups__courses-filters clearfix" ng-if="vm.isStudentSelected()">
+              <md-menu>
+                <md-button aria-label="Open phone interactions menu" class="btn btn-default btn-sm pull-right" ng-click="$mdMenu.open($event)">
+                  Add to Course
+                </md-button>
+                <md-menu-content width="4">
+                  <md-menu-item ng-repeat="course in vm.allCourses">
+                    <md-button ng-click="vm.addToCourse(course.id)" aria-label="Open phone interactions menu">
+                      <span ng-bind="course.title"></span>
+                    </md-button>
+                  </md-menu-item>
+                </md-menu-content>
+              </md-menu>
+            </div>
+            <nav aria-label="Page navigation clearfix" ng-if="!vm.isStudentSelected()">
+              <div class="pull-left">
+                <a style="margin:5px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" lazy-load="true" ng-csv="vm.exportStudent();" filename="studentList.csv" field-separator="," decimal-separator="." csv-header="">
+                    <i class="fa fa-tasks"></i> Export
+                </a>
+                <a style="margin:5px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" ui-sref="admin.student.addStudent" ng-click="vm.student = {status: 0}">
+                    <i class="fa fa-plus-square"></i> Add New
+                </a>
+                <a style="margin:5px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" ng-click="vm.showLoginLog();">
+                    <i class="fa fa-tasks"></i> Show All Log
+                </a>
+              </div>
+              <div class="pull-right">
+                <ul class="pagination pull-right" style="margin:4px 2px;">
+                  <li>
+                    <a href="javascript:void(0);" aria-label="First" ng-click="vm.currentPage != 0 && vm.getAllStudents(0)">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li ng-class="{'disabled': vm.currentPage == 0}">
+                    <a href="javascript:void(0);" ng-click="vm.currentPage != 0 && vm.getAllStudents(vm.currentPage - 1)">Previous</a>
+                  </li>
+                  <li class="active">
+                    <a href="javascript:void(0);" ng-bind="vm.currentPage + 1"></a>
+                  </li>
+                  <li ng-class="{'disabled': vm.currentPage == vm.lastPage}">
+                    <a href="javascript:void(0);" ng-click="vm.currentPage != vm.lastPage && vm.getAllStudents(vm.currentPage + 1)">Next</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" aria-label="Last" ng-click="vm.currentPage != vm.lastPage && vm.getAllStudents(vm.lastPage)">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+                <br />
+                <div class="text-center" style="margin:2px 12px;">Total: <span ng-bind="vm.totalStudents"></span></div>
+              </div>
+            </nav>
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th> </th>
+                  <th>ID</th>
+                  <th>User Name</th>
+                  <th>Email</th>
+                  <th>Mobile</th>
+                  <th>Enroll Date</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="student in vm.students" ng-style="{'color': student.status ? 'green' : 'red'}">
+                  <td>
+                    <md-checkbox class="md-primary" aria-label="student" ng-click="student.isSelected = !student.isSelected"></md-checkbox>
+                  </td>
+                  <td ng-bind="student.id"></td>
+                  <td ng-bind="student.userName"></td>
+                  <td ng-bind="student.email"></td>
+                  <td ng-bind="student.mobile"></td>
+                  <td ng-bind="student.enrollDate"></td>
+                  <td>
+                    <i class="fa fa-pencil-square-o fa-fw" ng-click="vm.editStudent(student)" aria-hidden="true"></i>
+                    <i class="fa fa-tasks fa-fw" ng-click="vm.showLoginLog(student)" aria-hidden="true"></i>
+                    <i class="fa fa-files-o fa-fw" ng-click="vm.showStudentCourses($event, student)" aria-hidden="true"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

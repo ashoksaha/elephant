@@ -1,218 +1,228 @@
 <div ng-cloak>
-    <div class="site-wrap">
-        <section class="bg bg-navigation" id="logged-out-header">
-            <div class="container">
-                <main-navbar></main-navbar>
+  <div class="site-wrap">
+    <section class="bg bg-navigation" id="logged-out-header">
+      <div class="container">
+        <main-navbar></main-navbar>
+      </div>
+    </section>
+    <section class="courses__search">
+      <div class="container">
+        <div class="row account-settings">
+          <div class="col-sm-3">
+            <div class="side-nav groups__sidebar">
+              <h4>Account Settings</h4>
+              <ul role="tablist">
+                <li role="presentation" ng-click="vm.profileTab = 1;" ng-class="{'active' : vm.profileTab == 1}">
+                  <a href="javascript:void(0);" aria-controls="general" role="tab" data-toggle="tab" aria-expanded="true">General</a>
+                </li>
+                <li role="presentation" ng-click="vm.profileTab = 2;" ng-class="{'active' : vm.profileTab == 2}">
+                  <a href="javascript:void(0);" aria-controls="contact" role="tab" data-toggle="tab" aria-expanded="false">Contacts</a>
+                </li>
+                <li role="presentation" ng-click="vm.profileTab = 3;" ng-class="{'active' : vm.profileTab == 3}">
+                  <a href="javascript:void(0);" aria-controls="password" role="tab" data-toggle="tab" aria-expanded="false">Password</a>
+                </li>
+                <li role="presentation" ng-click="vm.profileTab = 4;" ng-class="{'active' : vm.profileTab == 4}">
+                  <a href="javascript:void(0);" aria-controls="notification" role="tab" data-toggle="tab" aria-expanded="false">Notification</a>
+                </li>
+                <li role="presentation" ng-click="vm.profileTab = 5;" ng-class="{'active' : vm.profileTab == 5}">
+                  <a href="javascript:void(0);" aria-controls="preferences" role="tab" data-toggle="tab" aria-expanded="false">Preferences</a>
+                </li>
+              </ul>
             </div>
-        </section>
-        <section class="courses__search">
-            <div class="container">
-                <div class="row account-settings">
-                    <div class="col-sm-3">
-                        <div class="side-nav groups__sidebar">
-                            <h5>Account Settings</h5>
-                            <ul role="tablist">
-                                <li role="presentation" ng-click="vm.profileTab = 1;" ng-class="{'active' : vm.profileTab == 1}">
-                                    <a href="javascript:void(0);" aria-controls="general" role="tab" data-toggle="tab" aria-expanded="true">General</a>
-                                </li>
-                                <li role="presentation" ng-click="vm.profileTab = 2;" ng-class="{'active' : vm.profileTab == 2}">
-                                    <a href="javascript:void(0);" aria-controls="contact" role="tab" data-toggle="tab" aria-expanded="false">Contacts</a>
-                                </li>
-                                <li role="presentation" ng-click="vm.profileTab = 3;" ng-class="{'active' : vm.profileTab == 3}">
-                                    <a href="javascript:void(0);" aria-controls="password" role="tab" data-toggle="tab" aria-expanded="false">Password</a>
-                                </li>
-                                <li role="presentation" ng-click="vm.profileTab = 4;" ng-class="{'active' : vm.profileTab == 4}">
-                                    <a href="javascript:void(0);" aria-controls="notification" role="tab" data-toggle="tab" aria-expanded="false">Notification</a>
-                                </li>
-                                <li role="presentation" ng-click="vm.profileTab = 5;" ng-class="{'active' : vm.profileTab == 5}">
-                                    <a href="javascript:void(0);" aria-controls="preferences" role="tab" data-toggle="tab" aria-expanded="false">Preferences</a>
-                                </li>
-                            </ul>
-                        </div>
+          </div>
+          <div class="col-sm-9 vertical-nav-border">
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane" id="general" ng-class="{'active' : vm.profileTab == 1}">
+                <h3>General Information</h3>
+                <hr>
+                <form class="edit_user" id="edit_user_727839" method="post">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <fieldset>
+                        <md-input-container class="md-block" flex-gt-sm>
+                          <label>User Name</label>
+                          <input ng-model="vm.newProfile.userName" required="required" />
+                        </md-input-container>
+                      </fieldset>
+                      <fieldset>
+                        <md-input-container class="md-block" flex-gt-sm>
+                          <label>About Me</label>
+                          <textarea ng-model="vm.newProfile.userBio" rows="5"></textarea>
+                        </md-input-container>
+                      </fieldset>
                     </div>
-                    <div class="col-sm-9 vertical-nav-border">
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane" id="general" ng-class="{'active' : vm.profileTab == 1}">
-                                <h3>General Information</h3>
-                                <hr>
-                                <form class="edit_user" id="edit_user_727839" method="post">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <fieldset>
-                                                <!-- <label for="user_first_name">User Name</label>
-                                    <input placeholder="User Name" required="required" type="text" name="Username" id="Username" ng-model="vm.newProfile.userName"> -->
-                                                <md-input-container class="md-block" flex-gt-sm>
-                                                    <label>User Name</label>
-                                                    <input ng-model="vm.newProfile.userName" required="required" />
-                                                </md-input-container>
-                                            </fieldset>
-                                            <fieldset>
-                                                <!-- <label for="user_last_name">About Me</label>
-                                    <textarea id="about" rows="5" placeholder="About Me" ng-model="vm.newProfile.userBio">
-                                    </textarea> -->
-                                                <md-input-container class="md-block" flex-gt-sm>
-                                                    <label>About Me</label>
-                                                    <textarea ng-model="vm.newProfile.userBio" rows="5"></textarea>
-                                                </md-input-container>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <fieldset>
-                                                <label for="user_avatar">Avatar</label>
-                                                <div class="avatar-selector">
-                                                    <img ngf-src="vm.newProfile.image || '/assets/images/avatar.png'" ngf-resize="{width: 150, height: 150, quality: 0.9, centerCrop: true}" style="border:1px solid lightseagreen; height:150px;" class="img-thumbnail" ngf-fix-orientation="true" />
-                                                    <br />
-                                                    <button class="btn btn-primary center-block" ngf-select type="file" ng-model="vm.newProfile.image" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-fix-orientation="true">
-                                                        Change Photo
-                                                    </button>
-                                                </div>
-                                            </fieldset>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.updateProfile(vm.newProfile.image)" data-disable-with="Save Changes">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="contact" ng-class="{'active' : vm.profileTab == 2}">
-                                <h3>Contact Information</h3>
-                                <hr>
-                                <form class="edit_user" id="edit_contact_727839" method="post">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <fieldset>
-                                                <!-- <label for="user_first_name">Mobile Number</label>
-                                    <input placeholder="Mobile Number" required="required" type="number" name="mobile" id="mobile" ng-model="vm.contact.mobile"> -->
-                                                <md-input-container class="md-block" flex-gt-sm>
-                                                    <label>Mobile Number</label>
-                                                    <input ng-model="vm.contact.mobile" type="number" required="required" />
-                                                </md-input-container>
-                                            </fieldset>
-                                            <input type="submit" name="commit" value="Save Mobile" class="btn btn-primary m0" data-disable-with="Save Changes" ng-click="vm.changeMobile()">
-                                        </div>
-                                        <div ng-if="vm.contact.showVerify == 1" class="col-sm-6">
-                                            <fieldset>
-                                                <!-- <label for="user_last_name">Verification Code</label>
-                                    <input placeholder="Please Enter Verification Code" type="text" name="verificationCode" id="verificationCode" ng-model="vm.contact.phoneVerify"> -->
-                                                <md-input-container class="md-block" flex-gt-sm>
-                                                    <label>Verification Code</label>
-                                                    <input ng-model="vm.contact.phoneVerify" required="required" />
-                                                </md-input-container>
-                                            </fieldset>
-                                            <input type="submit" name="commit" value="Send Code" class="btn btn-primary m0" data-disable-with="Save Changes" ng-click="vm.changeMobileVerification()">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <fieldset>
-                                                <!-- <label for="user_last_name">Email</label>
-                                    <input placeholder="Email" required="required" type="email" name="email" id="email" ng-model="vm.contact.email"> -->
-                                                <md-input-container class="md-block" flex-gt-sm>
-                                                    <label>Email</label>
-                                                    <input ng-model="vm.contact.email" required="required" type="email" />
-                                                </md-input-container>
-                                            </fieldset>
-                                            <input type="submit" name="commit" value="Save Email" class="btn btn-primary m0" data-disable-with="Save Changes" ng-click="vm.changeEmail()">
-                                        </div>
-                                        <div ng-if="vm.contact.showVerify == 2" class="col-sm-6">
-                                            <fieldset>
-                                                <!-- <label for="user_last_name">Verification Code</label>
-                                    <input placeholder="Please Enter Verification Code" type="text" name="verificationCode" id="verificationCode" ng-model="vm.contact.emailVerify"> -->
-                                                <md-input-container class="md-block" flex-gt-sm>
-                                                    <label>Verification Code</label>
-                                                    <input ng-model="vm.contact.emailVerify" required="required" />
-                                                </md-input-container>
-                                            </fieldset>
-                                            <input type="submit" name="commit" value="Send Code" class="btn btn-primary m0" data-disable-with="Save Changes" ng-click="vm.changeEmailVerification()">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="password" ng-class="{'active' : vm.profileTab == 3}">
-                                <h3>Change Password</h3>
-                                <hr>
-                                <form class="edit_user" id="edit_password_727839" method="post">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <fieldset>
-                                                <!-- <label for="currentPassword">Current Password</label>
-                                    <input placeholder="Current Password" required="required" type="password" name="currentPassword" id="currentPassword" ng-model="vm.password.current_password"> -->
-                                                <md-input-container class="md-block" flex-gt-sm>
-                                                    <label>Current Password</label>
-                                                    <input ng-model="vm.password.current_password" required="required" type="password" />
-                                                </md-input-container>
-                                            </fieldset>
-                                            <fieldset>
-                                                <!-- <label for="newPassword">New Password</label>
-                                    <input placeholder="New Password" required="required" type="password" name="newPassword" id="newPassword" ng-model="vm.password.new_password"> -->
-                                                <md-input-container class="md-block" flex-gt-sm>
-                                                    <label>New Password</label>
-                                                    <input ng-model="vm.password.new_password" required="required" type="password" />
-                                                </md-input-container>
-                                            </fieldset>
-                                            <fieldset>
-                                                <!-- <label for="confirmPassword">Confirm Password</label>
-                                    <input placeholder="Confirm Password" required="required" type="password" name="confirmPassword" id="confirmPassword" ng-model="vm.password.confirm"> -->
-                                                <md-input-container class="md-block" flex-gt-sm>
-                                                    <label>Confirm Password</label>
-                                                    <input ng-model="vm.password.confirm" required="required" type="password" />
-                                                </md-input-container>
-                                            </fieldset>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.updatePassword()" data-disable-with="Save Changes">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="password" ng-class="{'active' : vm.profileTab == 4}">
-                                <h3>Notification</h3>
-                                <hr>
-                                <form class="edit_user" method="post">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <md-list-item ng-repeat="notification in vm.notifications">
-                                                <md-switch class="md-primary" md-no-ink aria-label="{{notification.name}}" ng-model="notification.status">
-                                                    {{ notification.name }}
-                                                </md-switch>
-                                            </md-list-item>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="" data-disable-with="Save Changes">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="password" ng-class="{'active' : vm.profileTab == 5}">
-                                <h3>Preferences</h3>
-                                <hr>
-                                <form class="edit_user" id="edit_password_727839" method="post">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <md-list-item ng-repeat="preference in vm.preferences">
-                                                <p> {{ preference.name }} </p>
-                                                <md-checkbox class="md-primary" ng-model="preference.status"></md-checkbox>
-                                            </md-list-item>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.updatePassword()" data-disable-with="Save Changes">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                    <div class="col-sm-6">
+                      <fieldset>
+                        <label for="user_avatar">Avatar</label>
+                        <div class="avatar-selector">
+                          <img ngf-src="vm.newProfile.image || '/assets/images/avatar.png'" ngf-resize="{width: 150, height: 150, quality: 0.9, centerCrop: true}" style="border:1px solid lightseagreen; height:150px;" class="img-thumbnail" ngf-fix-orientation="true" />
+                          <br />
+                          <button class="btn btn-primary center-block" ngf-select type="file" ng-model="vm.newProfile.image" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-fix-orientation="true">
+                            Change Photo
+                          </button>
                         </div>
+                      </fieldset>
                     </div>
-                </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.updateProfile(vm.newProfile.image)" data-disable-with="Save Changes">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="contact" ng-class="{'active' : vm.profileTab == 2}">
+                <h3>Contact Information</h3>
+                <hr>
+                <form class="edit_user" id="edit_contact_727839" method="post">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <fieldset>
+                        <md-input-container class="md-block" flex-gt-sm>
+                          <label>Mobile Number</label>
+                          <input ng-model="vm.contact.mobile" type="number" required="required" />
+                        </md-input-container>
+                      </fieldset>
+                      <input type="submit" name="commit" value="Save Mobile" class="btn btn-primary m0" data-disable-with="Save Changes" ng-click="vm.changeMobile()">
+                    </div>
+                    <div ng-if="vm.contact.showVerify == 1" class="col-sm-6">
+                      <fieldset>
+                        <md-input-container class="md-block" flex-gt-sm>
+                          <label>Verification Code</label>
+                          <input ng-model="vm.contact.phoneVerify" required="required" />
+                        </md-input-container>
+                      </fieldset>
+                      <input type="submit" name="commit" value="Send Code" class="btn btn-primary m0" data-disable-with="Save Changes" ng-click="vm.changeMobileVerification()">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <fieldset>
+                        <md-input-container class="md-block" flex-gt-sm>
+                          <label>Email</label>
+                          <input ng-model="vm.contact.email" required="required" type="email" />
+                        </md-input-container>
+                      </fieldset>
+                      <input type="submit" name="commit" value="Save Email" class="btn btn-primary m0" data-disable-with="Save Changes" ng-click="vm.changeEmail()">
+                    </div>
+                    <div ng-if="vm.contact.showVerify == 2" class="col-sm-6">
+                      <fieldset>
+                        <md-input-container class="md-block" flex-gt-sm>
+                          <label>Verification Code</label>
+                          <input ng-model="vm.contact.emailVerify" required="required" />
+                        </md-input-container>
+                      </fieldset>
+                      <input type="submit" name="commit" value="Send Code" class="btn btn-primary m0" data-disable-with="Save Changes" ng-click="vm.changeEmailVerification()">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="password" ng-class="{'active' : vm.profileTab == 3}">
+                <h3>Change Password</h3>
+                <hr>
+                <form class="edit_user" id="edit_password_727839" method="post">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <fieldset>
+                        <md-input-container class="md-block" flex-gt-sm>
+                          <label>Current Password</label>
+                          <input ng-model="vm.password.current_password" required="required" type="password" />
+                        </md-input-container>
+                      </fieldset>
+                      <fieldset>
+                        <md-input-container class="md-block" flex-gt-sm>
+                          <label>New Password</label>
+                          <input ng-model="vm.password.new_password" required="required" type="password" />
+                        </md-input-container>
+                      </fieldset>
+                      <fieldset>
+                        <md-input-container class="md-block" flex-gt-sm>
+                          <label>Confirm Password</label>
+                          <input ng-model="vm.password.confirm" required="required" type="password" />
+                        </md-input-container>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.updatePassword()" data-disable-with="Save Changes">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="notification" ng-class="{'active' : vm.profileTab == 4}">
+                <h3>Notification</h3>
+                <hr>
+                <form class="edit_user" method="post">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <md-list-item>
+                        <md-switch class="md-primary" md-no-ink aria-label="Promotional Mails" ng-model="vm.notification.promotional" ng-true-value="1" ng-false-value="0">
+                          Promotional Mails
+                        </md-switch>
+                      </md-list-item>
+                      <md-list-item>
+                        <md-switch class="md-primary" md-no-ink aria-label="Upcoming courses Mail" ng-model="vm.notification.upcoming" ng-true-value="1" ng-false-value="0">
+                          Upcoming courses Mail
+                        </md-switch>
+                      </md-list-item>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.updateNotification()" data-disable-with="Save Changes">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="password" ng-class="{'active' : vm.profileTab == 5}">
+                <h3>Preferences</h3>
+                <hr>
+                <form class="edit_user" id="edit_password_727839" method="post">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <md-list-item>
+                        <p> Mains </p>
+                        <md-checkbox class="md-primary" ng-model="vm.preference.mains" ng-true-value="1" ng-false-value="0"></md-checkbox>
+                      </md-list-item>
+                      <md-list-item>
+                        <p> Prelims </p>
+                        <md-checkbox class="md-primary" ng-model="vm.preference.prelims" ng-true-value="1" ng-false-value="0"></md-checkbox>
+                      </md-list-item>
+                      <md-list-item>
+                        <p> Interview </p>
+                        <md-checkbox class="md-primary" ng-model="vm.preference.interview" ng-true-value="1" ng-false-value="0"></md-checkbox>
+                      </md-list-item>
+                      <md-list-item>
+                        <p> GS </p>
+                        <md-checkbox class="md-primary" ng-model="vm.preference.gs" ng-true-value="1" ng-false-value="0"></md-checkbox>
+                      </md-list-item>
+                      <md-list-item>
+                        <p> Optional </p>
+                        <md-checkbox class="md-primary" ng-model="vm.preference.optional" ng-true-value="1" ng-false-value="0"></md-checkbox>
+                      </md-list-item>
+                      <md-list-item>
+                        <p> SSC </p>
+                        <md-checkbox class="md-primary" ng-model="vm.preference.ssc" ng-true-value="1" ng-false-value="0"></md-checkbox>
+                      </md-list-item>
+                      <md-list-item>
+                        <p> IES </p>
+                        <md-checkbox class="md-primary" ng-model="vm.preference.ies" ng-true-value="1" ng-false-value="0"></md-checkbox>
+                      </md-list-item>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.updatePreference()" data-disable-with="Save Changes">
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
-        </section>
-    </div>
-    <main-footer-bar></main-footer-bar>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <main-footer-bar></main-footer-bar>
 </div>

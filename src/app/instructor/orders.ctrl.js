@@ -24,7 +24,7 @@
 
         function getAllOrders(page) {
             vm.currentPage = page;
-            $http.post(CommonInfo.getAppUrl() + "/getinstructororders", { page: page, instructorId: vm.instructorInfo.id }).then(
+            $http.post(CommonInfo.getAppUrl() + "/getinstructororders", { page: page, instructorId: vm.instructorInfo.id, status: 1 }).then(
                 function(response) {
                     if (response && response.data) {
                         if (response.data.status == 1) {
@@ -77,7 +77,7 @@
                     '</div>' +
                     '</md-dialog-content>' +
                     '<md-dialog-actions>' +
-                    '<md-button class="md-primary" lazy-load="true" ng-csv="getOrderList();" filename="order.csv" field-separator="," decimal-separator="." csv-header="exportOrderHeader();">' +
+                    '<md-button class="md-primary" lazy-load="true" ng-csv="getOrderList();" filename="order.csv" field-separator="," decimal-separator="." csv-header="">' +
                     'Export' +
                     '</md-button>' +
                     '<md-button ng-click="closeDialog()" class="md-primary">' +

@@ -189,7 +189,7 @@
             .state('instructor.dashboard', {
                 url: '/dashboard',
                 templateUrl: 'app/instructor/dashboard.html',
-                controller: 'InstructorResetPasswordController',
+                controller: 'InstructorDashboardController',
                 controllerAs: 'vm'
             })
             .state('instructor.orders', {
@@ -370,6 +370,10 @@
                 url: '/setting',
                 templateUrl: 'app/admin/lmsSetting.html'
             })
+            .state('admin.lms.coupons', {
+                url: '/coupons',
+                templateUrl: 'app/admin/coupon.html'
+            })
             .state('admin.settings', {
                 url: '/settings',
                 templateUrl: 'app/admin/settings.html',
@@ -389,7 +393,7 @@
                 templateUrl: 'app/admin/paymentMethods.html'
             });
 
-        $urlRouterProvider.otherwise('/');
+        //$urlRouterProvider.otherwise('/');
         $locationProvider.html5Mode(true);
     }
 

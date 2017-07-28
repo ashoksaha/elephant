@@ -30,7 +30,7 @@
                     function(response) {
                         if (response && response.data) {
                             if (response.data.status == 1) {
-                                growl.success('Mail sent, please check your registered mail');
+                                growl.success("You should soon receive an email allowing you to reset your password. Please make sure to check your spam if you can't find the email.");
                             } else if (response.data.status == 2) {
                                 growl.info(response.data.message);
                             }

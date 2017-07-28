@@ -13,12 +13,20 @@
         .filter('charCodeToChar', charCodeToChar)
         .filter('truncate', truncate)
         .filter('timeRemaining', timeRemaining)
-        .filter('INR', INR);
+        .filter('INR', INR)
+        .filter('capitalize', capitalize);
 
     /** @ngInject */
     function htmlToPlaintext() {
         return function(text) {
             return text ? String(text).replace(/<[^>]+>/gm, '') : '';
+        }
+    }
+
+    /** @ngInject */
+    function capitalize() {
+        return function(text) {
+            return text ? _.capitalize(text) : '';
         }
     }
 
@@ -38,7 +46,10 @@
 
     /** @ngInject */
     function timeRemaining() {
-        return function(text) {
+        return function(text, keepOrg) {
+            if(!keepOrg) {
+                text = moment(text).add(1, 'd');
+            }
             return moment(text).fromNow();
         }
     }
@@ -192,10 +203,10 @@
                 $localStorage.$reset();
             },
             getAppUrl: function() {
-                return 'http://139.59.17.78/apidott/v0';
+                return 'https://flavido.com/apidott/v0';
             },
             getTestSeriesAppUrl: function() {
-                return 'http://onlinementors.in/testSeriesApi';
+                return 'https://flavido.com/testSeriesApi';
             },
             showAlert: function(text) {
                 $mdToast.show(

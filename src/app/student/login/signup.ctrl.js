@@ -20,6 +20,7 @@
         };
         return {
             login: function(loginInfo) {
+                vm.student.fromSource = "flavido";
                 $http.post(CommonInfo.getAppUrl() + "/studentlogin", vm.student).then(
                     function(response) {
                         return response;

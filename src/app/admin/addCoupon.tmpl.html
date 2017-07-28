@@ -1,0 +1,61 @@
+<md-dialog aria-label="List dialog">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Coupon</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="closeDialog()">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content style="min-width:800px;">
+    <div class="md-dialog-content">
+      <div layout="row">
+        <md-input-container flex="50">
+          <label>Code</label>
+          <input type="text" ng-model="vm.coupon.code" />
+        </md-input-container>
+        <div flex="5" hide-xs hide-sm>
+          <!-- Spacer //-->
+        </div>
+        <md-input-container flex="50">
+          <label>Amount</label>
+          <input type="text" ng-model="vm.coupon.amount" />
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex="50">
+          <label>Type</label>
+          <md-select ng-model="vm.coupon.discountType">
+            <md-option ng-value="item" ng-repeat="item in couponType">{{item | capitalize}}</md-option>
+          </md-select>
+        </md-input-container>
+        <div flex="5" hide-xs hide-sm>
+          <!-- Spacer //-->
+        </div>
+        <md-input-container flex="50">
+          <label>Description</label>
+          <textarea rows="3" ng-model="vm.coupon.description"></textarea>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex="50">
+          <label>Start From</label>
+          <md-datepicker ng-model="vm.coupon.dateStart" md-open-on-focus></md-datepicker>
+        </md-input-container>
+        <div flex="5" hide-xs hide-sm>
+          <!-- Spacer //-->
+        </div>
+        <md-input-container flex="50">
+          <label>Expires On</label>
+          <md-datepicker ng-model="vm.coupon.dateExpires" md-open-on-focus></md-datepicker>
+        </md-input-container>
+      </div>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button ng-click="addCoupon()" class="md-primary">Save
+    </md-button>
+    <md-button ng-click="closeDialog()" class="md-primary">Close
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

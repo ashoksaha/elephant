@@ -21,7 +21,7 @@
             'ui.carousel',
             'ngCsv',
             'ui.bootstrap',
-            '720kb.socialshare'
+            'dndLists'
         ]);
 
 })();

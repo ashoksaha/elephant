@@ -12,7 +12,13 @@
         vm.allCourses = [];
         vm.allInstructors = [];
         vm.selectedInstructor = 'All Instructors';
-        vm.courseSearchCriteria = {};
+        vm.courseSearchCriteria = {
+            status: 1,
+            isForsale: 1,
+            name: '',
+            categoryId: '',
+            instructorId: ''
+        };
 
         vm.getAllCourses = getAllCourses;
         vm.searchCoursesByInstructor = searchCoursesByInstructor;
@@ -20,6 +26,8 @@
 
         vm.showCourseDetails = showCourseDetails;
         vm.showAllCourses = showAllCourses;
+
+        vm.showInstructorCourses = showInstructorCourses;
 
         activate();
 
@@ -74,14 +82,14 @@
             var name = $stateParams.name ? $stateParams.name.replace(/-/g, " ") : '';
             if (param && value) {
                 if(param == 'category'){
-                    vm.courseSearchCriteria['categoryId'] = value;
+                    vm.courseSearchCriteria.categoryId = value;
                 }
                 else if(param == 'instructor'){
-                    vm.courseSearchCriteria['instructorId'] = value;
+                    vm.courseSearchCriteria.instructorId = value;
                     vm.selectedInstructor = name;
                 }
                 else if(param == 'search')
-                    vm.courseSearchCriteria['name'] = value;
+                    vm.courseSearchCriteria.name = value;
             } else {
                 $state.go('courses.list');
             }
@@ -161,6 +169,12 @@
 
         function showAllCourses() {
             $state.go('courses.search', { query: '123' });
+        }
+
+        function showInstructorCourses(course) {
+            if (course.instructorId) {
+                $state.go('instructorCourses', { name: course.instructorFullName.replace(/ /g, "-"), id: course.instructorId })
+            }
         }
     }
 })();

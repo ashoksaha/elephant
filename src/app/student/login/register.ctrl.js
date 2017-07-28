@@ -35,6 +35,7 @@
 
         function signup() {
             if (vm.student && vm.student.username && vm.student.email_id && vm.student.password) {
+                vm.student.fromSource = "flavido";
                 $http.post(CommonInfo.getAppUrl() + "/studentregister", vm.student).then(
                     function(response) {
                         if (response && response.data) {
