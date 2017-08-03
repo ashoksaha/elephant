@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Responsive Table</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--[if !IE]><!-->
+    <style>
+    /* 
+	Max width before this PARTICULAR table gets nasty
+	This query will take effect for any screen smaller than 760px
+	and also iPads specifically.
+	*/
+
+    @media only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px) {
+
+        /* Force table to not be like tables anymore */
+        table,
+        thead,
+        tbody,
+        th,
+        td,
+        tr {
+            display: block;
+        }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+        tr {
+            border: 1px solid #ccc;
+        }
+
+        td {
+            /* Behave  like a "row" */
+            border: none;
+            position: relative;
+            /*padding-left: 50%; */
+        }
+
+
+        td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
+        /*hide td*/
+        .hide-td {
+            display: none;
+        }
+    }
+    /* Smartphones (portrait and landscape) ----------- */
+
+    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+        body {
+            padding: 0;
+            margin: 0;
+            width: 320px;
+        }
+		tr {
+            border: 1px solid #ccc;
+        }
+		th,
+        td {
+            border: 1px solid #eee;
+        }
+        /*hide td*/
+        .hide-td {
+            display: none;
+        }
+    }
+    /* iPads (portrait and landscape) ----------- */
+
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+        body {
+            width: 495px;
+        }
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #page-wrap {
+        margin: 50px;
+    }
+
+    p {
+        margin: 20px 0;
+    }
+    /* 
+	Generic Styling, for Desktops/Laptops 
+	*/
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    /* Zebra striping */
+
+    tr:nth-of-type(odd) {
+        background: #ecf0f1;
+    }
+
+    th {
+        background: #1abc9c;
+        color: white;
+        font-weight: bold;
+    }
+
+    td,
+    th {
+        padding: 6px;
+        border: 1px solid #1abc9c;
+        text-align: left;
+        font-family: 'Raleway', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    @media only screen and (max-width: 760px) {
+        th,
+        td {
+            border: 1px solid #eee;
+        }
+    }
+    </style>
+    <!--<![endif]-->
+</head>
+
+<body>
+    <div id="page-wrap">
+        <table>
+            <thead>
+                <tr class="hideTbl">
+                    <th><i class="fa fa-list-ul" style="font-size:18px;color:#fff"></i></th>
+                    <th>ID</th>
+                    <th>Course</th>
+                    <th>Student</th>
+                    <th>Ordered On</th>
+                    <th>Amount</th>
+                    <th>Payment</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td class="hide-td">c898de0df1f547ddb22b815bcb55aadePras</td>
+                    <td class="hide-td">QUALITY ENRICHMENT PROG (QEP) by M.K Yadav</td>
+                    <td>vinay.upsc@gmail.com(vinay.upsc) 9860242266</td>
+                    <td>8/1/17 6:01 PM</td>
+                    <td>₹ 4,500</td>
+                    <td>Instamojo</td>
+                    <td>Complete</td>
+                    <td>3.1</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td class="hide-td">pay_8LmtIaJEU6BhAO</td>
+                    <td class="hide-td">Crimefighter Sorta</td>
+                    <td>Blue</td>
+                    <td>Wars</td>
+                    <td>John Smith</td>
+                    <td>July 19, 1968</td>
+                    <td>Athens</td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td>Jokey</td>
+                    <td class="hide-td">Smurf</td>
+                    <td class="hide-td">Giving Exploding Presents</td>
+                    <td>Smurflow</td>
+                    <td>Smurf</td>
+                    <td>Smurflane Smurfmutt</td>
+                    <td>Smurfuary Smurfteenth, 1945</td>
+                    <td>New Smurf City</td>
+                    <td>4.Smurf</td>
+                </tr>
+                <tr>
+                    <td>Cindy</td>
+                    <td class="hide-td">Beyler</td>
+                    <td class="hide-td">Sales Representative</td>
+                    <td>Red</td>
+                    <td>Wars</td>
+                    <td>Lori Quivey</td>
+                    <td>July 5, 1956</td>
+                    <td>Paris</td>
+                    <td>3.4</td>
+                </tr>
+                <tr>
+                    <td>Captain</td>
+                    <td class="hide-td">Cool</td>
+                    <td class="hide-td">Tree Crusher</td>
+                    <td>Blue</td>
+                    <td>Wars</td>
+                    <td>Steve 42nd</td>
+                    <td>December 13, 1982</td>
+                    <td>Las Vegas</td>
+                    <td>1.9</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

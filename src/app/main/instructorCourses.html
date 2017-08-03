@@ -1,93 +1,91 @@
 <div ng-cloak>
-    <div class="site-wrap">
-        <section class="bg bg-navigation bg-pattern" id="logged-out-header">
-            <div class="container">
-                <main-navbar></main-navbar>
-                <div class="show-course__header">
-                    <div class="row">
-                        <div class="hidden-xs hidden-sm col-md-4 col-lg-3">
-                            <div class="header-image" ng-if="vm.instructorDetails.image">
-                                <div class="progress" data-value="0" data-size="1000" data-thickness="20" data-fill="{&quot;color&quot;: &quot;#ebf4f7&quot;}" data-line-cap="round" data-empty-fill="rgba(213,234,239,0.1)"></div>
-                                <img alt="{{vm.instructorDetails.fullName}}" src="{{vm.instructorDetails.image}}">
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-8 col-lg-9">
-                            <h1 ng-bind="vm.instructorDetails.fullName"></h1>
-                            <h4 ng-bind="vm.instructorDetails.designation"></h4>
-                            <p ng-bind="vm.instructorDetails.biography"></p>
-                            <ul>
-                                <li class="icon-video">
-                                    <button type="button" class="btn btn-warning" ng-click="vm.followInstructor($event);">
-                                        <span ng-if="vm.instructorDetails.isFollowed">Un-</span>Follow
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
+  <div class="site-wrap">
+    <section class="bg bg-navigation bg-pattern" id="logged-out-header">
+      <div class="container">
+        <main-navbar></main-navbar>
+        <div class="show-course__header">
+          <div class="row">
+            <div class="hidden-xs hidden-sm col-md-4 col-lg-3">
+              <div class="header-image" ng-if="vm.instructorDetails.image">
+                <div class="progress" data-value="0" data-size="1000" data-thickness="20" data-fill="{&quot;color&quot;: &quot;#ebf4f7&quot;}" data-line-cap="round" data-empty-fill="rgba(213,234,239,0.1)"></div>
+                <img alt="{{vm.instructorDetails.fullName}}" src="{{vm.instructorDetails.image}}">
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-9">
+              <h1 ng-bind="vm.instructorDetails.fullName"></h1>
+              <h4 ng-bind="vm.instructorDetails.designation"></h4>
+              <p ng-bind="vm.instructorDetails.biography"></p>
+              <ul>
+                <li class="icon-video">
+                  <button type="button" class="btn btn-warning" ng-click="vm.followInstructor($event);">
+                    <span ng-if="vm.instructorDetails.isFollowed">Un-</span>Follow
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="show-course__body">
+      <!-- <div class="container"> -->
+      <md-content style="margin:0px 20px;background-color: #fff;">
+        <md-tabs md-dynamic-height md-border-bottom>
+          <md-tab label="Courses">
+            <md-content class="md-padding">
+              <!-- <h3 class="md-display-2">Courses</h3> -->
+              <!-- <h3>Courses</h3> -->
+              <section>
+                <div class="container">
+                  <h3 class="text-center" ng-if="vm.instructorDetails.courses.length == 0"> No courses found </h3>
+                  <div class="row">
+                    <div class="col-lg-4 col-sm-6" ng-repeat="course in vm.instructorDetails.courses">
+                      <a ng-href="/course/{{course.id}}/{{course.title | spaceToDash}}" ng-click="vm.showCourseDetails(course)">
+                        <md-card style="height:343px;">
+                          <img ng-src="{{course.image}}" class="md-card-image" alt="Washed Out" style="height:195px;">
+                          <md-card-title>
+                            <md-card-title-text>
+                              <small style="color:#000;">
+                            <review-stars rating="course.courseRating" stars='5'></review-stars> (<span ng-bind="course.reviewCourse || 0"></span> Reviews)
+                        </small>
+                              <span class="md-headline md-headline-header" ng-bind="course.title"></span>
+                            </md-card-title-text>
+                          </md-card-title>
+                          <md-card-actions layout="row" layout-align="end center">
+                            <span ng-if="course.courseFee" ng-bind="course.courseFee | INR"></span>
+                            <span ng-if="!course.courseFee" ng-bind="'Free'"></span>
+                          </md-card-actions>
+                        </md-card>
+                      </a>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </section>
-        <section class="show-course__body">
-            <div class="container">
-                <h3>Courses</h3>
-                <section>
-                    <div class="container">
-                        <h3 class="text-center" ng-if="vm.instructorDetails.courses.length == 0"> No courses found </h3>
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-6" ng-repeat="course in vm.instructorDetails.courses">
-                                <md-card style="height:343px;" ng-click="vm.showCourseDetails(course)">
-                                    <img ng-src="{{course.image}}" class="md-card-image" alt="Washed Out" style="height:195px;">
-                                    <md-card-title>
-                                        <md-card-title-text>
-                                            <small style="color:#000;">
-                                            <review-stars rating="course.courseRating" stars='5'></review-stars> (<span ng-bind="course.reviewCourse || 0"></span> Reviews)
-                                        </small>
-                                            <span class="md-headline md-headline-header" ng-bind="course.title"></span>
-                                        </md-card-title-text>
-                                    </md-card-title>
-                                    <!-- <md-card-content>
-                                    <p ng-bind="course.description | truncate:60"></p>
-                                </md-card-content> -->
-                                    <md-card-actions layout="row" layout-align="end center">
-                                        <span ng-if="course.courseFee" ng-bind="course.courseFee | INR"></span>
-                                        <span ng-if="!course.courseFee" ng-bind="'Free'"></span>
-                                    </md-card-actions>
-                                </md-card>
-                                <!-- <a class="no-link-style no-link-color" href="javascript:void(0);" ng-click="vm.showCourseDetails(course)">
-                                    <div class="course-block" ng-class="{'course-block--r' : $even, 'course-block--g' : $odd}">
-                                        <div>
-                                            <h4 class="course-block__title" ng-bind="course.title"></h4>
-                                            <p class="course-block__description" ng-bind="course.description | truncate:115"></p>
-                                            <p class="course-block__description">
-                                                <span class="rating">
-                                        <span class="star" ng-repeat="star in vm.stars" ng-class="{'starfull' : course.courseRating - $index > 1, 'starhalf' : course.courseRating - $index > 0 && course.courseRating - $index < 1,  'starempty' : course.courseRating - $index <= 0 }"></span>
-                                                </span> (<span ng-bind="course.reviewCourse || 0"></span> Reviews)
-                                            </p>
-                                        </div>
-                                        <div class="course-block__author">
-                                            <div class="course-block__author-image">
-                                                <img class="image-rounded" width="70" height="70" src="{{course.instructorImage || '/assets/images/avatar.png'}}">
-                                            </div>
-                                            <div class="course-block__author-description">
-                                                <h5 ng-bind="course.instructorFullName"></h5>
-                                                <p ng-bind="course.instructorDesignation"></p>
-                                            </div>
-                                        </div>
-                                        <div class="course-block__footer">
-                                            <span>
-                                                <i class="fa fa-clock-o" aria-hidden="true" ng-attr-title="{{course.duration}} {{course.durationParameter}}"></i> 
-                                                <span ng-bind="course.duration"></span>
-                                                <span ng-bind="course.durationParameter"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a> -->
-                            </div>
-                        </div>
+              </section>
+            </md-content>
+          </md-tab>
+          <md-tab label="Testimonial" ng-disabled="vm.instructorDetails.Testmonials.length == 0">
+            <md-content class="md-padding">
+              <!-- <h3 class="md-display-2">Testimonial</h3> -->
+              <md-content>
+                <md-list flex>
+                  <md-list-item class="md-3-line md-long-text" ng-repeat-start="testimonial in vm.instructorDetails.Testmonials">
+                    <img ng-src="{{testimonial.image}}" class="md-avatar" alt="{{testimonial.testimonials_by}}" />
+                    <div class="md-list-item-text">
+                      <h3><strong ng-bind="testimonial.testimonials_by">Anas El Turabi</strong> <i ng-bind="testimonial.by_organization">Harvard PhD Candidate in Health Policy</i></h3>
+                      <p ng-bind="testimonial.testimonial">
+                        Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                      </p>
                     </div>
-                </section>
-            </div>
-        </section>
-    </div>
-    <main-footer-bar></main-footer-bar>
+                  </md-list-item>
+                  <md-divider ng-repeat-end md-inset ng-if="!$last"></md-divider>
+                </md-list>
+              </md-content>
+            </md-content>
+          </md-tab>
+        </md-tabs>
+      </md-content>
+      <!-- </div> -->
+    </section>
+  </div>
+  <main-footer-bar></main-footer-bar>
 </div>

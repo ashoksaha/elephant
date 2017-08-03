@@ -9,6 +9,7 @@
             <div class="col-sm-12 col-md-8 col-lg-9">
               <h5 class="subhead" ng-if="vm.course.freeCourse">free course</h5>
               <h1 ng-bind="vm.course.title"></h1>
+              <h5 class="subhead"><span ng-bind="vm.course.courseStartDate"></span> Onwards</h5>
               <ul>
                 <li class="icon-video">
                   <i class="fa fa-play-circle" aria-hidden="true"></i>
@@ -112,10 +113,11 @@
           <div class="col-sm-9 vertical-nav-border">
             <h3>Course Description</h3>
             <div>
-              <p ng-bind-html="vm.course.description | limitTo: vm.charCount"></p>
-              <a ng-click="vm.charCount = vm.charCount ? '' : 300;">
-                <span ng-if="vm.charCount && vm.charCount < vm.course.description.length && vm.course.description.length > 315">..Read More</span>
-                <span ng-if="!vm.charCount && vm.course.description.length > 315">Read Less</span>
+              <p ng-if="vm.charCount == 0" ng-bind-html="vm.course.description"></p>
+              <p ng-if="vm.charCount != 0" ng-bind-html="vm.course.description | limitTo: vm.charCount"></p>
+              <a ng-if="vm.charCount != 0" ng-click="vm.charCount = vm.charCount == 300 ? vm.course.description.length : 300;">
+                <span ng-if="vm.charCount == 300">..Read More</span>
+                <span ng-if="vm.charCount == vm.course.description.length">Read Less</span>
               </a>
             </div>
             <div class="show-course__chapter">

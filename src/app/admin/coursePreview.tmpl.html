@@ -1,0 +1,55 @@
+<md-dialog aria-label="List dialog">
+  <md-dialog-content style="min-width:800px;">
+    <div class="md-dialog-content">
+      <section layout="row" flex class="container-course">
+        <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+          <md-toolbar style="background-color: #29c5a7;">
+            <div class="md-toolbar-tools">
+              <h2 flex md-truncate>All Units
+                        </h2>
+              <md-button class="md-icon-button" aria-label="Close" ng-click="vm.closeSide()" class="md-primary" hide-gt-md>
+                <i class="fa fa-times fa-lg"></i>
+              </md-button>
+            </div>
+          </md-toolbar>
+          <md-content>
+            <md-list>
+              <md-list-item ng-repeat="unit in vm.coursePreview.units">
+                <p href="javascript:void(0)" ng-bind="unit.name" ng-click="getUnitDetails(unit.id);"></p>
+              </md-list-item>
+              <md-divider></md-divider>
+            </md-list>
+          </md-content>
+        </md-sidenav>
+        <md-content flex>
+          <md-toolbar style="background-color: #18BC9C;">
+            <div class="md-toolbar-tools">
+              <md-button class="md-icon-button" aria-label="Settings" ng-click="vm.toggleLeft()" class="md-primary" hide-gt-md>
+                <i class="fa fa-bars fa-lg"></i>
+              </md-button>
+              <span md-truncate ng-bind="vm.coursePreview.title"></span>
+            </div>
+          </md-toolbar>
+          <!-- <div layout="column" layout-padding ng-if="!vm.showReviewPage"> -->
+          <h4 ng-bind="unit.name" style="padding:8px;"></h4>
+          <!-- </div> -->
+          <div layout="column" layout-padding>
+            <p ng-bind="vm.unit.description"></p>
+            <md-button md-no-ink class="md-primary" ng-href="{{unit.downloadLink.videoDownloadLink}}" download aria-label="Download Video" ng-if="unit.downloadLink && vm.unit.downloadLink.videoDownloadLink">
+              <i class="fa fa-download" aria-hidden="true"></i> Download Video
+            </md-button>
+            <div class="embed-responsive embed-responsive-16by9" ng-if="unit.videoId">
+              <p ng-bind-html="unit.videoHtml" class="text-center embed-responsive-item"></p>
+            </div>
+            <p ng-bind-html="unit.unitDescription"></p>
+          </div>
+          <div flex></div>
+        </md-content>
+      </section>
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button ng-click="closeDialog()" class="md-primary">Close
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

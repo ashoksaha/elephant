@@ -139,6 +139,10 @@ a {
   background-color: transparent
 }
 
+a:hover, a:focus {
+  text-decoration: none;
+}
+
 a:active,
 a:hover {
   outline: 0
@@ -4030,7 +4034,7 @@ select:hover {
 .bg-navigation,
 .bg-primary {
   padding: 1em;
-  background-color: #1E232F;
+  background-color: #444;
   /*background-image: linear-gradient(0deg, #003040, #4da8a1 100%, #065773)!important;*/
   color: #ffffff;
   position: relative
@@ -13046,3 +13050,7 @@ application_v2-1604891….css:1 .btn-quinary {
     color: #3c763d;
 }
 /*************************Drag and drop css[Ends]*************************************/
+
+.md-chip-input-container {
+  width:100%;
+}

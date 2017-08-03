@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  .table-heading{
+  background:#1abc9c;
+  color:#ecf0f1;
+  }
+  
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr {  }
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+		border:none;
+	}
+		tr:nth-of-type(odd) { 
+		background: #1abc9c; 
+		color:#fafafa;
+	}
+	
+	
+
+	
+}
+  </style>
+</head>
+<body>
+
+<div class="container">      
+  <table class="table table-bordered">
+    <thead>
+      <tr class="table-heading">
+        <th>ID</th>
+        <th>Course</th>
+        <th>Student</th>
+		<th>Ordered On</th>
+		<th>Amount</th>
+		<th>Payment</th>
+		<th>Status</th>
+		<th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>pay_8M8WlmDB4SedjI</td>
+        <td>GS Paper IV - 100 Case Study by Alok Dubey</td>
+        <td>26.rohitmvit@gmail.com (Santosh Pandey) 9811817992</td>
+		<td>8/2/17 2:34 PM</td>
+		<td>₹ 4,000</td>
+		<td>Razorpay</td>
+		<td>Complete</td>
+		<td>Pdf</td>
+      </tr>
+      <tr>
+        <td>pay_8M8WlmDB4SedjI</td>
+        <td>GS Paper IV - 100 Case Study by Alok Dubey</td>
+        <td>26.rohitmvit@gmail.com (Santosh Pandey) 9811817992</td>
+		<td>8/2/17 2:34 PM</td>
+		<td>₹ 4,000</td>
+		<td>Razorpay</td>
+		<td>Complete</td>
+		<td>Pdf</td>
+      </tr>
+      <tr>
+        <td>pay_8M8WlmDB4SedjI</td>
+        <td>GS Paper IV - 100 Case Study by Alok Dubey</td>
+        <td>26.rohitmvit@gmail.com (Santosh Pandey) 9811817992</td>
+		<td>8/2/17 2:34 PM</td>
+		<td>₹ 4,000</td>
+		<td>Razorpay</td>
+		<td>Complete</td>
+		<td>Pdf</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

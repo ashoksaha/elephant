@@ -7,26 +7,26 @@
             <div class="col-sm-3 col-sm-push-9">
                 <div class="side-nav groups__sidebar">
                     <ul>
-                        <li ng-class="{'active' : vm.lmsTab == 1}" ng-click="vm.lmsTab = 1;" ui-sref="admin.lms.courses">
-                            <a href="javascript:void(0);">Courses</a>
+                        <li ng-class="{'active' : vm.lmsTab == 1}" ng-click="vm.lmsTab = 1;">
+                            <a ui-sref="admin.lms.courses">Courses</a>
                         </li>
-                        <li ng-class="{'active' : vm.lmsTab == 2}" ng-click="vm.lmsTab = 2;" ui-sref="admin.lms.courseCategories">
-                            <a href="javascript:void(0);">Categories</a>
+                        <li ng-class="{'active' : vm.lmsTab == 2}" ng-click="vm.lmsTab = 2;">
+                            <a ui-sref="admin.lms.courseCategories">Categories</a>
                         </li>
-                        <li ng-class="{'active' : vm.lmsTab == 3}" ng-click="vm.lmsTab = 3;" ui-sref="admin.lms.units">
-                            <a href="javascript:void(0);">All Units</a>
+                        <li ng-class="{'active' : vm.lmsTab == 3}" ng-click="vm.lmsTab = 3;">
+                            <a ui-sref="admin.lms.units">All Units</a>
                         </li>
                         <li ng-class="{'active' : vm.lmsTab == 4}" ng-click="vm.getCourseCallrequests();">
-                            <a href="javascript:void(0);">Callback Request</a>
+                            <a href="/sitemanager/lms/callrequests">Callback Request</a>
                         </li>
                         <li ng-class="{'active' : vm.lmsTab == 5}" ng-click="vm.getCoursesReview();">
-                            <a href="javascript:void(0);">Courses Review</a>
+                            <a href="/sitemanager/lms/coursesReview">Courses Review</a>
                         </li>
                         <li ng-class="{'active' : vm.lmsTab == 6}" ng-click="vm.getLmsSettings();">
-                            <a href="javascript:void(0);">Settings</a>
+                            <a href="/sitemanager/lms/setting">Settings</a>
                         </li>
                         <li ng-class="{'active' : vm.lmsTab == 7}" ng-click="vm.getCoupons();">
-                            <a href="javascript:void(0);">Coupons</a>
+                            <a href="/sitemanager/lms/coupons">Coupons</a>
                         </li>
                     </ul>
                 </div>

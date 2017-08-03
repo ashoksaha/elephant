@@ -11,6 +11,7 @@
 
         vm.isCollapsed = true;
         vm.studentSearchText;
+        vm.perPage = 25;
 
         vm.getAllOrders = getAllOrders;
         vm.exportOrders = exportOrders;
@@ -21,7 +22,7 @@
         function activate() {
             getAllCategories();
             getAllInstructors();
-            vm.getAllOrders(0);
+            getAllOrders(0);
         }
 
         function getAllOrders(page) {
@@ -49,7 +50,7 @@
             );
         }
 
-        function exportOrders() {
+        function exportOrders(event) {
             var parentEl = angular.element(document.body);
             $mdDialog.show({
                 parent: parentEl,
@@ -212,15 +213,17 @@
                             if (response && response.data) {
                                 if (response.data.status == 1) {
                                     growl.success(response.data.message);
+                                    $mdDialog.hide();
+                                    getAllOrders(0);
                                 } else if (response.data.status == 2) {
-                                    $log.log(response.data.message);
+                                    growl.info(response.data.message);
                                 }
                             } else {
-                                $log.log('There is some issue, please try after some time');
+                                growl.info('There is some issue, please try after some time');
                             }
                         },
                         function(response) {
-                            $log.log('There is some issue, please try after some time');
+                            growl.info('There is some issue, please try after some time');
                         }
                     );
                 }

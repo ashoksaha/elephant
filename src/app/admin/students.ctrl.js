@@ -20,6 +20,7 @@
     vm.updateStudent = updateStudent;
     vm.editStudent = editStudent;
     vm.showLoginLog = showLoginLog;
+    vm.getStudentLoginLogs = getStudentLoginLogs;
     vm.exportStudent = exportStudent;
     vm.showStudentCourses = showStudentCourses;
 
@@ -60,6 +61,7 @@
           if (response && response.data) {
             if (response.data.status == 1) {
               vm.allCourses = response.data.data;
+              vm.allCourses = _.groupBy(vm.allCourses, 'instructorFullName');
             } else if (response.data.status == 2) {
               $log.log(response.data.message);
             }
@@ -162,20 +164,27 @@
     }
 
     function showLoginLog(student) {
-      var data = {};
       vm.studentLoginLog = [];
-      vm.allStudentLoginLog = null;
-      if (student)
-        data.studentId = student.id;
+      vm.loginLogscurrentPage = 0;
+      vm.selectedStudentLog = student ? student : undefined;
+      $state.go('admin.student.loginLog');
+      getStudentLoginLogs(0)
+    }
+
+    function getStudentLoginLogs(page) {
+      vm.loginLogscurrentPage = page;
+      var data = {
+        page: page
+      };
+      if (vm.selectedStudentLog)
+        data.studentId = vm.selectedStudentLog.id;
       $http.post(CommonInfo.getAppUrl() + '/getstudentloginlogs', data).then(
         function(response) {
           if (response && response.data) {
             if (response.data.status == 1) {
-              if (student)
-                vm.studentLoginLog = response.data.data;
-              else
-                vm.allStudentLoginLog = response.data.data;
-              $state.go('admin.student.loginLog')
+              vm.allStudentLoginLog = response.data.data;
+              vm.totalLogs = response.data.totalCount;
+              vm.loginLogsLastPage = Math.ceil(vm.totalLogs / 25) - 1;
             } else if (response.data.status == 2) {
               growl.info(response.data.message);
             }

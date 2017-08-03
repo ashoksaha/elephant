@@ -39,6 +39,10 @@
         function(response) {
           if (response && response.data) {
             if (response.data.status == 1) {
+              _.forEach(response.data.data, function(value) {
+                  value.courseStartDate = moment(value.courseStartDate).format("MMM DD, YYYY");
+                  value.courseEndDate = moment(value.courseEndDate).format("MMM DD, YYYY");
+              });
               vm.subscribedCourses = _.filter(response.data.data, { 'isSubscribed': 1 });
               vm.allCourses = _.filter(response.data.data, { 'isSubscribed': 0 });
             } else if (response.data.status == 2) {

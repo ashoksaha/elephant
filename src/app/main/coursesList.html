@@ -6,7 +6,7 @@
                 <div class="col-lg-4 col-sm-6" ng-repeat="course in vm.allCourses | limitTo: vm.listLimit">
                     <!-- <a class="no-link-style no-link-color" href="javascript:void(0);" ng-click=""> -->
                         <div class="course-block" ng-class="{'course-block--r' : $even, 'course-block--g' : $odd}">
-                            <div ng-click="vm.showCourseDetails(course)">
+                            <a ng-href="/course/{{course.id}}/{{course.title | spaceToDash}}" ng-click="vm.showCourseDetails(course)">
                                 <!-- Don't remove these. Needed for flexbox -->
                                 <h4 class="course-block__title" ng-bind="course.title"></h4>
                                 <p class="course-block__description">
@@ -19,8 +19,8 @@
                                     </span>
                                 </p>
                                 <p class="course-block__description" ng-bind="course.shortDesc"></p>
-                            </div>
-                            <div class="course-block__author" ng-click="vm.showInstructorCourses(course)">
+                            </a>
+                            <a ng-href="/inst/{{course.instructorId}}/{{course.instructorFullName | spaceToDash}}" class="course-block__author" ng-click="vm.showInstructorCourses(course)">
                                 <div class="course-block__author-image">
                                     <img class="image-rounded" width="70" height="70" src="{{course.instructorImage || '/assets/images/avatar.png'}}">
                                 </div>
@@ -28,16 +28,20 @@
                                     <h4 ng-bind="course.instructorFullName"></h4>
                                     <p ng-bind="course.instructorDesignation"></p>
                                 </div>
-                            </div>
+                            </a>
                             <div class="course-block__footer">
-                                <span>
-                                    <i class="fa fa-clock-o" aria-hidden="true" ng-attr-title="{{course.duration}} {{course.durationParameter}}"></i> 
+                                <div class="col-xs-4" style="padding: 0px;">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i> 
                                     <span ng-bind="course.duration"></span><span ng-bind="course.durationParameter || 'Days'"></span>
-                                </span>
-                                <span class="pull-right">
+                                </div>
+                                <div class="col-xs-4 text-center" style="padding: 0px;">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    <span ng-bind="course.courseStartDate"></span>
+                                </div>
+                                <div class="col-xs-4 text-right" style="padding: 0px;">
                                     <span ng-if="course.courseFee" ng-bind="course.courseFee | INR"></span>
                                     <span ng-if="!course.courseFee" ng-bind="'Free'"></span>
-                                </span>
+                                </div>
                             </div>
                         </div>
                     <!-- </a> -->

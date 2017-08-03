@@ -46,14 +46,15 @@
         <h4 ng-bind="vm.unit.name" style="padding:8px;"></h4>
         <!-- </div> -->
         <div layout="column" layout-padding ng-if="!vm.showReviewPage">
-          <p ng-bind="vm.unit.description"></p>
           <md-button md-no-ink class="md-primary" ng-href="{{vm.unit.downloadLink.videoDownloadLink}}" download aria-label="Download Video" ng-if="vm.unit.downloadLink && vm.unit.downloadLink.videoDownloadLink">
             <i class="fa fa-download" aria-hidden="true"></i> Download Video
           </md-button>
-          <div class="embed-responsive embed-responsive-16by9" ng-if="vm.unit.videoId">
+          <!-- <div class="embed-responsive embed-responsive-16by9" ng-if="vm.unit.videoId">
             <p ng-bind-html="vm.unit.videoHtml" class="text-center embed-responsive-item"></p>
-          </div>
+          </div> -->
+          <p ng-bind-html="vm.unit.videoHtml" class="text-center"></p>
           <p ng-bind-html="vm.unit.unitDescription"></p>
+          <p ng-bind="vm.unit.description"></p>
           <div ng-if="vm.unit.test">
             <p ng-bind="vm.unit.test.title"></p>
             <p ng-bind="vm.unit.test.instruction"></p>

@@ -17,6 +17,7 @@
 
         vm.showReviewPage = false;
         vm.userCurrentQuestion = [];
+        vm.isLeftOpen = false;
 
         vm.toggleLeft = buildDelayedToggler('left');
         vm.closeSide = closeSide;
@@ -288,12 +289,14 @@
 
         function buildDelayedToggler(navID) {
             return debounce(function() {
+                vm.isLeftOpen = true;
                 $mdSidenav(navID)
                     .toggle();
             }, 200);
         }
 
         function closeSide() {
+            vm.isLeftOpen = false;
             $mdSidenav('left').close();
         }
     }

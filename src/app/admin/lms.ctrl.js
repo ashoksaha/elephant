@@ -81,6 +81,7 @@
     vm.editUnit = editUnit;
     vm.createCourse = createCourse;
     vm.editCourse = editCourse;
+    vm.previewCourse = previewCourse;
 
     //vm.getCoursesByCategoryId = getCoursesByCategoryId;
     vm.getUnitsByCourseId = getUnitsByCourseId;
@@ -163,8 +164,8 @@
               _.forEach(vm.allCourses, function(value) {
                 value.courseStartDate = moment(value.courseStartDate).format("YYYY-MM-DD hh:mm");
                 value.courseEndDate = moment(value.courseEndDate).format("YYYY-MM-DD hh:mm");
-                //value.durationParameterText = _.map(_.filter(vm.unitDurations, { 'value': value.durationParameter }), 'name')[0];
-                //value.instructor = _.find(vm.allInstructors, { 'id': value.instructorId });
+                value.categories = _.reject(vm.activeCourseCategories, function(o) {
+                  return _.indexOf(value.courseCategories, o.id) == -1; });
               });
               vm.coursesList = vm.activeCourses = _.filter(vm.allCourses, { 'status': 1 });
               vm.inactiveCourses = _.filter(vm.allCourses, { 'status': 0 });
@@ -397,9 +398,12 @@
     function addUpdateCourse() {
       var api = "/createcourse";
       var msg = 'Course added successfuly';
+      var categories;
       if (vm.course.id) {
         api = "/updatecourse";
         msg = 'Course edited successfuly';
+        categories = _.xor(vm.course.categories, vm.course.courseCategories);
+        vm.course.isCategoryChanged = categories.length > 0 ? true : false;
       }
       vm.course.title = vm.course.title.substr(0, 50);
       vm.course.courseCurriculum = _.map(vm.course.oldUnits, 'id');
@@ -440,9 +444,76 @@
       _.forEach(unitIds, function(value, key) {
         units.push(_.find(vm.activeUnits, { 'id': parseInt(value) }));
       });
-      vm.course.oldUnits = units
+      vm.course.oldUnits = _.compact(units).length > 0 ? units : [];
       vm.course.addUnits = [];
+      vm.course.categories = vm.course.courseCategories;
       $state.go('admin.lms.editCourse');
+    }
+
+    function previewCourse(evt, course) {
+      vm.coursePreview = course;
+      $http.post(CommonInfo.getAppUrl() + '/getCoursePreview', { courseId: vm.course.id }).then(
+        function(response) {
+          if (response && response.data) {
+            if (response.data.status == 1) {
+              vm.coursePreview = response.data.data[0];
+              if(vm.coursePreview && vm.coursePreview.courseCurriculum && vm.coursePreview.units.length > 0) {
+                var units = [];
+                var unitIds = vm.coursePreview.courseCurriculum.split(',');
+                _.forEach(unitIds, function(value, key){
+                    units.push(_.find(vm.coursePreview.units, { 'id': parseInt(value) }));
+                });
+                vm.coursePreview.units = units;
+              }
+              $mdDialog.show({
+                targetEvent: evt,
+                scope: $scope.$new(),
+                templateUrl: 'app/admin/coursePreview.tmpl.html',
+                parent: angular.element(document.body),
+                controller: DialogController,
+                fullscreen: true
+              });
+
+              function DialogController($scope, $mdDialog, CommonInfo, $http, $sce) {
+                $scope.closeDialog = function() {
+                  $mdDialog.hide();
+                }
+
+                $scope.getUnitDetails = function(unitId) {
+                    CommonInfo.setInfo('startCourse', { unitId: unitId, courseId: vm.coursePreview.id });
+                    $http.post(CommonInfo.getAppUrl() + "/getunitdetailsbyunit_id", { id: unitId, userName: "preview", userEmail: "preview" }).then(
+                      function(response) {
+                        if (response && response.data) {
+                          if (response.data.status == 1) {
+                            $scope.unit = response.data.data;
+                            $scope.unit.unitDescription = angular.isString($scope.unit.unitDescription) ? $sce.trustAsHtml($scope.unit.unitDescription) : $scope.unit.unitDescription;
+                            $scope.unit.videoHtml = angular.isString($scope.unit.videoHtml) ? $sce.trustAsHtml($scope.unit.videoHtml) : $scope.unit.videoHtml;
+                            if (angular.isString($scope.unit.downloadLink))
+                              $scope.unit.downloadLink = JSON.parse($scope.unit.downloadLink);
+                          } else if (response.data.status == 2) {
+                            $log.log(response.data.message);
+                          }
+                        } else {
+                          $log.log('There is some issue, please try after some time');
+                        }
+                      },
+                      function(response) {
+                        $log.log('There is some issue, please try after some time');
+                      }
+                    );
+                }
+              }
+            } else if (response.data.status == 2) {
+              growl.info(response.data.message);
+            }
+          } else {
+            growl.info('There is some issue, please try after some time');
+          }
+        },
+        function(response) {
+          growl.warning('There is some issue, please try after some time');
+        }
+      );
     }
 
     function checkUnit(chip) {
@@ -634,6 +705,7 @@
 
     function showCourseStudents() {
       vm.selectedCourse = CommonInfo.getInfo('selectedCourse');
+      vm.studentsByCourse = [];
       $http.post(CommonInfo.getAppUrl() + "/getstudentsenrolled", { courseId: vm.selectedCourse.id, searchText: vm.courseStudentSearchText }).then(
         function(response) {
           if (response && response.data) {

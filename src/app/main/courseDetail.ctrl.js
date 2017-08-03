@@ -28,7 +28,7 @@
       student_id: '',
       phone: ''
     };
-    vm.charCount = 300;
+    vm.charCount = 0;
 
     vm.login = login;
     vm.otpVerification = otpVerification;
@@ -68,8 +68,9 @@
             if (response.data.status == 1) {
               //if (selectedCourseName.replace(/-/g, " ").trim() == response.data.data[0].title.trim()) {
                 vm.course = response.data.data[0];
-                if (vm.course.description)
-                  vm.charCount = (vm.course.description.length > 315) ? 300 : '';
+                if (vm.course.description && vm.course.units && vm.course.units.length > 0) {
+                  vm.charCount = (vm.course.description.length > 315) ? 300 : 0;
+                }
                 if (vm.course && vm.course.units) {
                   vm.course.unitTypeCount = _.countBy(vm.course.units, 'unitType');
                 }
@@ -81,6 +82,7 @@
                     });
                     vm.course.units = units;
                 }
+                vm.course.courseStartDate = moment(vm.course.courseStartDate).format("MMM DD, YYYY");
                 vm.course.demoVideo = angular.isString(vm.course.demoVideo) ? $sce.trustAsHtml(vm.course.demoVideo) : vm.course.demoVideo;
                 if (vm.course.socialShare)
                   getSocialShare();
@@ -477,6 +479,7 @@
                     '</div>' +
                     '</md-toolbar>' +
                     '<md-dialog-content>' +
+                    '<div  class="md-dialog-content">' +
                     '<p ng-bind="vm.unit.description"></p>' +
                     '<md-button md-no-ink class="md-primary" ng-href="{{vm.unit.downloadLink.videoDownloadLink}}" download aria-label="Download Video" ng-if="vm.unit.downloadLink && vm.unit.downloadLink.videoDownloadLink">' +
                     '<i class="fa fa-download" aria-hidden="true"></i> Download Video' +
@@ -509,6 +512,7 @@
                     '</div>' +
                     '<div class="vex--buttons">' +
                     '<a class="btn btn-small btn-primary" href="javascript:void(0);" ng-click="vm.submitExam(false);">Submit</a>' +
+                    '</div>' +
                     '</div>' +
                     '</div>' +
                     '</md-dialog-content>' +

@@ -25,8 +25,8 @@
                                     <div class="col-sm-6 sign-in-btn">
                                         <input type="submit" name="commit" value="Sign up" class="btn btn-primary m0" data-disable-with="Sign up" ng-click="vm.signup()" ng-disabled="!new_user.$valid" />
                                     </div>
-                                    <p class="col-sm-12 need-free-account text-tertiary">By creating this account, you agree to <a href="javascript:void(0);" ui-sref="terms-conditions">our T&C</a> & <a href="javascript:void(0);" ui-sref="privacyPolicy">Privacy Policy</a></p>
-                                    <p class="col-sm-12 need-free-account text-tertiary">Already have an account? <a href="javascript:void(0);" ui-sref="login">Sign In</a></p>
+                                    <p class="col-sm-12 need-free-account text-tertiary">By creating this account, you agree to <a ui-sref="terms-conditions">our T&C</a> & <a href="javascript:void(0);" ui-sref="privacyPolicy">Privacy Policy</a></p>
+                                    <p class="col-sm-12 need-free-account text-tertiary">Already have an account? <a ui-sref="login">Sign In</a></p>
                                 </div>
                             </form>
                             <div ng-if="vm.registerStage == 2">

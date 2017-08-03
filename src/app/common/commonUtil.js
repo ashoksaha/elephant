@@ -14,12 +14,20 @@
         .filter('truncate', truncate)
         .filter('timeRemaining', timeRemaining)
         .filter('INR', INR)
-        .filter('capitalize', capitalize);
+        .filter('capitalize', capitalize)
+        .filter('spaceToDash', spaceToDash);
 
     /** @ngInject */
     function htmlToPlaintext() {
         return function(text) {
             return text ? String(text).replace(/<[^>]+>/gm, '') : '';
+        }
+    }
+
+    /** @ngInject */
+    function spaceToDash() {
+        return function(text) {
+            return text ? String(text).replace(/ /g, '-') : '';
         }
     }
 

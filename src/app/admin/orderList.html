@@ -28,7 +28,7 @@
                             <a style="margin:4px 2px;" class="btn btn-default btn-sm pull-left" href="javascript:void(0);" ng-click="vm.addOrder($event);">
                                 <i class="fa fa-plus-square"></i> Add Order
                             </a>
-                            <a style="margin:4px 2px;" class="btn btn-default btn-sm pull-left" href="javascript:void(0);" ng-click="vm.exportOrders();">
+                            <a style="margin:4px 2px;" class="btn btn-default btn-sm pull-left" href="javascript:void(0);" ng-click="vm.exportOrders($event);">
                                 <i class="fa fa-plus-square"></i> Export
                             </a>
                             <ul class="pagination pull-right" style="margin:4px 2px;">
@@ -75,7 +75,7 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="order in vm.orderList">
-                                        <td ng-bind="$index + 1"></td>
+                                        <td ng-bind="(vm.currentPage * vm.perPage) + $index + 1"></td>
                                         <td ng-bind="order.txnID"></td>
                                         <td>
                                             <span ng-bind="order.courseName"></span>

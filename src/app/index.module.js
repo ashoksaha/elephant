@@ -21,7 +21,8 @@
             'ui.carousel',
             'ngCsv',
             'ui.bootstrap',
-            'dndLists'
+            'dndLists',
+            'ngDisableScroll'
         ]);
 
 })();

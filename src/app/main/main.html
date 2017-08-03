@@ -54,7 +54,7 @@
                   <i class="fa fa-lock fa-lg inline-icon"></i>
                   <input required="required" placeholder="Password" class="has-inline-icon" type="password" name="user[password]" id="user_password" ng-model="vm.student.password" />
                 </fieldset>
-                <p style="margin:-8px 0 10px;" class="forgot-password text-tertiary text-right">Forget your password? <a href="javascript:void(0)" ui-sref="forgotPassword">Reset Password</a></p>
+                <p style="margin:-8px 0 10px;" class="forgot-password text-tertiary text-right">Forget your password? <a ui-sref="forgotPassword">Reset Password</a></p>
                 <input type="submit" name="commit" value="Get Started" class="btn btn-primary home-get-started ml0 mr0 mb0" data-disable-with="Get Started" ng-click="vm.login()" />
                 <p class="col-sm-12 need-free-account text-tertiary text-left">Need a account? <a href="javascript:void(0);" ui-sref="register">Create account</a></p>
               </form>
@@ -81,6 +81,53 @@
     </section>
     <section class="home--learn courses__start">
       <div class="container text-center coures-container">
+        <div class="row cat-row" ng-init="vm.homeCoursesSlidStart = 0;" ng-if="vm.homeCourses.length > 0">
+          <div class="row cat-title">
+            <div class="col-md-9">
+              <h3 class="slider_heading">Popular Courses</h3>
+            </div>
+            <strong><strong>
+                <div class="col-md-3">
+                    <div class="controls pull-right hidden-xs">
+                      <button class="left btn btn-primary" ng-disabled="vm.homeCoursesSlidStart == 0" ng-click="vm.homeCoursesSlidStart = vm.homeCoursesSlidStart - 2;">
+                        <i class="fa fa-chevron-left"></i>
+                      </button>
+                      <button class="right btn btn-primary" ng-disabled="vm.homeCoursesSlidStart + 6 > vm.homeCourses.length - 1" ng-click="vm.homeCoursesSlidStart = vm.homeCoursesSlidStart + 2;">
+                        <i class="fa fa-chevron-right"></i>
+                      </button>
+                    </div>
+                </div>
+            </strong></strong>
+          </div>
+          <div class="item slider">
+            <div class="row">
+              <div class="col-sm-2 col-xs-4" style="height: 170px;" ng-repeat="item in vm.homeCourses | limitTo : 6: vm.homeCoursesSlidStart">
+                <div class="col-item">
+                  <div class="photo">
+                    <a ng-href="javascript:void(0);" ng-click="vm.showCourseDetails(item)">
+                        <img ng-src="{{item.image}}" class="img-responsive" alt="{{item.title}}" title="{{item.title}}" />
+                        <p class="text-center" style="margin-top:4%;font-size:14px;" ng-bind="item.title"></p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row cat-title">
+            <strong><strong>
+                <div class="col-xs-12">
+                    <div class="controls pull-right visible-xs">
+                        <button class="left btn btn-primary" ng-disabled="vm.homeCoursesSlidStart == 0" ng-click="vm.homeCoursesSlidStart = vm.homeCoursesSlidStart - 1;">
+                        <i class="fa fa-chevron-left"></i>
+                        </button>
+                    <button class="right btn btn-primary" ng-disabled="vm.homeCoursesSlidStart + 6 > vm.homeCourses.length - 1" ng-click="vm.homeCoursesSlidStart = vm.homeCoursesSlidStart + 1;">
+                        <i class="fa fa-chevron-right"></i>
+                    </button>
+                    </div>
+                </div>
+            </strong></strong>
+          </div>
+        </div>
         <!-- <fld-slider slidelist="vm.homeCategories" step="2" slides="6" index="slidStart">
                     <div class="row">
                         <div class="col-md-2" ng-repeat="item in vm.homeCategories | filter: {'parentId': 9 } | limitTo : 6: slidStart | orderBy: 'position'">
@@ -138,53 +185,6 @@
             </strong></strong>
           </div>
         </div>
-        <div class="row cat-row" ng-init="vm.homeCoursesSlidStart = 0;" ng-if="vm.homeCourses.length > 0">
-          <div class="row cat-title">
-            <div class="col-md-9">
-              <h3 class="slider_heading">Popular Courses</h3>
-            </div>
-            <strong><strong>
-                <div class="col-md-3">
-                    <div class="controls pull-right hidden-xs">
-                      <button class="left btn btn-primary" ng-disabled="vm.homeCoursesSlidStart == 0" ng-click="vm.homeCoursesSlidStart = vm.homeCoursesSlidStart - 2;">
-                        <i class="fa fa-chevron-left"></i>
-                      </button>
-                      <button class="right btn btn-primary" ng-disabled="vm.homeCoursesSlidStart + 6 > vm.homeCourses.length - 1" ng-click="vm.homeCoursesSlidStart = vm.homeCoursesSlidStart + 2;">
-                        <i class="fa fa-chevron-right"></i>
-                      </button>
-                    </div>
-                </div>
-            </strong></strong>
-          </div>
-          <div class="item slider">
-            <div class="row">
-              <div class="col-sm-2 col-xs-4" ng-repeat="item in vm.homeCourses | limitTo : 6: vm.homeCoursesSlidStart">
-                <div class="col-item">
-                  <div class="photo">
-                    <a ng-href="javascript:void(0);" ng-click="vm.showCourseDetails(item)">
-                        <img ng-src="{{item.image}}" class="img-responsive" alt="{{item.title}}" title="{{item.title}}" />
-                        <p class="text-center" style="margin-top:4%;font-size:14px;" ng-bind="item.title"></p>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row cat-title">
-            <strong><strong>
-                <div class="col-xs-12">
-                    <div class="controls pull-right visible-xs">
-                        <button class="left btn btn-primary" ng-disabled="vm.homeCoursesSlidStart == 0" ng-click="vm.homeCoursesSlidStart = vm.homeCoursesSlidStart - 1;">
-                        <i class="fa fa-chevron-left"></i>
-                        </button>
-                    <button class="right btn btn-primary" ng-disabled="vm.homeCoursesSlidStart + 6 > vm.homeCourses.length - 1" ng-click="vm.homeCoursesSlidStart = vm.homeCoursesSlidStart + 1;">
-                        <i class="fa fa-chevron-right"></i>
-                    </button>
-                    </div>
-                </div>
-            </strong></strong>
-          </div>
-        </div>
       </div>
     </section>
     <section class="bg bg-navigation home--classroom" ng-if="false">
@@ -200,7 +200,7 @@
             <p>Flavido makes online education more convenient and hassle-free. You can always be rest assured about the quality of IAS notes you are buying online at our site. Together with our trusted printing vendors we promise to deliver the appropriate IAS books or online IAS notes from Delhi. We have the best quality IAS online courses that can be subscribed from the comfort of your home. These courses are being done by the most recommended IAS trainers in their respective fields. These online IAS classes are checked thoroughly for their content, quality and timely delivery.</p>
           </div>
         </div>
-        <a class="btn btn-primary" href="javascript:void(0);" ui-sref="courses.list">Search Courses</a>
+        <a class="btn btn-primary" ui-sref="courses.list">Search Courses</a>
       </div>
     </section>
     <section class="home--quotes" ng-if="vm.testimonials.length > 0">
@@ -233,10 +233,6 @@
                       <div class="quote__text">
                         <p ng-bind="testimonial.testimonial"></p>
                         <div class="clearfix"></div>
-                        <!-- <p ng-click="testimonial.charCount = testimonial.charCount ? '' : 230;" style="position: absolute;top: 56%;">
-                          <span ng-if="testimonial.charCount && testimonial.charCount < testimonial.testimonial.length && testimonial.testimonial.length > 240">..Read More</span>
-                          <span ng-if="!testimonial.charCount && testimonial.testimonial.length > 240">Read Less</span>
-                        </p> -->
                       </div>
                       <div class="quote__person" style="height: 115px">
                         <p><strong ng-bind="testimonial.testimonials_by">Anas El Turabi</strong> <i ng-bind="testimonial.by_organization">Harvard PhD Candidate in Health Policy</i></p>
@@ -261,24 +257,6 @@
             </strong></strong>
             </div>
           </div>
-          <!-- <a class="stories--quote" href="javascript:void(0);" ng-repeat="testimonial in vm.testimonials">
-            <section class="col-sm-12 col-md-4">
-              <div class="quote card-circle-top ">
-                <img class="card-circle-top-image" width="120" height="120" src="{{testimonial.image}}" alt="Image05" />
-                <div class="quote__text">
-                  <p ng-bind="testimonial.testimonial | limitTo: testimonial.charCount">“It&#39;s the best tool for beginners to learn R/data analysis that I&#39;ve come across.”</p>
-                  <div class="clearfix"></div>
-                  <p ng-click="testimonial.charCount = testimonial.charCount ? '' : 230;" style="position: absolute;top: 56%;">
-                    <span ng-if="testimonial.charCount && testimonial.charCount < testimonial.testimonial.length && testimonial.testimonial.length > 240">..Read More</span>
-                    <span ng-if="!testimonial.charCount && testimonial.testimonial.length > 240">Read Less</span>
-                  </p>
-                </div>
-                <div class="quote__person" style="height: 115px">
-                  <p><strong ng-bind="testimonial.testimonials_by">Anas El Turabi</strong> <i ng-bind="testimonial.by_organization">Harvard PhD Candidate in Health Policy</i></p>
-                </div>
-              </div>
-            </section>
-          </a> -->
         </div>
       </div>
     </section>

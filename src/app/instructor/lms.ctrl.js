@@ -389,7 +389,7 @@
             vm.course.courseCurriculum = _.map(vm.course.oldUnits, 'id');
             if (vm.course.courseCurriculum && vm.course.courseCurriculum.length)
                 vm.course.courseCurriculum = _.compact(vm.course.courseCurriculum).join(',');
-            vm.course.instructorId = vm.instructorInfo.id;
+            vm.course.addedBy = vm.course.instructorId = vm.instructorInfo.id;
             if(vm.course.freeCourse == 1)
                 vm.course.courseFee = 0;
             vm.course.newUnits = _.map(vm.course.addUnits, 'id');

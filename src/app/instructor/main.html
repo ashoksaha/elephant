@@ -1,20 +1,20 @@
 <div ng-cloak class="bg-alt">
     <ul class="offscreen-nav" ng-class="{'active' : !vm.isCollapsed}" ng-click="vm.isCollapsed = true;">
         <li class="top offscreen-nav-li"></li>
-        <li class="offscreen-nav-li" ui-sref="instructor.dashboard">
-            <a href="javascript:void(0);">Dashboard</a>
+        <li class="offscreen-nav-li">
+            <a ui-sref="instructor.dashboard">Dashboard</a>
         </li>
-        <li class="offscreen-nav-li" ui-sref="instructor.lms.courses">
-            <a href="javascript:void(0);">LMS</a>
+        <li class="offscreen-nav-li">
+            <a ui-sref="instructor.lms.courses">LMS</a>
         </li>
-        <li class="offscreen-nav-li" ui-sref="instructor.orders">
-            <a href="javascript:void(0);">Orders</a>
+        <li class="offscreen-nav-li">
+            <a ui-sref="instructor.orders">Orders</a>
         </li>
         <!-- <li class="offscreen-nav-li">
             <a href="javascript:void(0);">Community</a>
         </li> -->
-        <li class="offscreen-nav-li" ui-sref="instructor.profile" ng-click="vm.isCollapsed = true;">
-            <a href="javascript:void(0);">
+        <li class="offscreen-nav-li" ng-click="vm.isCollapsed = true;">
+            <a ui-sref="instructor.profile">
                 My Account&nbsp;<small>(<i ng-bind="vm.instructorInfo.userName"></i>)</small>
             </a>
         </li>
@@ -41,7 +41,7 @@
                                     <p ng-bind="vm.instructorInfo.emailId">Email</p>
                                 </div>
                                 <div class="navbar--user-links" ng-click="vm.profileMenu = false;">
-                                    <a href="javascript:void(0);" ui-sref="instructor.profile">My Profile</a>
+                                    <a ui-sref="instructor.profile">My Profile</a>
                                     <span class="spacer"></span>
                                     <a rel="nofollow" ng-click="vm.logout();" href="javascript:void(0);">Logout</a>
                                 </div>
@@ -62,14 +62,14 @@
                         <li>
                             <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0);">Business</a>
                         </li> -->
-                        <li ui-sref="instructor.orders">
-                            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0);">Orders</a>
+                        <li>
+                            <a data-dc-track="" data-dc-referrer="main" ui-sref="instructor.orders">Orders</a>
                         </li>
-                        <li ui-sref="instructor.lms.courses">
-                            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0);">LMS</a>
+                        <li>
+                            <a data-dc-track="" data-dc-referrer="main" ui-sref="instructor.lms.courses">LMS</a>
                         </li>
-                        <li ui-sref="instructor.dashboard">
-                            <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0)">Dashboard</a>
+                        <li>
+                            <a data-dc-track="" data-dc-referrer="main" ui-sref="instructor.dashboard">Dashboard</a>
                         </li>
                     </ul>
                     <div ng-click="vm.isCollapsed = ! vm.isCollapsed" class="nav--resp-menu-toggle hidden-lg hidden-md" ng-class="{'active' : !vm.isCollapsed}">

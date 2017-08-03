@@ -5,7 +5,7 @@
       <hr>
       <form class="edit_user" id="edit_user_727839" method="post">
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-sm-8">
             <fieldset>
               <md-input-container class="md-block" flex-gt-sm>
                 <label>Instructor</label>
@@ -23,22 +23,22 @@
               </md-input-container>
             </fieldset>
             <fieldset>
-              <md-input-container class="md-block" flex-gt-sm>
+              <!-- <md-input-container class="md-block" flex-gt-sm>
                 <label>Category</label>
                 <md-select ng-model="vm.course.courseCategoryId">
                   <md-optgroup label="Category">
                     <md-option ng-value="category.id" ng-repeat="category in vm.activeCourseCategories">{{category.name}}</md-option>
                   </md-optgroup>
                 </md-select>
-              </md-input-container>
-              <!-- <md-input-container>
+              </md-input-container> -->
+              <md-input-container>
                 <label>Category</label>
                 <md-select ng-model="vm.course.courseCategories" multiple>
                   <md-optgroup label="Categories">
                     <md-option ng-value="category.id" ng-repeat="category in vm.activeCourseCategories">{{category.name}}</md-option>
                   </md-optgroup>
                 </md-select>
-              </md-input-container> -->
+              </md-input-container>
             </fieldset>
             <fieldset>
               <md-input-container class="md-block" flex-gt-sm>
@@ -223,7 +223,7 @@
               </md-switch>
             </fieldset>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-4">
             <fieldset>
               <label for="user_avatar">Cover</label>
               <div class="avatar-selector">

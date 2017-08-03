@@ -25,20 +25,27 @@
                   Add to Course
                 </md-button>
                 <md-menu-content width="4">
-                  <md-menu-item ng-repeat="course in vm.allCourses">
-                    <md-button ng-click="vm.addToCourse(course.id)" aria-label="Open phone interactions menu">
+                  <md-menu-item ng-repeat-start="(key, value) in vm.allCourses">
+                    <md-button disabled="disabled" aria-label="Instructor name">
+                      <span ng-bind="key" style="color:blueviolet;"></span>
+                    </md-button>
+                  </md-menu-item>
+                  <md-menu-divider></md-menu-divider>
+                  <md-menu-item ng-repeat="course in value">
+                    <md-button ng-click="vm.addToCourse(course.id)" aria-label="Course name">
                       <span ng-bind="course.title"></span>
                     </md-button>
                   </md-menu-item>
+                  <md-menu-divider ng-repeat-end ng-if="!$last"></md-menu-divider>
                 </md-menu-content>
               </md-menu>
             </div>
             <nav aria-label="Page navigation clearfix" ng-if="!vm.isStudentSelected()">
               <div class="pull-left">
-                <a style="margin:5px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" lazy-load="true" ng-csv="vm.exportStudent();" filename="studentList.csv" field-separator="," decimal-separator="." csv-header="">
+                <a style="margin:5px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" lazy-load="true" ng-csv="vm.exportStudent();" filename="studentList.csv" field-separator="," decimal-separator="." csv-header="" ng-if="vm.userInfo.isAdmin">
                     <i class="fa fa-tasks"></i> Export
                 </a>
-                <a style="margin:5px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" ui-sref="admin.student.addStudent" ng-click="vm.student = {status: 0}">
+                <a style="margin:5px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" ui-sref="admin.student.addStudent" ng-click="vm.student = {status: 0}">
                     <i class="fa fa-plus-square"></i> Add New
                 </a>
                 <a style="margin:5px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" href="javascript:void(0);" ng-click="vm.showLoginLog();">

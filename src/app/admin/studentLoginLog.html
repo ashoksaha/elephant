@@ -12,49 +12,33 @@
             <i>Seems like we don't have any Log for this student.</i>
           </p>
           <div class="table-responsive" style="margin:2px;">
-            <table class="table table-hover" ng-if="vm.studentLoginLog.length > 0">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th></th>
-                  <th>OS</th>
-                  <th>OS Version</th>
-                  <th>Browser (Version)</th>
-                  <th>IP</th>
-                  <th>Time</th>
-                  <th>City</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="log in vm.studentLoginLog">
-                  <td ng-bind="$index + 1"></td>
-                  <td>
-                    <i ng-if="log.device.toLowerCase() == 'desktop'" class="fa fa-desktop" aria-hidden="true"></i>
-                    <i ng-if="log.device.toLowerCase() == 'mobile'" class="fa fa-mobile fa-lg" aria-hidden="true"></i>
-                  </td>
-                  <td>
-                    <span ng-bind="log.platform"></span>
-                  </td>
-                  <td ng-bind="log.platformVersion"></td>
-                  <td>
-                    <span ng-bind="log.browser"></span>
-                    <br />(<span ng-bind="log.browserVersion"></span>)
-                  </td>
-                  <td ng-bind="log.ipAddress"></td>
-                  <td ng-style="{'color': log.loginTime ? 'green' : 'red'}">
-                    <i ng-if="log.loginTime" class="fa fa-sign-in" aria-hidden="true"></i>
-                    <span ng-if="log.loginTime" ng-bind="log.loginTime"></span>
-                    <span ng-if="log.logoutTime" ng-bind="log.logoutTime"></span>
-                    <i ng-if="log.logoutTime" class="fa fa-sign-out" aria-hidden="true"></i>
-                  </td>
-                  <td>
-                    <span ng-bind="log.city"></span>
-                    <br />
-                    <span ng-bind="log.latitude"></span> <span ng-bind="log.longitude"></span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <nav aria-label="Page navigation clearfix">
+              <div class="pull-right">
+                <ul class="pagination pull-right" style="margin:4px 2px;">
+                  <li>
+                    <a href="javascript:void(0);" aria-label="First" ng-click="vm.loginLogscurrentPage != 0 && vm.getStudentLoginLogs(0)">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li ng-class="{'disabled': vm.loginLogscurrentPage == 0}">
+                    <a href="javascript:void(0);" ng-click="vm.loginLogscurrentPage != 0 && vm.getStudentLoginLogs(vm.loginLogscurrentPage - 1)">Previous</a>
+                  </li>
+                  <li class="active">
+                    <a href="javascript:void(0);" ng-bind="vm.loginLogscurrentPage + 1"></a>
+                  </li>
+                  <li ng-class="{'disabled': vm.loginLogscurrentPage == vm.loginLogsLastPage}">
+                    <a href="javascript:void(0);" ng-click="vm.loginLogscurrentPage != vm.loginLogsLastPage && vm.getStudentLoginLogs(vm.loginLogscurrentPage + 1)">Next</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" aria-label="Last" ng-click="vm.loginLogscurrentPage != vm.loginLogsLastPage && vm.getStudentLoginLogs(vm.loginLogsLastPage)">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+                <br />
+                <div class="text-center" style="margin:2px 12px;">Total: <span ng-bind="vm.totalLogs"></span></div>
+              </div>
+            </nav>
             <table class="table table-hover" ng-if="vm.allStudentLoginLog">
               <thead>
                 <tr>
@@ -71,7 +55,7 @@
               </thead>
               <tbody>
                 <tr ng-repeat="log in vm.allStudentLoginLog">
-                  <td ng-bind="$index + 1"></td>
+                  <td ng-bind="log.id"></td>
                   <td ng-bind="log.studentId"></td>
                   <td>
                     <span ng-bind="log.userName"></span>
@@ -83,8 +67,9 @@
                   <td>
                     <i ng-if="log.device.toLowerCase() == 'desktop'" class="fa fa-desktop" aria-hidden="true"></i>
                     <i ng-if="log.device.toLowerCase() == 'mobile'" class="fa fa-mobile fa-lg" aria-hidden="true"></i>
-                    <span ng-bind="log.platform"></span><br />
-                    (<span ng-bind="log.platformVersion"></span>)
+                    <span ng-bind="log.platform"></span>
+                    <br /> (
+                    <span ng-bind="log.platformVersion"></span>)
                   </td>
                   <td>
                     <span ng-bind="log.browser"></span>

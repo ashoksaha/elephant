@@ -46,7 +46,7 @@
       <div class="container">
         <h2 class="courses__title">Browse by Categories</h2>
         <div class="courses__topics-list" style="margin-bottom: 2rem;">
-          <a href="javascript:void(0);" class="topic-block js-topic-block" ng-repeat="category in vm.categories" ng-click="vm.searchCoursesByCategory(category)">
+          <a ng-href="/courses/category/{{category.id}}/{{category.name.replace('/ /g', '-')}}" class="topic-block js-topic-block" ng-repeat="category in vm.categories" ng-click="vm.searchCoursesByCategory(category)">
             <div class="topic-block-icon topic--programming" ng-style="{ 'background-color': category.bgColor }">
               <h4 class="topic-block-title" ng-bind="category.name"></h4>
             </div>
@@ -89,7 +89,7 @@
     <section class="courses__cta" ng-if="!vm.user || !vm.user.userId">
       <h3 class="courses__cta-text-title">Ready To Learn</h3>
       <p class="mb0">
-        <a class="btn btn-primary" href="javascript:void(0);" ui-sref="register">Create Free Account Now</a>
+        <a class="btn btn-primary" ui-sref="register">Create Free Account Now</a>
       </p>
     </section>
   </div>

@@ -44,7 +44,7 @@
         </section> -->
         <section class="courses__upcoming" ng-if="vm.allInstructors.length > 0">
             <div class="container">
-                <h2 class="courses__title"> Instructors </h2>
+                <h2 class="courses__title"> Our Instructors </h2>
                 <div class="courses__upcoming-list">
                     <div class="row">
                         <div class="col-lg-4 col-sm-6 text-left" ng-repeat="instructor in vm.allInstructors">
@@ -56,7 +56,7 @@
                                     </md-card-title-text>
                                     <md-card-title-media>
                                         <div class="md-media-md card-media">
-                                            <img ng-src="{{instructor.image || '/assets/images/avatar.png'}}" class="md-card-image" alt="Washed Out" />
+                                            <img ng-src="{{instructor.image || '/assets/images/avatar.png'}}" class="md-card-image" alt="instructor.fullName" />
                                         </div>
                                     </md-card-title-media>
                                 </md-card-title>

@@ -1,19 +1,19 @@
 <ul class="offscreen-nav" ng-class="{'active' : !vm.isCollapsed}" ng-click="vm.menuToggle();">
     <li class="top offscreen-nav-li" ui-sref="main"></li>
-    <li class="offscreen-nav-li" ui-sref="main" ng-if="!vm.isStudentLogedIn">
-        <a href="javascript:void(0)">Home</a>
+    <li class="offscreen-nav-li" ng-if="!vm.isStudentLogedIn">
+        <a ui-sref="main">Home</a>
     </li>
-    <li class="offscreen-nav-li" ui-sref="dashboard" ng-if="vm.isStudentLogedIn">
-        <a href="javascript:void(0);">Dashboard</a>
+    <li class="offscreen-nav-li" ng-if="vm.isStudentLogedIn">
+        <a ui-sref="dashboard">Dashboard</a>
     </li>
-    <li class="offscreen-nav-li" ui-sref="courses.list">
-        <a href="javascript:void(0);">Courses</a>
+    <li class="offscreen-nav-li">
+        <a ui-sref="courses.list">Courses</a>
     </li>
-    <li class="offscreen-nav-li" ui-sref="instructors">
-        <a href="javascript:void(0);">Instructor</a>
+    <li class="offscreen-nav-li">
+        <a ui-sref="instructors">Instructor</a>
     </li>
-    <li class="offscreen-nav-li" ui-sref="profile" ng-if="vm.isStudentLogedIn">
-        <a href="javascript:void(0);">
+    <li class="offscreen-nav-li" ng-if="vm.isStudentLogedIn">
+        <a ui-sref="profile">
             My Account&nbsp;<small>(<i ng-bind="vm.studentInfo.name"></i>)</small>
         </a>
     </li>
@@ -24,7 +24,7 @@
     <li class="offscreen-nav-li" ng-click="login" ng-if="!vm.isStudentLogedIn">
         <a rel="nofollow" data-method="delete" href="javascript:void(0);">Sign in</a>
     </li>
-    <li class="offscreen-nav-li accent" ui-sref="register" ng-if="!vm.isStudentLogedIn">
-        <a href="javascript:void(0);">Create free account</a>
+    <li class="offscreen-nav-li accent" ng-if="!vm.isStudentLogedIn">
+        <a ui-sref="register">Create free account</a>
     </li>
 </ul>

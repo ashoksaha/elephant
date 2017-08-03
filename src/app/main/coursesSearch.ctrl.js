@@ -35,7 +35,7 @@
             getAllCategories();
             getAllInstructors();
             getAllCourses();
-            getUpcommingCourses();
+            //getUpcommingCourses();
         }
 
         function getAllInstructors() {
@@ -99,8 +99,8 @@
                         if (response.data.status == 1) {
                             vm.allCourses = response.data.data;
                             _.forEach(vm.allCourses, function(value) {
-                                value.courseStartDate = moment(value.courseStartDate).format("YYYY-MM-DD hh:mm");
-                                value.courseEndDate = moment(value.courseEndDate).format("YYYY-MM-DD hh:mm");
+                                value.courseStartDate = moment(value.courseStartDate).format("MMM DD, YYYY");
+                                value.courseEndDate = moment(value.courseEndDate).format("MMM DD, YYYY");
                             });
                         } else if (response.data.status == 2) {
                             $log.log(response.data.message);
@@ -122,8 +122,8 @@
                         if (response.data.status == 1) {
                             vm.allUpcommingCourses = response.data.data;
                             _.forEach(vm.allUpcommingCourses, function(value) {
-                                value.courseStartDate = moment(value.courseStartDate).format("YYYY-MM-DD hh:mm");
-                                value.courseEndDate = moment(value.courseEndDate).format("YYYY-MM-DD hh:mm");
+                                value.courseStartDate = moment(value.courseStartDate).format("MMM DD, YYYY");
+                                value.courseEndDate = moment(value.courseEndDate).format("MMM DD, YYYY");
                                 value.durationParameterText = _.map(_.filter(vm.unitDurations, { 'value': value.durationParameter }), 'name')[0];
                                 value.instructor = _.find(vm.allInstructors, { 'id': value.instructorId });
                             });
