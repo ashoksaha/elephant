@@ -6,7 +6,7 @@
     .controller('AdminLMSController', AdminLMSController);
 
   /** @ngInject */
-  function AdminLMSController(CommonInfo, $state, $log, $http, growl, _, moment, Upload, $mdDialog, $scope) {
+  function AdminLMSController(CommonInfo, $state, $log, $http, growl, _, moment, Upload, $mdDialog, $scope, $q) {
     var vm = this;
 
     vm.lmsTab = 1;
@@ -86,6 +86,7 @@
     //vm.getCoursesByCategoryId = getCoursesByCategoryId;
     vm.getUnitsByCourseId = getUnitsByCourseId;
     vm.getCourseStudents = getCourseStudents;
+    vm.exportCourseStudents = exportCourseStudents;
     vm.showCourseStudents = showCourseStudents;
     vm.editStudentSubscription = editStudentSubscription;
     vm.getCourseCallrequests = getCourseCallrequests;
@@ -165,7 +166,8 @@
                 value.courseStartDate = moment(value.courseStartDate).format("YYYY-MM-DD hh:mm");
                 value.courseEndDate = moment(value.courseEndDate).format("YYYY-MM-DD hh:mm");
                 value.categories = _.reject(vm.activeCourseCategories, function(o) {
-                  return _.indexOf(value.courseCategories, o.id) == -1; });
+                  return _.indexOf(value.courseCategories, o.id) == -1;
+                });
               });
               vm.coursesList = vm.activeCourses = _.filter(vm.allCourses, { 'status': 1 });
               vm.inactiveCourses = _.filter(vm.allCourses, { 'status': 0 });
@@ -457,11 +459,11 @@
           if (response && response.data) {
             if (response.data.status == 1) {
               vm.coursePreview = response.data.data[0];
-              if(vm.coursePreview && vm.coursePreview.courseCurriculum && vm.coursePreview.units.length > 0) {
+              if (vm.coursePreview && vm.coursePreview.courseCurriculum && vm.coursePreview.units.length > 0) {
                 var units = [];
                 var unitIds = vm.coursePreview.courseCurriculum.split(',');
-                _.forEach(unitIds, function(value, key){
-                    units.push(_.find(vm.coursePreview.units, { 'id': parseInt(value) }));
+                _.forEach(unitIds, function(value, key) {
+                  units.push(_.find(vm.coursePreview.units, { 'id': parseInt(value) }));
                 });
                 vm.coursePreview.units = units;
               }
@@ -480,27 +482,27 @@
                 }
 
                 $scope.getUnitDetails = function(unitId) {
-                    CommonInfo.setInfo('startCourse', { unitId: unitId, courseId: vm.coursePreview.id });
-                    $http.post(CommonInfo.getAppUrl() + "/getunitdetailsbyunit_id", { id: unitId, userName: "preview", userEmail: "preview" }).then(
-                      function(response) {
-                        if (response && response.data) {
-                          if (response.data.status == 1) {
-                            $scope.unit = response.data.data;
-                            $scope.unit.unitDescription = angular.isString($scope.unit.unitDescription) ? $sce.trustAsHtml($scope.unit.unitDescription) : $scope.unit.unitDescription;
-                            $scope.unit.videoHtml = angular.isString($scope.unit.videoHtml) ? $sce.trustAsHtml($scope.unit.videoHtml) : $scope.unit.videoHtml;
-                            if (angular.isString($scope.unit.downloadLink))
-                              $scope.unit.downloadLink = JSON.parse($scope.unit.downloadLink);
-                          } else if (response.data.status == 2) {
-                            $log.log(response.data.message);
-                          }
-                        } else {
-                          $log.log('There is some issue, please try after some time');
+                  CommonInfo.setInfo('startCourse', { unitId: unitId, courseId: vm.coursePreview.id });
+                  $http.post(CommonInfo.getAppUrl() + "/getunitdetailsbyunit_id", { id: unitId, userName: "preview", userEmail: "preview" }).then(
+                    function(response) {
+                      if (response && response.data) {
+                        if (response.data.status == 1) {
+                          $scope.unit = response.data.data;
+                          $scope.unit.unitDescription = angular.isString($scope.unit.unitDescription) ? $sce.trustAsHtml($scope.unit.unitDescription) : $scope.unit.unitDescription;
+                          $scope.unit.videoHtml = angular.isString($scope.unit.videoHtml) ? $sce.trustAsHtml($scope.unit.videoHtml) : $scope.unit.videoHtml;
+                          if (angular.isString($scope.unit.downloadLink))
+                            $scope.unit.downloadLink = JSON.parse($scope.unit.downloadLink);
+                        } else if (response.data.status == 2) {
+                          $log.log(response.data.message);
                         }
-                      },
-                      function(response) {
+                      } else {
                         $log.log('There is some issue, please try after some time');
                       }
-                    );
+                    },
+                    function(response) {
+                      $log.log('There is some issue, please try after some time');
+                    }
+                  );
                 }
               }
             } else if (response.data.status == 2) {
@@ -701,6 +703,17 @@
       CommonInfo.setInfo('selectedCourse', course);
       $state.go('admin.lms.students');
       showCourseStudents();
+    }
+
+    function exportCourseStudents() {
+      var deferred = $q.defer();
+
+      $http
+        .post(CommonInfo.getAppUrl() + "/exportEnrolledStudents", { courseId: vm.selectedCourse.id, searchText: vm.courseStudentSearchText })
+        .success(function(data, status, headers, config) {
+          deferred.resolve(data.data);
+        });
+      return deferred.promise;
     }
 
     function showCourseStudents() {

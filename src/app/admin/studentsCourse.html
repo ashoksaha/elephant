@@ -8,6 +8,9 @@
     </h4>
   <div class="groups__courses-overview groups__border">
     <div class="groups__courses-filters clearfix">
+      <a style="margin:4px 2px;" class="btn btn-default btn-sm pull-left" href="javascript:void(0);"  lazy-load="true" ng-csv="vm.exportCourseStudents();" filename="{{vm.selectedCourse.title}}[Students].csv" field-separator="," decimal-separator="." csv-header="">
+          <i class="fa fa-plus-square"></i> Export <span ng-if="!vm.courseStudentSearchText">All</span> <span ng-if="vm.courseStudentSearchText">(Flitered)</span>
+      </a>
       <div class="search">
         <i class="fa fa-search search-icon" aria-hidden="true"></i>
         <input type="text" name="search" placeholder="Search" ng-model="vm.courseStudentSearchText" ng-keyup="($event.keyCode === 13 || vm.courseStudentSearchText == '') && vm.showCourseStudents()">
