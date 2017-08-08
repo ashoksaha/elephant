@@ -43,7 +43,7 @@
                         <i class="fa fa-clock-o" aria-hidden="true"></i> <span ng-bind="course.duration"></span> <span ng-bind="course.durationParameterText"></span> |
                         <i class="fa fa-calendar" aria-hidden="true"></i> <span ng-bind="course.courseStartDate"></span>
                     </div>
-                    <p ng-bind="course.description"></p>
+                    <p ng-bind="course.shortDescription"></p>
                     <hr>
                     <a href="javascript:void(0);" ng-click="vm.getCourseStudents(course)">Show Students</a> | <a ng-click="vm.getCourseCallrequests(course);" href="javascript:void(0);">Show Callback Request</a>
                     <a class="btn btn-primary btn-small m0 pull-right js-open-assignment-dialog" href="javascript:void(0)">Add unit</a>
@@ -100,7 +100,7 @@
                         <i class="fa fa-clock-o" aria-hidden="true"></i> <span ng-bind="course.duration"></span> <span ng-bind="course.durationParameterText"></span> |
                         <i class="fa fa-calendar" aria-hidden="true"></i> <span ng-bind="course.courseStartDate"></span>
                     </div>
-                    <p ng-bind="course.description"></p>
+                    <p ng-bind="course.shortDescription"></p>
                     <hr>
                     <a href="javascript:void(0);">Show Students</a> | <a href="javascript:void(0);">Show Units</a>
                     <a class="btn btn-primary btn-small m0 pull-right js-open-assignment-dialog" href="javascript:void(0)">Add unit</a>

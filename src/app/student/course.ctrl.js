@@ -6,7 +6,7 @@
         .controller('StudentCourseUnitController', StudentCourseUnitController);
 
     /** @ngInject */
-    function StudentCourseUnitController(CommonInfo, $http, $log, $state, $stateParams, $mdSidenav, $scope, $timeout, $sce, growl, _, moment) {
+    function StudentCourseUnitController(CommonInfo, $http, $log, $state, $stateParams, $mdSidenav, $scope, $timeout, $sce, growl, _, moment, $window) {
         var vm = this;
         var selectedCourseId;
         var selectedUnitId;
@@ -45,6 +45,7 @@
         }
 
         function getUnitDetails(unitId) {
+            $window.scrollTo(0, 0);
             if (studentInfo && studentInfo.name && studentInfo.email) {
                 CommonInfo.setInfo('startCourse', { unitId: unitId, courseId: selectedCourseId });
                 $http.post(CommonInfo.getAppUrl() + "/getunitdetailsbyunit_id", { id: unitId, userName: studentInfo.name, userEmail: studentInfo.email }).then(

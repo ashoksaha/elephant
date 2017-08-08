@@ -76,7 +76,7 @@
                 }
                 if(vm.course && vm.course.courseCurriculum && vm.course.units.length > 0) {
                     var units = [];
-                    var unitIds = vm.course.courseCurriculum.split(',');
+                    var unitIds = vm.course.courseCurriculum.toString().split(',');
                     _.forEach(unitIds, function(value, key){
                         units.push(_.find(vm.course.units, { 'id': parseInt(value) }));
                     });
@@ -92,6 +92,7 @@
                 if (data.studentId && !vm.course.isSubscribed && routerInfo && routerInfo.route && routerInfo.route.name == 'courseDetails') {
                   getPaymentMethodes();
                   vm.showPaymentOptions = true;
+                  vm.payment.amount = vm.course.courseFee;
                 }
                 getInstructorTestimonials();
                 // var studentInfo = CommonInfo.getInfo('studentInfo');
@@ -471,7 +472,7 @@
                   template: '<md-dialog aria-label="List dialog" flex="70">' +
                     '<md-toolbar>' +
                     '<div class="md-toolbar-tools">' +
-                    '<h2><span ng-bind="vm.course.title"></span> (Demo)</h2>' +
+                    '<h2><span ng-bind="vm.course.title"></span> (Free)</h2>' +
                     '<span flex></span>' +
                     '<md-button class="md-icon-button" ng-click="closeDialog()">' +
                     '<i class="fa fa-times" aria-hidden="true"></i>' +

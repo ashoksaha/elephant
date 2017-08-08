@@ -72,12 +72,6 @@
         "fonts/fontawesome-webfont.woff2",
         "fonts/FontAwesome.otf"
       ]
-    },
-    "angular-data-grid": {
-      "main": [
-        "dist/dataGrid.js",
-        "dist/pagination.js"
-      ]
     }
   },
   "resolutions": {

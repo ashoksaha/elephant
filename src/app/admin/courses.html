@@ -60,7 +60,7 @@
             <i class="fa fa-calendar" aria-hidden="true"></i> <span ng-bind="course.courseStartDate"></span> |
             <i class="fa fa-users" aria-hidden="true"></i> <span ng-bind="course.studentCount || '0'"></span>
           </div>
-          <p ng-bind="course.shortDescription"></p>
+          <p ng-bind="course.shortDesc"></p>
           <hr>
           <a href="/sitemanager/lms/students" ng-click="vm.getCourseStudents(course)">Show Students</a>
           <!--  | <a href="javascript:void(0);">Show Units</a> -->
@@ -111,7 +111,7 @@
             <i class="fa fa-calendar" aria-hidden="true"></i> <span ng-bind="course.courseStartDate"></span> |
             <i class="fa fa-users" aria-hidden="true"></i> <span ng-bind="course.studentCount || '0'"></span>
           </div>
-          <p ng-bind="course.shortDescription"></p>
+          <p ng-bind="course.shortDesc"></p>
           <hr>
           <a href="javascript:void(0);">Show Students</a>
           <!--  | <a href="javascript:void(0);">Show Units</a> -->

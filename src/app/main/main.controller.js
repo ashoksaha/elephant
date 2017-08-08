@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(CommonInfo, $http, growl, $state, $log, $localStorage, $window, _, moment) {
+  function MainController(CommonInfo, $http, growl, $state, $log, $localStorage, $window, _, moment, $mdDialog, $sce) {
     var vm = this;
 
     vm.contactUs = {};
@@ -29,12 +29,32 @@
       phone: ''
     };
 
+    vm.displayLecture = {
+      currentIndex: 0,
+      videos: [
+        { video: $sce.trustAsHtml('<iframe src="https://www.youtube.com/embed/A3t_2pi-qTY?modestbranding=1" frameborder="0" allowfullscreen></iframe>') },
+        { video: $sce.trustAsHtml('<iframe src="https://www.youtube.com/embed/0K3yWSG4wyI?modestbranding=1" frameborder="0" allowfullscreen></iframe>') },
+        { video: $sce.trustAsHtml('<iframe src="https://www.youtube.com/embed/ACv44Xcvrsc?modestbranding=1" frameborder="0" allowfullscreen></iframe>') },
+        { video: $sce.trustAsHtml('<iframe src="https://www.youtube.com/embed/UR8WrUJGHvw?modestbranding=1" frameborder="0" allowfullscreen></iframe>') },
+        { video: $sce.trustAsHtml('<iframe src="https://www.youtube.com/embed/MdptSuZvQLA?modestbranding=1" frameborder="0" allowfullscreen></iframe>') },
+        { video: $sce.trustAsHtml('<iframe src="https://www.youtube.com/embed/DJBhyd8uzmw?modestbranding=1" frameborder="0" allowfullscreen></iframe>') },
+        { video: $sce.trustAsHtml('<iframe src="https://www.youtube.com/embed/aFmP0BrLTUk?modestbranding=1" frameborder="0" allowfullscreen></iframe>') },
+        { video: $sce.trustAsHtml('<iframe src="https://www.youtube.com/embed/YYx7lIyoNiY?modestbranding=1" frameborder="0" allowfullscreen></iframe>') },
+        { video: $sce.trustAsHtml('<iframe src="https://www.youtube.com/embed/6TaNoFj0Zi8?modestbranding=1" frameborder="0" allowfullscreen></iframe>') },
+        { video: $sce.trustAsHtml('<iframe src="https://www.youtube.com/embed/kURSIhChBP0?modestbranding=1" frameborder="0" allowfullscreen></iframe>') },
+        { video: $sce.trustAsHtml('<iframe src="https://www.youtube.com/embed/3-L12Zf45PU" frameborder="0" allowfullscreen></iframe>') }
+      ]
+    };
+
+    vm.displayLecture.totalVideos = vm.displayLecture.videos.length;
+
     vm.mainBanners = [];
 
     vm.login = login;
     vm.otpVerification = otpVerification;
     vm.sendOTP = sendOTP;
     vm.showCourseDetails = showCourseDetails;
+    vm.showCourseDemo = showCourseDemo;
 
     activate();
 
@@ -136,6 +156,7 @@
           if (response && response.data) {
             if (response.data.status == 1) {
               vm.testimonials = response.data.data;
+              vm.testimonialsRows = _.chunk(vm.testimonials, 2);
               // _.forEach(vm.testimonials, function(value, key) {
               //   value.charCount = (value.testimonial.length > 240) ? 230 : '';
               // });
@@ -189,7 +210,7 @@
               vm.mainBannersList = _.remove(vm.homeCategories, function(n) {
                 return n.position == -1;
               });
-              if(vm.mainBannersList && vm.mainBannersList.length > 0)
+              if (vm.mainBannersList && vm.mainBannersList.length > 0)
                 vm.mainBanners = vm.mainBannersList[0].childCategories;
             } else if (response.data.status == 2) {
               growl.info(response.data.message);
@@ -228,6 +249,51 @@
         CommonInfo.setInfo('selectedCourseId', course.id);
         CommonInfo.setInfo('courseSearchCriteria', vm.courseSearchCriteria);
         $state.go('courseDetails', { name: course.title.replace(/ /g, "-"), id: course.id })
+      }
+    }
+
+    function showCourseDemo(event, course) {
+      //event.stopPropagation();
+      //event.preventDefault();
+      var parentEl = angular.element(document.body);
+      $mdDialog.show({
+        parent: parentEl,
+        targetEvent: event,
+        locals: {
+          course: course
+        },
+        fullscreen: true,
+        template: '<md-dialog aria-label="List dialog" flex="70">' +
+          '<md-toolbar>' +
+          '<div class="md-toolbar-tools">' +
+          '<h2><span ng-bind="course.title"></span> (Demo)</h2>' +
+          '<span flex></span>' +
+          '<md-button class="md-icon-button" ng-click="closeDialog()">' +
+          '<i class="fa fa-times" aria-hidden="true"></i>' +
+          '</md-button>' +
+          '</div>' +
+          '</md-toolbar>' +
+          '<md-dialog-content>' +
+          '<div class="embed-responsive embed-responsive-16by9">' +
+          '<div ng-bind-html="course.demoVideo" class="embed-responsive-item">' +
+          '</div>' +
+          '</div>' +
+          '</md-dialog-content>' +
+          '<md-dialog-actions>' +
+          '<md-button ng-click="closeDialog()" class="md-primary">' +
+          'Close' +
+          '</md-button>' +
+          '</md-dialog-actions>' +
+          '</md-dialog>',
+        controller: DialogController
+      });
+
+      function DialogController($scope, $mdDialog, course) {
+        $scope.course = course;
+        $scope.course.demoVideo = angular.isString($scope.course.demoVideo) ? $sce.trustAsHtml($scope.course.demoVideo) : $scope.course.demoVideo;
+        $scope.closeDialog = function() {
+          $mdDialog.hide();
+        }
       }
     }
   }

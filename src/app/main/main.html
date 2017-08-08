@@ -43,7 +43,20 @@
             </div> -->
           </div>
           <div class="col-sm-4">
-            <div class="home--sign-up card">
+            <div class="home--sign-up card-home" ng-cloak>
+              <div class="embed-responsive embed-responsive-16by9" style="background-color: #000;">
+                <p ng-bind-html="vm.displayLecture.videos[vm.displayLecture.currentIndex].video" class="text-center embed-responsive-item"></p>
+              </div>
+              <div class="controls">
+                <md-button class="md-warn" ng-click="vm.displayLecture.currentIndex = vm.displayLecture.currentIndex == 0 ? vm.displayLecture.totalVideos : vm.displayLecture.currentIndex; vm.displayLecture.currentIndex = (vm.displayLecture.currentIndex - 1) % vm.displayLecture.totalVideos ">
+                  <i class="fa fa-chevron-left"></i> Previous
+                </md-button>
+                <md-button class="md-warn" ng-click="vm.displayLecture.currentIndex = (vm.displayLecture.currentIndex + 1) % vm.displayLecture.totalVideos ">
+                  Next <i class="fa fa-chevron-right"></i>
+                </md-button>
+              </div>
+            </div>
+            <!-- <div class="home--sign-up card">
               <h4>Sign In To Your Account</h4>
               <form class="new_user" id="new_user" method="post" ng-if="vm.loginStage == 1">
                 <fieldset>
@@ -74,7 +87,7 @@
                   <input type="submit" name="commit" value="Verify" class="btn btn-primary home-get-started ml0 mr0 mb0" data-disable-with="Get Started" ng-click="vm.otpVerification()" />
                 </form>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -104,8 +117,9 @@
               <div class="col-sm-2 col-xs-4" style="height: 170px;" ng-repeat="item in vm.homeCourses | limitTo : 6: vm.homeCoursesSlidStart">
                 <div class="col-item">
                   <div class="photo">
-                    <a ng-href="javascript:void(0);" ng-click="vm.showCourseDetails(item)">
+                    <a ng-href="" ng-click="vm.showCourseDetails(item)" style="cursor: pointer;">
                         <img ng-src="{{item.image}}" class="img-responsive" alt="{{item.title}}" title="{{item.title}}" />
+                        <md-button class="md-fab md-mini md-primary hidden-xs" title="Demo" ng-if="item.demoVideo" ng-click="vm.showCourseDemo($event, item);$event.stopPropagation();" style="top:71px; right:-6px;position:absolute;"><i class="fa fa-film" aria-hidden="true"></i></md-button>
                         <p class="text-center" style="margin-top:4%;font-size:14px;" ng-bind="item.title"></p>
                     </a>
                   </div>
@@ -214,18 +228,50 @@
               <strong><strong>
                 <div class="col-md-3">
                     <div class="controls pull-right hidden-xs">
-                        <button class="left btn btn-primary" ng-disabled="vm.testimonialsSlidStart == 0" ng-click="vm.testimonialsSlidStart = vm.testimonialsSlidStart - 2;">
+                        <button class="left btn btn-primary" ng-disabled="vm.testimonialsSlidStart == 0" ng-click="vm.testimonialsSlidStart = vm.testimonialsSlidStart - 1;">
                         <i class="fa fa-chevron-left"></i>
                         </button>
-                    <button class="right btn btn-primary" ng-disabled="vm.testimonialsSlidStart + 3 > vm.testimonials.length - 1" ng-click="vm.testimonialsSlidStart = vm.testimonialsSlidStart + 2;">
+                    <button class="right btn btn-primary" ng-disabled="vm.testimonialsSlidStart == vm.testimonialsRows.length - 1" ng-click="vm.testimonialsSlidStart = vm.testimonialsSlidStart + 1;">
                         <i class="fa fa-chevron-right"></i>
                     </button>
                     </div>
                 </div>
             </strong></strong>
             </div>
-            <div class="item slider">
-              <div class="row">
+            <div class="item slider testimonial">
+              <!-- <div class="animation-element slide-left testimonial in-view" ng-repeat="testimonial in vm.testimonials | limitTo : 2: vm.testimonialsSlidStart">
+                <div class="header">
+                  <div class="left">
+                    <img src="{{testimonial.image}}">
+                  </div>
+                  <div class="right">
+                    <h4 ng-bind="testimonial.testimonials_by">Johnathon Richard Smith</h4>
+                    <h5 ng-bind="testimonial.by_organization">CEO / Manager - Auto Incorporated</h5>
+                  </div>
+                </div>
+                <div class="content"><i class="fa fa-quote-left"></i> <span ng-bind="testimonial.testimonial"></span> <i class="fa fa-quote-right"></i>
+                </div>
+              </div> -->
+              <md-tabs md-dynamic-height md-border-bottom md-selected="vm.testimonialsSlidStart">
+                <md-tab label="one" ng-repeat="testimonialRow in vm.testimonialsRows">
+                  <md-content class="md-padding cf" style="background-color: #fff;">
+                    <div class="animation-element slide-left testimonial in-view" ng-repeat="testimonial in testimonialRow">
+                      <div class="header">
+                        <div class="left">
+                          <img src="{{testimonial.image}}">
+                        </div>
+                        <div class="right">
+                          <h4 ng-bind="testimonial.testimonials_by">Johnathon Richard Smith</h4>
+                          <h5 ng-bind="testimonial.by_organization">CEO / Manager - Auto Incorporated</h5>
+                        </div>
+                      </div>
+                      <div class="content"><i class="fa fa-quote-left"></i> <span ng-bind="testimonial.testimonial"></span> <i class="fa fa-quote-right"></i>
+                      </div>
+                    </div>
+                  </md-content>
+                </md-tab>
+              </md-tabs>
+              <!-- <div class="row">
                 <a class="stories--quote" href="javascript:void(0);" ng-repeat="testimonial in vm.testimonials | limitTo : 3: vm.testimonialsSlidStart">
                   <section class="col-sm-12 col-md-4">
                     <div class="quote card-circle-top ">
@@ -240,7 +286,7 @@
                     </div>
                   </section>
                 </a>
-              </div>
+              </div> -->
             </div>
             <div class="row cat-title">
               <strong><strong>
@@ -249,7 +295,7 @@
                         <button class="left btn btn-primary" ng-disabled="vm.testimonialsSlidStart == 0" ng-click="vm.testimonialsSlidStart = vm.testimonialsSlidStart - 1;">
                         <i class="fa fa-chevron-left"></i>
                         </button>
-                    <button class="right btn btn-primary" ng-disabled="vm.testimonialsSlidStart + 3 > vm.testimonials.length - 1" ng-click="vm.testimonialsSlidStart = vm.testimonialsSlidStart + 1;">
+                    <button class="right btn btn-primary" ng-disabled="vm.testimonialsSlidStart + 2 > vm.testimonials.length - 1" ng-click="vm.testimonialsSlidStart = vm.testimonialsSlidStart + 1;">
                         <i class="fa fa-chevron-right"></i>
                     </button>
                     </div>

@@ -5,7 +5,7 @@
         <main-navbar></main-navbar>
       </div>
     </section>
-    <section layout="row" flex class="container-course">
+    <section layout="row" class="container-single-form" style="min-height: 100vh;">
       <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
         <md-toolbar style="background-color: #29c5a7;">
           <div class="md-toolbar-tools">
@@ -16,7 +16,7 @@
             </md-button>
           </div>
         </md-toolbar>
-        <md-content>
+        <md-content style="position: absolute;top:65px;overflow-y: auto;width:100%;">
           <md-list>
             <md-list-item ng-repeat-start="unit in vm.course.units">
               <p href="javascript:void(0)" ng-bind="unit.name" ng-click="vm.getCourseUnit(unit);"></p>
@@ -52,9 +52,9 @@
           <!-- <div class="embed-responsive embed-responsive-16by9" ng-if="vm.unit.videoId">
             <p ng-bind-html="vm.unit.videoHtml" class="text-center embed-responsive-item"></p>
           </div> -->
-          <p ng-bind-html="vm.unit.videoHtml" class="text-center"></p>
-          <p ng-bind-html="vm.unit.unitDescription"></p>
-          <p ng-bind="vm.unit.description"></p>
+          <p ng-bind-html="vm.unit.videoHtml" ng-if="vm.unit.videoHtml" class="text-center"></p>
+          <p ng-bind-html="vm.unit.unitDescription" ng-if="vm.unit.unitDescription"></p>
+          <p ng-bind="vm.unit.description" ng-if="vm.unit.description"></p>
           <div ng-if="vm.unit.test">
             <p ng-bind="vm.unit.test.title"></p>
             <p ng-bind="vm.unit.test.instruction"></p>
