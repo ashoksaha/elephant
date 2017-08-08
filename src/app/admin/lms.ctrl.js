@@ -724,7 +724,9 @@
           if (response && response.data) {
             if (response.data.status == 1) {
               vm.studentsByCourse = response.data.data;
-
+              _.forEach(vm.studentsByCourse, function(value, key){
+                value.enrollDate = new Date(value.enrollDate);
+              });
             } else if (response.data.status == 2) {
               growl.info(response.data.message);
             }
