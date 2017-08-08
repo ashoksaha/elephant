@@ -63,19 +63,23 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th></th>
                                         <th>ID</th>
                                         <th>Course</th>
                                         <th>Student</th>
                                         <th>Ordered On</th>
                                         <th>Amount</th>
                                         <th>Payment</th>
-                                        <th>Status</th>
+                                        <!-- <th>Status</th> -->
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="order in vm.orderList">
                                         <td ng-bind="(vm.currentPage * vm.perPage) + $index + 1"></td>
+                                        <td>
+                                            <i class="fa fa-circle" aria-hidden="true" ng-style="{ 'color': order.status ? 'green' : 'red'}"></i>
+                                        </td>
                                         <td ng-bind="order.txnID"></td>
                                         <td>
                                             <span ng-bind="order.courseName"></span>
@@ -85,10 +89,10 @@
                                             <span ng-bind="order.userEmail"></span>
                                             <br /> (<span ng-bind="order.userName"></span>) <b ng-bind="order.mobile"></b>
                                         </td>
-                                        <td ng-bind="order.orderDate | date:'short'"></td>
+                                        <td ng-bind="order.orderDate | date:'mediumDate'"></td>
                                         <td ng-bind="order.amount | INR"></td>
                                         <td ng-bind="order.pg"></td>
-                                        <td ng-bind="order.status? 'Complete' : 'Pending'"></td>
+                                        <!-- <td ng-bind="order.status? 'Complete' : 'Pending'"></td> -->
                                         <td>
                                             <a ng-href="{{order.invoiceFile}}" style="color:orangered;border:none;" download ng-if="order.invoiceFile" role="button"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
                                         </td>
