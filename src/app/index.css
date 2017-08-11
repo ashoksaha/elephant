@@ -5,6 +5,19 @@
   font-style: normal;
 }
 
+.main-pagetitle {
+  font-size: 0;
+  width: 1px;
+  height: 1px;
+  display: inline-block;
+  overflow: hidden;
+  position: absolute!important;
+  border: 0!important;
+  padding: 0!important;
+  margin: 0!important;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
 body {
   font-size: 16px;
 }
@@ -81,6 +94,7 @@ ul.tagit input[type="text"] {
   background-color: inherit;
   outline: none
 }
+
 
 
 
@@ -743,6 +757,7 @@ hr {
 
 
 
+
 /*.btn,
 .admin .btn-change-state {
     border: none;
@@ -1088,7 +1103,7 @@ hr {
 }
 
 .card-home md-tabs-wrapper {
-  display:none;
+  display: none;
 }
 
 .card {
@@ -1372,6 +1387,7 @@ hr {
   width: 100%;
   height: 100%
 }
+
 
 
 
@@ -4944,6 +4960,7 @@ th {
 
 
 
+
 /*.tabs.nav-tabs .selected::after,
 .tabs.nav-tabs .active::after {
     content: '';
@@ -5661,6 +5678,7 @@ body {
 
 
 
+
 /*h1,
 h2,
 h3,
@@ -5888,6 +5906,7 @@ mark::selection {
   background-color: #1f697f;
   color: white
 }
+
 
 
 
@@ -9325,6 +9344,7 @@ a.stories--quote:hover {
 
 
 
+
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -11101,6 +11121,7 @@ a.stories--quote:hover {
 
 
 
+
 /*.groups__courses-overview tbody td:last-child {
     text-align: right
 }*/
@@ -12811,6 +12832,7 @@ a.stories--quote:hover {
 
 
 
+
 /* Text angular css for height starts*/
 
 .import-questions .ta-editor {
@@ -12910,6 +12932,7 @@ h3.slider_heading {
     width: 100%;
   }
 }
+
 
 
 
@@ -13059,6 +13082,7 @@ application_v2-1604891….css:1 .btn-quinary {
 
 
 
+
 /*************************Drag and drop css[Starts]*************************************/
 
 .simpleDemo ul[dnd-list] {
@@ -13094,11 +13118,13 @@ application_v2-1604891….css:1 .btn-quinary {
 
 
 
+
 /*************************Drag and drop css[Ends]*************************************/
 
 .md-chip-input-container {
   width: 100%;
 }
+
 
 
 
@@ -13134,12 +13160,15 @@ application_v2-1604891….css:1 .btn-quinary {
   clear: both;
 }
 
+
 /*animation element*/
 
 .animation-element {
   opacity: 0;
   position: relative;
 }
+
+
 /*animation element sliding left*/
 
 .animation-element.slide-left {
@@ -13163,6 +13192,8 @@ application_v2-1604891….css:1 .btn-quinary {
   -ms-transform: translate(0px, 0px);
   transform: translate3d(0px, 0px, 0px);
 }
+
+
 /*animation slide left styled for testimonials*/
 
 .animation-element.slide-left.testimonial {
@@ -13171,11 +13202,12 @@ application_v2-1604891….css:1 .btn-quinary {
   margin: 0% 1.5% 3% 1.5%;
   background: #F5F5F5;
   padding: 15px;
-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
   border: solid 1px #EAEAEA;
 }
+
 .animation-element.slide-left.testimonial:hover,
-.animation-element.slide-left.testimonial:active{
+.animation-element.slide-left.testimonial:active {
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -13189,16 +13221,18 @@ box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
   margin: 0% 0% 3.0% 1.5%;
 }
 
-.animation-element.slide-left.testimonial .header{
+.animation-element.slide-left.testimonial .header {
   float: left;
   width: 100%;
   margin-bottom: 10px;
 }
-.animation-element.slide-left.testimonial .left{
+
+.animation-element.slide-left.testimonial .left {
   float: left;
   margin-right: 15px;
 }
-.animation-element.slide-left.testimonial .right{
+
+.animation-element.slide-left.testimonial .right {
   float: left;
 }
 
@@ -13219,11 +13253,11 @@ box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
 
 .animation-element.slide-left.testimonial .content {
   float: left;
-  width:100%;
+  width: 100%;
   margin-bottom: 10px;
 }
 
-.animation-element.slide-left.testimonial .rating{}
+.animation-element.slide-left.testimonial .rating {}
 
 .animation-element.slide-left.testimonial i {
   color: #aaa;
@@ -13231,30 +13265,31 @@ box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
 }
 
 .testimonial md-tabs-wrapper {
-  display:none;
+  display: none;
 }
 
 
+
 /*media queries for small devices*/
-@media screen and (max-width: 678px){
+
+@media screen and (max-width: 678px) {
   /*testimonials*/
   .animation-element.slide-left.testimonial,
   .animation-element.slide-left.testimonial:nth-of-type(odd),
-  .animation-element.slide-left.testimonial:nth-of-type(even){
+  .animation-element.slide-left.testimonial:nth-of-type(even) {
     width: 100%;
     margin: 0px 0px 20px 0px;
   }
   .animation-element.slide-left.testimonial .right,
   .animation-element.slide-left.testimonial .left,
   .animation-element.slide-left.testimonial .content,
-  .animation-element.slide-left.testimonial .rating{
+  .animation-element.slide-left.testimonial .rating {
     text-align: center;
     float: none;
   }
-  .animation-element.slide-left.testimonial img{
+  .animation-element.slide-left.testimonial img {
     width: 85px;
     height: 85px;
     margin-bottom: 5px;
   }
-  
 }

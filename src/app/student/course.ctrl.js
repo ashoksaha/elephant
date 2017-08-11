@@ -48,12 +48,13 @@
             $window.scrollTo(0, 0);
             if (studentInfo && studentInfo.name && studentInfo.email) {
                 CommonInfo.setInfo('startCourse', { unitId: unitId, courseId: selectedCourseId });
-                $http.post(CommonInfo.getAppUrl() + "/getunitdetailsbyunit_id", { id: unitId, userName: studentInfo.name, userEmail: studentInfo.email }).then(
+                $http.post(CommonInfo.getAppUrl() + "/getunitdetailsbyunit_id", { id: unitId, userName: studentInfo.name, userEmail: studentInfo.email, studentId: studentInfo.userId, courseId: selectedCourseId }).then(
                     function(response) {
                         if (response && response.data) {
                             if (response.data.status == 1) {
                                 vm.unit = response.data.data;
                                 vm.unit.unitDescription = angular.isString(vm.unit.unitDescription) ? $sce.trustAsHtml(vm.unit.unitDescription) : vm.unit.unitDescription;
+                                vm.unit.embedVideo = angular.isString(vm.unit.embedVideo) ? $sce.trustAsHtml(vm.unit.embedVideo) : vm.unit.embedVideo;
                                 vm.unit.videoHtml = angular.isString(vm.unit.videoHtml) ? $sce.trustAsHtml(vm.unit.videoHtml) : vm.unit.videoHtml;
                                 if (angular.isString(vm.unit.downloadLink))
                                     vm.unit.downloadLink = JSON.parse(vm.unit.downloadLink);

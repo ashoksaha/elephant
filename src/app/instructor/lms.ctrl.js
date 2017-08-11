@@ -39,6 +39,7 @@
             id: '',
             name: '',
             description: '',
+            embedVideo: '',
             unitDescription: '',
             image: '',
             unitType: '',

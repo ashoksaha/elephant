@@ -347,7 +347,8 @@
         studentId: studentInfo.userId,
         courseId: vm.course.id,
         type: 'student',
-        couponId: vm.payment.couponId
+        couponId: vm.payment.couponId,
+        couponCode: vm.payment.coupon
       };
       $http.post(CommonInfo.getAppUrl() + "/createinstamojorequest", data).then(
         function(response) {
@@ -368,8 +369,9 @@
     }
 
     function applyCoupon() {
+      var studentInfo = CommonInfo.getInfo('studentInfo');
       if (vm.payment && vm.payment.coupon) {
-        $http.post(CommonInfo.getAppUrl() + "/applyCoupon", { courseId: selectedCourseId, couponCode: vm.payment.coupon }).then(
+        $http.post(CommonInfo.getAppUrl() + "/applyCoupon", { courseId: selectedCourseId, couponCode: vm.payment.coupon, studentId: studentInfo.userId }).then(
           function(response) {
             if (response && response.data) {
               if (response.data.status == 1) {
@@ -457,6 +459,7 @@
               if (response.data.status == 1) {
                 vm.unit = response.data.data;
                 vm.unit.unitDescription = angular.isString(vm.unit.unitDescription) ? $sce.trustAsHtml(vm.unit.unitDescription) : vm.unit.unitDescription;
+                vm.unit.embedVideo = angular.isString(vm.unit.embedVideo) ? $sce.trustAsHtml(vm.unit.embedVideo) : vm.unit.embedVideo;
                 vm.unit.videoHtml = angular.isString(vm.unit.videoHtml) ? $sce.trustAsHtml(vm.unit.videoHtml) : vm.unit.videoHtml;
                 if (angular.isString(vm.unit.downloadLink))
                   vm.unit.downloadLink = JSON.parse(vm.unit.downloadLink);
@@ -488,6 +491,7 @@
                     '<div ng-if="vm.unit.videoId" class="embed-responsive embed-responsive-16by9">' +
                     '<p ng-bind-html="vm.unit.videoHtml" class="text-center embed-responsive-item"></p>' +
                     '</div>' +
+                    '<p ng-bind-html="vm.unit.embedVideo"></p>' +
                     '<p ng-bind-html="vm.unit.unitDescription"></p>' +
                     '<div ng-if="vm.unit.test">' +
                     '<p ng-bind="vm.unit.test.title"></p>' +

@@ -1,137 +1,147 @@
 <div class="">
-    <div class="row account-settings">
-        <div class="tab-content">
-            <h3>Unit</h3>
-            <hr>
-            <form class="edit_user" id="edit_user_727839" method="post">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <fieldset>
-                            <!-- <label for="name">Name</label>
+  <div class="row account-settings">
+    <div class="tab-content">
+      <h3>Unit</h3>
+      <hr>
+      <form class="edit_user" id="edit_user_727839" method="post">
+        <div class="row">
+          <div class="col-sm-12">
+            <fieldset>
+              <!-- <label for="name">Name</label>
                             <input type="text" name="name" id="name" ng-model="vm.unit.name"> -->
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Name</label>
-                                <input ng-model="vm.unit.name">
-                            </md-input-container>
-                        </fieldset>
-                        <fieldset>
-                            <!-- <label for="description">Description</label>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Name</label>
+                <input ng-model="vm.unit.name">
+              </md-input-container>
+            </fieldset>
+            <fieldset>
+              <!-- <label for="description">Description</label>
                             <textarea id="description" name="description" rows="5" ng-model="vm.unit.description">
                             </textarea> -->
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Description</label>
-                                <textarea id="description" name="Description" rows="5" ng-model="vm.unit.description">
-                                </textarea>
-                            </md-input-container>
-                        </fieldset>
-                        <fieldset>
-                            <!-- <label for="unitDescription">Unit Description</label>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Description</label>
+                <textarea id="description" name="Description" rows="5" ng-model="vm.unit.description">
+                </textarea>
+              </md-input-container>
+            </fieldset>
+            <fieldset>
+              <!-- <label for="unitDescription">Unit Description</label>
                             <textarea id="unitDescription" name="unitDescription" rows="5" ng-model="vm.unit.unitDescription">
                             </textarea> -->
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Unit Description</label>
-                                <textarea id="unitDescription" name="unitDescription" rows="5" ng-model="vm.unit.unitDescription">
-                                </textarea>
-                            </md-input-container>
-                        </fieldset>
-                        <fieldset>
-                            <!-- <label for="unitType">Unit Type</label>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Unit Description</label>
+                <text-angular ta-toolbar="vm.toolBar" id="unitDescription" placeholder="Unit Description" ng-model="vm.unit.unitDescription"></text-angular>
+                <div class="hint">Don't enter emded video code here</div>
+              </md-input-container>
+            </fieldset>
+            <fieldset>
+              <!-- <label for="unitType">Unit Type</label>
                             <select ng-model="vm.unit.unitType" id="unitType" name="unitType" ng-options="type.id as type.name for type in vm.unitTypes"></select> -->
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Unit Type</label>
-                                <md-select ng-model="vm.unit.unitType">
-                                    <md-optgroup label="Unit Type">
-                                        <md-option ng-value="type.id" ng-repeat="type in vm.unitTypes">{{type.name}}</md-option>
-                                    </md-optgroup>
-                                </md-select>
-                            </md-input-container>
-                        </fieldset>
-                        <fieldset>
-                            <md-input-container class="md-block" flex-gt-sm ng-if="vm.unit.unitType == 1;">
-                                <label>Video Id</label>
-                                <input ng-model="vm.unit.videoId">
-                            </md-input-container>
-                        </fieldset>
-                        <fieldset ng-if="vm.unit.unitType == 1">
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Video Download Link</label>
-                                <input ng-model="vm.unit.downloadLink.videoDownloadLink">
-                            </md-input-container>
-                        </fieldset>
-                        <fieldset>
-                            <label for="freeUnit">Free Unit</label>
-                            <!-- <input type="text" name="name" id="name" ng-model="vm.unit.freeUnit"> -->
-                            <md-switch class="md-primary" ng-model="vm.unit.freeUnit" aria-label="Free Unit" ng-true-value="1" ng-false-value="0">
-                            </md-switch>
-                        </fieldset>
-                        <fieldset>
-                            <!-- <label for="duration">Duration</label>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Unit Type</label>
+                <md-select ng-model="vm.unit.unitType">
+                  <md-optgroup label="Unit Type">
+                    <md-option ng-value="type.id" ng-repeat="type in vm.unitTypes">{{type.name}}</md-option>
+                  </md-optgroup>
+                </md-select>
+              </md-input-container>
+            </fieldset>
+            <fieldset>
+              <md-input-container class="md-block" flex-gt-sm ng-if="vm.unit.unitType == 1;">
+                <label>Video Id</label>
+                <input ng-model="vm.unit.videoId">
+              </md-input-container>
+            </fieldset>
+            <fieldset>
+              <md-input-container class="md-block" flex-gt-sm ng-if="vm.unit.unitType == 1;">
+                <label>Embed Video</label>
+                <textarea id="embedVideo" name="embedVideo" rows="5" ng-model="vm.unit.embedVideo">
+                </textarea>
+                <div class="hint">Field to specify embed video</div>
+              </md-input-container>
+            </fieldset>
+            <fieldset ng-if="vm.unit.unitType == 1">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Video Download Link</label>
+                <input ng-model="vm.unit.downloadLink.videoDownloadLink">
+              </md-input-container>
+            </fieldset>
+            <fieldset>
+              <!-- <label for="freeUnit">Free Unit</label> -->
+              <md-switch class="md-primary" ng-model="vm.unit.freeUnit" aria-label="Free Unit" ng-true-value="1" ng-false-value="0">
+                Free Unit
+              </md-switch>
+            </fieldset>
+            <fieldset>
+              <!-- <label for="duration">Duration</label>
                             <input type="number" name="duration" id="duration" ng-model="vm.unit.duration"> -->
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Duration</label>
-                                <input ng-model="vm.unit.duration" type="number">
-                            </md-input-container>
-                        </fieldset>
-                        <fieldset>
-                            <!-- <label for="durationParameter">Duration Parameter</label>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Duration</label>
+                <input ng-model="vm.unit.duration" type="number">
+              </md-input-container>
+            </fieldset>
+            <fieldset>
+              <!-- <label for="durationParameter">Duration Parameter</label>
                             <select ng-model="vm.unit.durationParameter" id="durationParameter" name="durationParameter" ng-options="duration.value as duration.name for duration in vm.unitDurations"></select> -->
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Duration Parameter</label>
-                                <md-select ng-model="vm.unit.durationParameter">
-                                    <md-optgroup label="Parameter">
-                                        <md-option ng-value="duration.id" ng-repeat="duration in vm.unitDurations">{{duration.name}}</md-option>
-                                    </md-optgroup>
-                                </md-select>
-                            </md-input-container>
-                        </fieldset>
-                        <fieldset>
-                            <!-- <label for="connectedAssignments">Connected Assignments</label>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Duration Parameter</label>
+                <md-select ng-model="vm.unit.durationParameter">
+                  <md-optgroup label="Parameter">
+                    <md-option ng-value="duration.id" ng-repeat="duration in vm.unitDurations">{{duration.name}}</md-option>
+                  </md-optgroup>
+                </md-select>
+              </md-input-container>
+            </fieldset>
+            <fieldset>
+              <!-- <label for="connectedAssignments">Connected Assignments</label>
                             <input type="text" name="connectedAssignments" id="connectedAssignments" ng-model="vm.unit.connectedAssignments"> -->
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Connected Assignments</label>
-                                <input ng-model="vm.unit.connectedAssignments">
-                            </md-input-container>
-                        </fieldset>
-                        <fieldset>
-                            <label for="allowComment">Allow Comment</label>
-                            <md-switch class="md-primary" ng-model="vm.unit.allowComment" aria-label="Allow Comment" ng-true-value="1" ng-false-value="0">
-                            </md-switch>
-                        </fieldset>
-                        <!-- <fieldset>
-                            <label for="instructorId">instructor</label>
-                            <select ng-model="vm.unit.instructorId" id="instructorId" name="instructorId" ng-options="instructor.id as instructor.name for instructor in vm.instructors"></select>
-                        </fieldset> -->
-                        <!-- <fieldset>
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Related Slider</label>
-                                <input ng-model="vm.unit.relatedSliderId">
-                            </md-input-container>
-                        </fieldset> -->
-                        <fieldset>
-                            <label for="status">Status</label>
-                            <md-switch class="md-primary" name="status" id="status" ng-model="vm.unit.status" aria-label="Course Status" ng-true-value="1" ng-false-value="0">
-                            </md-switch>
-                        </fieldset>
-                    </div>
-                    <div class="col-sm-6">
-                        <!-- <fieldset>
-                            <label for="user_avatar">Cover</label>
-                            <div class="avatar-selector">
-                                <img ngf-src="vm.unit.image || '/assets/images/avatar.png'" ngf-resize="{width: 150, height: 150, quality: 0.9}" style="border:1px solid lightseagreen; height:150px;" class="img-thumbnail" />
-                                <br />
-                                <button class="btn btn-default center-block" ngf-select type="file" ng-model="vm.unit.image" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
-                                    Change Cover
-                                </button>
-                            </div>
-                        </fieldset> -->
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.createUnit(vm.unit.image)" data-disable-with="Save Changes">
-                    </div>
-                </div>
-            </form>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Connected Assignments</label>
+                <input ng-model="vm.unit.connectedAssignments">
+              </md-input-container>
+            </fieldset>
+            <fieldset>
+              <!-- <label for="allowComment">Allow Comment</label> -->
+              <md-switch class="md-primary" ng-model="vm.unit.allowComment" aria-label="Allow Comment" ng-true-value="1" ng-false-value="0">
+                Allow Comment
+              </md-switch>
+            </fieldset>
+            <!-- <fieldset>
+              <label for="instructorId">instructor</label>
+              <select ng-model="vm.unit.instructorId" id="instructorId" name="instructorId" ng-options="instructor.id as instructor.name for instructor in vm.instructors"></select>
+            </fieldset> -->
+            <!-- <fieldset>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Related Slider</label>
+                <input ng-model="vm.unit.relatedSliderId">
+              </md-input-container>
+            </fieldset> -->
+            <fieldset>
+              <!-- <label for="status">Status</label> -->
+              <md-switch class="md-primary" name="status" id="status" ng-model="vm.unit.status" aria-label="Course Status" ng-true-value="1" ng-false-value="0">
+                Status
+              </md-switch>
+            </fieldset>
+          </div>
+          <!-- <div class="col-sm-6">
+            <fieldset>
+              <label for="user_avatar">Cover</label>
+              <div class="avatar-selector">
+                <img ngf-src="vm.unit.image || '/assets/images/avatar.png'" ngf-resize="{width: 150, height: 150, quality: 0.9}" style="border:1px solid lightseagreen; height:150px;" class="img-thumbnail" />
+                <br />
+                <button class="btn btn-default center-block" ngf-select type="file" ng-model="vm.unit.image" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+                  Change Cover
+                </button>
+              </div>
+            </fieldset>
+          </div> -->
         </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.createUnit(vm.unit.image)" data-disable-with="Save Changes">
+          </div>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
