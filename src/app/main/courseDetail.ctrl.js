@@ -347,8 +347,7 @@
         studentId: studentInfo.userId,
         courseId: vm.course.id,
         type: 'student',
-        couponId: vm.payment.couponId,
-        couponCode: vm.payment.coupon
+        couponId: vm.payment.couponId
       };
       $http.post(CommonInfo.getAppUrl() + "/createinstamojorequest", data).then(
         function(response) {
@@ -369,9 +368,8 @@
     }
 
     function applyCoupon() {
-      var studentInfo = CommonInfo.getInfo('studentInfo');
       if (vm.payment && vm.payment.coupon) {
-        $http.post(CommonInfo.getAppUrl() + "/applyCoupon", { courseId: selectedCourseId, couponCode: vm.payment.coupon, studentId: studentInfo.userId }).then(
+        $http.post(CommonInfo.getAppUrl() + "/applyCoupon", { courseId: selectedCourseId, couponCode: vm.payment.coupon }).then(
           function(response) {
             if (response && response.data) {
               if (response.data.status == 1) {
