@@ -8,7 +8,7 @@
     </h4>
   <div class="groups__courses-overview groups__border">
     <div class="groups__courses-filters clearfix">
-      <a style="margin:4px 2px;" class="btn btn-default btn-sm pull-left" href="javascript:void(0);"  lazy-load="true" ng-csv="vm.exportCourseStudents();" filename="{{vm.selectedCourse.title}}[Students].csv" field-separator="," decimal-separator="." csv-header="">
+      <a style="margin:4px 2px;" class="btn btn-default btn-sm pull-left" href="javascript:void(0);" lazy-load="true" ng-csv="vm.exportCourseStudents();" filename="{{vm.selectedCourse.title}}[Students].csv" field-separator="," decimal-separator="." csv-header="">
           <i class="fa fa-plus-square"></i> Export <span ng-if="!vm.courseStudentSearchText">All</span> <span ng-if="vm.courseStudentSearchText">(Flitered)</span>
       </a>
       <div class="search">
@@ -32,6 +32,7 @@
             <th>Enroll Date</th>
             <th>Expiry Date</th>
             <th>Amount</th>
+            <th>Is Offline</th>
           </tr>
         </thead>
         <tbody>
@@ -49,6 +50,10 @@
             <td>
               <span ng-if="student.amount" ng-bind="student.amount | INR"></span>
               <span ng-if="!student.amount" ng-bind="'Free'"></span>
+            </td>
+            <td>
+              <md-checkbox ng-model="student.isOffline" aria-label="Is Offline" class="md-warn md-align-top-left" ng-change="vm.updateCourseStatus(student)" ng-true-value="1" ng-false-value="0">
+              </md-checkbox>
             </td>
           </tr>
         </tbody>
