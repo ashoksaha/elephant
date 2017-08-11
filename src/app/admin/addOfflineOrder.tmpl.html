@@ -53,13 +53,13 @@
           <input ng-model="order.paymentId" />
         </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>
-            <label>Payment Mode</label>
-            <md-select ng-model="order.pg" required>
-              <md-option ng-repeat="mode in vm.paymentMode" value="{{mode}}">
-                <span ng-bind="mode"></span>
-              </md-option>
-            </md-select>
-          </md-input-container>
+          <label>Payment Mode</label>
+          <md-select ng-model="order.pg" required>
+            <md-option ng-repeat="mode in vm.paymentMode" value="{{mode}}">
+              <span ng-bind="mode"></span>
+            </md-option>
+          </md-select>
+        </md-input-container>
       </div>
       <div layout-gt-sm="row">
         <md-input-container class="md-block" flex-gt-sm>
