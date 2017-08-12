@@ -450,8 +450,8 @@
         CommonInfo.setInfo('startCourse', { unitId: unit.id, courseId: vm.course.id });
         $state.go('startCourse', { courseName: vm.course.title.replace(/ /g, "-") });
       } else if (!vm.course.isSubscribed && unit.freeUnit) {
-        var studentInfo = CommonInfo.getInfo('studentInfo');
-        $http.post(CommonInfo.getAppUrl() + "/getunitdetailsbyunit_id", { id: unit.id, userName: studentInfo.name, userEmail: studentInfo.email }).then(
+        var studentInfo = CommonInfo.getInfo('studentInfo') || {name: "demoUser", email: "demo@flavido.com", userId: 49};
+        $http.post(CommonInfo.getAppUrl() + "/getunitdetailsbyunit_id", { id: unit.id, userName: studentInfo.name, userEmail: studentInfo.email, courseId: selectedCourseId , studentId: studentInfo.userId }).then(
           function(response) {
             if (response && response.data) {
               if (response.data.status == 1) {
