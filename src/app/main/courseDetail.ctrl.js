@@ -368,8 +368,9 @@
     }
 
     function applyCoupon() {
+      var studentInfo = CommonInfo.getInfo('studentInfo');
       if (vm.payment && vm.payment.coupon) {
-        $http.post(CommonInfo.getAppUrl() + "/applyCoupon", { courseId: selectedCourseId, couponCode: vm.payment.coupon }).then(
+        $http.post(CommonInfo.getAppUrl() + "/applyCoupon", { courseId: selectedCourseId, couponCode: vm.payment.coupon, studentId: studentInfo.userId }).then(
           function(response) {
             if (response && response.data) {
               if (response.data.status == 1) {

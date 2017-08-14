@@ -35,7 +35,20 @@
         </div>
         <md-input-container flex="50">
           <label>Description</label>
-          <textarea rows="3" ng-model="vm.coupon.description"></textarea>
+          <textarea rows="1" ng-model="vm.coupon.description"></textarea>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex="50">
+          <label>Coupon Limit</label>
+          <input type="text" ng-model="vm.coupon.code" />
+        </md-input-container>
+        <div flex="5" hide-xs hide-sm>
+          <!-- Spacer //-->
+        </div>
+        <md-input-container flex="50">
+          <label>Per User Limit</label>
+          <input type="text" ng-model="vm.coupon.amount" />
         </md-input-container>
       </div>
       <div layout="row">
@@ -50,6 +63,88 @@
           <label>Expires On</label>
           <md-datepicker ng-model="vm.coupon.dateExpires" md-open-on-focus></md-datepicker>
         </md-input-container>
+      </div>
+      <h3 class="text-center">Include</h3>
+      <md-divider></md-divider>
+      <div layout-gt-sm="row">
+        <md-chips ng-model="vm.coupon.students" md-autocomplete-snap md-transform-chip="$chip" md-require-match="true">
+      <md-autocomplete md-selected-item="vm.coupon.student" md-search-text="searchStudentText" md-items="item in querySearchStudent(searchStudentText)"
+          md-item-text="item.userName"
+          placeholder="Search for a student">
+        <span md-highlight-text="searchStudentText">{{item.userName}} :: {{item.email}}</span>
+      </md-autocomplete>
+      <md-chip-template>
+        <span>
+          <strong>{{$chip.userName}}</strong>
+          <em>({{$chip.email}})</em>
+        </span>
+      </md-chip-template>
+    </md-chips>
+        <!-- ---------------------------------------------------------- -->
+        <!-- <md-autocomplete flex md-input-name="autocompleteField" md-input-maxlength="18" md-selected-item="vm.coupon.students" md-search-text="searchStudentText" md-items="item in querySearchStudent(searchStudentText)" md-item-text="item.userName" md-require-match md-floating-label="Student" md-menu-class="autocomplete-custom-template" required>
+          <md-item-template>
+            <span class="item-title">
+                <span md-highlight-text="searchStudentText"> {{item.userName}} </span>
+            </span>
+            <span class="item-metadata">
+                <span>
+                    <strong>{{item.email}}</strong>
+                </span>
+            </span>
+          </md-item-template>
+        </md-autocomplete> -->
+        <div flex="5" hide-xs hide-sm>
+          <!-- Spacer //-->
+        </div>
+        <!-- <md-input-container flex-gt-sm> -->
+        <md-autocomplete flex md-input-name="autocompleteField" md-input-maxlength="18" md-selected-item="vm.coupon.products" md-search-text="searchCourseText" md-items="item in querySearchCourse(searchCourseText)" md-item-text="item.title" md-require-match md-floating-label="Course" md-menu-class="autocomplete-custom-template" required>
+          <md-item-template>
+            <span class="item-title">
+                <span md-highlight-text="searchCourseText"> {{item.title}} </span>
+            </span>
+            <span class="item-metadata">
+                <span>
+                    <strong>{{item.instructorFullName}}</strong>
+                </span>
+            </span>
+          </md-item-template>
+        </md-autocomplete>
+        <!-- </md-input-container> -->
+      </div>
+      <h3 class="text-center">Exclude</h3>
+      <md-divider></md-divider>
+      <div layout-gt-sm="row">
+        <!-- <md-input-container flex-gt-sm> -->
+        <md-autocomplete flex md-input-name="autocompleteField" md-input-maxlength="18" md-selected-item="vm.coupon.excludedProducts" md-search-text="searchExcludedStudentText" md-items="item in querySearchStudent(searchExcludedStudentText)" md-item-text="item.userName" md-require-match md-floating-label="Student" md-menu-class="autocomplete-custom-template" required>
+          <md-item-template>
+            <span class="item-title">
+                <span md-highlight-text="searchExcludedStudentText"> {{item.userName}} </span>
+            </span>
+            <span class="item-metadata">
+                <span>
+                    <strong>{{item.email}}</strong>
+                </span>
+            </span>
+          </md-item-template>
+        </md-autocomplete>
+        <!-- </md-input-container> -->
+        <div flex="5" hide-xs hide-sm>
+          <!-- Spacer //-->
+        </div>
+        <!-- <md-input-container flex-gt-sm> -->
+        <md-autocomplete flex md-input-name="autocompleteField" md-input-maxlength="18" md-selected-item="vm.coupon.excludedStudents" md-search-text="searchExcludedCourseText" md-items="item in querySearchCourse(searchExcludedCourseText)" md-item-text="item.title" md-require-match md-floating-label="Course" md-menu-class="autocomplete-custom-template" required>
+          <md-item-template>
+            <span class="item-title">
+                <span md-highlight-text="searchExcludedCourseText"> {{item.title}} </span>
+            </span>
+            <span class="item-metadata">
+                <span>
+                    <strong>{{item.instructorFullName}}</strong>
+                </span>
+            </span>
+          </md-item-template>
+        </md-autocomplete>
+        <!-- </md-input-container> -->
       </div>
   </md-dialog-content>
   <md-dialog-actions>
