@@ -1105,12 +1105,12 @@
 
     function getCoupons() {
       vm.lmsTab = 7;
-      getAllStudents();
+      //getAllStudents();
       getAllCopuons();
     }
 
     function getAllCopuons() {
-      $http.get(CommonInfo.getAppUrl() + "/getallcoupons").then(
+      $http.post(CommonInfo.getAppUrl() + "/getallcoupons").then(
         function(response) {
           if (response && response.data) {
             if (response.data.status == 1) {
@@ -1204,34 +1204,25 @@
       if (coupon) {
         vm.coupon.products = [];
         vm.coupon.excludedProducts = [];
-          vm.coupon.students = [];
-          vm.coupon.excludedStudents = [];
-        if (vm.coupon.productIds) {
-          var productIds = _.split(vm.coupon.productIds, ',');
-          _.forEach(productIds, function(value, key) {
-            vm.coupon.products.push(_.find(vm.allCourses, { 'id': parseInt(value) }));
-          });
-        }
-        if (vm.coupon.excludedProductIds) {
-          var excludedProductIds = _.split(vm.coupon.excludedProductIds, ',');
-          _.forEach(excludedProductIds, function(value, key) {
-            vm.coupon.excludedProducts.push(_.find(vm.allCourses, { 'id': parseInt(value) }));
-          });
-        }
-        if (vm.coupon.studentIds) {
-          var studentIds = _.split(vm.coupon.studentIds, ',');
-          _.forEach(studentIds, function(value, key) {
-            vm.coupon.students.push(_.find(vm.allStudents, { 'id': parseInt(value) }));
-          });
-        }
-        if (vm.coupon.excludedStudentIds) {
-          var excludedStudentIds = _.split(vm.coupon.excludedStudentIds, ',');
-          _.forEach(excludedStudentIds, function(value, key) {
-            vm.coupon.excludedStudents.push(_.find(vm.allStudents, { 'id': parseInt(value) }));
-          });
-        }
+        vm.coupon.students = [];
+        vm.coupon.excludedStudents = [];
+        $http.post(CommonInfo.getAppUrl() + "/getCouponDetail", { id: vm.coupon.id }).then(
+          function(response) {
+            if (response && response.data) {
+              if (response.data.status == 1) {
+                _.merge(vm.coupon, response.data.data);
+              } else if (response.data.status == 2) {
+                growl.info(response.data.message);
+              }
+            } else {
+              growl.info('There is some issue, please try after some time');
+            }
+          },
+          function(response) {
+            growl.info('There is some issue, please try after some time');
+          }
+        );
       }
-      vm.coupon = vm.coupon;
       $state.go('admin.lms.addCoupon');
     }
   }
