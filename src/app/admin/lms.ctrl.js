@@ -1105,8 +1105,8 @@
 
     function getCoupons() {
       vm.lmsTab = 7;
-      getAllCopuons();
       getAllStudents();
+      getAllCopuons();
     }
 
     function getAllCopuons() {
@@ -1130,7 +1130,7 @@
     }
 
     function getAllStudents() {
-      $http.post(CommonInfo.getAppUrl() + "/searchstudent").then(
+      $http.post(CommonInfo.getAppUrl() + "/getallstudents").then(
         function(response) {
           if (response && response.data) {
             if (response.data.status == 1) {
@@ -1175,10 +1175,10 @@
     function saveCoupon() {
       vm.coupon.dateStart = vm.coupon.dateStart ? moment(vm.coupon.dateStart).format("YYYY-MM-DD") : '';
       vm.coupon.dateExpires = vm.coupon.dateExpires ? moment(vm.coupon.dateExpires).format("YYYY-MM-DD") : '';
-      vm.coupon.productIds = _.map(vm.coupon.products, 'id').join(',');
-      vm.coupon.excludedProductIds = _.map(vm.coupon.excludedProducts, 'id').join(',');
-      vm.coupon.studentIds = _.map(vm.coupon.students, 'id').join(',');
-      vm.coupon.excludedStudentIds = _.map(vm.coupon.excludedStudents, 'id').join(',');
+      vm.coupon.productIds = _.compact(_.map(vm.coupon.products, 'id')).join(',');
+      vm.coupon.excludedProductIds = _.compact(_.map(vm.coupon.excludedProducts, 'id')).join(',');
+      vm.coupon.studentIds = _.compact(_.map(vm.coupon.students, 'id')).join(',');
+      vm.coupon.excludedStudentIds = _.compact(_.map(vm.coupon.excludedStudents, 'id')).join(',');
       vm.coupon.createdBy = vm.userInfo.id;
       $http.post(CommonInfo.getAppUrl() + "/createCoupon", vm.coupon).then(
         function(response) {
@@ -1202,30 +1202,30 @@
     function addCoupon(coupon) {
       vm.coupon = coupon ? coupon : angular.copy(vm.emptyCoupon);
       if (coupon) {
+        vm.coupon.products = [];
+        vm.coupon.excludedProducts = [];
+          vm.coupon.students = [];
+          vm.coupon.excludedStudents = [];
         if (vm.coupon.productIds) {
           var productIds = _.split(vm.coupon.productIds, ',');
-          vm.coupon.products = [];
           _.forEach(productIds, function(value, key) {
             vm.coupon.products.push(_.find(vm.allCourses, { 'id': parseInt(value) }));
           });
         }
         if (vm.coupon.excludedProductIds) {
           var excludedProductIds = _.split(vm.coupon.excludedProductIds, ',');
-          vm.coupon.excludedProducts = [];
           _.forEach(excludedProductIds, function(value, key) {
             vm.coupon.excludedProducts.push(_.find(vm.allCourses, { 'id': parseInt(value) }));
           });
         }
         if (vm.coupon.studentIds) {
           var studentIds = _.split(vm.coupon.studentIds, ',');
-          vm.coupon.students = [];
           _.forEach(studentIds, function(value, key) {
             vm.coupon.students.push(_.find(vm.allStudents, { 'id': parseInt(value) }));
           });
         }
         if (vm.coupon.excludedStudentIds) {
           var excludedStudentIds = _.split(vm.coupon.excludedStudentIds, ',');
-          vm.coupon.excludedStudents = [];
           _.forEach(excludedStudentIds, function(value, key) {
             vm.coupon.excludedStudents.push(_.find(vm.allStudents, { 'id': parseInt(value) }));
           });
