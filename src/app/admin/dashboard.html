@@ -24,30 +24,34 @@
           </div>
         </div>
         <div class="col-sm-6">
-          <!-- <div class="row">
+          <div class="row">
             <div class="col-sm-10 col-sm-offset-1 middle_graph1">
-              <h2 class="myCourse">Courses</h2>
+              <h2 class="myCourse">Coupons</h2>
               <p class="current_course">
-                <strong>Your current Course and student counts</strong>
+                <strong>Coupons count report</strong>
               </p>
-              <p ng-repeat="course in vm.recentCourses">
-                    <span ng-bind="course.name"></span>
-                  <span class="pull-right">
-                      <span ng-bind="course.totalStudents"></span>
-                  </span>
-              </p>
-              <p>
-                <button type="button" class="btn btn-primary" ui-sref="instructor.lms.createCourses">
-                  <strong>CREATE COURSE <i class="fa fa-plus" aria-hidden="true"></i></strong>
-                </button>
-                <span class="pull=right">
-                    <button type="button" class="btn btn-default" ui-sref="instructor.lms.courses">
-                        <strong>VIEW ALL</strong>
-                    </button>
-                </span>
-              </p>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr class="text-center">
+                      <th class="text-center">Code</th>
+                      <th class="text-center">Usages</th>
+                      <th class="text-center">Discount</th>
+                      <th class="text-center">Sales</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="coupon in vm.couponReport" class="text-center">
+                      <td><strong ng-bind="coupon.code"></strong></td>
+                      <td ng-bind="coupon.usageCount"></td>
+                      <td ng-bind="coupon.totalDiscount || 0 | INR"></td>
+                      <td ng-bind="coupon.totalSales || o | INR"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div> -->
+          </div>
         </div>
         <div class="col-sm-2">
           <div class="row">

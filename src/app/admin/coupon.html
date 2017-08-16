@@ -16,7 +16,7 @@
             <th>SN</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Type</th>
+            <th>Usage</th>
             <th>Expiry Date</th>
             <th>Amount</th>
             <th>Status</th>
@@ -28,7 +28,7 @@
             <td ng-bind="$index + 1"></td>
             <td ng-bind="coupon.code"></td>
             <td ng-bind="coupon.description"></td>
-            <td ng-bind="coupon.discountType | capitalize"></td>
+            <td ng-bind="coupon.usageCount"></td>
             <td ng-bind="coupon.dateExpires"></td>
             <td ng-bind="coupon.amount"></td>
             <td ng-bind="coupon.status ? 'Active' : 'Inactive'"></td>

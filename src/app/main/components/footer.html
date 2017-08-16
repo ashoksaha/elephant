@@ -1,62 +1,320 @@
-<div class="bottom-navigation" ng-if="!vm.studentInfo.userId">
-    <div class="container clearfix">
-        <div class="navbar--title">
-            <a class="clearfix no-link-style" href="javascript:void(0)">
-                <div class="logo"></div>
-            </a>
-        </div>
-        <div class="footer-links-container hidden-xs">
-            <ul class="footer-links-list">
-                <li class="header">Useful Links</li>
-                <li><a ui-sref="register">Create account</a></li>
-                <li><a ui-sref="login">Sign-in</a></li>
-                <li><a ui-sref="aboutUs">About</a></li>
-                <li><a ui-sref="career">Careers</a></li>
-            </ul>
-            <ul class="footer-links-list">
-                <li class="header">Resources</li>
-                <li><a ui-sref="courses.list">View All Courses</a></li>
-                <li><a ui-sref="instructors">Instructors</a></li>
-            </ul>
-            <ul class="footer-links-list">
-                <li class="header">Support</li>
-                <li><a ui-sref="contactUs">Contact Us</a></li>
-                <li><a ui-sref="terms-conditions">Terms & Conditions</a></li>
-                <li><a ui-sref="privacyPolicy">Privacy Policy</a></li>
-            </ul>
-            <ul class="footer-links-list">
-                <li class="header">Help</li>
-                <li><a ui-sref="shippingPolicy">Shipping Policy</a></li>
-                <li><a ui-sref="cancellationPolicy">Cancellation Policy</a></li>
-                <li><a ui-sref="faq">FAQ</a></li>
-            </ul>
-        </div>
-        <div class="social-icons clearfix">
-            <a target="_blank" href="https://twitter.com/flavidostore"><i class="fa fa-twitter fa-2x"></i></a>
-            <a target="_blank" href="https://www.facebook.com/flavidostore/"><i class="fa fa-facebook fa-2x"></i></a>
-            <a target="_blank" href="https://www.linkedin.com/company/flavido"><i class="fa fa-linkedin fa-2x"></i></a>
-            <a target="_blank" href="https://www.youtube.com/channel/UC0Tq0EYN41l4puo0qSl1lEg"><i class="fa fa-youtube fa-2x"></i></a>
-        </div>
+<div class="bottom-navigation" ng-if="!vm.studentInfo.userId" id="footer">
+  <div class="container clearfix">
+    <div class="navbar--title">
+      <a class="clearfix no-link-style" href="javascript:void(0)">
+        <div class="logo"></div>
+      </a>
     </div>
+    <div class="footer-links-container hidden-xs">
+      <ul class="footer-links-list">
+        <li class="header">Useful Links</li>
+        <li><a ui-sref="register">Create account</a></li>
+        <li><a ui-sref="login">Sign-in</a></li>
+        <li><a ui-sref="aboutUs">About</a></li>
+        <li><a ui-sref="career">Careers</a></li>
+      </ul>
+      <ul class="footer-links-list">
+        <li class="header">Resources</li>
+        <li><a ui-sref="courses.list">View All Courses</a></li>
+        <li><a ui-sref="instructors">Instructors</a></li>
+      </ul>
+      <ul class="footer-links-list">
+        <li class="header">Support</li>
+        <li><a ui-sref="contactUs">Contact Us</a></li>
+        <li><a ui-sref="terms-conditions">Terms & Conditions</a></li>
+        <li><a ui-sref="privacyPolicy">Privacy Policy</a></li>
+      </ul>
+      <ul class="footer-links-list">
+        <li class="header">Help</li>
+        <li><a ui-sref="shippingPolicy">Shipping Policy</a></li>
+        <li><a ui-sref="cancellationPolicy">Cancellation Policy</a></li>
+        <li><a ui-sref="faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="social-icons clearfix">
+      <a target="_blank" href="https://twitter.com/flavidostore"><i class="fa fa-twitter fa-2x"></i></a>
+      <a target="_blank" href="https://www.facebook.com/flavidostore/"><i class="fa fa-facebook fa-2x"></i></a>
+      <a target="_blank" href="https://www.linkedin.com/company/flavido"><i class="fa fa-linkedin fa-2x"></i></a>
+      <a target="_blank" href="https://www.youtube.com/channel/UC0Tq0EYN41l4puo0qSl1lEg"><i class="fa fa-youtube fa-2x"></i></a>
+    </div>
+  </div>
+  <!-- <div class="container socialBox">
+    <div class="row">
+      <div class="col-md-2 col-xs-3">
+        <a href="#"><img src="assets/images/logo_white.png"  class="footerLogo" /></a>
+      </div>
+      <div class="col-md-4 pull-right col-xs-9">
+        <section class="social">
+          <a target="_blank" href="https://www.facebook.com/flavidostore/" class="icon fb">
+            <i class="fa fa-facebook soIcon" aria-hidden="true"></i>
+        </a>
+          <a target="_blank" href="https://twitter.com/flavidostore" class="icon tw">
+            <i class="fa fa-twitter soIcon" aria-hidden="true"></i>
+            </a>
+          <a target="_blank" href="https://www.youtube.com/channel/UC0Tq0EYN41l4puo0qSl1lEg" class="icon gp">
+            <i class="fa fa-youtube soIcon" aria-hidden="true"></i>
+            </a>
+          <a target="_blank" href="https://www.linkedin.com/company/flavido" class="icon lnk">
+            <i class="fa fa-linkedin soIcon" aria-hidden="true"></i>
+            </a>
+        </section>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 footerBox">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 listMob">
+            <h5 class="f_heading"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> Useful Links</h5>
+            <ul class="footerlist">
+              <li id="pra">
+                <span class="right-text">
+                    <a ui-sref="register">Create account</a>
+                </span>
+                <span class="right-arrow">
+                    <a ui-sref="register">&nbsp; &rarr;</a>
+                </span>
+              </li>
+              <li id="pra">
+                <span class="right-text">
+                    <a ui-sref="login">Sign-in</a>
+                </span>
+                <span class="right-arrow">
+                    <a ui-sref="login">&nbsp; &rarr;</a>
+                </span>
+              </li>
+              <li id="pra">
+                <span class="right-text">
+                    <a ui-sref="aboutUs">About Us</a>
+                </span>
+                <span class="right-arrow">
+                    <a ui-sref="aboutUs">&nbsp; &rarr;</a>
+                </span>
+              </li>
+              <li id="pra">
+                <span class="right-text">
+                    <a ui-sref="career">Careers</a>
+                </span>
+                <span class="right-arrow">
+                    <a ui-sref="career">&nbsp; &rarr;</a>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3 col-sm-3 listMob">
+            <h5 class="f_heading"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> Resources</h5>
+            <ul class="footerlist">
+              <li id="pra">
+                <span class="right-text">
+                    <a ui-sref="courses.list">Courses Offered</a>
+                </span>
+                <span class="right-arrow">
+                    <a ui-sref="courses.list">&nbsp; &rarr;</a>
+                </span>
+              </li>
+              <li id="pra">
+                <span class="right-text">
+                    <a ui-sref="instructors">Instructors</a>
+                </span>
+                <span class="right-arrow">
+                    <a ui-sref="instructors">&nbsp; &rarr;</a>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3 col-sm-3 listMob">
+            <h5 class="f_heading"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> Support</h5>
+            <ul class="footerlist">
+              
+              <li id="pra">
+                <span class="right-text">
+                    <a ui-sref="contactUs">Contact Us</a>
+                </span>
+                <span class="right-arrow">
+                    <a ui-sref="contactUs">&nbsp; &rarr;</a>
+                </span>
+              </li>
+              <li id="pra">
+                <span class="right-text">
+                    <a ui-sref="terms-conditions" >Terms & Conditions</a>
+                </span>
+                <span class="right-arrow">
+                    <a ui-sref="terms-conditions" >&nbsp; &rarr;</a>
+                </span>
+            </li>
+            <li id="pra">
+                <span class="right-text">
+                    <a ui-sref="privacyPolicy">Privacy Policy</a>
+                </span>
+                <span class="right-arrow">
+                    <a ui-sref="privacyPolicy">&nbsp; &rarr;</a>
+                </span>
+            </li>
+            </ul>
+          </div>
+          <div class="col-md-3 col-sm-3 listMob">
+            <h5 class="f_heading"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> Help</h5>
+            <ul class="footerlist">
+              <li id="pra">
+                <span class="right-text">
+                    <a ui-sref="shippingPolicy">Shipping Policy</a>
+                </span>
+                <span class="right-arrow">
+                    <a ui-sref="shippingPolicy">&nbsp; &rarr;</a>
+                </span>
+              </li>
+              <li id="pra">
+                <span class="right-text">
+                    <a ui-sref="cancellationPolicy">Cancellation Policy</a>
+                </span>
+                <span class="right-arrow">
+                    <a ui-sref="cancellationPolicy">&nbsp; &rarr;</a>
+                </span>
+              </li>
+              <li id="pra">
+                <span class="right-text">
+                    <a ui-sref="FAQ">FAQ</a>
+                </span>
+                <span class="right-arrow">
+                    <a ui-sref="FAQ">&nbsp; &rarr;</a>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 lsit2Box">
+        <div class="col-sm-8 col-md-8">
+          <h5 class="f_heading"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> TRENDING SEARCHES FOR ON FLAVIDO STORE</h5>
+          <dl>
+            <dt class="list2">Most Searched</dt>
+            <dd class="list2Link">
+              <a href="#">Sociology </a> |
+              <a href="#">Vision IAS </a> |
+              <a href="#">ForumIAS </a>|
+              <a href="#">Current Affairs</a> |
+              <a href="#">Vajiram</a>|
+              <a href="#">Sriram Economics</a> |
+              <a herf="#">Shankar IAS</a> |
+              <a herf="#">Insights</a>|
+              <a herf="#">Anthroplogy</a> |
+              <a href="#">IASBABA</a>
+            </dd>
+            <dt class="list2">Flavido Classes:</dt>
+            <dd class="list2Link">
+              <a href="#">Chokkalingam </a> |
+              <a href="#">Vikash Ranjan </a> |
+              <a href="#">Himanshu Sharma </a>|
+              <a href="#">DR. Rambabu Paladudgu</a> |
+            </dd>
+            <dt class="list2">Optional Notes:</dt>
+            <dd class="list2Link">
+              <a href="#">Philosophy </a> |
+              <a href="#">Geography </a> |
+              <a href="#">Public Administration </a>|
+            </dd>
+            <dt class="list2">GS Notes:</dt>
+            <dd class="list2Link">
+              <a href="#">Economy </a> |
+              <a href="#">Polity </a> |
+              <a href="#">Geography GS</a>|
+            </dd>
+            <dt class="list2">Hindi Notes:</dt>
+            <dd class="list2Link">
+              <a href="#">Vision IAS </a> |
+              <a href="#">Indian Polity </a> |
+              <a href="#">Ethics </a>|
+              <a href="#">Old NCERT </a>|
+              <a href="#">Public Administration </a>|
+              <a href="#">Sociology </a>|
+              <a href="#">Philosophy </a>|
+            </dd>
+            <dt class="list2">Popular Coaching Notes:</dt>
+            <dd class="list2Link">
+              <a href="#">Vajiram </a> |
+              <a href="#">Sriram </a> |
+              <a href="#">Vision IAS </a>|
+              <a href="#">Old NCERT </a>|
+              <a href="#">Insights </a>|
+              <a href="#">Drishti </a>|
+            </dd>
+            <dt class="list2">IES/Gate Notes:</dt>
+            <dd class="list2Link">
+              <a href="#">Electronic & Communication </a> |
+              <a href="#">Civil Engineering </a> |
+              <a href="#">Civil Engineering  </a>|
+              <a href="#">Computer Engineering  </a>|
+              <a href="#">Electrical Engineering  </a>|
+              <a href="#">Drishti </a>|
+            </dd>
+            <dt class="list2">SSC Notes:</dt>
+            <dd class="list2Link">
+              <a href="#">Paramount </a>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-sm-4 col-md-4 paymentBox">
+          <h5 class="f_heading"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> PAYMENTS WE ACCEPT</h5>
+          <ul class="footerlist">
+            <li>
+              <i class="fa fa-cc-visa" aria-hidden="true" style="font-size: 50px; color: #fff;"></i>&nbsp;&nbsp;&nbsp;
+              <i class="fa fa-cc-visa" aria-hidden="true" style="font-size: 50px; color: #fff"></i>
+            </li>
+            <li>
+              <i class="fa fa-cc-amex" style="font-size: 50px; color: #fff; line-height: 70px"></i>&nbsp;&nbsp;&nbsp;
+              <i class="fa fa-cc-amex" style="font-size: 50px; color: #fff;line-height: 70px"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 footerParagraph">
+        <dl>
+          <dd class="ParaF">
+            Gone are the days, when you had to go to pricey & exhaustive coaching classes to prepare for IAS examination. Today, with everything going digital, everything you need is right at the comfort of your home. If you are doing your graduation or are currently working, it is difficult to find the time and right resources for preparation. What do you do? @Flavido we source top rated study material, hand written notes from successful aspirants & live/online classes from most recommended faculties & educational institutions, and provide them at affordable price.Why Online IAS preparation?
+          </dd>
+          <dd>
+            Most of the aspirants feel there is a need to leave their present jobs & home cities and move to Rajinder Nagar/Karol Bagh for IAS Preparation. Students don’t estimate the high opportunity cost of leaving a job or the level of expenses in these overpriced areas of Central Delhi. A student only needs right guidance, resources and peer group to clear the examination. Right Guidance and peer group is available online on forums and multiple preparation websites. Resources for preparation like notes, online classes, mentors and recommended faculties is where we are trying to pitch in and ease out your IAS Preparation.
+          </dd>
+          <dt>Flavido Promises</dt>
+          <dd>Flavido makes online education more convenient and hassle-free. You can always be rest assured about the quality of IAS notes you are buying online at our site. Together with our trusted printing vendors we promise to deliver the appropriate IAS books or online IAS notes from Delhi. We have the best quality IAS online courses that can be subscribed from the comfort of your home. These courses are being done by the most recommended IAS trainers in their respective fields. These online IAS classes are checked thoroughly for their content, quality and timely delivery.</dd>
+          <dt>Features of Online Classes, Flexible Schedule</dt>
+          <dd>Classes on Flavido can be watched by students as per their own flexible schedule. Usually the offline classes are on a pre-defined time and if you miss the class you can only rely on someone else’s notes. This will not be the case with online classes as the student can study as per their comfort and timetable. This is really important as IAS preparation needs a disciplined approach with lot of self study.</dd>
+          <dt>Revise the Classes</dt>
+          <dd>This option is not available in offline format; in online mode students can watch the classes again for revision. Revision helps in strengthening the concepts.</dd>
+          <dt>Access to Resources only available in Delhi</dt>
+          <dd>Sometimes you have made up your mind of studying under a specific teacher/trainer who teaches only in Delhi. This leaves you no option but to migrate to Delhi for IAS Preparation. We bring those offline classes online for you. Doubts can be discussed during office hours telephonically. We provide access to teachers on our platform to the students enrolled.</dd>
+          <dt>Shop on the App</dt>
+          <dd>So there might be times when you don’t feel like booting up your laptop in your free time. We have a great idea, listen to your playlist, relax and also shop for much needed IAS preparation notes, IAS Study material and watch classes by specific teacher on-the-go on our mobile app.</dd>
+          <dt>So, which course are you opting for today?</dt>
+        </dl>
+      </div>
+    </div>
+    <div class="col-md-12 text-center companyFooter">
+      <p class="footerText">Copyright ©2016 Flavido Store. All Rights Reserved.</p>
+    </div>
+  </div> -->
 </div>
 <div class="bottom-navigation-short" ng-if="vm.studentInfo && vm.studentInfo.userId">
-    <div class="container clearfix">
-        <div class="navbar--title">
-            <a class="clearfix no-link-style" href="javascript:void(0)">
-                <div class="logo"></div>
-            </a>
-        </div>
-        <ul class="inline clearfix hidden-xs">
-            <li><a ui-sref="contactUs">Contact Us</a></li>
-            <li><a ui-sref="terms-conditions">Terms & Conditions</a></li>
-            <li><a ui-sref="privacyPolicy">Privacy Policy</a></li>
-            <li><a ui-sref="aboutUs">About</a></li>
-        </ul>
-        <div class="social-icons clearfix">
-            <a target="_blank" href="https://twitter.com/flavidostore"><i class="fa fa-twitter"></i></a>
-            <a target="_blank" href="https://www.facebook.com/flavidostore/"><i class="fa fa-facebook"></i></a>
-            <a target="_blank" href="https://www.linkedin.com/company/flavido"><i class="fa fa-linkedin"></i></a>
-            <a target="_blank" href="https://www.youtube.com/channel/UC0Tq0EYN41l4puo0qSl1lEg"><i class="fa fa-youtube"></i></a>
-        </div>
+  <div class="container clearfix">
+    <div class="navbar--title">
+      <a class="clearfix no-link-style" href="javascript:void(0)">
+        <div class="logo"></div>
+      </a>
     </div>
+    <ul class="inline clearfix hidden-xs">
+      <li><a ui-sref="contactUs">Contact Us</a></li>
+      <li><a ui-sref="terms-conditions">Terms & Conditions</a></li>
+      <li><a ui-sref="privacyPolicy">Privacy Policy</a></li>
+      <li><a ui-sref="aboutUs">About</a></li>
+    </ul>
+    <div class="social-icons clearfix">
+      <a target="_blank" href="https://twitter.com/flavidostore"><i class="fa fa-twitter"></i></a>
+      <a target="_blank" href="https://www.facebook.com/flavidostore/"><i class="fa fa-facebook"></i></a>
+      <a target="_blank" href="https://www.linkedin.com/company/flavido"><i class="fa fa-linkedin"></i></a>
+      <a target="_blank" href="https://www.youtube.com/channel/UC0Tq0EYN41l4puo0qSl1lEg"><i class="fa fa-youtube"></i></a>
+    </div>
+  </div>
 </div>

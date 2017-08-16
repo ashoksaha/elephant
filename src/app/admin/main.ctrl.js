@@ -29,6 +29,7 @@
       vm.userInfo = CommonInfo.getInfo('userInfo');
       getUserType();
       getMonthlyOrders();
+      getCouponReport();
     }
 
     function logout() {
@@ -105,6 +106,25 @@
           if (response && response.data) {
             if (response.data.status == 1) {
               vm.monthlyOrders = response.data.data;
+            } else if (response.data.status == 2) {
+              $log.log(response.data.message);
+            }
+          } else {
+            $log.log('There is some issue, please try after some time');
+          }
+        },
+        function(response) {
+          $log.log('There is some issue, please try after some time');
+        }
+      );
+    }
+
+    function getCouponReport() {
+      $http.get(CommonInfo.getAppUrl() + "/discountsReport").then(
+        function(response) {
+          if (response && response.data) {
+            if (response.data.status == 1) {
+              vm.couponReport = response.data.data;
             } else if (response.data.status == 2) {
               $log.log(response.data.message);
             }

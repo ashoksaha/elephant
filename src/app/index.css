@@ -105,6 +105,8 @@ ul.tagit input[type="text"] {
 
 
 
+
+
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 
 html {
@@ -758,6 +760,8 @@ hr {
 
 
 
+
+
 /*.btn,
 .admin .btn-change-state {
     border: none;
@@ -1387,6 +1391,8 @@ hr {
   width: 100%;
   height: 100%
 }
+
+
 
 
 
@@ -2264,14 +2270,14 @@ hr {
 }
 
 .bottom-navigation ul li a {
-  color: #333;
+  /*color: #333;*/
   border-bottom: none;
   transition: all 150ms ease-in-out;
   /*font-size: 0.8em;*/
 }
 
 .bottom-navigation ul li a:hover {
-  color: rgb(245, 0, 87);
+  /*color: rgb(245, 0, 87);*/
   letter-spacing: 1px;
 }
 
@@ -4961,6 +4967,8 @@ th {
 
 
 
+
+
 /*.tabs.nav-tabs .selected::after,
 .tabs.nav-tabs .active::after {
     content: '';
@@ -5679,6 +5687,8 @@ body {
 
 
 
+
+
 /*h1,
 h2,
 h3,
@@ -5906,6 +5916,8 @@ mark::selection {
   background-color: #1f697f;
   color: white
 }
+
+
 
 
 
@@ -9194,7 +9206,7 @@ a.stories--quote:hover {
 }
 
 .container-single-form {
-  margin-top: 4rem;
+  /*margin-top: 4rem;*/
   margin-bottom: 4rem;
   min-height: 100vh;
   min-height: calc(100vh - 305px)
@@ -9334,6 +9346,8 @@ a.stories--quote:hover {
   /*font-size: 1rem;*/
   color: #dd5c5c
 }
+
+
 
 
 
@@ -11122,6 +11136,8 @@ a.stories--quote:hover {
 
 
 
+
+
 /*.groups__courses-overview tbody td:last-child {
     text-align: right
 }*/
@@ -12833,6 +12849,8 @@ a.stories--quote:hover {
 
 
 
+
+
 /* Text angular css for height starts*/
 
 .import-questions .ta-editor {
@@ -12932,6 +12950,8 @@ h3.slider_heading {
     width: 100%;
   }
 }
+
+
 
 
 
@@ -13083,6 +13103,8 @@ application_v2-1604891….css:1 .btn-quinary {
 
 
 
+
+
 /*************************Drag and drop css[Starts]*************************************/
 
 .simpleDemo ul[dnd-list] {
@@ -13119,11 +13141,15 @@ application_v2-1604891….css:1 .btn-quinary {
 
 
 
+
+
 /*************************Drag and drop css[Ends]*************************************/
 
 .md-chip-input-container {
   width: 100%;
 }
+
+
 
 
 
@@ -13161,12 +13187,16 @@ application_v2-1604891….css:1 .btn-quinary {
 }
 
 
+
+
 /*animation element*/
 
 .animation-element {
   opacity: 0;
   position: relative;
 }
+
+
 
 
 /*animation element sliding left*/
@@ -13192,6 +13222,8 @@ application_v2-1604891….css:1 .btn-quinary {
   -ms-transform: translate(0px, 0px);
   transform: translate3d(0px, 0px, 0px);
 }
+
+
 
 
 /*animation slide left styled for testimonials*/
@@ -13267,8 +13299,6 @@ application_v2-1604891….css:1 .btn-quinary {
 .testimonial md-tabs-wrapper {
   display: none;
 }
-
-
 
 /*media queries for small devices*/
 
