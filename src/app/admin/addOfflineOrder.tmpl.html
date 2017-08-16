@@ -74,6 +74,19 @@
           <textarea required ng-model="order.remark" rows="3"></textarea>
         </md-input-container>
       </div>
+      Send Mail
+      <div layout-gt-sm="row">
+        <div flex-gt-sm="50">
+          <md-checkbox ng-model="order.notificationStudent" aria-label="Send mail to student" ng-false-value="0" ng-true-value="1">
+            Student
+          </md-checkbox>
+        </div>
+        <div flex-gt-sm="50">
+          <md-checkbox ng-model="order.notificationInstructor" aria-label="Send mail to instructor" ng-false-value="0" ng-true-value="1">
+            Instructor
+          </md-checkbox>
+        </div>
+      </div>
     </div>
   </md-dialog-content>
   <md-dialog-actions>

@@ -222,7 +222,9 @@
               remark: $scope.order.remark,
               orderDate: moment($scope.order.orderDate).format("YYYY-MM-DD HH:mm:SS"),
               paymentId: $scope.order.paymentId,
-              pg: $scope.order.pg
+              pg: $scope.order.pg,
+              notificationInstructor: $scope.order.notificationInstructor,
+              notificationStudent: $scope.order.notificationStudent
             };
             $http.post(CommonInfo.getAppUrl() + "/createofflineorders", data).then(
               function(response) {
