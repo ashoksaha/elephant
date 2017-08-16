@@ -67,48 +67,48 @@
           if (response && response.data) {
             if (response.data.status == 1) {
               //if (selectedCourseName.replace(/-/g, " ").trim() == response.data.data[0].title.trim()) {
-                vm.course = response.data.data[0];
-                if (vm.course.description && vm.course.units && vm.course.units.length > 0) {
-                  vm.charCount = (vm.course.description.length > 315) ? 300 : 0;
-                }
-                if (vm.course && vm.course.units) {
-                  vm.course.unitTypeCount = _.countBy(vm.course.units, 'unitType');
-                }
-                if(vm.course && vm.course.courseCurriculum && vm.course.units.length > 0) {
-                    var units = [];
-                    var unitIds = vm.course.courseCurriculum.toString().split(',');
-                    _.forEach(unitIds, function(value, key){
-                        units.push(_.find(vm.course.units, { 'id': parseInt(value) }));
-                    });
-                    vm.course.units = units;
-                }
-                vm.course.courseStartDate = moment(vm.course.courseStartDate).format("MMM DD, YYYY");
-                vm.course.demoVideo = angular.isString(vm.course.demoVideo) ? $sce.trustAsHtml(vm.course.demoVideo) : vm.course.demoVideo;
-                if (vm.course.socialShare)
-                  getSocialShare();
-                if (vm.course.reviewCourse)
-                  getCourseReview();
-                var routerInfo = RouterTracker.getPreviousRoute();
-                if (data.studentId && !vm.course.isSubscribed && routerInfo && routerInfo.route && routerInfo.route.name == 'courseDetails') {
-                  getPaymentMethodes();
-                  vm.showPaymentOptions = true;
-                  vm.payment.amount = vm.course.courseFee;
-                }
-                getInstructorTestimonials();
-                // var studentInfo = CommonInfo.getInfo('studentInfo');
-                // vm.payuData = {
-                //     key: 'gtKFFx',
-                //     txnid: 'product_' + vm.course.id + 'S_' + studentInfo.userId,
-                //     amount: parseFloat('200.00').toFixed(2),
-                //     productinfo: 'details_' + studentInfo.userId + 'C_' + vm.course.id,
-                //     firstname: studentInfo.name,
-                //     email: studentInfo.email,
-                //     phone: studentInfo.mobile,
-                //     surl: 'http://139.44.59.117/#/dashboard',
-                //     furl: 'http://139.44.59.117/#/dashboard'
-                // };
-                // var hashString = vm.payuData.key + '|' + vm.payuData.txnid + '|' + vm.payuData.amount + '|' + vm.payuData.productinfo + '|' + vm.payuData.firstname + '|' + vm.payuData.email + '|||||||||||eCwWELxi';
-                // vm.payuData.hash = SHA512(hashString).toLowerCase();
+              vm.course = response.data.data[0];
+              if (vm.course.description && vm.course.units && vm.course.units.length > 0) {
+                vm.charCount = (vm.course.description.length > 315) ? 300 : 0;
+              }
+              if (vm.course && vm.course.units) {
+                vm.course.unitTypeCount = _.countBy(vm.course.units, 'unitType');
+              }
+              if (vm.course && vm.course.courseCurriculum && vm.course.units.length > 0) {
+                var units = [];
+                var unitIds = vm.course.courseCurriculum.toString().split(',');
+                _.forEach(unitIds, function(value, key) {
+                  units.push(_.find(vm.course.units, { 'id': parseInt(value) }));
+                });
+                vm.course.units = units;
+              }
+              vm.course.courseStartDate = moment(vm.course.courseStartDate).format("MMM DD, YYYY");
+              vm.course.demoVideo = angular.isString(vm.course.demoVideo) ? $sce.trustAsHtml(vm.course.demoVideo) : vm.course.demoVideo;
+              if (vm.course.socialShare)
+                getSocialShare();
+              if (vm.course.reviewCourse)
+                getCourseReview();
+              var routerInfo = RouterTracker.getPreviousRoute();
+              if (data.studentId && !vm.course.isSubscribed && routerInfo && routerInfo.route && routerInfo.route.name == 'courseDetails') {
+                getPaymentMethodes();
+                vm.showPaymentOptions = true;
+                vm.payment.amount = vm.course.courseFee;
+              }
+              getInstructorTestimonials();
+              // var studentInfo = CommonInfo.getInfo('studentInfo');
+              // vm.payuData = {
+              //     key: 'gtKFFx',
+              //     txnid: 'product_' + vm.course.id + 'S_' + studentInfo.userId,
+              //     amount: parseFloat('200.00').toFixed(2),
+              //     productinfo: 'details_' + studentInfo.userId + 'C_' + vm.course.id,
+              //     firstname: studentInfo.name,
+              //     email: studentInfo.email,
+              //     phone: studentInfo.mobile,
+              //     surl: 'http://139.44.59.117/#/dashboard',
+              //     furl: 'http://139.44.59.117/#/dashboard'
+              // };
+              // var hashString = vm.payuData.key + '|' + vm.payuData.txnid + '|' + vm.payuData.amount + '|' + vm.payuData.productinfo + '|' + vm.payuData.firstname + '|' + vm.payuData.email + '|||||||||||eCwWELxi';
+              // vm.payuData.hash = SHA512(hashString).toLowerCase();
               //}
             } else if (response.data.status == 2) {
               $log.log(response.data.message);
@@ -294,46 +294,61 @@
     }
 
     function getRazorCall() {
-      var studentInfo = CommonInfo.getInfo('studentInfo');
-      var pg = _.find(vm.paymentGateways, { 'name': 'Razorpay' });
-      var rzpOptions = {
-        "key": pg.apiKey,
-        "amount": vm.payment.discount ? vm.payment.discount * 100 : vm.payment.amount * 100, //vm.course.courseFee * 100,
-        "name": vm.course.title,
-        "description": "By " + vm.course.instructorFullName,
-        "image": "/assets/images/logo.png",
-        "handler": function(response) {
-          $http.post(CommonInfo.getAppUrl() + "/createrazorpayorder", { studentId: studentInfo.userId, courseId: selectedCourseId, orderBy: studentInfo.userId, type: 'student', paymentId: response.razorpay_payment_id, couponId: vm.payment.couponId }).then(
-            function(response) {
-              if (response && response.data) {
-                if (response.data.status == 1) {
-                  $state.go('dashboard')
-                } else if (response.data.status == 2) {
-                  $log.log(response.data.message);
+      $http.post(CommonInfo.getAppUrl() + "/applyCoupon", { courseId: selectedCourseId, couponCode: vm.payment.coupon, studentId: studentInfo.userId, isInUse: true }).then(
+        function(response) {
+          if (response && response.data) {
+            if (response.data.status == 1) {
+              var studentInfo = CommonInfo.getInfo('studentInfo');
+              var pg = _.find(vm.paymentGateways, { 'name': 'Razorpay' });
+              var rzpOptions = {
+                "key": pg.apiKey,
+                "amount": vm.payment.discount ? vm.payment.discount * 100 : vm.payment.amount * 100, //vm.course.courseFee * 100,
+                "name": vm.course.title,
+                "description": "By " + vm.course.instructorFullName,
+                "image": "/assets/images/logo.png",
+                "handler": function(response) {
+                  $http.post(CommonInfo.getAppUrl() + "/createrazorpayorder", { studentId: studentInfo.userId, courseId: selectedCourseId, orderBy: studentInfo.userId, type: 'student', paymentId: response.razorpay_payment_id, couponId: vm.payment.couponId }).then(
+                    function(response) {
+                      if (response && response.data) {
+                        if (response.data.status == 1) {
+                          $state.go('dashboard')
+                        } else if (response.data.status == 2) {
+                          $log.log(response.data.message);
+                        }
+                      } else {
+                        $log.log('There is some issue, please try after some time');
+                      }
+                    },
+                    function(response) {
+                      $log.log('There is some issue, please try after some time');
+                    }
+                  );
+                },
+                "prefill": {
+                  "name": studentInfo.userName,
+                  "email": studentInfo.email,
+                  "contact": studentInfo.mobile
+                },
+                "notes": {
+                  "address": ''
+                },
+                "theme": {
+                  "color": "#18BC9C"
                 }
-              } else {
-                $log.log('There is some issue, please try after some time');
-              }
-            },
-            function(response) {
-              $log.log('There is some issue, please try after some time');
+              };
+              var rzp1 = new Razorpay(rzpOptions);
+              rzp1.open()
+            } else if (response.data.status == 2) {
+              growl.info(response.data.message);
             }
-          );
+          } else {
+            growl.warning('There is some issue, please try after some time');
+          }
         },
-        "prefill": {
-          "name": studentInfo.userName,
-          "email": studentInfo.email,
-          "contact": studentInfo.mobile
-        },
-        "notes": {
-          "address": ''
-        },
-        "theme": {
-          "color": "#18BC9C"
+        function(response) {
+          growl.warning('There is some issue, please try after some time');
         }
-      };
-      var rzp1 = new Razorpay(rzpOptions);
-      rzp1.open()
+      );
     }
 
     function getInstamojoCall() {
@@ -369,14 +384,16 @@
 
     function applyCoupon() {
       var studentInfo = CommonInfo.getInfo('studentInfo');
+      vm.payment.discount = 0;
+      vm.payment.couponId = '';
       if (vm.payment && vm.payment.coupon) {
         $http.post(CommonInfo.getAppUrl() + "/applyCoupon", { courseId: selectedCourseId, couponCode: vm.payment.coupon, studentId: studentInfo.userId }).then(
           function(response) {
             if (response && response.data) {
               if (response.data.status == 1) {
                 growl.success(response.data.message);
-                vm.payment.discount = response.data.data.discount;
-                vm.payment.couponId = response.data.data.couponId;
+                vm.payment.discount = response.data.data[1];
+                vm.payment.couponId = response.data.data[2];
               } else if (response.data.status == 2) {
                 growl.info(response.data.message);
               }
@@ -451,8 +468,8 @@
         CommonInfo.setInfo('startCourse', { unitId: unit.id, courseId: vm.course.id });
         $state.go('startCourse', { courseName: vm.course.title.replace(/ /g, "-") });
       } else if (!vm.course.isSubscribed && unit.freeUnit) {
-        var studentInfo = CommonInfo.getInfo('studentInfo') || {name: "demoUser", email: "demo@flavido.com", userId: 49};
-        $http.post(CommonInfo.getAppUrl() + "/getunitdetailsbyunit_id", { id: unit.id, userName: studentInfo.name, userEmail: studentInfo.email, courseId: selectedCourseId , studentId: studentInfo.userId }).then(
+        var studentInfo = CommonInfo.getInfo('studentInfo') || { name: "demoUser", email: "demo@flavido.com", userId: 49 };
+        $http.post(CommonInfo.getAppUrl() + "/getunitdetailsbyunit_id", { id: unit.id, userName: studentInfo.name, userEmail: studentInfo.email, courseId: selectedCourseId, studentId: studentInfo.userId }).then(
           function(response) {
             if (response && response.data) {
               if (response.data.status == 1) {
