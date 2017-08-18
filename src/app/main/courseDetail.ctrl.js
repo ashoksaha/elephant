@@ -294,61 +294,70 @@
     }
 
     function getRazorCall() {
-      $http.post(CommonInfo.getAppUrl() + "/applyCoupon", { courseId: selectedCourseId, couponCode: vm.payment.coupon, studentId: studentInfo.userId, isInUse: true }).then(
-        function(response) {
-          if (response && response.data) {
-            if (response.data.status == 1) {
-              var studentInfo = CommonInfo.getInfo('studentInfo');
-              var pg = _.find(vm.paymentGateways, { 'name': 'Razorpay' });
-              var rzpOptions = {
-                "key": pg.apiKey,
-                "amount": vm.payment.discount ? vm.payment.discount * 100 : vm.payment.amount * 100, //vm.course.courseFee * 100,
-                "name": vm.course.title,
-                "description": "By " + vm.course.instructorFullName,
-                "image": "/assets/images/logo.png",
-                "handler": function(response) {
-                  $http.post(CommonInfo.getAppUrl() + "/createrazorpayorder", { studentId: studentInfo.userId, courseId: selectedCourseId, orderBy: studentInfo.userId, type: 'student', paymentId: response.razorpay_payment_id, couponId: vm.payment.couponId }).then(
-                    function(response) {
-                      if (response && response.data) {
-                        if (response.data.status == 1) {
-                          $state.go('dashboard')
-                        } else if (response.data.status == 2) {
-                          $log.log(response.data.message);
-                        }
-                      } else {
-                        $log.log('There is some issue, please try after some time');
-                      }
-                    },
-                    function(response) {
-                      $log.log('There is some issue, please try after some time');
-                    }
-                  );
-                },
-                "prefill": {
-                  "name": studentInfo.userName,
-                  "email": studentInfo.email,
-                  "contact": studentInfo.mobile
-                },
-                "notes": {
-                  "address": ''
-                },
-                "theme": {
-                  "color": "#18BC9C"
-                }
-              };
-              var rzp1 = new Razorpay(rzpOptions);
-              rzp1.open()
-            } else if (response.data.status == 2) {
-              growl.info(response.data.message);
+      var studentInfo = CommonInfo.getInfo('studentInfo');
+      if (vm.payment.coupon) {
+        $http.post(CommonInfo.getAppUrl() + "/applyCoupon", { courseId: selectedCourseId, couponCode: vm.payment.coupon, studentId: studentInfo.userId, isInUse: true }).then(
+          function(response) {
+            if (response && response.data) {
+              if (response.data.status == 1) {
+                getRazorRequestCall();
+              } else if (response.data.status == 2) {
+                growl.info(response.data.message);
+              }
+            } else {
+              growl.warning('There is some issue, please try after some time');
             }
-          } else {
+          },
+          function(response) {
             growl.warning('There is some issue, please try after some time');
           }
+        );
+      } else {
+        getRazorRequestCall();
+      }
+    }
+
+    function getRazorRequestCall() {
+      var studentInfo = CommonInfo.getInfo('studentInfo');
+      var pg = _.find(vm.paymentGateways, { 'name': 'Razorpay' });
+      var rzpOptions = {
+        "key": pg.apiKey,
+        "amount": vm.payment.discount ? vm.payment.discount * 100 : vm.payment.amount * 100, //vm.course.courseFee * 100,
+        "name": vm.course.title,
+        "description": "By " + vm.course.instructorFullName,
+        "image": "/assets/images/logo.png",
+        "handler": function(response) {
+          $http.post(CommonInfo.getAppUrl() + "/createrazorpayorder", { studentId: studentInfo.userId, courseId: selectedCourseId, orderBy: studentInfo.userId, type: 'student', paymentId: response.razorpay_payment_id, couponId: vm.payment.couponId }).then(
+            function(response) {
+              if (response && response.data) {
+                if (response.data.status == 1) {
+                  $state.go('dashboard')
+                } else if (response.data.status == 2) {
+                  $log.log(response.data.message);
+                }
+              } else {
+                $log.log('There is some issue, please try after some time');
+              }
+            },
+            function(response) {
+              $log.log('There is some issue, please try after some time');
+            }
+          );
         },
-        function(response) {
-          growl.warning('There is some issue, please try after some time');
+        "prefill": {
+          "name": studentInfo.userName,
+          "email": studentInfo.email,
+          "contact": studentInfo.mobile
+        },
+        "notes": {
+          "address": ''
+        },
+        "theme": {
+          "color": "#18BC9C"
         }
-      );
+      };
+      var rzp1 = new Razorpay(rzpOptions);
+      rzp1.open()
     }
 
     function getInstamojoCall() {
