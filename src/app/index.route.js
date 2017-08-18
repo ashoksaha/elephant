@@ -374,6 +374,10 @@
                 url: '/coupons',
                 templateUrl: 'app/admin/coupon.html'
             })
+            .state('admin.lms.addCoupon', {
+                url: '/addCoupons',
+                templateUrl: 'app/admin/addCoupon.html'
+            })
             .state('admin.settings', {
                 url: '/settings',
                 templateUrl: 'app/admin/settings.html',

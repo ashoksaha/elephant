@@ -295,6 +295,30 @@
 
     function getRazorCall() {
       var studentInfo = CommonInfo.getInfo('studentInfo');
+      if (vm.payment.coupon) {
+        $http.post(CommonInfo.getAppUrl() + "/applyCoupon", { courseId: selectedCourseId, couponCode: vm.payment.coupon, studentId: studentInfo.userId, isInUse: true }).then(
+          function(response) {
+            if (response && response.data) {
+              if (response.data.status == 1) {
+                getRazorRequestCall();
+              } else if (response.data.status == 2) {
+                growl.info(response.data.message);
+              }
+            } else {
+              growl.warning('There is some issue, please try after some time');
+            }
+          },
+          function(response) {
+            growl.warning('There is some issue, please try after some time');
+          }
+        );
+      } else {
+        getRazorRequestCall();
+      }
+    }
+
+    function getRazorRequestCall() {
+      var studentInfo = CommonInfo.getInfo('studentInfo');
       var pg = _.find(vm.paymentGateways, { 'name': 'Razorpay' });
       var rzpOptions = {
         "key": pg.apiKey,
@@ -368,14 +392,17 @@
     }
 
     function applyCoupon() {
+      var studentInfo = CommonInfo.getInfo('studentInfo');
+      vm.payment.discount = 0;
+      vm.payment.couponId = '';
       if (vm.payment && vm.payment.coupon) {
-        $http.post(CommonInfo.getAppUrl() + "/applyCoupon", { courseId: selectedCourseId, couponCode: vm.payment.coupon }).then(
+        $http.post(CommonInfo.getAppUrl() + "/applyCoupon", { courseId: selectedCourseId, couponCode: vm.payment.coupon, studentId: studentInfo.userId }).then(
           function(response) {
             if (response && response.data) {
               if (response.data.status == 1) {
                 growl.success(response.data.message);
-                vm.payment.discount = response.data.data.discount;
-                vm.payment.couponId = response.data.data.couponId;
+                vm.payment.discount = response.data.data[1];
+                vm.payment.couponId = response.data.data[2];
               } else if (response.data.status == 2) {
                 growl.info(response.data.message);
               }

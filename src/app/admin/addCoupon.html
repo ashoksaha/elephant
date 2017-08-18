@@ -1,0 +1,135 @@
+<div class="">
+  <div class="row account-settings">
+    <div class="tab-content">
+      <h3>Coupon</h3>
+      <hr>
+      <form class="edit_user" id="edit_user_727839" method="post">
+        <div layout="row">
+          <md-input-container flex="50">
+            <label>Code</label>
+            <input type="text" ng-model="vm.coupon.code" />
+          </md-input-container>
+          <div flex="5" hide-xs hide-sm>
+            <!-- Spacer //-->
+          </div>
+          <md-input-container flex="50">
+            <label>Amount</label>
+            <input type="text" ng-model="vm.coupon.amount" />
+          </md-input-container>
+        </div>
+        <div layout="row">
+          <md-input-container flex="50">
+            <label>Type</label>
+            <md-select ng-model="vm.coupon.discountType">
+              <md-option ng-value="item" ng-repeat="item in vm.couponType">{{item | capitalize}}</md-option>
+            </md-select>
+          </md-input-container>
+          <div flex="5" hide-xs hide-sm>
+            <!-- Spacer //-->
+          </div>
+          <md-input-container flex="50">
+            <label>Description</label>
+            <textarea rows="1" ng-model="vm.coupon.description"></textarea>
+          </md-input-container>
+        </div>
+        <div layout="row">
+          <md-input-container flex="50">
+            <label>Coupon Limit</label>
+            <input type="text" ng-model="vm.coupon.usageLimit" />
+          </md-input-container>
+          <div flex="5" hide-xs hide-sm>
+            <!-- Spacer //-->
+          </div>
+          <md-input-container flex="50">
+            <label>Per User Limit</label>
+            <input type="text" ng-model="vm.coupon.limitPerUser" />
+          </md-input-container>
+        </div>
+        <div layout="row">
+          <md-input-container flex="50">
+            <label>Start From</label>
+            <md-datepicker ng-model="vm.coupon.dateStart" md-open-on-focus></md-datepicker>
+          </md-input-container>
+          <div flex="5" hide-xs hide-sm>
+            <!-- Spacer //-->
+          </div>
+          <md-input-container flex="50">
+            <label>Expires On</label>
+            <md-datepicker ng-model="vm.coupon.dateExpires" md-open-on-focus></md-datepicker>
+          </md-input-container>
+        </div>
+        <h3>Include</h3>
+        <hr />
+        <div layout="row" style="margin:18px 0px;padding:2px;">
+          <div flex="50">
+            <md-chips ng-model="vm.coupon.students" md-autocomplete-snap md-transform-chip="$chip" md-require-match="true">
+              <md-autocomplete md-selected-item="vm.couponStudent" md-search-text="searchStudentText" md-items="item in vm.querySearchStudent(searchStudentText)" md-item-text="item.userName" placeholder="Search for a student" md-dropdown-position="bottom">
+                <span md-highlight-text="searchStudentText">{{item.userName}} :: {{item.email}}</span>
+              </md-autocomplete>
+              <md-chip-template>
+                <span>
+                	<strong>{{$chip.userName}}</strong>
+            		<em>({{$chip.email}})</em>
+        		</span>
+              </md-chip-template>
+            </md-chips>
+          </div>
+          <div flex="5" hide-xs hide-sm>
+            <!-- Spacer //-->
+          </div>
+          <div flex="50">
+            <md-chips ng-model="vm.coupon.products" md-autocomplete-snap md-transform-chip="$chip" md-require-match="true">
+              <md-autocomplete md-selected-item="vm.couponCourse" md-search-text="searchCourseText" md-items="item in vm.querySearchCourse(searchCourseText)" md-item-text="item.title" placeholder="Search for a Course" md-dropdown-position="bottom">
+                <span md-highlight-text="searchCourseText">{{item.title}}</span>
+              </md-autocomplete>
+              <md-chip-template>
+                <span>
+            		<strong>{{$chip.title}}</strong>
+        		</span>
+              </md-chip-template>
+            </md-chips>
+          </div>
+          </div>
+          <h3>Exclude</h3>
+          <hr />
+          <div layout="row" style="margin:18px 0px;padding:2px;">
+            <div flex="50">
+              <md-chips ng-model="vm.coupon.excludedStudents" md-autocomplete-snap md-transform-chip="$chip" md-require-match="true">
+                <md-autocomplete md-selected-item="vm.excludedStudent" md-search-text="searchExcludedStudentText" md-items="item in vm.querySearchStudent(searchExcludedStudentText)" md-item-text="item.userName" placeholder="Search for a student" md-dropdown-position="bottom">
+                  <span md-highlight-text="searchExcludedStudentText">{{item.userName}} :: {{item.email}}</span>
+                </md-autocomplete>
+                <md-chip-template>
+                  <span>
+            		<strong>{{$chip.userName}}</strong>
+            		<em>({{$chip.email}})</em>
+        		</span>
+                </md-chip-template>
+              </md-chips>
+            </div>
+            <div flex="5" hide-xs hide-sm>
+              <!-- Spacer //-->
+            </div>
+            <div flex="50">
+              <md-chips ng-model="vm.coupon.excludedProducts" md-autocomplete-snap md-transform-chip="$chip" md-require-match="true">
+                <md-autocomplete md-selected-item="vm.excludedProduct" md-search-text="searchExcludedCourseText" md-items="item in vm.querySearchCourse(searchExcludedCourseText)" md-item-text="item.title" placeholder="Search for a Course" md-dropdown-position="bottom">
+                  <span md-highlight-text="searchExcludedCourseText">{{item.title}}</span>
+                </md-autocomplete>
+                <md-chip-template>
+                  <span>
+            		<strong>{{$chip.title}}</strong>
+        		</span>
+                </md-chip-template>
+              </md-chips>
+            </div>
+          </div>
+          <div layout-gt-sm="row">
+            <md-input-container flex="50">
+            </md-input-container>
+            <md-input-container flex="50">
+              <md-button class="md-raised md-primary" ng-click="vm.saveCoupon()">Save</md-button>
+            </md-input-container>
+          </div>
+      </form>
+      </div>
+    </div>
+  </div>

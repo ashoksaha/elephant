@@ -15,6 +15,18 @@
     vm.searchUnit = {
       name: ''
     };
+    vm.coupon = {
+      students: [],
+      products: [],
+      excludedStudents: [],
+      excludedProducts: []
+    };
+    vm.emptyCoupon = {
+      students: [],
+      products: [],
+      excludedStudents: [],
+      excludedProducts: []
+    };
     vm.activeCourseCategories = [];
     vm.inactiveCourseCategories = [];
     vm.activeUnits = [];
@@ -74,6 +86,7 @@
       ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
       ['html', 'insertImage', 'insertLink', 'insertVideo']
     ];
+    vm.couponType = ["flat", "percent"];
 
     vm.createCourseCategory = createCourseCategory;
     vm.editCategory = editCategory;
@@ -97,11 +110,14 @@
     vm.updateSocialShares = updateSocialShares;
     vm.getCoupons = getCoupons;
     vm.addCoupon = addCoupon;
+    vm.saveCoupon = saveCoupon;
 
     vm.searchCourses = searchCourses;
     vm.searchActiveCourses = searchActiveCourses;
     vm.searchInactiveCourses = searchInactiveCourses;
     vm.searchUnits = searchUnits;
+    vm.querySearchStudent = querySearchStudent;
+    vm.querySearchCourse = querySearchCourse;
 
     vm.addReview = addReview;
     vm.addCommentToCall = addCommentToCall;
@@ -1089,11 +1105,12 @@
 
     function getCoupons() {
       vm.lmsTab = 7;
+      //getAllStudents();
       getAllCopuons();
     }
 
     function getAllCopuons() {
-      $http.get(CommonInfo.getAppUrl() + "/getallcoupons").then(
+      $http.post(CommonInfo.getAppUrl() + "/getallcoupons").then(
         function(response) {
           if (response && response.data) {
             if (response.data.status == 1) {
@@ -1112,48 +1129,101 @@
       );
     }
 
-    function addCoupon(coupon) {
-      vm.coupon = coupon || {};
-      var parentEl = angular.element(document.body);
-      $mdDialog.show({
-        parent: parentEl,
-        targetEvent: event,
-        scope: $scope.$new(),
-        fullscreen: true,
-        templateUrl: 'app/admin/addCoupon.tmpl.html',
-        controller: DialogController
-      });
-
-      function DialogController($scope, $mdDialog, $http, growl) {
-        $scope.couponType = ["flat", "percent"];
-        $scope.closeDialog = function() {
-          $mdDialog.hide();
+    function getAllStudents() {
+      $http.post(CommonInfo.getAppUrl() + "/getallstudents").then(
+        function(response) {
+          if (response && response.data) {
+            if (response.data.status == 1) {
+              vm.allStudents = response.data.data;
+            } else if (response.data.status == 2) {
+              $log.log(response.data.message);
+            }
+          } else {
+            $log.log('There is some issue, please try after some time');
+          }
+        },
+        function(response) {
+          $log.log('There is some issue, please try after some time');
         }
+      );
+    }
 
-        $scope.addCoupon = function() {
-          vm.coupon.dateStart = vm.coupon.dateStart ? moment(vm.coupon.dateStart).format("YYYY-MM-DD") : '';
-          vm.coupon.dateExpires = vm.coupon.dateExpires ? moment(vm.coupon.dateExpires).format("YYYY-MM-DD") : '';
-          //vm.coupon.discountType = $scope.couponType[vm.coupon.discountType];
-          $http.post(CommonInfo.getAppUrl() + "/createCoupon", vm.coupon).then(
-            function(response) {
-              if (response && response.data) {
-                if (response.data.status == 1) {
-                  growl.success('Coupon updated successfuly');
-                  getAllCopuons();
-                  $mdDialog.hide();
-                } else if (response.data.status == 2) {
-                  growl.info(response.data.message);
-                }
-              } else {
-                growl.info('There is some issue, please try after some time');
+    function querySearchStudent(searchText) {
+      var deferred = $q.defer();
+
+      $http
+        .post(CommonInfo.getAppUrl() + "/searchstudent", { searchText: searchText, ignoreBlockUI: true })
+        .success(function(data, status, headers, config) {
+          deferred.resolve(data.data);
+        });
+
+      return deferred.promise;
+    }
+
+    function querySearchCourse(searchText) {
+      var deferred = $q.defer();
+
+      $http
+        .post(CommonInfo.getAppUrl() + "/searchcourses", { name: searchText, ignoreBlockUI: true })
+        .success(function(data, status, headers, config) {
+          deferred.resolve(data.data);
+        });
+
+      return deferred.promise;
+    }
+
+    function saveCoupon() {
+      vm.coupon.dateStart = vm.coupon.dateStart ? moment(vm.coupon.dateStart).format("YYYY-MM-DD") : '';
+      vm.coupon.dateExpires = vm.coupon.dateExpires ? moment(vm.coupon.dateExpires).format("YYYY-MM-DD") : '';
+      vm.coupon.productIds = _.compact(_.map(vm.coupon.products, 'id')).join(',');
+      vm.coupon.excludedProductIds = _.compact(_.map(vm.coupon.excludedProducts, 'id')).join(',');
+      vm.coupon.studentIds = _.compact(_.map(vm.coupon.students, 'id')).join(',');
+      vm.coupon.excludedStudentIds = _.compact(_.map(vm.coupon.excludedStudents, 'id')).join(',');
+      vm.coupon.createdBy = vm.userInfo.id;
+      $http.post(CommonInfo.getAppUrl() + "/createCoupon", vm.coupon).then(
+        function(response) {
+          if (response && response.data) {
+            if (response.data.status == 1) {
+              growl.success('Coupon updated successfuly');
+              getAllCopuons();
+            } else if (response.data.status == 2) {
+              growl.info(response.data.message);
+            }
+          } else {
+            growl.info('There is some issue, please try after some time');
+          }
+        },
+        function(response) {
+          growl.info('There is some issue, please try after some time');
+        }
+      );
+    }
+
+    function addCoupon(coupon) {
+      vm.coupon = coupon ? coupon : angular.copy(vm.emptyCoupon);
+      if (coupon) {
+        vm.coupon.products = [];
+        vm.coupon.excludedProducts = [];
+        vm.coupon.students = [];
+        vm.coupon.excludedStudents = [];
+        $http.post(CommonInfo.getAppUrl() + "/getCouponDetail", { id: vm.coupon.id }).then(
+          function(response) {
+            if (response && response.data) {
+              if (response.data.status == 1) {
+                _.merge(vm.coupon, response.data.data);
+              } else if (response.data.status == 2) {
+                growl.info(response.data.message);
               }
-            },
-            function(response) {
+            } else {
               growl.info('There is some issue, please try after some time');
             }
-          );
-        }
+          },
+          function(response) {
+            growl.info('There is some issue, please try after some time');
+          }
+        );
       }
+      $state.go('admin.lms.addCoupon');
     }
   }
 })();
