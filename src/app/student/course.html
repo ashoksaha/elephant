@@ -52,7 +52,9 @@
           <!-- <div class="embed-responsive embed-responsive-16by9" ng-if="vm.unit.videoId">
             <p ng-bind-html="vm.unit.videoHtml" class="text-center embed-responsive-item"></p>
           </div> -->
-          <p ng-bind-html="vm.unit.videoHtml" ng-if="vm.unit.videoHtml" class="text-center"></p>
+          <p ng-if="vm.unit.OTP" class="text-center">
+            <div ng-attr-id="{{'vdo' + vm.unit.OTP}}" class="vdoBox"></div>
+          </p>
           <p ng-bind-html="vm.unit.embedVideo" ng-if="vm.unit.embedVideo"></p>
           <p ng-bind-html="vm.unit.unitDescription" ng-if="vm.unit.unitDescription"></p>
           <p ng-bind="vm.unit.description" ng-if="vm.unit.description"></p>

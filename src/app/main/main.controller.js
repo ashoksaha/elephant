@@ -32,6 +32,7 @@
     vm.displayLecture = {
       currentIndex: 0,
       videos: [
+        { video: $sce.trustAsHtml('<iframe src="https://www.youtube.com/embed/MdptSuZvQLA?modestbranding=1" frameborder="0" allowfullscreen></iframe>') },
         { video: $sce.trustAsHtml('<iframe src="https://www.youtube.com/embed/A3t_2pi-qTY?modestbranding=1" frameborder="0" allowfullscreen></iframe>') },
         { video: $sce.trustAsHtml('<iframe src="https://www.youtube.com/embed/0K3yWSG4wyI?modestbranding=1" frameborder="0" allowfullscreen></iframe>') },
         { video: $sce.trustAsHtml('<iframe src="https://www.youtube.com/embed/ACv44Xcvrsc?modestbranding=1" frameborder="0" allowfullscreen></iframe>') },

@@ -6,7 +6,7 @@
     .controller('CourseDetailsController', CourseDetailsController);
 
   /** @ngInject */
-  function CourseDetailsController(CommonInfo, $log, $http, $mdDialog, $stateParams, $scope, $state, $anchorScroll, growl, _, $sce, RouterTracker) {
+  function CourseDetailsController(CommonInfo, $log, $http, $mdDialog, $stateParams, $scope, $state, $anchorScroll, growl, _, $sce, RouterTracker, $timeout) {
     var vm = this;
     var selectedCourseId;
     var selectedCourseName;
@@ -67,48 +67,48 @@
           if (response && response.data) {
             if (response.data.status == 1) {
               //if (selectedCourseName.replace(/-/g, " ").trim() == response.data.data[0].title.trim()) {
-                vm.course = response.data.data[0];
-                if (vm.course.description && vm.course.units && vm.course.units.length > 0) {
-                  vm.charCount = (vm.course.description.length > 315) ? 300 : 0;
-                }
-                if (vm.course && vm.course.units) {
-                  vm.course.unitTypeCount = _.countBy(vm.course.units, 'unitType');
-                }
-                if(vm.course && vm.course.courseCurriculum && vm.course.units.length > 0) {
-                    var units = [];
-                    var unitIds = vm.course.courseCurriculum.toString().split(',');
-                    _.forEach(unitIds, function(value, key){
-                        units.push(_.find(vm.course.units, { 'id': parseInt(value) }));
-                    });
-                    vm.course.units = units;
-                }
-                vm.course.courseStartDate = moment(vm.course.courseStartDate).format("MMM DD, YYYY");
-                vm.course.demoVideo = angular.isString(vm.course.demoVideo) ? $sce.trustAsHtml(vm.course.demoVideo) : vm.course.demoVideo;
-                if (vm.course.socialShare)
-                  getSocialShare();
-                if (vm.course.reviewCourse)
-                  getCourseReview();
-                var routerInfo = RouterTracker.getPreviousRoute();
-                if (data.studentId && !vm.course.isSubscribed && routerInfo && routerInfo.route && routerInfo.route.name == 'courseDetails') {
-                  getPaymentMethodes();
-                  vm.showPaymentOptions = true;
-                  vm.payment.amount = vm.course.courseFee;
-                }
-                getInstructorTestimonials();
-                // var studentInfo = CommonInfo.getInfo('studentInfo');
-                // vm.payuData = {
-                //     key: 'gtKFFx',
-                //     txnid: 'product_' + vm.course.id + 'S_' + studentInfo.userId,
-                //     amount: parseFloat('200.00').toFixed(2),
-                //     productinfo: 'details_' + studentInfo.userId + 'C_' + vm.course.id,
-                //     firstname: studentInfo.name,
-                //     email: studentInfo.email,
-                //     phone: studentInfo.mobile,
-                //     surl: 'http://139.44.59.117/#/dashboard',
-                //     furl: 'http://139.44.59.117/#/dashboard'
-                // };
-                // var hashString = vm.payuData.key + '|' + vm.payuData.txnid + '|' + vm.payuData.amount + '|' + vm.payuData.productinfo + '|' + vm.payuData.firstname + '|' + vm.payuData.email + '|||||||||||eCwWELxi';
-                // vm.payuData.hash = SHA512(hashString).toLowerCase();
+              vm.course = response.data.data[0];
+              if (vm.course.description && vm.course.units && vm.course.units.length > 0) {
+                vm.charCount = (vm.course.description.length > 315) ? 300 : 0;
+              }
+              if (vm.course && vm.course.units) {
+                vm.course.unitTypeCount = _.countBy(vm.course.units, 'unitType');
+              }
+              if (vm.course && vm.course.courseCurriculum && vm.course.units.length > 0) {
+                var units = [];
+                var unitIds = vm.course.courseCurriculum.toString().split(',');
+                _.forEach(unitIds, function(value, key) {
+                  units.push(_.find(vm.course.units, { 'id': parseInt(value) }));
+                });
+                vm.course.units = units;
+              }
+              vm.course.courseStartDate = moment(vm.course.courseStartDate).format("MMM DD, YYYY");
+              vm.course.demoVideo = angular.isString(vm.course.demoVideo) ? $sce.trustAsHtml(vm.course.demoVideo) : vm.course.demoVideo;
+              if (vm.course.socialShare)
+                getSocialShare();
+              if (vm.course.reviewCourse)
+                getCourseReview();
+              var routerInfo = RouterTracker.getPreviousRoute();
+              if (data.studentId && !vm.course.isSubscribed && routerInfo && routerInfo.route && routerInfo.route.name == 'courseDetails') {
+                getPaymentMethodes();
+                vm.showPaymentOptions = true;
+                vm.payment.amount = vm.course.courseFee;
+              }
+              getInstructorTestimonials();
+              // var studentInfo = CommonInfo.getInfo('studentInfo');
+              // vm.payuData = {
+              //     key: 'gtKFFx',
+              //     txnid: 'product_' + vm.course.id + 'S_' + studentInfo.userId,
+              //     amount: parseFloat('200.00').toFixed(2),
+              //     productinfo: 'details_' + studentInfo.userId + 'C_' + vm.course.id,
+              //     firstname: studentInfo.name,
+              //     email: studentInfo.email,
+              //     phone: studentInfo.mobile,
+              //     surl: 'http://139.44.59.117/#/dashboard',
+              //     furl: 'http://139.44.59.117/#/dashboard'
+              // };
+              // var hashString = vm.payuData.key + '|' + vm.payuData.txnid + '|' + vm.payuData.amount + '|' + vm.payuData.productinfo + '|' + vm.payuData.firstname + '|' + vm.payuData.email + '|||||||||||eCwWELxi';
+              // vm.payuData.hash = SHA512(hashString).toLowerCase();
               //}
             } else if (response.data.status == 2) {
               $log.log(response.data.message);
@@ -450,15 +450,35 @@
         CommonInfo.setInfo('startCourse', { unitId: unit.id, courseId: vm.course.id });
         $state.go('startCourse', { courseName: vm.course.title.replace(/ /g, "-") });
       } else if (!vm.course.isSubscribed && unit.freeUnit) {
-        var studentInfo = CommonInfo.getInfo('studentInfo') || {name: "demoUser", email: "demo@flavido.com", userId: 49};
-        $http.post(CommonInfo.getAppUrl() + "/getunitdetailsbyunit_id", { id: unit.id, userName: studentInfo.name, userEmail: studentInfo.email, courseId: selectedCourseId , studentId: studentInfo.userId }).then(
+        var studentInfo = CommonInfo.getInfo('studentInfo') || { name: "demoUser", email: "demo@flavido.com", userId: 49 };
+        $http.post(CommonInfo.getAppUrl() + "/getunitdetailsbyunit_id", { id: unit.id, userName: studentInfo.name, userEmail: studentInfo.email, courseId: selectedCourseId, studentId: studentInfo.userId }).then(
           function(response) {
             if (response && response.data) {
               if (response.data.status == 1) {
                 vm.unit = response.data.data;
                 vm.unit.unitDescription = angular.isString(vm.unit.unitDescription) ? $sce.trustAsHtml(vm.unit.unitDescription) : vm.unit.unitDescription;
                 vm.unit.embedVideo = angular.isString(vm.unit.embedVideo) ? $sce.trustAsHtml(vm.unit.embedVideo) : vm.unit.embedVideo;
-                vm.unit.videoHtml = angular.isString(vm.unit.videoHtml) ? $sce.trustAsHtml(vm.unit.videoHtml) : vm.unit.videoHtml;
+                //vm.unit.videoHtml = angular.isString(vm.unit.videoHtml) ? $sce.trustAsHtml(vm.unit.videoHtml) : vm.unit.videoHtml;
+                /*if(vm.unit.videoId) {
+                    $timeout(function() {
+                      (function(v, i, d, e, o) {
+                        v[o] = v[o] || {};
+                        v[o].add = v[o].add || function V(a) {
+                          (v[o].d = v[o].d || []).push(a);
+                        };
+                        if (!v[o].l) {
+                          v[o].l = 1 * new Date();
+                          var a = i.createElement(d), m = i.getElementsByTagName(d)[0];
+                          a.async = 1;
+                          a.src = e;
+                          m.parentNode.insertBefore(a, m);
+                        }
+                      })(window, document, 'script', '//de122v0opjemw.cloudfront.net/vdo.js', 'vdo');
+                      vdo.add({
+                        o: vm.unit.OTP,
+                      });
+                    });
+                }*/
                 if (angular.isString(vm.unit.downloadLink))
                   vm.unit.downloadLink = JSON.parse(vm.unit.downloadLink);
                 if (vm.unit.testId) {
@@ -487,7 +507,7 @@
                     '<i class="fa fa-download" aria-hidden="true"></i> Download Video' +
                     '</md-button>' +
                     '<div ng-if="vm.unit.videoId" class="embed-responsive embed-responsive-16by9">' +
-                    '<p ng-bind-html="vm.unit.videoHtml" class="text-center embed-responsive-item"></p>' +
+                    '<p  ng-attr-id="{{\'vdo\' + vm.unit.OTP}}" class="text-center embed-responsive-item vdoBox" style="z-index: 85;"></p>' +
                     '</div>' +
                     '<p ng-bind-html="vm.unit.embedVideo"></p>' +
                     '<p ng-bind-html="vm.unit.unitDescription"></p>' +
@@ -528,7 +548,30 @@
                   controller: DialogController
                 });
 
-                function DialogController($scope, $mdDialog) {
+                function DialogController($scope, $mdDialog, $document) {
+                  if (vm.unit.videoId) {
+                    $timeout(function() {
+                      angular.element( document.querySelector('.vdoBox') ).empty();
+                      (function(v, i, d, e, o) {
+                        v[o] = v[o] || {};
+                        v[o].add = v[o].add || function V(a) {
+                          (v[o].d = v[o].d || []).push(a);
+                        };
+                        if (!v[o].l) {
+                          v[o].l = 1 * new Date();
+                          var a = i.createElement(d),
+                            m = i.getElementsByTagName(d)[0];
+                          a.async = 1;
+                          a.src = e;
+                          m.parentNode.insertBefore(a, m);
+                        }
+                      })(window, document, 'script', 'https://de122v0opjemw.cloudfront.net/vdo.js', 'vdo');
+                      console.log(vm.unit.OTP);
+                      vdo.add({
+                        o: vm.unit.OTP,
+                      });
+                    });
+                  }
                   $scope.closeDialog = function() {
                     $mdDialog.hide();
                   }

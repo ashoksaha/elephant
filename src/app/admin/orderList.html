@@ -1,5 +1,5 @@
 <div ng-cloak>
-    <div class="container groups__container">
+    <div class="container groups__container" style="width:95%;">
         <h2> Orders </h2>
         <div class="row">
             <!-- Sidebar -->
@@ -65,6 +65,7 @@
                                         <th>#</th>
                                         <th></th>
                                         <th>ID</th>
+                                        <th>Executive</th>
                                         <th>Course</th>
                                         <th>Student</th>
                                         <th>Ordered On</th>
@@ -81,6 +82,7 @@
                                             <i class="fa fa-circle" aria-hidden="true" ng-style="{ 'color': order.status ? 'green' : 'red'}"></i>
                                         </td>
                                         <td ng-bind="order.txnID"></td>
+                                        <td ng-bind="order.salesName || 'Self'"></td>
                                         <td>
                                             <span ng-bind="order.courseName"></span>
                                             <br />by <span ng-bind="order.fullname"></span>

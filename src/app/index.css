@@ -107,6 +107,8 @@ ul.tagit input[type="text"] {
 
 
 
+
+
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 
 html {
@@ -762,6 +764,8 @@ hr {
 
 
 
+
+
 /*.btn,
 .admin .btn-change-state {
     border: none;
@@ -1391,6 +1395,8 @@ hr {
   width: 100%;
   height: 100%
 }
+
+
 
 
 
@@ -4969,6 +4975,8 @@ th {
 
 
 
+
+
 /*.tabs.nav-tabs .selected::after,
 .tabs.nav-tabs .active::after {
     content: '';
@@ -5689,6 +5697,8 @@ body {
 
 
 
+
+
 /*h1,
 h2,
 h3,
@@ -5916,6 +5926,8 @@ mark::selection {
   background-color: #1f697f;
   color: white
 }
+
+
 
 
 
@@ -9359,6 +9371,8 @@ a.stories--quote:hover {
 
 
 
+
+
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -11138,6 +11152,8 @@ a.stories--quote:hover {
 
 
 
+
+
 /*.groups__courses-overview tbody td:last-child {
     text-align: right
 }*/
@@ -12851,6 +12867,8 @@ a.stories--quote:hover {
 
 
 
+
+
 /* Text angular css for height starts*/
 
 .import-questions .ta-editor {
@@ -12950,6 +12968,8 @@ h3.slider_heading {
     width: 100%;
   }
 }
+
+
 
 
 
@@ -13105,6 +13125,8 @@ application_v2-1604891….css:1 .btn-quinary {
 
 
 
+
+
 /*************************Drag and drop css[Starts]*************************************/
 
 .simpleDemo ul[dnd-list] {
@@ -13143,11 +13165,15 @@ application_v2-1604891….css:1 .btn-quinary {
 
 
 
+
+
 /*************************Drag and drop css[Ends]*************************************/
 
 .md-chip-input-container {
   width: 100%;
 }
+
+
 
 
 
@@ -13189,12 +13215,16 @@ application_v2-1604891….css:1 .btn-quinary {
 
 
 
+
+
 /*animation element*/
 
 .animation-element {
   opacity: 0;
   position: relative;
 }
+
+
 
 
 
@@ -13222,6 +13252,8 @@ application_v2-1604891….css:1 .btn-quinary {
   -ms-transform: translate(0px, 0px);
   transform: translate3d(0px, 0px, 0px);
 }
+
+
 
 
 
@@ -13300,6 +13332,8 @@ application_v2-1604891….css:1 .btn-quinary {
   display: none;
 }
 
+
+
 /*media queries for small devices*/
 
 @media screen and (max-width: 678px) {
@@ -13322,4 +13356,20 @@ application_v2-1604891….css:1 .btn-quinary {
     height: 85px;
     margin-bottom: 5px;
   }
+}
+
+.youtube-subscribe {
+  padding-bottom: 10px;
+  float: right;
+  position: fixed;
+  right: 0px;
+  top: 72px;
+  z-index: 999;
+}
+
+.vdoBox {
+  margin: 0 auto;
+  height: 400px;
+  width: 75%;
+  max-width: 100%;
 }

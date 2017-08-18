@@ -49,11 +49,14 @@
                     function(response) {
                         if (response && response.data) {
                             if (response.data.status == 1) {
-                                if(response.data.data.emailId == 'negi.udit@gmail.com' || response.data.data.emailId == 'yogesh@flavido.com') {
+                                if(response.data.data.emailId == 'negi.udit@gmail.com' || response.data.data.emailId == 'yogesh@flavido.com' || response.data.data.emailId == 'admin@flavido.com') {
                                     response.data.data.isAdmin = true;
                                 }
                                 CommonInfo.setInfo('userInfo', response.data.data);
-                                $state.go('admin.dashboard');
+                                if(response.data.data.isAdmin)
+                                    $state.go('admin.dashboard');
+                                else
+                                    $state.go('admin.lms.courses');
                             } else if (response.data.status == 2) {
                                 growl.info(response.data.message);
                             }
