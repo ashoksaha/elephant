@@ -68,6 +68,12 @@
             if (response.data.status == 1) {
               //if (selectedCourseName.replace(/-/g, " ").trim() == response.data.data[0].title.trim()) {
               vm.course = response.data.data[0];
+              if(studentInfo && studentInfo.userId) {
+                var recentCourses = CommonInfo.getInfo('recentCourses' + studentInfo.userId);
+                recentCourses = recentCourses ? recentCourses : [];
+                recentCourses.push(vm.course);
+                CommonInfo.setInfo('recentCourses' + studentInfo.userId, _.uniqBy(recentCourses, 'id'));
+              }
               if (vm.course.description && vm.course.units && vm.course.units.length > 0) {
                 vm.charCount = (vm.course.description.length > 315) ? 300 : 0;
               }

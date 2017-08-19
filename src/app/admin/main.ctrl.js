@@ -21,7 +21,6 @@
       $scope.$watchCollection(vm.userInfo,
         function(newValue, oldValue) {
           if(!vm.userInfo || !vm.userInfo.id){
-            console.log(123)
             $state.go('adminLogin');
           }
         }, true

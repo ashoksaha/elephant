@@ -11,8 +11,10 @@
 
     vm.courseTab = 1;
     vm.subscribedCourses = [];
+    vm.recentCourses = [];
     vm.invitationMail;
     vm.studentInfo = {};
+    vm.homeLearnSelected = 0;
 
     vm.showCourseDetails = showCourseDetails;
     vm.sendInvitation = sendInvitation;
@@ -31,6 +33,8 @@
           $state.go('main');
         }
         getSubscribedCourses();
+        vm.recentCourses = _.reverse(CommonInfo.getInfo('recentCourses' + vm.studentInfo.userId));
+        console.log(vm.recentCourses);
       }
     }
 
