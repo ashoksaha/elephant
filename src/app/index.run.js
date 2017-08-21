@@ -6,9 +6,10 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($log) {
+  function runBlock($log, ngMeta) {
 
     $log.debug('runBlock end');
+    ngMeta.init();
   }
 
 })();

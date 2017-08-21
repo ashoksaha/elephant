@@ -1,0 +1,51 @@
+<md-dialog aria-label="Add Mete Tags">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Course Meta Tags</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="closeDialog()">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="min-width:800px;">
+      <div class="md-dialog-content">
+        <div layout="row" ng-repeat-start="metaTag in vm.courseMetaTag.seoDetails">
+          <md-input-container flex="25">
+            <label>Tag</label>
+            <md-select ng-model="metaTag.tag">
+              <md-option ng-repeat="tag in tagLists" ng-value="tag.tag">
+                {{tag.text}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <div flex="5" hide-xs hide-sm>
+            <!-- Spacer //-->
+          </div>
+          <md-input-container flex="65">
+            <label>Value</label>
+            <input ng-model="metaTag.value" required="required" />
+          </md-input-container>
+          <md-input-container flex="5">
+            <a class="btn btn-default btn-sm pull-right" href="javascript:void(0)" ng-click="vm.courseMetaTag.seoDetails.splice($index, 1);">
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+          </a>
+          </md-input-container>
+        </div>
+        <a class="btn btn-warning btn-sm pull-right" href="javascript:void(0)" ng-click="vm.courseMetaTag.seoDetails.push({ 'tag': '', 'value': '' })" ng-if="$last" ng-repeat-end>
+            <i class="fa fa-plus-square-o" aria-hidden="true"></i> Add New
+          </a>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="closeDialog()">
+        Cancel
+      </md-button>
+      <md-button ng-click="saveSeoMeta()">
+        OK
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

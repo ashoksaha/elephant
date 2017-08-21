@@ -22,7 +22,8 @@
             'ngCsv',
             'ui.bootstrap',
             'dndLists',
-            'ngDisableScroll'
+            'ngDisableScroll',
+            'ngMeta'
         ]);
 
 })();

@@ -6,7 +6,7 @@
     .controller('InstructorCoursesController', InstructorCoursesController);
 
   /** @ngInject */
-  function InstructorCoursesController(CommonInfo, $log, $http, $mdDialog, $stateParams, $scope, $state, $anchorScroll, growl, _, moment) {
+  function InstructorCoursesController(CommonInfo, $log, $http, $mdDialog, $stateParams, $scope, $state, $anchorScroll, growl, _, moment, ngMeta) {
     var vm = this;
     var selectedInstructorId;
 
@@ -61,6 +61,14 @@
                 if (studentInfo && studentInfo.userId) {
                   vm.instructorDetails.isFollowed = _.filter(vm.instructorDetails.followers, { 'id': studentInfo.userId }).length ? true : false;
                 }
+              }
+              if (vm.instructorDetails.seo && vm.instructorDetails.seo.length > 0) {
+                _.forEach(vm.instructorDetails.seo, function (value){
+                  if(value.tag == "title")
+                    ngMeta.setTitle(value.value, '');
+                  else
+                    ngMeta.setTag(value.tag, value.value);  
+                });
               }
               getInstructorTestimonials();
 

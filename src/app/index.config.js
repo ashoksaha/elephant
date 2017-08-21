@@ -7,7 +7,7 @@
         .config(config);
 
     /** @ngInject */
-    function config($logProvider, $httpProvider, ADMdtpProvider, growlProvider, cfpLoadingBarProvider, blockUIConfig) {
+    function config($logProvider, $httpProvider, ADMdtpProvider, growlProvider, cfpLoadingBarProvider, blockUIConfig, ngMetaProvider) {
         // Enable log
         $logProvider.debugEnabled(true);
 
@@ -26,6 +26,10 @@
                 return false;
             }
         };
+
+        ngMetaProvider.setDefaultTitle('IAS Online Coaching Classes – Flavido - IAS Preparations Online');
+        ngMetaProvider.setDefaultTag('description', 'IAS Online Coaching Classes by IAS Academy. Live Online Coaching Classes for IAS, UPSC Exam preparation for General studies, Current affairs & for all courses.');
+        ngMetaProvider.setDefaultTag('keywords', 'ias, upsc, online, coaching, classes, preparation');
     }
 
     function flavidoInterceptor() {

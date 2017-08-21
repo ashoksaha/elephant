@@ -1,11 +1,11 @@
 <div ng-cloak>
-    <div class="site-wrap">
-        <section class="bg bg-navigation" id="logged-out-header">
-            <div class="container">
-                <main-navbar></main-navbar>
-            </div>
-        </section>
-        <!-- <section class="courses__search">
+  <div class="site-wrap">
+    <section class="bg bg-navigation" id="logged-out-header">
+      <div class="container">
+        <main-navbar></main-navbar>
+      </div>
+    </section>
+    <!-- <section class="courses__search">
             <div class="container">
                 <form class="js-search-with-colons" method="get">
                     <div class="search search--big">
@@ -42,37 +42,34 @@
                 </form>
             </div>
         </section> -->
-        <section class="courses__upcoming" ng-if="vm.allInstructors.length > 0">
-            <div class="container">
-                <h2 class="courses__title"> Our Instructors </h2>
-                <div class="courses__upcoming-list">
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-6 text-left" ng-repeat="instructor in vm.allInstructors">
-                            <md-card md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" md-theme-watch ng-click="vm.showInstructorCourses(instructor)">
-                                <md-card-title>
-                                    <md-card-title-text>
-                                        <span class="md-headline" ng-bind="instructor.fullName">Card with image</span>
-                                        <span class="md-subhead" ng-bind="instructor.designation">Medium</span>
-                                    </md-card-title-text>
-                                    <md-card-title-media>
-                                        <div class="md-media-md card-media">
-                                            <img ng-src="{{instructor.image || '/assets/images/avatar.png'}}" class="md-card-image" alt="instructor.fullName" />
-                                        </div>
-                                    </md-card-title-media>
-                                </md-card-title>
-                               <!--  <md-card-actions layout="row" layout-align="end center">
-                                    <small style="color:#000;">
-                                        <span class="rating">
-                                            <span class="star" ng-repeat="star in vm.stars" ng-class="{'starfull' : course.courseRating - $index > 1, 'starhalf' : course.courseRating - $index > 0 && course.courseRating - $index < 1,  'starempty' : course.courseRating - $index <= 0 }"></span>
-                                        </span> (<span ng-bind="course.reviewCourse || 0"></span> Reviews)
-                                    </small>
-                                </md-card-actions> -->
-                            </md-card>
-                        </div>
+    <section class="courses__upcoming" ng-if="vm.allInstructors.length > 0">
+      <div class="container">
+        <h2 class="courses__title"> Our Instructors </h2>
+        <div class="courses__upcoming-list">
+          <div class="row">
+            <div class="col-lg-4 col-sm-6 text-left" ng-repeat="instructor in vm.allInstructors">
+              <md-card md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" md-theme-watch ng-click="vm.showInstructorCourses(instructor)">
+                <md-card-title>
+                  <md-card-title-text>
+                    <span class="md-headline" ng-bind="instructor.fullName">Card with image</span>
+                    <span class="md-subhead" ng-bind="instructor.designation">Medium</span>
+                  </md-card-title-text>
+                  <md-card-title-media>
+                    <div class="md-media-md card-media">
+                      <img ng-src="{{instructor.image || '/assets/images/avatar.png'}}" class="md-card-image" alt="{{instructor.fullName}}" />
                     </div>
-                </div>
+                  </md-card-title-media>
+                </md-card-title>
+                <!-- <md-card-actions layout="row" layout-align="end center">
+                  <md-button>Action 1</md-button>
+                  <md-button>Action 2</md-button>
+                </md-card-actions> -->
+              </md-card>
             </div>
-        </section>
-    </div>
-    <main-footer-bar></main-footer-bar>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <main-footer-bar></main-footer-bar>
 </div>
