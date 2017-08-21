@@ -110,6 +110,8 @@ ul.tagit input[type="text"] {
 
 
 
+
+
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 
 html {
@@ -768,6 +770,8 @@ hr {
 
 
 
+
+
 /*.btn,
 .admin .btn-change-state {
     border: none;
@@ -815,6 +819,8 @@ hr {
   background-color: #d5eaef;
   color: #ffffff
 }
+
+
 
 /*.btn-primary {
   background-color: #fdc551;
@@ -1397,6 +1403,8 @@ hr {
   width: 100%;
   height: 100%
 }
+
+
 
 
 
@@ -4973,6 +4981,8 @@ th {
 
 
 
+
+
 /*.tabs.nav-tabs .selected::after,
 .tabs.nav-tabs .active::after {
     content: '';
@@ -5696,6 +5706,8 @@ body {
 
 
 
+
+
 /*h1,
 h2,
 h3,
@@ -5923,6 +5935,8 @@ mark::selection {
   background-color: #1f697f;
   color: white
 }
+
+
 
 
 
@@ -9372,6 +9386,8 @@ a.stories--quote:hover {
 
 
 
+
+
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -11154,6 +11170,8 @@ a.stories--quote:hover {
 
 
 
+
+
 /*.groups__courses-overview tbody td:last-child {
     text-align: right
 }*/
@@ -12870,6 +12888,8 @@ a.stories--quote:hover {
 
 
 
+
+
 /* Text angular css for height starts*/
 
 .import-questions .ta-editor {
@@ -12969,6 +12989,8 @@ h3.slider_heading {
     width: 100%;
   }
 }
+
+
 
 
 
@@ -13130,6 +13152,8 @@ application_v2-1604891….css:1 .btn-quinary {
 
 
 
+
+
 /*************************Drag and drop css[Starts]*************************************/
 
 .simpleDemo ul[dnd-list] {
@@ -13164,25 +13188,11 @@ application_v2-1604891….css:1 .btn-quinary {
 }
 
 
-
-
-
-
-
-
-
 /*************************Drag and drop css[Ends]*************************************/
 
 .md-chip-input-container {
   width: 100%;
 }
-
-
-
-
-
-
-
 
 
 /*used in Library pannel as round button starts*/
@@ -13218,22 +13228,12 @@ application_v2-1604891….css:1 .btn-quinary {
 }
 
 
-
-
-
-
-
 /*animation element*/
 
 .animation-element {
   opacity: 0;
   position: relative;
 }
-
-
-
-
-
 
 
 /*animation element sliding left*/
@@ -13259,11 +13259,6 @@ application_v2-1604891….css:1 .btn-quinary {
   -ms-transform: translate(0px, 0px);
   transform: translate3d(0px, 0px, 0px);
 }
-
-
-
-
-
 
 
 /*animation slide left styled for testimonials*/
@@ -13341,8 +13336,6 @@ application_v2-1604891….css:1 .btn-quinary {
 }
 
 
-
-
 /*media queries for small devices*/
 
 @media screen and (max-width: 678px) {
@@ -13405,4 +13398,274 @@ application_v2-1604891….css:1 .btn-quinary {
   background-color: darkslategray;
   padding: 2.5%;
   font-weight: normal;
+}
+
+
+/*css footer*/
+
+#footer {
+  width: 100%;
+  float: left;
+  clear: both;
+  background: #054C53;
+  padding: 50px 0 50px 0;
+  opacity: .9;
+}
+
+a {
+  text-decoration: none;
+}
+
+.social {
+  position: relative;
+  float: right;
+  padding: 10px 0 10px 0;
+}
+
+.footerLogo {
+  padding: 10px 0 10px 0;
+  width: 140px;
+  height: auto;
+}
+
+.soIcon {
+  color: #033E49;
+  opacity: .8;
+}
+
+.social a {
+  position: relative;
+  display: inline-block;
+  font-family: "icomoon";
+  font-size: 1.2em;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  margin-left: 25px;
+  font-smoothing: antialiased;
+}
+
+.social .fb {
+  background: #fff;
+}
+
+.social .fb:before,
+.social .fb:after {
+  border-color: #46629E;
+}
+
+.social .tw {
+  background: #fff;
+}
+
+.social .tw:before,
+.social .tw:after {
+  border-color: #00ACEE;
+}
+
+.social .gp {
+  background: #fff;
+}
+
+.social .gp:before,
+.social .gp:after {
+  border-color: #DD4B39;
+}
+
+.social .lnk {
+  background: #fff;
+}
+
+.social .lnk:before,
+.social .lnk:after {
+  border-color: #0274B3;
+}
+
+.social a:before,
+.social a:after {
+  content: "";
+  display: block;
+  position: absolute;
+  background: transparent;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 50%;
+  transition: .3s all;
+  border: 3px solid;
+}
+
+.social a:hover:after {
+  -webkit-transform: scale(1.5);
+}
+
+.social a:hover:before {
+  -webkit-transform: scale(2);
+  transition: .3s all;
+  opacity: 0;
+}
+
+
+/*top row*/
+
+.footerBox {
+  margin: 10px 0 10px 0;
+}
+
+.f_heading {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Raleway', sans-serif;
+  line-height: 12px;
+  color: #fff;
+}
+
+.footerlist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footerlist li a {
+  font-size: 13px;
+  font-weight: normal;
+  font-family: 'Raleway', sans-serif;
+  line-height: 26px;
+  color: #fff;
+  text-decoration: none;
+  opacity: .8;
+}
+
+.listArow {
+  color: blue;
+}
+
+.listArow:hover {
+  color: green;
+  transition: 0.9s;
+  padding-left: 10px;
+}
+
+.right-text a:hover {
+  padding-right: 15px;
+  opacity: 1;
+  transition: 0.2s;
+}
+
+.footerBox {
+  background: #0C756D;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 5px;
+}
+
+
+/*footer list 2*/
+
+.lsit2Box {
+  border-bottom: 1px solid #ccc;
+  opacity: .9;
+}
+
+.list2 {
+  color: red;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #ecf0f1;
+}
+
+.list2Link a {
+  text-decoration: none;
+  color: #fff;
+  opacity: .5;
+  font-size: 13px;
+  line-height: 26px;
+  font-weight: normal;
+}
+
+.paymentBox {
+  border-left: 1px solid #ccc;
+}
+
+.footerParagraph {
+  padding-bottom: 20px;
+  border-bottom: 5px solid #0C756D;
+}
+
+.footerParagraph dd {
+  color: #fff;
+  opacity: .8;
+  line-height: 20px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 10px;
+  margin-top: 15px;
+  margin: 0 1.5em 1.5em;
+}
+
+.footerParagraph dt {
+  color: #fff;
+  opacity: .9;
+  line-height: 20px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  margin-top: 15px;
+}
+
+.companyFooter {
+  background: #0C756D;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.footerText {
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 12px;
+  color: #fff;
+  opacity: 1;
+}
+
+
+@media (max-width: 575px) {
+  #footer {
+    padding: 20px 0 20px 0;
+  }
+  .footerLogo {
+    padding: 5px 0 5px 0;
+    width: 100px;
+    height: auto;
+  }
+  .social {
+    padding: 5px 0 5px 0;
+  }
+  .social a {
+    font-family: "icomoon";
+    font-size: 1.2em;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    margin-left: 10px;
+  }
+  .listMob {
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .paymentBox {
+    border-left: none;
+    border-top: 1px solid #ccc;
+  }
 }
