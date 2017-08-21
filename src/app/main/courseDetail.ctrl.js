@@ -180,7 +180,7 @@
     }
 
     function getCourseReview() {
-      $http.post(CommonInfo.getAppUrl() + "/searchreviews", { courseId: selectedCourseId }).then(
+      $http.post(CommonInfo.getAppUrl() + "/searchreviews", { courseId: selectedCourseId, status: 1 }).then(
         function(response) {
           if (response && response.data) {
             if (response.data.status == 1) {
