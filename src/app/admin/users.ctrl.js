@@ -18,7 +18,7 @@
 
         vm.selectUserType = selectUserType;
         vm.addTestmonial = addTestmonial;
-        vm.closeModal
+        vm.getSeoMeta = getSeoMeta;
 
         activate();
 

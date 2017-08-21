@@ -816,7 +816,7 @@ hr {
   color: #ffffff
 }
 
-.btn-primary {
+/*.btn-primary {
   background-color: #fdc551;
   color: #6d561e;
   border: none!important;
@@ -826,7 +826,7 @@ hr {
 .btn-primary:focus {
   background-color: #ffe2a6;
   color: #6d561e
-}
+}*/
 
 .btn-primary-invert {
   background-color: #ffffff;
@@ -3687,14 +3687,6 @@ select:hover {
   display: block;
   margin-left: auto;
   margin-right: auto
-}
-
-.pull-right {
-  float: right !important
-}
-
-.pull-left {
-  float: left !important
 }
 
 .hide {

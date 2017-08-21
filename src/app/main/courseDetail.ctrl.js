@@ -6,7 +6,7 @@
     .controller('CourseDetailsController', CourseDetailsController);
 
   /** @ngInject */
-  function CourseDetailsController(CommonInfo, $log, $http, $mdDialog, $stateParams, $scope, $state, $anchorScroll, growl, _, $sce, RouterTracker, $timeout) {
+  function CourseDetailsController(CommonInfo, $log, $http, $mdDialog, $stateParams, $scope, $state, $anchorScroll, growl, _, $sce, RouterTracker, $timeout, ngMeta) {
     var vm = this;
     var selectedCourseId;
     var selectedCourseName;
@@ -68,7 +68,7 @@
             if (response.data.status == 1) {
               //if (selectedCourseName.replace(/-/g, " ").trim() == response.data.data[0].title.trim()) {
               vm.course = response.data.data[0];
-              if(studentInfo && studentInfo.userId) {
+              if (studentInfo && studentInfo.userId) {
                 var recentCourses = CommonInfo.getInfo('recentCourses' + studentInfo.userId);
                 recentCourses = recentCourses ? recentCourses : [];
                 recentCourses.push(vm.course);
@@ -90,6 +90,14 @@
               }
               vm.course.courseStartDate = moment(vm.course.courseStartDate).format("MMM DD, YYYY");
               vm.course.demoVideo = angular.isString(vm.course.demoVideo) ? $sce.trustAsHtml(vm.course.demoVideo) : vm.course.demoVideo;
+              if (vm.course.seo && vm.course.seo.length > 0) {
+                _.forEach(vm.course.seo, function (value){
+                  if(value.tag == "title")
+                    ngMeta.setTitle(value.value, '');
+                  else
+                    ngMeta.setTag(value.tag, value.value);  
+                });
+              }
               if (vm.course.socialShare)
                 getSocialShare();
               if (vm.course.reviewCourse)
@@ -584,7 +592,7 @@
                 function DialogController($scope, $mdDialog, $document) {
                   if (vm.unit.videoId) {
                     $timeout(function() {
-                      angular.element( document.querySelector('.vdoBox') ).empty();
+                      angular.element(document.querySelector('.vdoBox')).empty();
                       (function(v, i, d, e, o) {
                         v[o] = v[o] || {};
                         v[o].add = v[o].add || function V(a) {

@@ -10,7 +10,7 @@
         <li class="offscreen-nav-li">
             <a ui-sref="admin.student.studentList">Students</a>
         </li>
-        <li class="offscreen-nav-li" ng-if="vm.userInfo.isAdmin">
+        <li class="offscreen-nav-li" ng-if="vm.userInfo.isAdmin || vm.userInfo.emailId == 'kamesh@stellardigital.in'">
             <a ui-sref="admin.userList">Users</a>
         </li>
         <li class="offscreen-nav-li">
@@ -86,7 +86,7 @@
                         <!-- <li>
                             <a data-dc-track="" data-dc-referrer="main" href="javascript:void(0);">Billing</a>
                         </li> -->
-                        <li ng-if="vm.userInfo.isAdmin">
+                        <li ng-if="vm.userInfo.isAdmin || vm.userInfo.emailId == 'kamesh@stellardigital.in'">
                             <a data-dc-track="" data-dc-referrer="main" ui-sref="admin.userList">Users</a>
                         </li>
                         <li>

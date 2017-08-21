@@ -39,7 +39,7 @@
         </div>
         <div class="col-md-1">
           <span class="label label-accent pull-right" ng-click="vm.editCourse(course)">Edit</span>
-<!-- <span class="label label-accent pull-right" ng-click="vm.previewCourse($event, course)">View Course</span> -->
+          <!-- <span class="label label-accent pull-right" ng-click="vm.previewCourse($event, course)">View Course</span> -->
         </div>
         <div class="col-md-2">
           <img src="{{course.image}}" alt="{{course.name}}" />
@@ -62,11 +62,19 @@
           </div>
           <p ng-bind="course.shortDesc"></p>
           <hr>
-          <a href="/sitemanager/lms/students" ng-click="vm.getCourseStudents(course)">Show Students</a>
-          <!--  | <a href="javascript:void(0);">Show Units</a> -->
-          <a class="btn btn-primary btn-small m0 pull-right js-open-assignment-dialog" href="javascript:void(0)" ng-click="vm.addReview($event, course)">
-            Add review
-          </a>
+          <div class="row">
+            <div class="col-md-8">
+              <a href="/sitemanager/lms/students" ng-click="vm.getCourseStudents(course)">Show Students</a>
+            </div>
+            <div class="col-md-4">
+              <a class="btn btn-warning btn-sm" href="javascript:void(0)" ng-click="vm.getSeoMeta($event, course.id)">
+                SEO Meta Tags
+              </a>
+              <a class="btn btn-warning btn-sm" href="javascript:void(0)" ng-click="vm.addReview($event, course)">
+                Add review
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -97,8 +105,8 @@
           <span class="label label-default" ng-style="{'background-color': category.bgColor}" ng-repeat="category in course.categories">{{category.name}}</span>
         </div>
         <div class="col-md-1">
-           <span class="label label-accent pull-right" ng-click="vm.editCourse(course)">Edit</span>
-<!-- <span class="label label-accent pull-right" ng-click="vm.previewCourse($event, course)">View Course</span> -->
+          <span class="label label-accent pull-right" ng-click="vm.editCourse(course)">Edit</span>
+          <!-- <span class="label label-accent pull-right" ng-click="vm.previewCourse($event, course)">View Course</span> -->
         </div>
         <div class="col-md-2">
           <img src="{{course.image}}" alt="{{course.name}}">

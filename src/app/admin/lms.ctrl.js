@@ -121,6 +121,7 @@
 
     vm.addReview = addReview;
     vm.addCommentToCall = addCommentToCall;
+    vm.getSeoMeta = getSeoMeta;
 
     vm.checkUnit = checkUnit;
 
@@ -1001,6 +1002,71 @@
           $log.log('There is some issue, please try after some time');
         }
       );
+    }
+
+    function getSeoMeta(evt, courseId) {
+      $http.post(CommonInfo.getAppUrl() + "/getSeoDetail", { seoId: courseId, seoType: 'course' }).then(
+        function(response) {
+          if (response && response.data) {
+            if (response.data.status == 1) {
+              addSeoMeta(evt, response.data.data)
+            } else if (response.data.status == 2) {
+              growl.info(response.data.message);
+            }
+          } else {
+            growl.info('There is some issue, please try after some time');
+          }
+        },
+        function(response) {
+          growl.info('There is some issue, please try after some time');
+        }
+      );
+    }
+
+    function addSeoMeta(evt, seoDetails) {
+      vm.courseMetaTag = seoDetails;
+      vm.courseMetaTag.seoDetails = vm.courseMetaTag.seoDetails.length > 0 ? vm.courseMetaTag.seoDetails : [{ 'tag': '', 'value': '' }];
+      $mdDialog.show({
+        targetEvent: evt,
+        scope: $scope.$new(),
+        templateUrl: 'app/admin/addMetaTags.tmpl.html',
+        parent: angular.element(document.body),
+        controller: DialogController
+      });
+
+      function DialogController($scope, $mdDialog, CommonInfo, $http, $log, Upload) {
+        $scope.tagLists = [
+          { tag: 'title', text: 'Title' },
+          { tag: 'description', text: 'Description' },
+          { tag: 'keywords', text: 'Keywords' },
+          { tag: 'og:title', text: 'og:title' },
+          { tag: 'og:description', text: 'og:description' },
+          { tag: 'og:image', text: 'og:image' }
+        ];
+        $scope.closeDialog = function() {
+          $mdDialog.hide();
+        }
+
+        $scope.saveSeoMeta = function() {
+          $http.post(CommonInfo.getAppUrl() + "/createUpdateSeo", vm.courseMetaTag).then(
+            function(response) {
+              if (response && response.data) {
+                if (response.data.status == 1) {
+                  growl.success('Meta tags saved successful');
+                  $mdDialog.hide();
+                } else if (response.data.status == 2) {
+                  growl.info(response.data.message);
+                }
+              } else {
+                growl.info('There is some issue, please try after some time');
+              }
+            },
+            function(response) {
+              growl.info('There is some issue, please try after some time');
+            }
+          );
+        }
+      }
     }
 
     function addReview(evt, course) {
