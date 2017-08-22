@@ -249,7 +249,7 @@
       if (course) {
         CommonInfo.setInfo('selectedCourseId', course.id);
         CommonInfo.setInfo('courseSearchCriteria', vm.courseSearchCriteria);
-        $state.go('courseDetails', { name: course.title.replace(/ /g, "-"), id: course.id })
+        $state.go('courseDetails', { name: course.title.replace(/ /g, "_") })
       }
     }
 

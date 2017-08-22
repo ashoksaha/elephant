@@ -27,7 +27,7 @@
     /** @ngInject */
     function spaceToDash() {
         return function(text) {
-            return text ? String(text).replace(/ /g, '-') : '';
+            return text ? String(text).replace(/ /g, '_') : '';
         }
     }
 
@@ -211,7 +211,7 @@
                 $localStorage.$reset();
             },
             getAppUrl: function() {
-                return 'http://139.59.80.5/apidott/v0';
+                return 'https://flavido.com/apidott/v0';
             },
             getTestSeriesAppUrl: function() {
                 return 'https://flavido.com/testSeriesApi';

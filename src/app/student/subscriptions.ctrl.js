@@ -46,7 +46,7 @@
 
         function showCourseDetails(courseName, courseId) {
             if (courseName && courseId) {
-                $state.go('courseDetails', { name: courseName.replace(/ /g, "-"), id: courseId });
+                $state.go('courseDetails', { name: courseName.replace(/ /g, "_") });
             }
         }
     }

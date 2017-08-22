@@ -163,7 +163,7 @@
             if (course) {
                 CommonInfo.setInfo('selectedCourseId', course.id);
                 CommonInfo.setInfo('courseSearchCriteria', vm.courseSearchCriteria);
-                $state.go('courseDetails', { name: course.title.replace(/ /g, "-"), id: course.id });
+                $state.go('courseDetails', { name: course.title.replace(/ /g, "_")});
             }
         }
 
@@ -173,7 +173,7 @@
 
         function showInstructorCourses(course) {
             if (course.instructorId) {
-                $state.go('instructorCourses', { name: course.instructorFullName.replace(/ /g, "-"), id: course.instructorId })
+                $state.go('instructorCourses', { name: course.instructorFullName.replace(/ /g, "_") })
             }
         }
     }
