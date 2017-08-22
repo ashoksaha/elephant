@@ -36,20 +36,20 @@
     activate();
 
     function activate() {
-      selectedInstructorId = $stateParams.id;
-      vm.selectedInstructorName = $stateParams.name.replace(/-/g, " ");
+      vm.selectedInstructorName = $stateParams.name.replace(/_/g, " ");
       $anchorScroll();
       getCourses();
     }
 
     function getCourses() {
-      $http.post(CommonInfo.getAppUrl() + "/getInstructorCourses", { instructorId: selectedInstructorId, isForsale: 1 }).then(
+      $http.post(CommonInfo.getAppUrl() + "/getInstructorCourses", { name: vm.selectedInstructorName, isForsale: 1 }).then(
         function(response) {
           if (response && response.data) {
             if (response.data.status == 1) {
               vm.instructorDetails = response.data.data;
               vm.instructorDetails.isFollowed = false;
               vm.instructorDetails.Testmonials = [];
+              selectedInstructorId = vm.instructorDetails.id;
               if (vm.instructorDetails && vm.instructorDetails.courses) {
                 _.forEach(vm.instructorDetails.courses, function(value) {
                   value.courseStartDate = moment(value.courseStartDate).format("YYYY-MM-DD hh:mm");
@@ -147,7 +147,7 @@
     function showCourseDetails(course) {
       if (course) {
         CommonInfo.setInfo('selectedCourseId', course.id);
-        $state.go('courseDetails', { name: course.title.replace(/ /g, "-"), id: course.id });
+        $state.go('courseDetails', { name: course.title.replace(/ /g, "_") });
       }
     }
 

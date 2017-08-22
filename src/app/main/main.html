@@ -117,7 +117,7 @@
               <div class="col-sm-2 col-xs-4" style="height: 170px;" ng-repeat="item in vm.homeCourses | limitTo : 6: vm.homeCoursesSlidStart">
                 <div class="col-item">
                   <div class="photo">
-                    <a ng-href="" ng-click="vm.showCourseDetails(item)" style="cursor: pointer;">
+                    <a ng-href="/course/{{item.title | spaceToDash}}" ng-click="vm.showCourseDetails(item)" style="cursor: pointer;">
                         <img ng-src="{{item.image}}" class="img-responsive" alt="{{item.title}}" title="{{item.title}}" />
                         <md-button class="md-fab md-mini md-primary hidden-xs" title="Demo" ng-if="item.demoVideo" ng-click="vm.showCourseDemo($event, item);$event.stopPropagation();" style="top:71px; right:-6px;position:absolute;"><i class="fa fa-film" aria-hidden="true"></i></md-button>
                         <p class="text-center" style="margin-top:4%;font-size:14px;" ng-bind="item.title"></p>

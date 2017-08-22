@@ -64,7 +64,7 @@
             if (instructor) {
                 vm.courseSearchCriteria.instructorId = instructor.id;
                 //vm.selectedInstructor = instructor.fullName;
-                $state.go('courses.search', { param: 'instructor', value: instructor.id, name: instructor.fullName.replace(/ /g, "-") });
+                $state.go('courses.search', { param: 'instructor', value: instructor.id, name: instructor.fullName.replace(/ /g, "_") });
             } else {
                 vm.courseSearchCriteria.instructorId = '';
                 //vm.selectedInstructor = 'All Instructors';
@@ -75,7 +75,7 @@
 
         function searchCoursesByCategory(category) {
             vm.courseSearchCriteria.categoryId = category.id;
-            $state.go('courses.search', { param: 'category', value: category.id, name: category.name.replace(/ /g, "-") });
+            $state.go('courses.search', { param: 'category', value: category.id, name: category.name.replace(/ /g, "_") });
             //getAllCourses();
         }
 
@@ -124,8 +124,6 @@
                             _.forEach(vm.allUpcommingCourses, function(value) {
                                 value.courseStartDate = moment(value.courseStartDate).format("YYYY-MM-DD hh:mm");
                                 value.courseEndDate = moment(value.courseEndDate).format("YYYY-MM-DD hh:mm");
-                                //value.durationParameterText = _.map(_.filter(vm.unitDurations, { 'value': value.durationParameter }), 'name')[0];
-                                //value.instructor = _.find(vm.allInstructors, { 'id': value.instructorId });
                             });
                         } else if (response.data.status == 2) {
                             $log.log(response.data.message);
@@ -163,7 +161,7 @@
             if (course) {
                 CommonInfo.setInfo('selectedCourseId', course.id);
                 CommonInfo.setInfo('courseSearchCriteria', vm.courseSearchCriteria);
-                $state.go('courseDetails', { name: course.title.replace(/ /g, "-"), id: course.id });
+                $state.go('courseDetails', { name: course.title.replace(/ /g, "_") });
             }
         }
 
@@ -173,7 +171,7 @@
 
         function showInstructorCourses(course) {
             if (course.instructorId) {
-                $state.go('instructorCourses', { name: course.instructorFullName.replace(/ /g, "-"), id: course.instructorId })
+                $state.go('instructorCourses', { name: course.instructorFullName.replace(/ /g, "_") })
             }
         }
     }

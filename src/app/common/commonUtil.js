@@ -27,7 +27,7 @@
     /** @ngInject */
     function spaceToDash() {
         return function(text) {
-            return text ? String(text).replace(/ /g, '-') : '';
+            return text ? String(text).replace(/ /g, '_') : '';
         }
     }
 

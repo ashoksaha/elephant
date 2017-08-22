@@ -41,7 +41,7 @@
                   <h3 class="text-center" ng-if="vm.instructorDetails.courses.length == 0"> No courses found </h3>
                   <div class="row">
                     <div class="col-lg-4 col-sm-6" ng-repeat="course in vm.instructorDetails.courses">
-                      <a ng-href="/course/{{course.id}}/{{course.title | spaceToDash}}" ng-click="vm.showCourseDetails(course)">
+                      <a ng-href="/course/{{course.title | spaceToDash}}" ng-click="vm.showCourseDetails(course)">
                         <md-card style="height:343px;">
                           <img ng-src="{{course.image}}" class="md-card-image" alt="{{course.title}}" style="height:195px;">
                           <md-card-title>

@@ -56,13 +56,13 @@
         controllerAs: 'vm'
       })
       .state('courseDetails', {
-        url: '/course/:id/:name',
+        url: '/course/:name',
         templateUrl: 'app/main/courseDetails.html',
         controller: 'CourseDetailsController',
         controllerAs: 'vm'
       })
       .state('instructorCourses', {
-        url: '/inst/:id/:name',
+        url: '/inst/:name',
         templateUrl: 'app/main/instructorCourses.html',
         controller: 'InstructorCoursesController',
         controllerAs: 'vm'

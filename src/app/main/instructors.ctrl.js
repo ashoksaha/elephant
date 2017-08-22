@@ -65,7 +65,7 @@
 
         function showInstructorCourses(instructor) {
             if (instructor) {
-                $state.go('instructorCourses', { name: instructor.fullName.replace(/ /g, "-"), id: instructor.id })
+                $state.go('instructorCourses', { name: instructor.fullName.replace(/ /g, "_") })
             }
         }
     }
