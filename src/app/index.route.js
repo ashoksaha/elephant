@@ -56,7 +56,7 @@
         controllerAs: 'vm'
       })
       .state('courseDetails', {
-        url: '/course/:id/:name',
+        url: '/course/:name',
         templateUrl: 'app/main/courseDetails.html',
         controller: 'CourseDetailsController',
         controllerAs: 'vm'

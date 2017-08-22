@@ -64,7 +64,7 @@
 
     function showInstructorCourses(course) {
       if (course.instructorId) {
-        $state.go('instructorCourses', { name: course.instructorFullName.replace(/ /g, "-"), id: course.instructorId })
+        $state.go('instructorCourses', { name: course.instructorFullName.replace(/ /g, "_") })
       }
     }
 
@@ -119,14 +119,14 @@
     }
 
     function showCourseDetails(course) {
-      $state.go('courseDetails', { name: course.title.replace(/ /g, "-"), id: course.id });
+      $state.go('courseDetails', { name: course.title.replace(/ /g, "_") });
     }
 
     function showCourse(course) {
       if (course && course.courseCurriculum) {
         var units = course.courseCurriculum.toString().split(',');
         CommonInfo.setInfo('startCourse', { unitId: units[0], courseId: course.id });
-        $state.go('startCourse', { courseName: course.title.replace(/ /g, "-") });
+        $state.go('startCourse', { courseName: course.title.replace(/ /g, "_") });
       } else {
         growl.info('There is no unit in this course.');
       }

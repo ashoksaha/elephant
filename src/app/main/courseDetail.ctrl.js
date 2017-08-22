@@ -49,7 +49,6 @@
     activate();
 
     function activate() {
-      selectedCourseId = $stateParams.id;
       selectedCourseName = $stateParams.name;
       $anchorScroll();
       getCourseDetails();
@@ -57,7 +56,7 @@
 
     function getCourseDetails() {
       var data = {
-        id: selectedCourseId
+        name: selectedCourseName.replace(/_/g, " ")
       };
       var studentInfo = CommonInfo.getInfo('studentInfo');
       if (studentInfo && studentInfo.userId)
@@ -68,6 +67,7 @@
             if (response.data.status == 1) {
               //if (selectedCourseName.replace(/-/g, " ").trim() == response.data.data[0].title.trim()) {
               vm.course = response.data.data[0];
+              selectedCourseId = vm.course.id;
               if (studentInfo && studentInfo.userId) {
                 var recentCourses = CommonInfo.getInfo('recentCourses' + studentInfo.userId);
                 recentCourses = recentCourses ? recentCourses : [];

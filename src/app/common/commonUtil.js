@@ -211,7 +211,7 @@
                 $localStorage.$reset();
             },
             getAppUrl: function() {
-                return 'https://flavido.com/apidott/v0';
+                return 'http://139.59.80.5/apidott/v0';
             },
             getTestSeriesAppUrl: function() {
                 return 'https://flavido.com/testSeriesApi';
