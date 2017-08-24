@@ -10,6 +10,7 @@
     var vm = this;
 
     vm.profileTab = 1;
+    vm.addEditAddess = false;
     vm.studentInfo = {};
     vm.newProfile = {
       userName: '',
@@ -51,6 +52,8 @@
     vm.changeMobileVerification = changeMobileVerification;
     vm.updateNotification = updateNotification;
     vm.updatePreference = updatePreference;
+    vm.updateAddress = updateAddress;
+    vm.editAddress = editAddress;
 
     activate();
 
@@ -70,6 +73,7 @@
       }
       getNotificationSetting();
       getPreferenceSetting();
+      getStudentAddress();
     }
 
     function updateProfile(file) {
@@ -372,6 +376,56 @@
               if (response.data.status == 1) {
                 growl.success('Preference setting updated successfuly');
                 //vm.notification = {};
+              } else if (response.data.status == 2) {
+                growl.info(response.data.message);
+              }
+            } else {
+              growl.warning('There is some issue, please try after some time');
+            }
+          },
+          function(response) {
+            growl.warning('There is some issue, please try after some time');
+          }
+        );
+      }
+    }
+
+    function getStudentAddress() {
+      $http.post(CommonInfo.getAppUrl() + "/getAddressByStudentId", { studentId: vm.studentInfo.userId }).then(
+        function(response) {
+          if (response && response.data) {
+            if (response.data.status == 1) {
+              if (response.data.data)
+                vm.studentAddress = response.data.data;
+            } else if (response.data.status == 2) {
+              growl.info(response.data.message);
+            }
+          } else {
+            growl.warning('There is some issue, please try after some time');
+          }
+        },
+        function(response) {
+          growl.warning('There is some issue, please try after some time');
+        }
+      );
+    }
+
+    function editAddress(address) {
+      vm.address = angular.copy(address);
+      vm.addEditAddess = true;
+    }
+
+    function updateAddress() {
+      if (vm.address) {
+        vm.address.studentId = vm.studentInfo.userId;
+        $http.post(CommonInfo.getAppUrl() + "/createUpdateAddress", vm.address).then(
+          function(response) {
+            if (response && response.data) {
+              if (response.data.status == 1) {
+                growl.success('Address updated successfuly');
+                vm.address = {};
+                vm.addEditAddess = false;
+                getStudentAddress();
               } else if (response.data.status == 2) {
                 growl.info(response.data.message);
               }

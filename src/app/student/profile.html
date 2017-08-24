@@ -19,12 +19,15 @@
                   <a href="javascript:void(0);" aria-controls="contact" role="tab" data-toggle="tab" aria-expanded="false">Contacts</a>
                 </li>
                 <li role="presentation" ng-click="vm.profileTab = 3;" ng-class="{'active' : vm.profileTab == 3}">
-                  <a href="javascript:void(0);" aria-controls="password" role="tab" data-toggle="tab" aria-expanded="false">Password</a>
+                  <a href="javascript:void(0);" aria-controls="address" role="tab" data-toggle="tab" aria-expanded="false">Address Book</a>
                 </li>
                 <li role="presentation" ng-click="vm.profileTab = 4;" ng-class="{'active' : vm.profileTab == 4}">
-                  <a href="javascript:void(0);" aria-controls="notification" role="tab" data-toggle="tab" aria-expanded="false">Notification</a>
+                  <a href="javascript:void(0);" aria-controls="password" role="tab" data-toggle="tab" aria-expanded="false">Password</a>
                 </li>
                 <li role="presentation" ng-click="vm.profileTab = 5;" ng-class="{'active' : vm.profileTab == 5}">
+                  <a href="javascript:void(0);" aria-controls="notification" role="tab" data-toggle="tab" aria-expanded="false">Notification</a>
+                </li>
+                <li role="presentation" ng-click="vm.profileTab = 6;" ng-class="{'active' : vm.profileTab == 6}">
                   <a href="javascript:void(0);" aria-controls="preferences" role="tab" data-toggle="tab" aria-expanded="false">Preferences</a>
                 </li>
               </ul>
@@ -118,6 +121,109 @@
                 </form>
               </div>
               <div role="tabpanel" class="tab-pane" id="password" ng-class="{'active' : vm.profileTab == 3}">
+                <h3>
+                  Address
+                  <a style="margin:0px;padding:6px 12px;" class="btn btn-default btn-sm pull-right" ng-click="vm.editAddress({});">
+                    <i class="fa fa-plus-square"></i> Add New
+                  </a>
+                </h3>
+                <hr>
+                <div flex-xs flex-gt-xs="50" layout="row" ng-if="!vm.addEditAddess">
+                  <md-card md-theme="default" md-theme-watch ng-repeat="address in vm.studentAddress">
+                    <md-card-title>
+                      <md-card-title-text>
+                        <span class="md-subhead"><strong ng-bind="address.fullName">Small</strong></span>
+                        <span class="md-subhead" ng-bind="address.mobile">Small</span>
+                      </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                      <p>
+                        <span class="md-subhead" ng-bind="address.houseNo">Small</span>,
+                        <span class="md-subhead" ng-bind="address.street">Small</span>,
+                        <span class="md-subhead" ng-bind="address.landmark">Small</span>,
+                        <span class="md-subhead" ng-bind="address.city">Small</span>,
+                        <span class="md-subhead" ng-bind="address.pincode">Small</span>,
+                        <span class="md-subhead" ng-bind="address.state">Small</span>,
+                        <span class="md-subhead" ng-bind="address.country">Small</span>
+                      </p>
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="end center">
+                      <md-button>Delete</md-button>
+                      <md-button ng-click="vm.editAddress(address);">Edit</md-button>
+                    </md-card-actions>
+                  </md-card>
+                </div>
+                <div ng-if="vm.addEditAddess">
+                  <form class="edit_user" id="edit_password_727839" method="post">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <fieldset>
+                          <md-input-container class="md-block" flex-gt-sm>
+                            <label>Full Name</label>
+                            <input ng-model="vm.address.fullName" required="required" type="text" />
+                          </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                          <md-input-container class="md-block" flex-gt-sm>
+                            <label>Mobile</label>
+                            <input ng-model="vm.address.mobile" required="required" type="number" maxlength="10" placeholder="Enter 10 digit mobile number" />
+                            <div class="hint">This number will be used to assist with scheduling delivery</div>
+                          </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                          <md-input-container class="md-block" flex-gt-sm>
+                            <label>Flat/House No</label>
+                            <input ng-model="vm.address.houseNo" required="required" type="text" />
+                          </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                          <md-input-container class="md-block" flex-gt-sm>
+                            <label>Street</label>
+                            <input ng-model="vm.address.street" required="required" type="text" />
+                          </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                          <md-input-container class="md-block" flex-gt-sm>
+                            <label>Landmark</label>
+                            <input ng-model="vm.address.landmark" type="text" />
+                            <div class="hint">E.g. Near AIIMS Flyover, Behind Regal Cinema, etc.</div>
+                          </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                          <md-input-container class="md-block" flex-gt-sm>
+                            <label>City</label>
+                            <input ng-model="vm.address.city" required="required" type="text" />
+                          </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                          <md-input-container class="md-block" flex-gt-sm>
+                            <label>Pin code</label>
+                            <input ng-model="vm.address.pincode" required="required" type="text" pattern="\d*" maxlength="6" />
+                          </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                          <md-input-container class="md-block" flex-gt-sm>
+                            <label>State</label>
+                            <input ng-model="vm.address.state" required="required" type="text" />
+                          </md-input-container>
+                        </fieldset>
+                        <fieldset>
+                          <md-input-container class="md-block" flex-gt-sm>
+                            <label>Country</label>
+                            <input ng-model="vm.address.country" type="text" value="India" />
+                          </md-input-container>
+                        </fieldset>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <input type="submit" name="commit" value="Save Changes" class="btn btn-primary m0" ng-click="vm.updateAddress()" data-disable-with="Save Changes">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="password" ng-class="{'active' : vm.profileTab == 4}">
                 <h3>Change Password</h3>
                 <hr>
                 <form class="edit_user" id="edit_password_727839" method="post">
@@ -150,7 +256,7 @@
                   </div>
                 </form>
               </div>
-              <div role="tabpanel" class="tab-pane" id="notification" ng-class="{'active' : vm.profileTab == 4}">
+              <div role="tabpanel" class="tab-pane" id="notification" ng-class="{'active' : vm.profileTab == 5}">
                 <h3>Notification</h3>
                 <hr>
                 <form class="edit_user" method="post">
@@ -175,7 +281,7 @@
                   </div>
                 </form>
               </div>
-              <div role="tabpanel" class="tab-pane" id="password" ng-class="{'active' : vm.profileTab == 5}">
+              <div role="tabpanel" class="tab-pane" id="password" ng-class="{'active' : vm.profileTab == 6}">
                 <h3>Preferences</h3>
                 <hr>
                 <form class="edit_user" id="edit_password_727839" method="post">

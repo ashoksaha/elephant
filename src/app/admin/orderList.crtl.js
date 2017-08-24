@@ -220,7 +220,7 @@
               orderBy: user.id,
               type: 'admin',
               remark: $scope.order.remark,
-              orderDate: moment($scope.order.orderDate).format("YYYY-MM-DD HH:mm:SS"),
+              orderDate: moment($scope.order.orderDate, "MM/DD/YYYY").format("YYYY-MM-DD HH:mm:SS"),
               paymentId: $scope.order.paymentId,
               pg: $scope.order.pg,
               notificationInstructor: $scope.order.notificationInstructor,
