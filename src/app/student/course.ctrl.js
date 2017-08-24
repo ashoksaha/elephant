@@ -56,27 +56,29 @@
                 vm.unit.unitDescription = angular.isString(vm.unit.unitDescription) ? $sce.trustAsHtml(vm.unit.unitDescription) : vm.unit.unitDescription;
                 vm.unit.embedVideo = angular.isString(vm.unit.embedVideo) ? $sce.trustAsHtml(vm.unit.embedVideo) : vm.unit.embedVideo;
                 //vm.unit.videoHtml = angular.isString(vm.unit.videoHtml) ? $sce.trustAsHtml(vm.unit.videoHtml) : vm.unit.videoHtml;
-                $timeout(function() {
-                  angular.element(document.querySelector('.vdoBox')).empty();
-                  (function(v, i, d, e, o) {
-                    v[o] = v[o] || {};
-                    v[o].add = v[o].add || function V(a) {
-                      (v[o].d = v[o].d || []).push(a);
-                    };
-                    if (!v[o].l) {
-                      v[o].l = 1 * new Date();
-                      var a = i.createElement(d),
-                        m = i.getElementsByTagName(d)[0];
-                      a.async = 1;
-                      a.src = e;
-                      m.parentNode.insertBefore(a, m);
-                    }
-                  })(window, document, 'script', 'https://de122v0opjemw.cloudfront.net/vdo.js', 'vdo');
-                  console.log(vm.unit.OTP);
-                  vdo.add({
-                    o: vm.unit.OTP,
+                if (vm.unit.OTP) {
+                  $timeout(function() {
+                    angular.element(document.querySelector('.vdoBox')).empty();
+                    (function(v, i, d, e, o) {
+                      v[o] = v[o] || {};
+                      v[o].add = v[o].add || function V(a) {
+                        (v[o].d = v[o].d || []).push(a);
+                      };
+                      if (!v[o].l) {
+                        v[o].l = 1 * new Date();
+                        var a = i.createElement(d),
+                          m = i.getElementsByTagName(d)[0];
+                        a.async = 1;
+                        a.src = e;
+                        m.parentNode.insertBefore(a, m);
+                      }
+                    })(window, document, 'script', 'https://de122v0opjemw.cloudfront.net/vdo.js', 'vdo');
+                    console.log(vm.unit.OTP);
+                    vdo.add({
+                      o: vm.unit.OTP,
+                    });
                   });
-                });
+                }
                 if (angular.isString(vm.unit.downloadLink))
                   vm.unit.downloadLink = JSON.parse(vm.unit.downloadLink);
                 if (vm.unit.testId) {
@@ -225,7 +227,7 @@
         function(response) {
           if (response && response.data) {
             if (response.data.status == 1) {
-              if (selectedCourseName == response.data.data[0].title.replace(/ /g, "-")) {
+              if (selectedCourseName == response.data.data[0].title.replace(/ /g, "_")) {
                 vm.course = response.data.data[0];
                 if (vm.course && vm.course.courseCurriculum && vm.course.units.length > 0) {
                   var units = [];
@@ -259,7 +261,7 @@
       closeSide();
       vm.showReviewPage = false;
       var id = selectedCourseId + ':' + unit.id;
-      $state.transitionTo('startCourse', { id: id, courseName: selectedCourseName, unitName: unit.name.replace(/ /g, "-") }, { notify: false });
+      $state.transitionTo('startCourse', { id: id, courseName: selectedCourseName, unitName: unit.name.replace(/ /g, "_") }, { notify: false });
       getUnitDetails(unit.id);
     }
 

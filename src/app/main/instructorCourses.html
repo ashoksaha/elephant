@@ -17,10 +17,10 @@
               <p ng-bind="vm.instructorDetails.biography"></p>
               <ul>
                 <li class="icon-video">
-                  <button type="button" class="btn btn-warning" ng-click="vm.followInstructor($event);">
-                    <span ng-if="vm.instructorDetails.isFollowed">Un-</span>Follow
+                  <button ng-if="vm.instructorDetails.isFollowed" type="button" class="btn btn-warning" ng-click="vm.followInstructor($event);">
+                    Follow
                   </button>
-                  <span ng-if="vm.instructorDetails.followers.length > 0" style="vertical-align:bottom;">Fllowed By <span ng-bind="vm.instructorDetails.followers.length" style="vertical-align:bottom;"></span> Users</span>
+                  <span ng-if="vm.instructorDetails.followers.length > 0" style="vertical-align:bottom;">Followed By <span ng-bind="vm.instructorDetails.followers.length" style="vertical-align:bottom;"></span> Users</span>
                 </li>
               </ul>
             </div>

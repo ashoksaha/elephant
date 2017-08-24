@@ -9,8 +9,7 @@
       <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
         <md-toolbar style="background-color: #29c5a7;">
           <div class="md-toolbar-tools">
-            <h2 flex md-truncate>All Units
-                        </h2>
+            <h2 flex md-truncate>All Units</h2>
             <md-button class="md-icon-button" aria-label="Close" ng-click="vm.closeSide()" class="md-primary" hide-gt-md>
               <i class="fa fa-times fa-lg"></i>
             </md-button>
@@ -19,7 +18,10 @@
         <md-content style="position: absolute;top:65px;overflow-y: auto;width:100%;">
           <md-list>
             <md-list-item ng-repeat-start="unit in vm.course.units">
-              <p href="javascript:void(0)" ng-bind="unit.name" ng-click="vm.getCourseUnit(unit);"></p>
+              <p href="javascript:void(0)" ng-click="vm.getCourseUnit(unit);">
+                <i class="fa" ng-class="unit.icon"></i>
+                <span ng-bind="unit.name"></span>
+              </p>
             </md-list-item>
             <md-divider ng-repeat-end></md-divider>
             <md-list-item class="btn-primary text-center">
@@ -53,7 +55,7 @@
             <p ng-bind-html="vm.unit.videoHtml" class="text-center embed-responsive-item"></p>
           </div> -->
           <p ng-if="vm.unit.OTP" class="text-center">
-            <div ng-attr-id="{{'vdo' + vm.unit.OTP}}" class="vdoBox"></div>
+            <div ng-if="vm.unit.OTP" ng-attr-id="{{'vdo' + vm.unit.OTP}}" class="vdoBox"></div>
           </p>
           <p ng-bind-html="vm.unit.embedVideo" ng-if="vm.unit.embedVideo"></p>
           <p ng-bind-html="vm.unit.unitDescription" ng-if="vm.unit.unitDescription"></p>

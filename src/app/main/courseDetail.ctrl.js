@@ -472,7 +472,7 @@
             if (response.data.status == 1) {
               courseDetails = response.data.data[0];
               CommonInfo.setInfo('startCourse', { unitId: courseDetails.units[0].id, courseId: courseDetails.id });
-              $state.go('startCourse', { courseName: courseDetails.title.replace(/ /g, "-") });
+              $state.go('startCourse', { courseName: courseDetails.title.replace(/ /g, "_") });
             } else if (response.data.status == 2) {
               $log.log(response.data.message);
             }
@@ -489,7 +489,7 @@
     function showCourseUnit(event, unit) {
       if (!vm.course.isExpired && vm.course.isSubscribed) {
         CommonInfo.setInfo('startCourse', { unitId: unit.id, courseId: vm.course.id });
-        $state.go('startCourse', { courseName: vm.course.title.replace(/ /g, "-") });
+        $state.go('startCourse', { courseName: vm.course.title.replace(/ /g, "_") });
       } else if (!vm.course.isSubscribed && unit.freeUnit) {
         var studentInfo = CommonInfo.getInfo('studentInfo') || { name: "demoUser", email: "demo@flavido.com", userId: 49 };
         $http.post(CommonInfo.getAppUrl() + "/getunitdetailsbyunit_id", { id: unit.id, userName: studentInfo.name, userEmail: studentInfo.email, courseId: selectedCourseId, studentId: studentInfo.userId }).then(
