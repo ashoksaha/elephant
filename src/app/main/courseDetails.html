@@ -48,38 +48,80 @@
               <a class="btn btn-primary btn-large" href="javascript:void(0);" ng-if="vm.course.demoVideo" ng-click="vm.showCourseDemo($event)">
                   <i class="fa fa-play" aria-hidden="true"></i> Demo Video
               </a>
-              <div ng-if="vm.showPaymentOptions" class="row">
+              <div ng-if="vm.showPaymentOptions">
                 <hr />
-                <div class="col-md-6">
-                  <p style="margin-top: 2%;">Choose Payment Options</p>
-                  <md-radio-group ng-model="vm.payment.option" ng-Change="" md-no-ink="false">
-                    <md-radio-button ng-value="payment.id" ng-repeat="payment in vm.paymentMethods">
-                      <span ng-bind="payment.name"></span>
-                    </md-radio-button>
-                  </md-radio-group>
-                </div>
-                <div class="col-md-6" style="margin-top: 35px;">
-                  <md-input-container class="md-block md-accent" flex-gt-sm>
-                    <label style="color:#fff;">Enter coupon</label>
-                    <input style="color:#fff;" ng-model="vm.payment.coupon" />
-                  </md-input-container>
-                  <md-button ng-disabled="!vm.payment.coupon" class="md-raised pull-right" ng-click="vm.applyCoupon()">Apply Coupon</md-button>
-                </div>
-                <div class="clearfix"></div>
-                <div class="col-md-12 row">
-                  <hr />
-                  <div class="col-md-4 text-center">
-                    <dl class="dl-horizontal">
-                      <dt><h4>Price: </h4></dt>
-                      <dd><h4><span ng-bind="vm.payment.amount | INR"></span></h4></dd>
-                      <dt ng-if="vm.payment.discount"><h4>Discounted Price: </h4></dt>
-                      <dd ng-if="vm.payment.discount"><h4><span ng-bind="vm.payment.discount | INR"></span></h4></dd>
-                    </dl>
-                  </div>
-                  <div class="col-md-6 text-center">
-                    <md-button ng-disabled="!vm.payment.option" class="md-raised" ng-click="vm.buyCourse()">Proceed TO Payment</md-button>
-                  </div>
-                </div>
+                <md-tabs md-dynamic-height md-border-bottom>
+                  <md-tab label="Billing Address">
+                    <md-content class="md-padding" style="background-color: transparent;">
+                      <p>
+                        <h5>Choose Billing Address</h5>
+                        <div class="row">
+                          <div class="col-md-4" ng-repeat="address in vm.studentAddress">
+                            <div class="panel" ng-class="{ 'panel-default': vm.payment.address !=  address.id, 'panel-primary': vm.payment.address == address.id }" ng-click="vm.payment.address = address.id">
+                              <div class="panel-heading">
+                                <h3 class="panel-title" ng-bind="address.fullName"></h3>
+                              </div>
+                              <div class="panel-body">
+                                <span ng-bind="address.mobile"></span>
+                                <br />
+                                <span ng-bind="address.houseNo"></span>,
+                                <span ng-bind="address.street"></span>,
+                                <br />
+                                <span ng-bind="address.landmark"></span>,
+                                <br />
+                                <span ng-bind="address.city"></span> -
+                                <span ng-bind="address.pincode"></span>,
+                                <br />
+                                <span ng-bind="address.state"></span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </p>
+                    </md-content>
+                  </md-tab>
+                  <md-tab label="Payment Method" ng-disabled="!vm.payment.address">
+                    <md-content class="md-padding" style="background-color: transparent;">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <p style="margin-top: 2%;">Choose Payment Options</p>
+                          <md-radio-group ng-model="vm.payment.option" ng-Change="" md-no-ink="false">
+                            <md-radio-button ng-value="payment.id" ng-repeat="payment in vm.paymentMethods">
+                              <span ng-bind="payment.name"></span>
+                            </md-radio-button>
+                          </md-radio-group>
+                        </div>
+                        <div class="col-md-6" style="margin-top: 35px;">
+                          <md-input-container class="md-block md-accent" flex-gt-sm>
+                            <label style="color:#fff;">Enter coupon</label>
+                            <input style="color:#fff;" ng-model="vm.payment.coupon" />
+                          </md-input-container>
+                          <md-button ng-disabled="!vm.payment.coupon" class="md-raised pull-right" ng-click="vm.applyCoupon()">Apply Coupon</md-button>
+                        </div>
+                        <div class="clearfix"></div>
+                        <hr />
+                        <div class="col-md-12 row">
+                          <div class="col-md-4 text-center">
+                            <dl class="dl-horizontal">
+                              <dt>
+                                <h4>Price: </h4></dt>
+                              <dd>
+                                <h4><span ng-bind="vm.payment.amount | INR"></span></h4></dd>
+                              <dt ng-if="vm.payment.discount">
+                                <h4>Discounted Price: </h4></dt>
+                              <dd ng-if="vm.payment.discount">
+                                <h4><span ng-bind="vm.payment.discount | INR"></span></h4></dd>
+                            </dl>
+                          </div>
+                          <div class="col-md-6 text-center">
+                            <md-button ng-disabled="!vm.payment.option" class="md-raised" ng-click="vm.buyCourse()">Proceed TO Payment</md-button>
+                          </div>
+                        </div>
+                      </div>
+                    </md-content>
+                  </md-tab>
+                </md-tabs>
               </div>
             </div>
             <div class="hidden-xs hidden-sm col-md-4 col-lg-3">

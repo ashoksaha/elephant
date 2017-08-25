@@ -266,10 +266,32 @@
           );
         } else {
           getPaymentMethodes();
+          getStudentAddress();
           vm.showPaymentOptions = !vm.showPaymentOptions;
           vm.payment.amount = vm.course.courseFee;
         }
       }
+    }
+
+    function getStudentAddress() {
+      var studentInfo = CommonInfo.getInfo('studentInfo');
+      $http.post(CommonInfo.getAppUrl() + "/getAddressByStudentId", { studentId: studentInfo.userId }).then(
+        function(response) {
+          if (response && response.data) {
+            if (response.data.status == 1) {
+              if (response.data.data)
+                vm.studentAddress = response.data.data;
+            } else if (response.data.status == 2) {
+              growl.info(response.data.message);
+            }
+          } else {
+            growl.warning('There is some issue, please try after some time');
+          }
+        },
+        function(response) {
+          growl.warning('There is some issue, please try after some time');
+        }
+      );
     }
 
     function getPaymentMethodes() {
