@@ -34,7 +34,6 @@
         }
         getSubscribedCourses();
         vm.recentCourses = _.reverse(CommonInfo.getInfo('recentCourses' + vm.studentInfo.userId));
-        console.log(vm.recentCourses);
       }
     }
 

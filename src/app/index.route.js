@@ -110,7 +110,7 @@
         controllerAs: 'vm'
       })
       .state('startCourse', {
-        url: '/course/:courseName',
+        url: '/viewCourse/:courseName',
         templateUrl: 'app/student/course.html',
         controller: 'StudentCourseUnitController',
         controllerAs: 'vm'

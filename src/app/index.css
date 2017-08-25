@@ -112,6 +112,11 @@ ul.tagit input[type="text"] {
 
 
 
+
+
+
+
+
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 
 html {
@@ -772,6 +777,11 @@ hr {
 
 
 
+
+
+
+
+
 /*.btn,
 .admin .btn-change-state {
     border: none;
@@ -819,6 +829,11 @@ hr {
   background-color: #d5eaef;
   color: #ffffff
 }
+
+
+
+
+
 
 
 
@@ -1403,6 +1418,11 @@ hr {
   width: 100%;
   height: 100%
 }
+
+
+
+
+
 
 
 
@@ -4983,6 +5003,11 @@ th {
 
 
 
+
+
+
+
+
 /*.tabs.nav-tabs .selected::after,
 .tabs.nav-tabs .active::after {
     content: '';
@@ -5708,6 +5733,11 @@ body {
 
 
 
+
+
+
+
+
 /*h1,
 h2,
 h3,
@@ -5935,6 +5965,11 @@ mark::selection {
   background-color: #1f697f;
   color: white
 }
+
+
+
+
+
 
 
 
@@ -9388,6 +9423,11 @@ a.stories--quote:hover {
 
 
 
+
+
+
+
+
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -11172,6 +11212,11 @@ a.stories--quote:hover {
 
 
 
+
+
+
+
+
 /*.groups__courses-overview tbody td:last-child {
     text-align: right
 }*/
@@ -12890,6 +12935,11 @@ a.stories--quote:hover {
 
 
 
+
+
+
+
+
 /* Text angular css for height starts*/
 
 .import-questions .ta-editor {
@@ -12989,6 +13039,11 @@ h3.slider_heading {
     width: 100%;
   }
 }
+
+
+
+
+
 
 
 
@@ -13154,6 +13209,11 @@ application_v2-1604891….css:1 .btn-quinary {
 
 
 
+
+
+
+
+
 /*************************Drag and drop css[Starts]*************************************/
 
 .simpleDemo ul[dnd-list] {
@@ -13188,11 +13248,21 @@ application_v2-1604891….css:1 .btn-quinary {
 }
 
 
+
+
+
+
+
 /*************************Drag and drop css[Ends]*************************************/
 
 .md-chip-input-container {
   width: 100%;
 }
+
+
+
+
+
 
 
 /*used in Library pannel as round button starts*/
@@ -13228,12 +13298,22 @@ application_v2-1604891….css:1 .btn-quinary {
 }
 
 
+
+
+
+
+
 /*animation element*/
 
 .animation-element {
   opacity: 0;
   position: relative;
 }
+
+
+
+
+
 
 
 /*animation element sliding left*/
@@ -13259,6 +13339,11 @@ application_v2-1604891….css:1 .btn-quinary {
   -ms-transform: translate(0px, 0px);
   transform: translate3d(0px, 0px, 0px);
 }
+
+
+
+
+
 
 
 /*animation slide left styled for testimonials*/
@@ -13336,6 +13421,11 @@ application_v2-1604891….css:1 .btn-quinary {
 }
 
 
+
+
+
+
+
 /*media queries for small devices*/
 
 @media screen and (max-width: 678px) {
@@ -13401,15 +13491,16 @@ application_v2-1604891….css:1 .btn-quinary {
 }
 
 
+
 /*css footer*/
 
 #footer {
   width: 100%;
-  float: left;
   clear: both;
   background: #054C53;
   padding: 50px 0 50px 0;
   opacity: .9;
+  font-size: 13px;
 }
 
 a {
@@ -13428,6 +13519,12 @@ a {
   height: auto;
 }
 
+.footercard {
+  padding: 10px 0 10px 0;
+  width: 300px;
+  height: 140px;
+}
+
 .soIcon {
   color: #033E49;
   opacity: .8;
@@ -13436,8 +13533,6 @@ a {
 .social a {
   position: relative;
   display: inline-block;
-  font-family: "icomoon";
-  font-size: 1.2em;
   width: 40px;
   height: 40px;
   line-height: 40px;
@@ -13510,6 +13605,8 @@ a {
 }
 
 
+
+
 /*top row*/
 
 .footerBox {
@@ -13517,9 +13614,7 @@ a {
 }
 
 .f_heading {
-  font-size: 12px;
   font-weight: 500;
-  font-family: 'Raleway', sans-serif;
   line-height: 12px;
   color: #fff;
 }
@@ -13531,9 +13626,7 @@ a {
 }
 
 .footerlist li a {
-  font-size: 13px;
   font-weight: normal;
-  font-family: 'Raleway', sans-serif;
   line-height: 26px;
   color: #fff;
   text-decoration: none;
@@ -13564,6 +13657,7 @@ a {
 }
 
 
+
 /*footer list 2*/
 
 .lsit2Box {
@@ -13573,7 +13667,6 @@ a {
 
 .list2 {
   color: red;
-  font-size: 12px;
   font-weight: 500;
   line-height: 24px;
   color: #ecf0f1;
@@ -13581,30 +13674,106 @@ a {
 
 .list2Link a {
   text-decoration: none;
-  color: #fff;
+  color: #fff!important;
   opacity: .5;
-  font-size: 13px;
   line-height: 26px;
   font-weight: normal;
 }
 
-.paymentBox {
-  border-left: 1px solid #ccc;
+.paymetntWrap {
+  border-width: 1px;
+  border-bottom-style: dotted;
+  border-bottom-color: #ccc;
+  padding: 10px 0 10px 0;
+}
+
+.payemntCard {
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+.payemntCard img {
+  padding-left: 7px;
+}
+
+.f2_heading {
+  font-weight: 500;
+  line-height: 12px;
+  color: #fff;
+  padding-left: 10px;
+}
+
+.MailUsWrap {
+  border-width: 1px;
+  border-bottom-style: dotted;
+  border-bottom-color: #ccc;
+  padding: 10px 0 10px 0;
+}
+
+.f3_heading {
+  font-weight: 500;
+  line-height: 12px;
+  color: #fff;
+  padding-left: 15px;
+}
+
+.f_head {
+  color: #fff;
+  font-weight: 500;
+  line-height: 12px;
+  color: #fff;
+}
+
+.linkPara {
+  color: #ccc;
+  margin-bottom: 1.5em;
+}
+
+.linkPara a {
+  color: #fff;
+  font-weight: 500;
+  line-height: 12px;
+  color: #fff;
+  opacity: .6;
+}
+
+.linkPara a:hover {
+  opacity: .8;
+}
+
+.mailUs {
+  width: 50%;
+  float: left;
+  border-width: 1px;
+  border-right-style: dotted;
+  border-right-color: #ccc;
+}
+
+.adressPara {
+  color: red;
+  font-weight: 500;
+  line-height: 16px;
+  color: #ecf0f1;
+  padding-left: 27px;
+}
+
+.mailUs1 {
+  width: 50%;
+  float: left;
+  border-width: 1px;
 }
 
 .footerParagraph {
   padding-bottom: 20px;
-  border-bottom: 5px solid #0C756D;
 }
 
 .footerParagraph dd {
   color: #fff;
   opacity: .8;
   line-height: 20px;
-  font-family: 'Raleway', sans-serif;
   font-weight: 300;
-  font-size: 10px;
   margin-top: 15px;
+  text-align: justify;
   margin: 0 1.5em 1.5em;
 }
 
@@ -13612,9 +13781,7 @@ a {
   color: #fff;
   opacity: .9;
   line-height: 20px;
-  font-family: 'Raleway', sans-serif;
   font-weight: 700;
-  font-size: 10px;
   margin-top: 15px;
 }
 
@@ -13627,14 +13794,11 @@ a {
 .footerText {
   margin: 0;
   padding: 0;
-  font-family: 'Raleway', sans-serif;
-  font-size: 12px;
   font-weight: 500;
   line-height: 12px;
   color: #fff;
   opacity: 1;
 }
-
 
 @media (max-width: 575px) {
   #footer {
@@ -13649,8 +13813,6 @@ a {
     padding: 5px 0 5px 0;
   }
   .social a {
-    font-family: "icomoon";
-    font-size: 1.2em;
     width: 30px;
     height: 30px;
     line-height: 30px;
